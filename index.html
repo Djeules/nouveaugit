@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lorem Ipsum — Dolor Sit Amet</title>
+<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+<meta name="theme-color" content="#a8d8ec">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238cc4de'/%3E%3Cpolygon points='8,6 14.5,13 6,14.5' fill='%23f6efe0'/%3E%3Cpolygon points='24,6 26,14.5 17.5,13' fill='%23f6efe0'/%3E%3Ccircle cx='16' cy='18.5' r='9' fill='%23f6efe0'/%3E%3Cellipse cx='12.4' cy='17.6' rx='1.9' ry='1.5' fill='%232e83e0'/%3E%3Cellipse cx='19.6' cy='17.6' rx='1.9' ry='1.5' fill='%232e83e0'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/main.css">
+
+<script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+</script>
+
+<!-- three.js r169 is vendored in js/vendor so the page runs with zero external
+     dependency. To serve it from a CDN instead, swap the path below for
+     https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "./js/vendor/three.module.min.js"
+  }
+}
+</script>
+</head>
+
+<body class="is-loading">
+
+<!-- ================= PRELOADER ================= -->
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div class="loader__inner">
+    <div class="loader__paw">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="loader__bar"><i id="loader-fill"></i></div>
+    <p class="loader__meta"><span id="loader-status">Lorem ipsum</span><span id="loader-count">0%</span></p>
+  </div>
+</div>
+
+<!-- ================= BACKDROP + WEBGL ================= -->
+<div class="backdrop" id="backdrop" aria-hidden="true">
+  <div class="backdrop__glow"></div>
+  <div class="backdrop__blob backdrop__blob--a"></div>
+  <div class="backdrop__blob backdrop__blob--b"></div>
+</div>
+
+<canvas id="gl" class="gl" aria-hidden="true"></canvas>
+
+<!-- floating speech bubble anchored to the avatar -->
+<div class="bubble" id="bubble" aria-hidden="true"><span id="bubble-text">Lorem!</span></div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= CUSTOM CURSOR ================= -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__ring"></span>
+  <span class="cursor__dot"></span>
+  <span class="cursor__label" id="cursor-label">lorem</span>
+</div>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav__side nav__side--left">
+    <span class="nav__avatar" aria-hidden="true"></span>
+    <a class="nav__link is-active" href="#top" data-magnetic>Home</a>
+    <a class="nav__link" href="#s1" data-magnetic>Lorem</a>
+    <a class="nav__link" href="#s2" data-magnetic>Ipsum</a>
+  </div>
+
+  <a class="nav__logo" href="#top" data-magnetic>
+    <span class="nav__logo-mark" aria-hidden="true"></span>
+    <span>LOREMCATS</span>
+  </a>
+
+  <div class="nav__side nav__side--right">
+    <a class="nav__link" href="#s3" data-magnetic>Dolor</a>
+    <a class="nav__link" href="#s4" data-magnetic>Consectetur</a>
+    <a class="nav__link" href="#s4" data-magnetic>Adipiscing</a>
+    <button class="nav__icon" type="button" aria-label="Lorem ipsum" data-magnetic>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+    </button>
+    <button class="nav__icon" type="button" aria-label="Dolor sit amet" data-magnetic>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18" cy="12" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.8"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ================= CONTENT ================= -->
+<main id="scroller">
+
+  <!-- ---------- HERO ---------- -->
+  <section class="section section--hero" id="top" data-index="0" data-label="lorem">
+
+    <div class="hero__left">
+      <p class="badge" data-reveal>
+        <span class="badge__check" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </span>
+        A Lorem Ipsum Game
+      </p>
+
+      <h1 class="hero__title" data-split>Lorem ipsum<br>dolor sit?</h1>
+
+      <p class="hero__lede" data-reveal>
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua enim ad minim veniam quis.
+      </p>
+
+      <div class="hero__actions" data-reveal>
+        <a class="btn btn--solid" href="#s1" data-magnetic>
+          <span>Lorem now</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#s2" data-magnetic>
+          <span class="btn__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z"/></svg></span>
+          <span class="btn__stack"><b>Dolor sit</b><i>amet</i></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <div class="social" data-reveal>
+        <div class="social__faces" aria-hidden="true">
+          <span style="--h:22"></span><span style="--h:190"></span><span style="--h:300"></span>
+          <span style="--h:44"></span><span style="--h:140"></span>
+        </div>
+        <p class="social__text">
+          <b>Lorem ipsum dolor sit amet</b>
+          <i>consectetur adipiscing</i>
+        </p>
+      </div>
+
+      <div class="deck" data-reveal>
+        <article class="deck__card" data-tilt>
+          <span class="deck__thumb deck__thumb--a" aria-hidden="true"></span>
+          <h3>Sed do eiusmod tempor</h3>
+          <p>Incididunt ut labore et dolore magna aliqua ut enim.</p>
+          <button class="deck__go" type="button" data-magnetic>Go</button>
+        </article>
+        <article class="deck__card" data-tilt>
+          <span class="deck__thumb deck__thumb--b" aria-hidden="true"></span>
+          <h3>Ut enim ad minim veniam</h3>
+          <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+          <button class="deck__go" type="button" data-magnetic>Go</button>
+        </article>
+        <article class="deck__card deck__card--peek" aria-hidden="true">
+          <span class="deck__thumb deck__thumb--c"></span>
+          <h3>Duis aute irure</h3>
+          <p>Dolor in reprehenderit in voluptate velit esse cillum.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- rotating badge -->
+    <a class="spinner" href="#s1" aria-label="Lorem ipsum dolor" data-magnetic>
+      <svg class="spinner__ring" viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="circlePath" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+        <text><textPath href="#circlePath">LOREM · IPSUM · DOLOR · SIT · AMET · CONSECTETUR · </textPath></text>
+      </svg>
+      <svg class="spinner__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+
+    <p class="hero__hint" data-reveal>
+      <span class="hero__hint-dot"></span>
+      Lorem ipsum — bougez, cliquez, faites glisser
+    </p>
+  </section>
+
+  <!-- ---------- 01 ---------- -->
+  <section class="section section--split" id="s1" data-index="1" data-label="ipsum">
+    <div class="block block--left">
+      <p class="tag" data-reveal>01 — Lorem ipsum</p>
+      <h2 class="h2" data-split>Dolor sit amet<br>consectetur</h2>
+      <p class="body" data-reveal>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore.
+      </p>
+      <ul class="facts" data-reveal>
+        <li><b>01</b><span>Lorem ipsum dolor sit</span></li>
+        <li><b>02</b><span>Amet consectetur elit</span></li>
+        <li><b>03</b><span>Sed do eiusmod tempor</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- 02 ---------- -->
+  <section class="section section--cards" id="s2" data-index="2" data-label="dolor">
+    <p class="tag tag--center" data-reveal>02 — Sed do eiusmod</p>
+    <h2 class="h2 h2--center" data-split>Tempor incididunt</h2>
+
+    <div class="cards">
+      <article class="card" data-reveal data-tilt>
+        <span class="card__num">001</span>
+        <h3>Lorem ipsum</h3>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+      </article>
+      <article class="card" data-reveal data-tilt>
+        <span class="card__num">002</span>
+        <h3>Dolor sit amet</h3>
+        <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt.</p>
+      </article>
+      <article class="card" data-reveal data-tilt>
+        <span class="card__num">003</span>
+        <h3>Consectetur</h3>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ---------- 03 ---------- -->
+  <section class="section section--quote" id="s3" data-index="3" data-label="amet">
+    <blockquote class="quote">
+      <p data-split>« Ut labore et dolore magna aliqua. »</p>
+      <footer data-reveal>Lorem Ipsum — <span>Dolor Sit Amet</span></footer>
+    </blockquote>
+  </section>
+
+  <!-- ---------- 04 / CTA ---------- -->
+  <section class="section section--cta" id="s4" data-index="4" data-label="finis">
+    <p class="tag tag--center" data-reveal>04 — Excepteur sint</p>
+    <h2 class="h2 h2--center" data-split>Occaecat cupidatat</h2>
+    <p class="body body--center" data-reveal>
+      Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.
+    </p>
+    <a class="btn btn--solid btn--lg" href="#top" data-reveal data-magnetic>
+      <span>Velit esse quam</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <footer class="colophon">
+      <span>© MMXXVI Lorem Ipsum</span>
+      <span>Consectetur adipiscing elit</span>
+      <span>Sed do eiusmod tempor</span>
+    </footer>
+  </section>
+
+</main>
+
+<div class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
+
+<noscript>
+  <div class="noscript">Lorem ipsum dolor sit amet — JavaScript est nécessaire pour l’expérience 3D.</div>
+</noscript>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
