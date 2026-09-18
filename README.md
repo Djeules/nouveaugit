@@ -43,6 +43,29 @@ une politique de confidentialité qui peut l'affirmer sans réserve. Total : 132
 > L'interlignage a été légèrement ouvert (`.94` au lieu de `.86`) : les capitales accentuées
 > françaises (É, À, Ô) ont besoin de plus de place que l'anglais de la référence.
 
+### Les deux registres de titre
+
+La casse n'est pas un choix esthétique, elle indique **qui parle**.
+
+**Capitales, graisse 500** (`.display`, `.heading`) — la voix « fiche produit », froide
+et institutionnelle, qui parodie le langage des lancements tech : anatomie, capacités,
+configuration, BureauBench, modèle, recherche, adoption, tarifs, FAQ.
+
+**Casse normale, graisse 650, corps plus grand** (`.voice`, `.pop__title`) — la voix
+humaine, celle de quelqu'un qui s'adresse au lecteur : l'accroche, « il tient dans une
+poche », « Ce stylo coûte presque rien. », « Vends-moi ce stylo. », « Je m'appelle
+Julien. », « Vendez mieux que ce stylo. »
+
+Regardez où tombent les minuscules : l'accroche, puis tout le dernier tiers. Le site
+commence en voix humaine, enfile le masque corporate pendant la parodie produit, et le
+retire définitivement à la divulgation. **La typographie joue la révélation.** En ajoutant
+un titre, choisir le registre selon ce critère, pas selon la taille voulue.
+
+Deux raisons techniques à l'écart de graisse : les minuscules en très grand corps
+paraissent molles à graisse 500, et le français en capitales accentuées est large —
+« INUTILEMENT SOPHISTIQUÉ » tenait en cinq lignes, la version en casse normale en tient
+trois.
+
 ## Structure
 
 `index.html` · `mentions-legales.html` · `cgv.html` · `politique-de-confidentialite.html`

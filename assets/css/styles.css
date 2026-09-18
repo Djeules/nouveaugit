@@ -170,6 +170,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--ember);box-shadow:0 0 12px var(--ember);animation:pulse 2.4s var(--ease) infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
 
+/* ---------- Registre « voix » ----------
+   Casse normale, plus gros, plus gras. Réservé aux titres où quelqu'un
+   parle : l'accroche, et tout ce qui suit la divulgation. Les capitales
+   restent la voix « fiche produit » de la parodie. */
+.display.voice,.heading.voice,.pop__title{
+  text-transform:none;font-weight:650;line-height:.99;letter-spacing:-.034em;
+}
+.display.voice{font-size:clamp(2.45rem,6.6vw,6.6rem)}
+.heading.voice{font-size:clamp(2.05rem,5.1vw,4.7rem)}
+
 /* ---------- Boutons ---------- */
 .btn{
   position:relative;display:inline-flex;align-items:center;justify-content:center;
@@ -274,7 +284,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 @keyframes breathe{0%,100%{opacity:.8;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.09)}}
 .hero__grid{position:relative;z-index:3;display:grid;gap:clamp(16px,2.2vw,28px);max-width:var(--maxw);width:100%;margin-inline:auto}
-.hero__title{max-width:19ch}
+.hero__title{max-width:17ch}
 .hero__base{
   position:relative;z-index:3;max-width:var(--maxw);width:100%;margin-inline:auto;
   display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(22px,4vw,70px);align-items:end;
@@ -543,7 +553,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     linear-gradient(180deg,transparent,rgba(220,80,0,.07) 40%,transparent);
 }
 .reveal-act__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(26px,4vw,52px)}
-.reveal-act__title{max-width:18ch}
+.reveal-act__title{max-width:16ch}
 .reveal-act__body{display:grid;gap:20px;max-width:54ch;justify-self:end;padding-right:clamp(0px,9vw,170px)}
 .reveal-act__body b{color:var(--cream);font-weight:600}
 .reveal-act__pen{position:absolute;top:50%;right:-3%;transform:translateY(-50%) rotate(24deg);
@@ -865,7 +875,7 @@ body.is-ready .hero__glow{opacity:1}
 }
 /* casse normale et grand corps — la signature typographique de la référence */
 .pop__title{
-  margin:0;font-size:clamp(2.3rem,7.4vw,6.2rem);font-weight:600;line-height:.98;letter-spacing:-.035em;
+  margin:0;font-size:clamp(2.3rem,7.4vw,6.2rem);
   color:var(--cream);opacity:.2;transition:opacity .35s linear;max-width:16ch;
 }
 .pop__title sup{font-size:.42em;color:var(--ember);top:-.5em;margin-left:.06em}
