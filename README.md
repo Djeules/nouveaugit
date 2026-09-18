@@ -85,6 +85,19 @@ le score. Pour modifier les questions, tout est dans le HTML : `data-points` sur
 `data-best` et `data-short` sur chaque `.q`, explication dans `.q__why`. Les paliers sont dans
 la constante `TIERS` de `main.js`.
 
+## Le bouton « Précommander »
+
+Il ne mène à aucune commande. Le premier clic répond, sous le bouton,
+« Aucun stylo n'est vendu ici » ; les clics suivants font monter une petite
+escalade (quatre répliques dans la constante `REPLIES` de `main.js`), et le
+cinquième emmène finalement à la section de divulgation. Sans JavaScript, le
+lien conduit directement à cette section : la mise au point est garantie
+dans tous les cas. Les boutons de la grille tarifaire y mènent également.
+
+C'est à la fois une blague et la protection principale contre une
+qualification de pratique commerciale trompeuse — voir l'article 6 des
+mentions légales. **Ne pas transformer ce bouton en formulaire de commande.**
+
 ## Interactions
 
 Écran de chargement, curseur personnalisé et boutons aimantés, découpe des titres en lignes

@@ -345,6 +345,31 @@
 
 
   /* ---------------------------------------------------
+     18. « Précommander » — le bouton répond au lieu de sauter
+     --------------------------------------------------- */
+  const preorder = $('[data-preorder]');
+  const ctaReply = $('#ctaReply');
+  if (preorder && ctaReply) {
+    const REPLIES = [
+      "Aucun stylo n'est vendu ici. Continuez à défiler, vous comprendrez pourquoi.",
+      "Toujours aucun stylo. Mais j'aime votre insistance.",
+      "C'est exactement l'énergie qu'on travaille en formation.",
+      "Bon. Vous l'aurez voulu — cliquez encore et je vous y emmène."
+    ];
+    let step = 0;
+    preorder.addEventListener('click', e => {
+      if (step >= REPLIES.length) return;   // au-delà, le lien reprend son cours
+      e.preventDefault();
+      ctaReply.classList.remove('is-in');
+      const line = REPLIES[step++];
+      setTimeout(() => {
+        ctaReply.textContent = line;
+        ctaReply.classList.add('is-in');
+      }, reduced ? 0 : 180);
+    });
+  }
+
+  /* ---------------------------------------------------
      17. L'épreuve — quiz de vente
      --------------------------------------------------- */
   const quiz = $('#quiz');
