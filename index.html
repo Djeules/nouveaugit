@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>JULIEN — Le stylo à bille le plus inutilement sophistiqué au monde</title>
+<meta name="description" content="JULIEN-1 : un stylo à bille en plastique, présenté comme il le mérite. Une démonstration de vente signée Julien, formateur en techniques de vente." />
+<meta name="theme-color" content="#100904" />
+<meta property="og:title" content="JULIEN-1 — Le stylo à bille le plus inutilement sophistiqué au monde" />
+<meta property="og:description" content="Corps hexagonal. Bille en carbure de tungstène. 3 200 mètres d'autonomie. Zéro abonnement." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100904'/%3E%3Cpath d='M13 4h6v17l-3 7-3-7z' fill='%23ffedd7'/%3E%3Cpath d='M13 4h6v5h-6z' fill='%23dc5000'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <span class="boot__mark">JULIEN</span>
+    <span class="boot__meta"><i id="bootPct">000</i> — chargement du modèle</span>
+  </div>
+</div>
+
+<svg width="0" height="0" class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gBarrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#ffedd7" stop-opacity=".06"/>
+      <stop offset="14%"  stop-color="#ffedd7" stop-opacity=".34"/>
+      <stop offset="33%"  stop-color="#ffedd7" stop-opacity=".92"/>
+      <stop offset="47%"  stop-color="#ffedd7" stop-opacity=".58"/>
+      <stop offset="64%"  stop-color="#ffedd7" stop-opacity=".30"/>
+      <stop offset="84%"  stop-color="#ffedd7" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="gCap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#6d2400"/>
+      <stop offset="22%"  stop-color="#dc5000"/>
+      <stop offset="44%"  stop-color="#ff8a3d"/>
+      <stop offset="62%"  stop-color="#dc5000"/>
+      <stop offset="100%" stop-color="#581d00"/>
+    </linearGradient>
+    <linearGradient id="gTip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#5c3d17"/>
+      <stop offset="28%"  stop-color="#e0b371"/>
+      <stop offset="52%"  stop-color="#f7dcae"/>
+      <stop offset="74%"  stop-color="#b6873f"/>
+      <stop offset="100%" stop-color="#4a2f11"/>
+    </linearGradient>
+    <linearGradient id="gInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1a0c04"/>
+      <stop offset="40%"  stop-color="#3a1d08"/>
+      <stop offset="100%" stop-color="#120802"/>
+    </linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffedd7" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity="0"/>
+    </linearGradient>
+
+    <symbol id="pen" viewBox="0 0 160 1000">
+      <g class="pen__cap">
+        <path d="M62 44c0-9 7-16 18-16s18 7 18 16v252H62z" fill="url(#gCap)"/>
+        <path d="M96 62c8 1 14 5 14 12v104c0 8-5 12-14 13z" fill="#c24500"/>
+        <rect x="62" y="270" width="36" height="8" fill="#8e3000" opacity=".8"/>
+        <path d="M70 44c0-7 4-12 8-13v250h-8z" fill="#ff9a58" opacity=".55"/>
+      </g>
+      <g class="pen__barrel">
+        <path d="M60 296h40v492H60z" fill="url(#gBarrel)"/>
+        <rect x="60" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".35"/>
+        <rect x="98.4" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".18"/>
+        <rect x="71" y="296" width="1" height="492" fill="#100904" opacity=".30"/>
+        <rect x="88" y="296" width="1" height="492" fill="#100904" opacity=".22"/>
+        <rect x="74" y="300" width="12" height="484" fill="url(#gInk)" opacity=".92"/>
+        <rect x="64" y="330" width="3" height="380" fill="url(#gGlass)" opacity=".7"/>
+        <g class="pen__etch" fill="#100904" opacity=".55">
+          <rect x="66" y="430" width="28" height="1.4"/>
+          <rect x="66" y="436" width="18" height="1.4"/>
+          <rect x="66" y="442" width="24" height="1.4"/>
+        </g>
+      </g>
+      <g class="pen__tip">
+        <path d="M60 788h40l-9 58H69z" fill="url(#gTip)"/>
+        <path d="M69 846h22l-6 32h-10z" fill="url(#gTip)"/>
+        <path d="M76 878h8l-2 14h-4z" fill="#e8cb9b"/>
+        <circle cx="80" cy="896" r="4.6" fill="#f7e6c6"/>
+        <circle cx="78.4" cy="894.4" r="1.5" fill="#fffaf0"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" data-magnetic>
+    <span class="nav__word">JULIEN</span><sup class="nav__reg">®</sup>
+  </a>
+  <nav class="nav__links" aria-label="Navigation principale">
+    <a href="#stylo">Le stylo</a>
+    <a href="#modele">Modèle</a>
+    <a href="#benchmarks">Benchmarks</a>
+    <a href="#recherche">Recherche</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn--sm nav__cta" href="#tarifs" data-magnetic><span>Précommander</span></a>
+  <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="#stylo">Le stylo</a>
+  <a href="#modele">Modèle</a>
+  <a href="#benchmarks">Benchmarks</a>
+  <a href="#recherche">Recherche</a>
+  <a href="#tarifs">Tarifs</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<main id="top">
+
+<section class="hero" data-bg="walnut">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__grid">
+    <p class="eyebrow reveal" data-reveal><span class="dot"></span>JULIEN‑1 · OPEN WEIGHT · DISPONIBLE</p>
+    <h1 class="display hero__title" data-split>Le stylo à bille le plus inutilement sophistiqué du monde.</h1>
+  </div>
+
+  <div class="hero__stage" aria-hidden="true">
+    <svg class="pen pen--hero" viewBox="0 0 160 1000"><use href="#pen"/></svg>
+  </div>
+
+  <div class="hero__base">
+    <div class="hero__aside reveal" data-reveal data-delay="240">
+      <p class="lead">Corps hexagonal en polystyrène cristal. Bille en carbure de tungstène de 1,0&nbsp;mm. Trois mille deux cents mètres d'écriture continue, sans mise à jour, sans cloud, sans consentement aux cookies.</p>
+      <div class="hero__cta">
+        <a class="btn" href="#tarifs" data-magnetic><span>Précommander — 1,20 €</span></a>
+        <a class="btn btn--ghost" href="#recherche" data-magnetic><span>Lire le papier</span></a>
+      </div>
+    </div>
+    <ul class="hero__stats">
+      <li class="reveal" data-reveal data-delay="360"><b data-count="3200" data-suffix=" m">0</b><span>autonomie d'écriture</span></li>
+      <li class="reveal" data-reveal data-delay="440"><b data-count="6" data-suffix=" faces">0</b><span>géométrie anti‑roulement</span></li>
+      <li class="reveal" data-reveal data-delay="520"><b data-count="0" data-suffix=" ms">0</b><span>latence au démarrage</span></li>
+    </ul>
+  </div>
+
+  <a class="hero__scroll" href="#manifeste" aria-label="Défiler"><i></i><span>Défiler</span></a>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>Précision hexagonale</span><em>✦</em><span>Encre à base d'huile</span><em>✦</em><span>Zéro latence</span><em>✦</em><span>100 % local</span><em>✦</em><span>Aucun abonnement</span><em>✦</em><span>Compatible papier</span><em>✦</em>
+    <span>Précision hexagonale</span><em>✦</em><span>Encre à base d'huile</span><em>✦</em><span>Zéro latence</span><em>✦</em><span>100 % local</span><em>✦</em><span>Aucun abonnement</span><em>✦</em><span>Compatible papier</span><em>✦</em>
+  </div>
+</div>
+
+<section class="manifeste" id="manifeste" data-bg="bark">
+  <p class="section-label reveal" data-reveal>01 — Manifeste</p>
+  <p class="manifeste__text" data-words>
+    Chaque objet porte une histoire. La plupart ne l'ont jamais entendue raconter correctement.
+    Nous avons pris le produit le plus banal de votre tiroir et nous lui avons donné le lancement qu'il méritait.
+  </p>
+  <div class="manifeste__sig reveal" data-reveal>
+    <svg viewBox="0 0 160 1000" class="pen pen--mini" aria-hidden="true"><use href="#pen"/></svg>
+    <p>Julien‑1, édition Cristal. Fabriqué en polystyrène. Vendu par la conviction.</p>
+  </div>
+</section>
+
+<section class="anatomy" id="stylo" data-bg="walnut">
+  <div class="anatomy__sticky">
+    <div class="anatomy__stage">
+      <svg class="pen pen--anatomy" viewBox="0 0 160 1000" aria-hidden="true"><use href="#pen"/></svg>
+      <div class="anatomy__halo" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="anatomy__steps">
+    <header class="anatomy__head">
+      <p class="section-label">02 — Anatomie</p>
+      <h2 class="heading">Six faces.<br>Aucune concession.</h2>
+      <p class="lead">Chaque composant a été conservé exactement tel qu'il était depuis 1950, parce que la perfection ne se refactorise pas.</p>
+    </header>
+
+    <article class="step" data-step="cap">
+      <p class="step__idx">01</p>
+      <h3>Capuchon ventilé</h3>
+      <p>Un alésage traversant de 3,2&nbsp;mm assure la circulation de l'air. Une décision d'ingénierie qui a sauvé plus de vies que la plupart des mises à jour de sécurité.</p>
+      <dl class="step__spec"><div><dt>Matériau</dt><dd>Polypropylène</dd></div><div><dt>Clip</dt><dd>Monobloc</dd></div></dl>
+    </article>
+
+    <article class="step" data-step="barrel">
+      <p class="step__idx">02</p>
+      <h3>Corps hexagonal</h3>
+      <p>Six pans parfaitement réguliers. Le stylo ne roule pas hors de la table : il attend. Transparence cristal pour un contrôle permanent du niveau d'encre — aucune télémétrie requise.</p>
+      <dl class="step__spec"><div><dt>Profil</dt><dd>Hex. 8,0 mm</dd></div><div><dt>Optique</dt><dd>Cristal</dd></div></dl>
+    </article>
+
+    <article class="step" data-step="ink">
+      <p class="step__idx">03</p>
+      <h3>Réservoir longue portée</h3>
+      <p>Encre à base d'huile, viscosité stable de −10&nbsp;°C à 55&nbsp;°C. Trois kilomètres deux cents de trait continu : soit environ quarante‑cinq mille signatures, ou une seule très mauvaise décision contractuelle.</p>
+      <dl class="step__spec"><div><dt>Autonomie</dt><dd>3 200 m</dd></div><div><dt>Encre</dt><dd>Oil‑based</dd></div></dl>
+    </article>
+
+    <article class="step" data-step="tip">
+      <p class="step__idx">04</p>
+      <h3>Bille carbure de tungstène</h3>
+      <p>Usinée à 1,0&nbsp;mm, tolérance ±0,01. Elle tourne dans son logement laiton depuis plus longtemps que n'importe quel modèle de langage n'a existé, et elle fonctionne toujours hors connexion.</p>
+      <dl class="step__spec"><div><dt>Diamètre</dt><dd>1,0 mm</dd></div><div><dt>Logement</dt><dd>Laiton nickelé</dd></div></dl>
+    </article>
+  </div>
+</section>
+
+<section class="caps" id="capacites" data-bg="bark">
+  <header class="sec-head">
+    <p class="section-label reveal" data-reveal>03 — Capacités</p>
+    <h2 class="heading reveal" data-reveal data-delay="80">Ce qu'il fait,<br>il le fait entièrement.</h2>
+  </header>
+  <div class="cards">
+    <article class="card reveal" data-reveal>
+      <span class="card__num">0 ms</span>
+      <h3>Inférence instantanée</h3>
+      <p>Aucun temps de démarrage à froid. Vous retirez le capuchon, il écrit. Pas de file d'attente, pas de quota, pas de « capacité actuellement saturée ».</p>
+    </article>
+    <article class="card reveal" data-reveal data-delay="90">
+      <span class="card__num">100 %</span>
+      <h3>Exécution locale</h3>
+      <p>Tout se passe sur votre bureau. Vos données restent sur le papier, où vos concurrents ont beaucoup de mal à faire une requête API.</p>
+    </article>
+    <article class="card reveal" data-reveal data-delay="180">
+      <span class="card__num">∞</span>
+      <h3>Rétrocompatibilité</h3>
+      <p>Compatible avec le papier 70 g, la nappe en papier, le dos d'un ticket de caisse et la paume d'une main. Aucun format n'a jamais été déprécié.</p>
+    </article>
+  </div>
+</section>
+
+<section class="config" id="configurateur" data-bg="walnut">
+  <div class="config__inner">
+    <header class="sec-head sec-head--left">
+      <p class="section-label reveal" data-reveal>04 — Configuration</p>
+      <h2 class="heading reveal" data-reveal data-delay="80">Deux modes.<br>Un seul objet.</h2>
+      <p class="lead reveal" data-reveal data-delay="160">Julien‑1 fonctionne selon deux états mutuellement exclusifs. Basculer de l'un à l'autre demande environ 0,4&nbsp;seconde et aucune compétence particulière.</p>
+      <div class="switch reveal" data-reveal data-delay="240" role="group" aria-label="Mode du stylo">
+        <button class="switch__btn is-active" data-mode="capped">Capuchon engagé</button>
+        <button class="switch__btn" data-mode="open">Capuchon libéré</button>
+        <i class="switch__pill" aria-hidden="true"></i>
+      </div>
+    </header>
+    <div class="config__panel" id="configPanel">
+      <div class="config__state" data-state="capped">
+        <h3>Mode veille</h3>
+        <p>Le capuchon scelle la pointe. Consommation nulle, évaporation nulle, risque de tache sur chemise blanche réduit de 99,6&nbsp;%.</p>
+        <ul class="kv">
+          <li><span>Débit d'encre</span><b>0,00 ml/h</b></li>
+          <li><span>Intégrité de la poche</span><b>Nominale</b></li>
+          <li><span>Disponibilité</span><b>Immédiate</b></li>
+          <li><span>Bruit émis</span><b>0 dB</b></li>
+        </ul>
+      </div>
+      <div class="config__state" data-state="open" hidden>
+        <h3>Mode production</h3>
+        <p>La bille est exposée à l'atmosphère. Le système entre en état d'écriture permanente jusqu'à épuisement du réservoir ou de vos arguments.</p>
+        <ul class="kv">
+          <li><span>Débit d'encre</span><b>0,12 ml/km</b></li>
+          <li><span>Intégrité de la poche</span><b>À vos risques</b></li>
+          <li><span>Disponibilité</span><b>Totale</b></li>
+          <li><span>Bruit émis</span><b>≈ 12 dB</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bench" id="benchmarks" data-bg="deep">
+  <header class="sec-head">
+    <p class="section-label reveal" data-reveal>05 — Évaluation</p>
+    <h2 class="heading reveal" data-reveal data-delay="80">BureauBench</h2>
+    <p class="lead lead--center reveal" data-reveal data-delay="160">Une suite d'évaluation standardisée, conduite sur un seul bureau, et très probablement truquée par nos soins.</p>
+  </header>
+
+  <div class="bench__grid">
+    <div class="bench__row reveal" data-reveal>
+      <p class="bench__name">Julien‑1 <em>(nous)</em></p>
+      <div class="bar"><i data-bar="98"></i></div><span class="bench__val">98,4</span>
+    </div>
+    <div class="bench__row reveal" data-reveal data-delay="70">
+      <p class="bench__name">Stylo rechargeable premium</p>
+      <div class="bar"><i data-bar="71"></i></div><span class="bench__val">71,2</span>
+    </div>
+    <div class="bench__row reveal" data-reveal data-delay="140">
+      <p class="bench__name">Stylo plume patrimonial</p>
+      <div class="bar"><i data-bar="58"></i></div><span class="bench__val">58,9</span>
+    </div>
+    <div class="bench__row reveal" data-reveal data-delay="210">
+      <p class="bench__name">Crayon à papier HB</p>
+      <div class="bar"><i data-bar="44"></i></div><span class="bench__val">44,1</span>
+    </div>
+    <div class="bench__row reveal" data-reveal data-delay="280">
+      <p class="bench__name">Clavier d'ordinateur portable</p>
+      <div class="bar"><i data-bar="31"></i></div><span class="bench__val">31,7</span>
+    </div>
+  </div>
+
+  <div class="bench__notes">
+    <div class="note reveal" data-reveal><p class="note__k">Coût par page</p><p class="note__v">0,0004 €</p><p>Aucun concurrent testé n'a été en mesure de s'en approcher, principalement parce que nous n'avons pas mesuré les autres.</p></div>
+    <div class="note reveal" data-reveal data-delay="90"><p class="note__k">Temps de reprise</p><p class="note__v">0,4 s</p><p>Mesuré entre l'intention d'écrire et le premier trait. Sur cinq essais. Par une seule personne. Qui tenait déjà le stylo.</p></div>
+    <div class="note reveal" data-reveal data-delay="180"><p class="note__k">Taux d'hallucination</p><p class="note__v">0,0 %</p><p>Julien‑1 n'écrit strictement rien que vous ne lui ayez demandé d'écrire. C'est le seul modèle du marché à pouvoir l'affirmer.</p></div>
+  </div>
+</section>
+
+<section class="model" id="modele" data-bg="bark">
+  <div class="model__head">
+    <p class="section-label reveal" data-reveal>06 — Modèle</p>
+    <h2 class="heading reveal" data-reveal data-delay="80">Julien‑1 est<br>open weight.</h2>
+    <p class="lead reveal" data-reveal data-delay="160">Nous publions la géométrie complète du stylo en OBJ propre, pour le rendu, la simulation et la recherche glorieusement inutile. Aucune restriction commerciale. Aucune carte graphique requise.</p>
+    <div class="model__cta reveal" data-reveal data-delay="240">
+      <a class="btn" href="#recherche" data-magnetic><span>Télécharger les poids</span></a>
+      <a class="btn btn--ghost" href="#recherche" data-magnetic><span>Voir le dépôt</span></a>
+    </div>
+  </div>
+  <div class="model__table">
+    <div class="model__tr model__tr--head"><span>Variante</span><span>Poids</span><span>Faces</span><span>Usage recommandé</span></div>
+    <div class="model__tr reveal" data-reveal><span>julien‑1‑4g</span><span>4,2 g</span><span>1 248</span><span>Prototypage, croquis rapide</span></div>
+    <div class="model__tr reveal" data-reveal data-delay="60"><span>julien‑1‑6g</span><span>6,0 g</span><span>3 072</span><span>Production générale, réunion</span></div>
+    <div class="model__tr reveal" data-reveal data-delay="120"><span>julien‑1‑6g‑instruct</span><span>6,0 g</span><span>3 072</span><span>Signature de bon de commande</span></div>
+    <div class="model__tr reveal" data-reveal data-delay="180"><span>julien‑1‑12g‑xl</span><span>12,4 g</span><span>8 192</span><span>Contrats longs, prise de notes</span></div>
+  </div>
+</section>
+
+<section class="research" id="recherche" data-bg="walnut">
+  <div class="research__grid">
+    <div class="research__col">
+      <p class="section-label reveal" data-reveal>07 — Recherche</p>
+      <h2 class="heading reveal" data-reveal data-delay="80">Julien‑1 : un modèle<br>de stylo à poids ouverts</h2>
+      <p class="lead reveal" data-reveal data-delay="160">Nous décrivons une famille d'instruments d'écriture à géométrie hexagonale capables de reproduire fidèlement les comportements clés du stylo : dépôt d'encre contrôlé, résistance au roulement et disponibilité passive sur bureau, dans des conditions de bureau courantes.</p>
+      <ul class="research__meta reveal" data-reveal data-delay="240">
+        <li><span>Auteurs</span><b>J. Marquer, et al.</b></li>
+        <li><span>Publication</span><b>Bureau, 2026</b></li>
+        <li><span>Format</span><b>OBJ · MTL</b></li>
+        <li><span>Licence</span><b>Ouverte</b></li>
+      </ul>
+    </div>
+    <div class="research__col">
+      <figure class="code reveal" data-reveal data-delay="120">
+        <figcaption>BibTeX</figcaption>
+        <pre><code>@misc{julien2026,
+  title   = {Julien-1 : Modèle de stylo à poids ouverts},
+  author  = {Julien},
+  year    = {2026},
+  howpublished = {Publication OBJ},
+  note    = {Un modèle 3D haute fidélité
+             d'un stylo à bille en plastique.}
+}</code></pre>
+        <button class="code__copy" data-copy>Copier</button>
+      </figure>
+      <div class="research__files reveal" data-reveal data-delay="200">
+        <div><span>julien-1.obj</span><b>412 Ko</b></div>
+        <div><span>julien-1.mtl</span><b>2 Ko</b></div>
+        <div><span>paper.pdf</span><b>1,1 Mo</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quotes" id="temoignages" data-bg="bark">
+  <header class="sec-head">
+    <p class="section-label reveal" data-reveal>08 — Adoption</p>
+    <h2 class="heading reveal" data-reveal data-delay="80">Déjà déployé<br>sur des milliers de bureaux.</h2>
+  </header>
+  <div class="quotes__grid">
+    <blockquote class="quote reveal" data-reveal>
+      <p>« Nous avions un outil d'écriture par collaborateur. Après migration vers Julien‑1, nous avons toujours un outil d'écriture par collaborateur, mais le récit est bien meilleur. »</p>
+      <footer><b>Camille R.</b><span>Directrice des opérations</span></footer>
+    </blockquote>
+    <blockquote class="quote reveal" data-reveal data-delay="90">
+      <p>« J'ai signé un contrat à 240 000 € avec. Le stylo en coûtait 1,20. Je n'ai jamais recalculé un retour sur investissement aussi vite. »</p>
+      <footer><b>Thomas D.</b><span>Responsable grands comptes</span></footer>
+    </blockquote>
+    <blockquote class="quote reveal" data-reveal data-delay="180">
+      <p>« Le seul fournisseur qui ne m'a jamais envoyé de mail pour m'annoncer une évolution tarifaire. »</p>
+      <footer><b>Salomé B.</b><span>Achats indirects</span></footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="pricing" id="tarifs" data-bg="walnut">
+  <header class="sec-head">
+    <p class="section-label reveal" data-reveal>09 — Tarifs</p>
+    <h2 class="heading reveal" data-reveal data-delay="80">Une grille tarifaire<br>d'une honnêteté rare.</h2>
+  </header>
+  <div class="plans">
+    <article class="plan reveal" data-reveal>
+      <p class="plan__name">Unité</p>
+      <p class="plan__price">1,20 <em>€</em></p>
+      <p class="plan__sub">Un stylo. Le vôtre.</p>
+      <ul><li>Capuchon inclus</li><li>Encre bleue</li><li>Aucun engagement</li><li>Aucune donnée collectée</li></ul>
+      <a class="btn btn--ghost" href="#revelation" data-magnetic><span>Choisir</span></a>
+    </article>
+    <article class="plan plan--feature reveal" data-reveal data-delay="90">
+      <p class="plan__badge">Le plus choisi</p>
+      <p class="plan__name">Équipe</p>
+      <p class="plan__price">9,90 <em>€</em></p>
+      <p class="plan__sub">Dix stylos. Neuf reviendront.</p>
+      <ul><li>Encre bleue, noire ou rouge</li><li>Déploiement en boîte</li><li>Compatibilité inter‑services</li><li>Aucune formation requise</li></ul>
+      <a class="btn" href="#revelation" data-magnetic><span>Choisir</span></a>
+    </article>
+    <article class="plan reveal" data-reveal data-delay="180">
+      <p class="plan__name">Entreprise</p>
+      <p class="plan__price">Sur devis</p>
+      <p class="plan__sub">Nous n'avons pas de limite, vous non plus.</p>
+      <ul><li>Volume illimité</li><li>Marquage à chaud</li><li>Interlocuteur unique</li><li>Facture papier, signée au stylo</li></ul>
+      <a class="btn btn--ghost" href="#revelation" data-magnetic><span>Nous contacter</span></a>
+    </article>
+  </div>
+</section>
+
+<section class="faq" id="faq" data-bg="bark">
+  <div class="faq__head">
+    <p class="section-label reveal" data-reveal>10 — FAQ</p>
+    <h2 class="heading reveal" data-reveal data-delay="80">Questions<br>légitimes.</h2>
+  </div>
+  <div class="faq__list">
+    <details class="qa reveal" data-reveal open>
+      <summary>Est‑ce que c'est juste un stylo en plastique ?<i></i></summary>
+      <div class="qa__body"><p>Oui. C'est exactement ça. C'est même le cœur du sujet : la valeur perçue d'un objet ne dépend presque jamais de l'objet.</p></div>
+    </details>
+    <details class="qa reveal" data-reveal data-delay="60">
+      <summary>Pourquoi un corps hexagonal ?<i></i></summary>
+      <div class="qa__body"><p>Parce qu'un cylindre roule, tombe, et finit sous un radiateur. L'hexagone est la plus ancienne fonctionnalité anti‑perte jamais commercialisée.</p></div>
+    </details>
+    <details class="qa reveal" data-reveal data-delay="120">
+      <summary>Y a‑t‑il un abonnement ?<i></i></summary>
+      <div class="qa__body"><p>Non. Quand le réservoir est vide, le produit cesse simplement de fonctionner et vous en rachetez un. Nous appelons cela le modèle économique historique.</p></div>
+    </details>
+    <details class="qa reveal" data-reveal data-delay="180">
+      <summary>Mes données sont‑elles utilisées pour l'entraînement ?<i></i></summary>
+      <div class="qa__body"><p>Uniquement si vous laissez vos notes sur la table de la salle de réunion. Dans ce cas, le problème n'est pas le stylo.</p></div>
+    </details>
+    <details class="qa reveal" data-reveal data-delay="240">
+      <summary>Ce site est‑il sérieux ?<i></i></summary>
+      <div class="qa__body"><p>Chaque section est parfaitement sérieuse dans son exécution. C'est précisément la démonstration. Continuez à défiler.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="reveal-act" id="revelation" data-bg="ember">
+  <div class="reveal-act__inner">
+    <p class="section-label reveal" data-reveal>11 — Divulgation</p>
+    <h2 class="display reveal-act__title" data-split>Ce stylo coûte trente centimes.</h2>
+    <div class="reveal-act__body">
+      <p class="lead reveal" data-reveal data-delay="200">Vous venez de lire près de deux mille mots sur un objet en plastique moulé, fabriqué par centaines de millions, que vous auriez laissé sans hésiter dans un pot à crayons il y a neuf minutes.</p>
+      <p class="lead reveal" data-reveal data-delay="280">Rien n'a changé dans le produit. Tout a changé dans la façon dont il vous a été présenté. <b>C'est exactement mon métier.</b></p>
+    </div>
+    <div class="reveal-act__pen" aria-hidden="true">
+      <svg class="pen pen--reveal" viewBox="0 0 160 1000"><use href="#pen"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="julien" id="julien" data-bg="walnut">
+  <div class="julien__grid">
+    <div class="julien__intro">
+      <p class="section-label reveal" data-reveal>12 — L'auteur</p>
+      <h2 class="heading reveal" data-reveal data-delay="80">Je m'appelle Julien.<br>Je forme des vendeurs.</h2>
+      <p class="lead reveal" data-reveal data-delay="160">Depuis quinze ans, j'accompagne des équipes commerciales qui ont un très bon produit et une très mauvaise histoire. Ce site est ma carte de visite : si je peux vous faire désirer un stylo à 0,30 €, imaginez ce que votre offre mérite.</p>
+      <ul class="julien__facts">
+        <li class="reveal" data-reveal data-delay="220"><b data-count="1400" data-suffix="+">0</b><span>commerciaux formés</span></li>
+        <li class="reveal" data-reveal data-delay="280"><b data-count="15" data-suffix=" ans">0</b><span>de terrain, pas de théorie</span></li>
+        <li class="reveal" data-reveal data-delay="340"><b data-count="94" data-suffix=" %">0</b><span>de recommandation</span></li>
+      </ul>
+    </div>
+    <div class="julien__offers">
+      <article class="offer reveal" data-reveal>
+        <p class="offer__idx">01</p>
+        <h3>Structurer son discours de valeur</h3>
+        <p>Transformer une fiche produit en récit qui donne envie. Le module qui a produit ce site.</p>
+        <span class="offer__meta">2 jours · présentiel ou distanciel</span>
+      </article>
+      <article class="offer reveal" data-reveal data-delay="90">
+        <p class="offer__idx">02</p>
+        <h3>Prospection sans script</h3>
+        <p>Ouvrir des conversations avec des gens qui n'attendaient pas votre appel, et leur donner une raison de rester.</p>
+        <span class="offer__meta">2 jours · 8 participants max</span>
+      </article>
+      <article class="offer reveal" data-reveal data-delay="180">
+        <p class="offer__idx">03</p>
+        <h3>Négociation et closing</h3>
+        <p>Défendre son prix sans se justifier. Traiter l'objection comme un signal d'achat, pas comme un échec.</p>
+        <span class="offer__meta">1 jour · atelier intensif</span>
+      </article>
+      <article class="offer reveal" data-reveal data-delay="270">
+        <p class="offer__idx">04</p>
+        <h3>Coaching d'équipe</h3>
+        <p>Accompagnement au long cours : écoute d'appels, débriefs, montée en compétence mesurable.</p>
+        <span class="offer__meta">Sur mesure · trimestriel</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta" data-bg="ember">
+  <div class="cta__inner">
+    <h2 class="display" data-split>Vendez mieux que ce stylo.</h2>
+    <p class="lead reveal" data-reveal data-delay="200">Trente minutes d'échange pour cadrer votre besoin. Sans engagement, et sans diaporama.</p>
+    <div class="cta__row reveal" data-reveal data-delay="280">
+      <a class="btn btn--lg" href="mailto:julien.marquer@gmail.com?subject=Formation%20vente" data-magnetic><span>Réserver un échange</span></a>
+      <a class="btn btn--ghost btn--lg" href="#julien" data-magnetic><span>Voir les formations</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" data-bg="walnut">
+  <div class="foot__top">
+    <div class="foot__col">
+      <p class="foot__label">Produit</p>
+      <a href="#stylo">Le stylo</a><a href="#modele">Modèle</a><a href="#benchmarks">Benchmarks</a><a href="#tarifs">Tarifs</a>
+    </div>
+    <div class="foot__col">
+      <p class="foot__label">Formation</p>
+      <a href="#julien">Discours de valeur</a><a href="#julien">Prospection</a><a href="#julien">Closing</a><a href="#julien">Coaching</a>
+    </div>
+    <div class="foot__col">
+      <p class="foot__label">Contact</p>
+      <a href="mailto:julien.marquer@gmail.com">Écrire à Julien</a><a href="#faq">FAQ</a><a href="#recherche">Le papier</a>
+    </div>
+  </div>
+  <div class="foot__mark" aria-hidden="true"><span>JULIEN</span></div>
+  <div class="foot__bottom">
+    <p>© 2026 Julien — Formation aux techniques de vente.</p>
+    <p class="foot__disclaimer">Julien‑1 est un stylo à bille en plastique. Tous les chiffres de cette page sont une mise en scène. La démonstration, elle, est bien réelle.</p>
+  </div>
+</footer>
+
+</main>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
