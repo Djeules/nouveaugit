@@ -174,7 +174,7 @@
 <section class="anatomy" id="stylo" data-bg="walnut">
   <div class="anatomy__sticky">
     <div class="anatomy__stage">
-      <svg class="pen pen--anatomy" viewBox="0 0 160 1000" aria-hidden="true"><use href="#pen"/></svg>
+      <div class="pen3d" data-pen3d="anatomy" aria-hidden="true"></div>
       <div class="anatomy__halo" aria-hidden="true"></div>
     </div>
   </div>
@@ -239,10 +239,51 @@
   </div>
 </section>
 
+<section class="pop" id="portable" data-bg="deep">
+  <div class="pop__inner">
+    <p class="section-label reveal" data-reveal>04 — Format</p>
+    <p class="pop__kicker reveal" data-reveal data-delay="60">Si discret,</p>
+    <h2 class="pop__title" data-lit>il tient dans une poche<sup>*</sup></h2>
+
+    <div class="pop__frame reveal" data-reveal data-delay="120">
+      <span class="pop__corner pop__corner--tl" aria-hidden="true"></span>
+      <span class="pop__corner pop__corner--tr" aria-hidden="true"></span>
+      <span class="pop__corner pop__corner--bl" aria-hidden="true"></span>
+      <span class="pop__corner pop__corner--br" aria-hidden="true"></span>
+      <i class="pop__dot" aria-hidden="true"></i>
+      <div class="pop__ring" aria-hidden="true"></div>
+      <div class="pop__tick pop__tick--t" aria-hidden="true"></div>
+      <div class="pop__tick pop__tick--b" aria-hidden="true"></div>
+
+      <div class="pen3d pop__pen" data-pen3d="pop" aria-hidden="true"></div>
+
+      <div class="hud" aria-hidden="true">
+        <div class="hud__row">
+          <span class="hud__chip">✍ 3 devis</span>
+          <span class="hud__chip">◷ 41 min</span>
+        </div>
+        <p class="hud__src">LE JULIEN</p>
+        <p class="hud__msg">Vous n'avez relancé personne depuis mardi. On s'y met&nbsp;?</p>
+        <span class="hud__btn">Relancer</span>
+      </div>
+    </div>
+
+    <div class="pop__foot">
+      <p class="pop__note">Un stylo n'a besoin ni de batterie, ni de mise à jour, ni de votre attention. Il attend. C'est déjà plus que ce que fait la moitié de votre pile logicielle.</p>
+      <p class="footnote"><span>*</span> POCHE NON FOURNIE</p>
+    </div>
+
+    <a class="scroll-cue" href="#configurateur">
+      <span>Défiler pour continuer</span>
+      <i aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
 <section class="config" id="configurateur" data-bg="walnut">
   <div class="config__inner">
     <header class="sec-head sec-head--left">
-      <p class="section-label reveal" data-reveal>04 — Configuration</p>
+      <p class="section-label reveal" data-reveal>05 — Configuration</p>
       <h2 class="heading reveal" data-reveal data-delay="80">Deux modes.<br>Un seul objet.</h2>
       <p class="lead reveal" data-reveal data-delay="160">Le Julien fonctionne selon deux états mutuellement exclusifs. Basculer de l'un à l'autre demande environ 0,4&nbsp;seconde et aucune compétence particulière.</p>
       <div class="switch reveal" data-reveal data-delay="240" role="group" aria-label="Mode du stylo">
@@ -278,7 +319,7 @@
 
 <section class="bench" id="benchmarks" data-bg="deep">
   <header class="sec-head">
-    <p class="section-label reveal" data-reveal>05 — Évaluation</p>
+    <p class="section-label reveal" data-reveal>06 — Évaluation</p>
     <h2 class="heading reveal" data-reveal data-delay="80">BureauBench</h2>
     <p class="lead lead--center reveal" data-reveal data-delay="160">Une suite d'évaluation standardisée, conduite sur un seul bureau, et très probablement truquée par nos soins.</p>
   </header>
@@ -315,7 +356,7 @@
 
 <section class="model" id="modele" data-bg="bark">
   <div class="model__head">
-    <p class="section-label reveal" data-reveal>06 — Modèle</p>
+    <p class="section-label reveal" data-reveal>07 — Modèle</p>
     <h2 class="heading reveal" data-reveal data-delay="80">Le Julien est<br>open weight.</h2>
     <p class="lead reveal" data-reveal data-delay="160">Nous publions la géométrie complète du stylo en OBJ propre, pour le rendu, la simulation et la recherche glorieusement inutile. Aucune restriction commerciale. Aucune carte graphique requise.</p>
     <div class="model__cta reveal" data-reveal data-delay="240">
@@ -335,7 +376,7 @@
 <section class="research" id="recherche" data-bg="walnut">
   <div class="research__grid">
     <div class="research__col">
-      <p class="section-label reveal" data-reveal>07 — Recherche</p>
+      <p class="section-label reveal" data-reveal>08 — Recherche</p>
       <h2 class="heading reveal" data-reveal data-delay="80">Le Julien : un modèle<br>de stylo à poids ouverts</h2>
       <p class="lead reveal" data-reveal data-delay="160">Nous décrivons une famille d'instruments d'écriture à géométrie hexagonale capables de reproduire fidèlement les comportements clés du stylo : dépôt d'encre contrôlé, résistance au roulement et disponibilité passive sur bureau, dans des conditions de bureau courantes.</p>
       <ul class="research__meta reveal" data-reveal data-delay="240">
@@ -369,28 +410,47 @@
 
 <section class="quotes" id="temoignages" data-bg="bark">
   <header class="sec-head">
-    <p class="section-label reveal" data-reveal>08 — Adoption</p>
+    <p class="section-label reveal" data-reveal>09 — Adoption</p>
     <h2 class="heading reveal" data-reveal data-delay="80">Déjà déployé<br>sur des milliers de bureaux.</h2>
   </header>
-  <div class="quotes__grid">
-    <blockquote class="quote reveal" data-reveal>
-      <p>« Nous avions un outil d'écriture par collaborateur. Après migration vers Le Julien, nous avons toujours un outil d'écriture par collaborateur, mais le récit est bien meilleur. »</p>
-      <footer><b>Camille R.</b><span>Directrice des opérations</span></footer>
-    </blockquote>
-    <blockquote class="quote reveal" data-reveal data-delay="90">
-      <p>« J'ai signé un contrat à 240 000 € avec. Le stylo en coûtait 1,20. Je n'ai jamais recalculé un retour sur investissement aussi vite. »</p>
-      <footer><b>Thomas D.</b><span>Responsable grands comptes</span></footer>
-    </blockquote>
-    <blockquote class="quote reveal" data-reveal data-delay="180">
-      <p>« Le seul fournisseur qui ne m'a jamais envoyé de mail pour m'annoncer une évolution tarifaire. »</p>
-      <footer><b>Salomé B.</b><span>Achats indirects</span></footer>
-    </blockquote>
+  <div class="carousel" id="quotesCarousel">
+    <div class="carousel__viewport">
+      <div class="carousel__track">
+        <blockquote class="quote">
+          <p>« Nous avions un outil d'écriture par collaborateur. Après migration vers Le Julien, nous avons toujours un outil d'écriture par collaborateur, mais le récit est bien meilleur. »</p>
+          <footer><b>Camille R.</b><span>Directrice des opérations</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>« J'ai signé un contrat à 240 000 € avec. Le stylo en coûtait 1,20. Je n'ai jamais recalculé un retour sur investissement aussi vite. »</p>
+          <footer><b>Thomas D.</b><span>Responsable grands comptes</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>« Le seul fournisseur qui ne m'a jamais envoyé de mail pour m'annoncer une évolution tarifaire. »</p>
+          <footer><b>Salomé B.</b><span>Achats indirects</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>« Déployé sur quarante postes en une matinée. Aucun ticket support ouvert depuis. Notre DSI a demandé si on pouvait faire pareil avec le reste. »</p>
+          <footer><b>Farid M.</b><span>Directeur des systèmes d'information</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>« Mes commerciaux l'emportent en rendez-vous. Ils reviennent avec des bons de commande signés. Je ne sais pas si c'est le stylo, mais je ne prends aucun risque. »</p>
+          <footer><b>Élise T.</b><span>Directrice commerciale</span></footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="carousel__bar">
+      <div class="carousel__dots" id="quotesDots"></div>
+      <div class="carousel__nav">
+        <button class="carousel__arrow" data-dir="-1" aria-label="Témoignage précédent"></button>
+        <button class="carousel__arrow carousel__arrow--next" data-dir="1" aria-label="Témoignage suivant"></button>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="pricing" id="tarifs" data-bg="walnut">
   <header class="sec-head">
-    <p class="section-label reveal" data-reveal>09 — Tarifs</p>
+    <p class="section-label reveal" data-reveal>10 — Tarifs</p>
     <h2 class="heading reveal" data-reveal data-delay="80">Une grille tarifaire<br>d'une honnêteté rare.</h2>
   </header>
   <div class="plans">
@@ -421,7 +481,7 @@
 
 <section class="faq" id="faq" data-bg="bark">
   <div class="faq__head">
-    <p class="section-label reveal" data-reveal>10 — FAQ</p>
+    <p class="section-label reveal" data-reveal>11 — FAQ</p>
     <h2 class="heading reveal" data-reveal data-delay="80">Questions<br>légitimes.</h2>
   </div>
   <div class="faq__list">
@@ -450,7 +510,7 @@
 
 <section class="reveal-act" id="revelation" data-bg="ember">
   <div class="reveal-act__inner">
-    <p class="section-label reveal" data-reveal>11 — Divulgation</p>
+    <p class="section-label reveal" data-reveal>12 — Divulgation</p>
     <h2 class="display reveal-act__title" data-split>Ce stylo coûte presque rien.</h2>
     <div class="reveal-act__body">
       <p class="lead reveal" data-reveal data-delay="200">Vous venez de lire près de deux mille mots sur un objet en plastique moulé, fabriqué par centaines de millions, que vous auriez laissé sans hésiter dans un pot à crayons il y a neuf minutes.</p>
@@ -464,7 +524,7 @@
 
 <section class="quiz" id="epreuve" data-bg="deep">
   <header class="sec-head">
-    <p class="section-label reveal" data-reveal>12 — L'épreuve</p>
+    <p class="section-label reveal" data-reveal>13 — L'épreuve</p>
     <h2 class="heading reveal" data-reveal data-delay="80">Vends-moi<br>ce stylo.</h2>
     <p class="lead lead--center reveal" data-reveal data-delay="160">Dans <em>Le Loup de Wall Street</em>, un homme tend son stylo à son interlocuteur et lâche cette phrase. Presque tous répondent en parlant du stylo. C'est exactement l'erreur. Quatre questions, deux minutes : voyons ce que vous auriez répondu.</p>
   </header>
@@ -547,7 +607,7 @@
 <section class="julien" id="julien" data-bg="walnut">
   <div class="julien__grid">
     <div class="julien__intro">
-      <p class="section-label reveal" data-reveal>13 — L'auteur</p>
+      <p class="section-label reveal" data-reveal>14 — L'auteur</p>
       <h2 class="heading reveal" data-reveal data-delay="80">Je m'appelle Julien.<br>Je forme des vendeurs.</h2>
       <p class="lead reveal" data-reveal data-delay="160">Depuis plus de vingt ans, j'accompagne des équipes commerciales qui ont un très bon produit et une très mauvaise histoire. Ce site est ma carte de visite : si je peux vous faire désirer un stylo à 0,30 €, imaginez ce que votre offre mérite.</p>
       <ul class="julien__facts">

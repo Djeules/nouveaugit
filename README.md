@@ -98,9 +98,25 @@ C'est à la fois une blague et la protection principale contre une
 qualification de pratique commerciale trompeuse — voir l'article 6 des
 mentions légales. **Ne pas transformer ce bouton en formulaire de commande.**
 
+## Le stylo 3D
+
+Le stylo de la section Anatomie n'est pas une image : c'est un **prisme hexagonal
+construit en CSS 3D** (28 faces), assemblé par `buildPen()` dans `main.js`. Chaque face
+porte son angle de base ; à chaque image, `drawPen()` recalcule son éclairage selon
+l'angle qu'elle présente à la lumière, plus un terme de Fresnel sur le corps — une face
+vue de biais renvoie plus de lumière, ce qui fait lire le tube comme du cristal et laisse
+voir la colonne d'encre. Rotation, inclinaison et échelle sont pilotées par la position
+de défilement dans la section.
+
+Géométrie et direction de lumière : constante `PEN` en tête du bloc.
+
 ## Interactions
 
-Écran de chargement, curseur personnalisé et boutons aimantés, découpe des titres en lignes
+Écran de chargement, stylo 3D piloté au défilement, carrousel de témoignages
+(glisser, flèches, points, avance automatique suspendue à la première interaction),
+planche graphique « Format » (cadre et cercle pointillés, fausse interface, gag
+d'astérisque), titres qui montent en lumière à l'entrée dans la fenêtre,
+curseur personnalisé et boutons aimantés, découpe des titres en lignes
 animées, apparitions au défilement, compteurs, barres de benchmark, manifeste qui s'allume
 mot à mot, rotation du stylo pilotée par le défilement, bascule de configuration, accordéon FAQ,
 copie du BibTeX, menu plein écran en mobile.

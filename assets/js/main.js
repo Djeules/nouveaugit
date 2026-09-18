@@ -231,11 +231,9 @@
      11. Anatomie : étapes + rotation du stylo
      --------------------------------------------------- */
   const steps = $$('.step');
-  const penAnatomy = $('.pen--anatomy');
   const penHero = $('.pen--hero');
   const penReveal = $('.pen--reveal');
   const halo = $('.anatomy__halo');
-  const ROT = { cap: -8, barrel: 6, ink: -4, tip: 14 };
 
   /* ---------------------------------------------------
      12. Boucle de défilement (parallaxe, progression, états)
@@ -280,12 +278,35 @@
         if (r.top < innerHeight * 0.62 && r.bottom > innerHeight * 0.18) active = s;
       });
       steps.forEach(s => s.classList.toggle('is-active', s === active));
-      if (active && penAnatomy) {
-        const key = active.dataset.step;
-        penAnatomy.style.transform = `rotate(${ROT[key] ?? 0}deg) translateY(${(ROT[key] ?? 0) * -1.6}px)`;
-        if (halo) halo.style.background =
-          key === 'tip' ? 'radial-gradient(circle,rgba(247,220,174,.26),transparent 64%)'
-                        : 'radial-gradient(circle,rgba(220,80,0,.22),transparent 64%)';
+      if (active && halo) {
+        halo.style.background = active.dataset.step === 'tip'
+          ? 'radial-gradient(circle,rgba(247,220,174,.26),transparent 64%)'
+          : 'radial-gradient(circle,rgba(220,80,0,.22),transparent 64%)';
+      }
+    }
+
+    // Titres qui montent en lumière à mesure qu'ils entrent dans la fenêtre
+    for (const el of lits) {
+      const r = el.getBoundingClientRect();
+      const q = clamp((innerHeight * 0.9 - r.top) / (r.height + innerHeight * 0.34), 0, 1);
+      el.style.opacity = (0.2 + 0.8 * q).toFixed(3);
+    }
+
+    if (pens.pop) {
+      const r = $('#portable').getBoundingClientRect();
+      const q = clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
+      drawPen(pens.pop, reduced ? 26 : -60 + q * 340, 10, 0.58);
+    }
+
+    // Stylo 3D de la section Anatomie : rotation et échelle sur toute la traversée
+    if (pens.anatomy) {
+      const sec = $('#stylo');
+      const r = sec.getBoundingClientRect();
+      const p = clamp((innerHeight * 0.5 - r.top) / (r.height - innerHeight * 0.5), 0, 1);
+      if (reduced) {
+        drawPen(pens.anatomy, 18, -8, 1);
+      } else {
+        drawPen(pens.anatomy, -20 + p * 400, -14 + Math.sin(p * Math.PI) * 26, 0.92 + p * 0.3);
       }
     }
     ticking = false;
@@ -293,7 +314,6 @@
   addEventListener('scroll', () => {
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
-  onScroll();
 
   /* ---------------------------------------------------
      13. Configurateur
@@ -343,6 +363,104 @@
     });
   }
 
+
+  /* ---------------------------------------------------
+     19. Stylo 3D — prisme hexagonal construit en CSS
+     --------------------------------------------------- */
+  const PEN = {
+    W: 30,        // largeur d'une face du corps
+    CAP: 168,     // hauteur du capuchon
+    BARREL: 402,  // hauteur du corps
+    TIP: 62,      // hauteur de la pointe conique
+    INK: 7,       // demi-largeur du réservoir
+    LIGHT: -36    // direction de la lumière, en degrés
+  };
+  const APO = w => w * 0.8660254;   // apothème d'un hexagone régulier
+
+  function buildPen(host) {
+    const { W, CAP, BARREL, TIP, INK } = PEN;
+    const R = APO(W), total = CAP + BARREL + TIP, half = total / 2;
+    const capY    = -half + CAP / 2;
+    const barrelY = -half + CAP + BARREL / 2;
+    const tipY    = -half + CAP + BARREL + TIP / 2;
+    const ballY   = -half + total + 3;
+    const discY   = -half;
+
+    const rot = document.createElement('div');
+    rot.className = 'pen3d__rot';
+    const faces = [];
+
+    const face = (cls, w, h, angle, radius, y, extra = '') => {
+      const d = document.createElement('div');
+      d.className = 'p-face ' + cls;
+      d.style.cssText = `width:${w}px;height:${h}px;margin-left:${-w / 2}px;margin-top:${-h / 2}px;`;
+      d.dataset.a = angle;
+      d.dataset.t = `translateY(${y}px) rotateY(${angle}deg) translateZ(${radius}px)${extra}`;
+      d.style.transform = d.dataset.t;
+      rot.appendChild(d);
+      faces.push(d);
+      return d;
+    };
+
+    for (let k = 0; k < 6; k++) {
+      const a = k * 60;
+      face('p-cap',    W + 1.6, CAP,    a, APO(W + 1.6), capY);
+      face('p-barrel', W,       BARREL, a, R,            barrelY).dataset.fres = '1';
+      face('p-ink',    INK * 2, BARREL - 26, a, APO(INK * 2), barrelY);
+      // pointe : trapèze incliné vers l'axe
+      const rTop = R, rBot = R * 0.26;
+      const tilt = Math.atan2(rTop - rBot, TIP) * 180 / Math.PI;
+      const f = face('p-tip', W, TIP, a, (rTop + rBot) / 2, tipY, ` rotateX(${-tilt}deg)`);
+      f.style.clipPath = 'polygon(0% 0%, 100% 0%, 63% 100%, 37% 100%)';
+    }
+
+    // disque supérieur du capuchon
+    const disc = face('p-disc', W * 2, W * 2, 0, 0, discY, ' rotateX(90deg)');
+    disc.style.clipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
+    disc.dataset.flat = '1';
+
+    // clip du capuchon : boîte fine de quatre faces
+    const clipY = capY - 4, CH = 96, CW = 9, CD = 5;
+    face('p-clip', CW, CH,   0, APO(W + 1.6) + CD, clipY);
+    face('p-clip', CD, CH,  90, CW / 2,            clipY).style.opacity = '.85';
+    face('p-clip', CD, CH, 270, CW / 2,            clipY).style.opacity = '.85';
+
+    const ball = document.createElement('div');
+    ball.className = 'p-ball';
+    ball.style.cssText = 'width:9px;height:9px;margin-left:-4.5px;margin-top:-4.5px;';
+    ball.dataset.y = ballY;
+    rot.appendChild(ball);
+
+    const glow = document.createElement('div');
+    glow.className = 'pen3d__glow';
+
+    host.replaceChildren(glow, rot);
+    return { host, rot, faces, ball, scale: 1 };
+  }
+
+  function drawPen(inst, rotY, tiltX, scale) {
+    inst.rot.style.transform =
+      `translateZ(-40px) rotateX(${tiltX}deg) rotateY(${rotY}deg) scale3d(${scale},${scale},${scale})`;
+    // éclairage : chaque face s'éclaire selon l'angle qu'elle présente à la lumière
+    for (const f of inst.faces) {
+      if (f.dataset.flat) { f.style.setProperty('--l', 0.42); continue; }
+      const a = +f.dataset.a;
+      const lum = (Math.cos((a + rotY - PEN.LIGHT) * Math.PI / 180) + 1) / 2;
+      f.style.setProperty('--l', (0.07 + 0.93 * Math.pow(lum, 1.45)).toFixed(3));
+      // Fresnel : une face vue de biais renvoie plus de lumière qu'une face de face.
+      // C'est ce qui fait lire un tube transparent par ses bords.
+      if (f.dataset.fres) {
+        const view = Math.abs(Math.cos((a + rotY) * Math.PI / 180));
+        f.style.setProperty('--f', Math.pow(1 - view, 0.75).toFixed(3));
+      }
+    }
+    inst.ball.style.transform =
+      `translateY(${inst.ball.dataset.y}px) rotateY(${-rotY}deg) rotateX(${-tiltX}deg)`;
+  }
+
+  const lits = $$('[data-lit]');
+  const pens = {};
+  $$('[data-pen3d]').forEach(host => { pens[host.dataset.pen3d] = buildPen(host); });
 
   /* ---------------------------------------------------
      18. « Précommander » — le bouton répond au lieu de sauter
@@ -474,6 +592,100 @@
 
     paint();
   }
+
+  /* ---------------------------------------------------
+     20. Carrousel de témoignages
+     --------------------------------------------------- */
+  const car = $('#quotesCarousel');
+  if (car) {
+    const view  = $('.carousel__viewport', car);
+    const cards = $$('.quote', car);
+    const dots  = $('#quotesDots');
+    const arrows = $$('.carousel__arrow', car);
+    let index = 0, timer = null, engaged = false;
+
+    cards.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', `Témoignage ${i + 1}`);
+      d.addEventListener('click', () => { engage(); goTo(i); });
+      dots.appendChild(d);
+    });
+    const dotEls = $$('button', dots);
+
+    const centerOf = i => {
+      const c = cards[i];
+      return c.offsetLeft - (view.clientWidth - c.offsetWidth) / 2;
+    };
+    const goTo = (i, smooth = true) => {
+      index = clamp(i, 0, cards.length - 1);
+      view.scrollTo({ left: centerOf(index), behavior: smooth && !reduced ? 'smooth' : 'auto' });
+      sync();
+    };
+    const nearest = () => {
+      // aux extrémités, le défilement est borné : la carte du milieu n'est plus la bonne référence
+      if (view.scrollLeft <= 2) return 0;
+      if (view.scrollLeft >= view.scrollWidth - view.clientWidth - 2) return cards.length - 1;
+      const mid = view.scrollLeft + view.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+        if (d < dist) { dist = d; best = i; }
+      });
+      return best;
+    };
+    const sync = () => {
+      dotEls.forEach((d, i) => d.classList.toggle('is-on', i === index));
+      arrows[0].disabled = index === 0;
+      arrows[1].disabled = index === cards.length - 1;
+    };
+
+    arrows.forEach(a => a.addEventListener('click', () => { engage(); goTo(index + (+a.dataset.dir)); }));
+
+    view.addEventListener('scroll', () => {
+      const i = nearest();
+      if (i !== index) { index = i; sync(); }
+    }, { passive: true });
+
+    // glisser-déposer à la souris ; le tactile utilise le défilement natif
+    let down = false, startX = 0, startLeft = 0, moved = 0;
+    view.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') return;
+      down = true; moved = 0; startX = e.clientX; startLeft = view.scrollLeft;
+      view.setPointerCapture(e.pointerId);
+      engage();
+    });
+    view.addEventListener('pointermove', e => {
+      if (!down) return;
+      moved = e.clientX - startX;
+      if (Math.abs(moved) > 4) view.classList.add('is-dragging');
+      view.scrollLeft = startLeft - moved;
+    });
+    const release = () => {
+      if (!down) return;
+      down = false;
+      view.classList.remove('is-dragging');
+      goTo(nearest());
+    };
+    view.addEventListener('pointerup', release);
+    view.addEventListener('pointercancel', release);
+
+    // défilement automatique, suspendu dès la première interaction
+    function engage() { engaged = true; clearInterval(timer); }
+    if (!reduced) {
+      timer = setInterval(() => {
+        if (engaged || document.hidden) return;
+        goTo(index >= cards.length - 1 ? 0 : index + 1);
+      }, 5200);
+      car.addEventListener('pointerenter', () => clearInterval(timer));
+    }
+
+    addEventListener('resize', () => goTo(index, false));
+    requestAnimationFrame(() => goTo(0, false));
+  }
+
+  /* premier rendu, une fois tous les composants construits */
+  requestAnimationFrame(onScroll);
 
   /* ---------------------------------------------------
      16. FAQ : une seule réponse ouverte
