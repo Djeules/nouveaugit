@@ -343,6 +343,113 @@
     });
   }
 
+
+  /* ---------------------------------------------------
+     17. L'épreuve — quiz de vente
+     --------------------------------------------------- */
+  const quiz = $('#quiz');
+  if (quiz) {
+    const qs        = $$('.q', quiz);
+    const total     = qs.length;
+    const maxScore  = qs.reduce((sum, q) => sum + Math.max(...$$('.opt', q).map(o => +o.dataset.points)), 0);
+    const stage     = $('#quizStage');
+    const bar       = $('#quizBar');
+    const idxLabel  = $('#quizIdx');
+    const backBtn   = $('#quizBack');
+    const resultBox = $('#quizResult');
+    const nav       = $('.quiz__nav', quiz);
+    const meta      = $('.quiz__meta', quiz);
+
+    const TIERS = [
+      { min: 0, max: 3, title: 'À retravailler',
+        msg: "Vos réflexes actuels parlent du produit : ses qualités, son prix, ses usages. Aucun ne parle de la personne en face. C'est la correction la plus rentable qui existe, et c'est aussi la plus rapide — elle se voit dès le rendez‑vous suivant." },
+      { min: 4, max: 6, title: 'De bons réflexes',
+        msg: "Vous savez déjà ne pas vendre n'importe comment. Ce qui vous manque n'est pas l'intuition, c'est la méthode qui la rend reproductible un mardi à 17 h, face à un acheteur pressé, quand l'intuition ne répond plus." },
+      { min: 7, max: 9, title: 'Vous êtes performant',
+        msg: "Vous vendez bien, et vous le savez. La marche suivante ne se joue plus sur les arguments mais sur le cadrage : qui mène l'entretien, à partir de quelle question, et à quel moment vous cessez de parler." },
+      { min: 10, max: 99, title: 'Soyez redoutable',
+        msg: "Score maximal. Vous n'avez pas besoin qu'on vous apprenne à vendre — vous avez besoin qu'on vous apprenne à faire vendre les autres. C'est un métier différent, et c'est celui sur lequel se jouent les chiffres d'une équipe." }
+    ];
+
+    let idx = 0;
+    const picks = new Array(total).fill(null);
+
+    const paint = () => {
+      qs.forEach((q, i) => { q.hidden = i !== idx; });
+      idxLabel.textContent = String(idx + 1);
+      bar.style.width = ((idx + 1) / total) * 100 + '%';
+      backBtn.hidden = idx === 0;
+    };
+
+    const finish = () => {
+      const score = picks.reduce((a, p) => a + (p ? p.points : 0), 0);
+      const tier  = TIERS.find(t => score >= t.min && score <= t.max) || TIERS[0];
+
+      $('#quizScore').textContent = score;
+      $('.quiz__score em', quiz).textContent = '/ ' + maxScore;
+      $('#quizVerdict').textContent = tier.title;
+      $('#quizMsg').textContent = tier.msg;
+
+      const meter = $('#quizMeter');
+      meter.innerHTML = Array.from({ length: maxScore }, (_, i) =>
+        `<i class="${i < score ? 'is-on' : ''}"></i>`).join('');
+
+      $('#quizRecap').innerHTML = qs.map((q, i) => {
+        const pick = picks[i];
+        const best = q.dataset.best;
+        const good = pick && pick.letter === best;
+        return `<div class="rec">
+          <span class="rec__mark ${good ? 'is-good' : ''}">${good ? '✓' : pick.letter}</span>
+          <p class="rec__k">${q.dataset.short}</p>
+          <span class="rec__pts">${pick.points} / 3 · bonne réponse : ${best}</span>
+          <p class="rec__why">${$('.q__why', q).innerHTML}</p>
+        </div>`;
+      }).join('');
+
+      stage.hidden = true;
+      nav.hidden = true;
+      meta.hidden = true;
+      resultBox.hidden = false;
+      bar.style.width = '100%';
+      if (!reduced) quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    qs.forEach((q, i) => {
+      const opts = $$('.opt', q);
+      opts.forEach(opt => opt.addEventListener('click', () => {
+        if (picks[i]) return;
+        picks[i] = { points: +opt.dataset.points, letter: opt.dataset.letter };
+        opts.forEach(o => { o.disabled = true; });
+        opt.classList.add('is-picked');
+        setTimeout(() => {
+          if (idx < total - 1) { idx++; paint(); } else { finish(); }
+        }, reduced ? 0 : 560);
+      }));
+    });
+
+    backBtn.addEventListener('click', () => {
+      if (idx === 0) return;
+      idx--;
+      picks[idx] = null;
+      $$('.opt', qs[idx]).forEach(o => { o.disabled = false; o.classList.remove('is-picked'); });
+      paint();
+    });
+
+    $('#quizReplay').addEventListener('click', () => {
+      picks.fill(null);
+      qs.forEach(q => $$('.opt', q).forEach(o => { o.disabled = false; o.classList.remove('is-picked'); }));
+      idx = 0;
+      resultBox.hidden = true;
+      stage.hidden = false;
+      nav.hidden = false;
+      meta.hidden = false;
+      paint();
+      if (!reduced) quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    paint();
+  }
+
   /* ---------------------------------------------------
      16. FAQ : une seule réponse ouverte
      --------------------------------------------------- */

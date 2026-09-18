@@ -44,7 +44,23 @@ Aucune dépendance, aucune étape de build. Ouvrir `index.html` suffit.
 
 Sections : hero → bandeau défilant → manifeste → anatomie (stylo collant) → capacités →
 configurateur → benchmarks → modèle open weight → recherche/BibTeX → témoignages → tarifs →
-FAQ → **divulgation** → formations → appel à l'action → pied de page.
+FAQ → **divulgation** → **l'épreuve** → formations → appel à l'action → pied de page.
+
+### L'épreuve (`#epreuve`)
+
+Quiz de quatre questions placé **après** la divulgation, jamais avant : il convertit le visiteur
+qui a deviné la chute en candidat qui se teste. Référence à *Le Loup de Wall Street* (« vends‑moi
+ce stylo »).
+
+Barème : 3 / 2 / 1 / 0 points par question, 12 au total, et quatre verdicts —
+*À retravailler* (0‑3), *De bons réflexes* (4‑6), *Vous êtes performant* (7‑9),
+*Soyez redoutable* (10‑12). Tous mènent à l'offre : le dernier oriente vers le coaching d'équipe
+plutôt que vers la formation individuelle.
+
+Le bilan détaillé explique chaque bonne réponse — c'est là que se démontre l'expertise, pas dans
+le score. Pour modifier les questions, tout est dans le HTML : `data-points` sur chaque `.opt`,
+`data-best` et `data-short` sur chaque `.q`, explication dans `.q__why`. Les paliers sont dans
+la constante `TIERS` de `main.js`.
 
 ## Interactions
 
