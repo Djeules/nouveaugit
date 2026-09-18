@@ -39,8 +39,25 @@ remplacer la déclaration `--sans` dans `assets/css/styles.css` par Halyard Disp
 
 ## Structure
 
-`index.html` · `assets/css/styles.css` · `assets/js/main.js`
+`index.html` · `mentions-legales.html` · `cgv.html` · `politique-de-confidentialite.html`
+`assets/css/styles.css` · `assets/js/main.js`
 Aucune dépendance, aucune étape de build. Ouvrir `index.html` suffit.
+
+### Pages légales
+
+Rédigées pour un **organisme de formation déclaré (NDA), sans certification Qualiopi,
+vendant à des clients professionnels**. Tout changement sur l'un de ces trois points impose
+une relecture des CGV.
+
+Les champs à compléter apparaissent en orange sur fond hachuré (classe `.tbd`) : ils sont
+volontairement impossibles à manquer. Vérifier qu'il n'en reste aucun avant publication :
+
+```
+grep -o 'class="tbd[^"]*"' *.html | wc -l
+```
+
+Les encadrés `.note-box` sont des remarques qui vous sont adressées, pas du texte contractuel :
+**les supprimer avant mise en ligne.**
 
 Sections : hero → bandeau défilant → manifeste → anatomie (stylo collant) → capacités →
 configurateur → benchmarks → modèle open weight → recherche/BibTeX → témoignages → tarifs →
@@ -77,3 +94,15 @@ copie du BibTeX, menu plein écran en mobile.
 - **Chiffres** : `data-count` dans la section « L'auteur » (commerciaux formés, années, recommandation).
 - **Formations** : les quatre cartes `.offer`.
 - **Mentions légales** : à ajouter si le site est mis en ligne.
+
+
+## Avant la mise en ligne
+
+- [ ] Remplir tous les champs `.tbd` des trois pages légales
+- [ ] Supprimer les encadrés `.note-box` des pages légales
+- [ ] Choisir l'option TVA dans les CGV (article 5) et supprimer l'autre
+- [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
+- [ ] Corriger les chiffres de la section « L'auteur » (formés, années, recommandation)
+- [ ] Remplacer les témoignages fictifs par de vrais, ou les retirer
+- [ ] Héberger les polices avec le site plutôt que via Google Fonts (RGPD)
+- [ ] Faire relire les CGV par un professionnel du droit
