@@ -8,9 +8,8 @@
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#100904" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100904'/%3E%3Cpath d='M13 4h6v17l-3 7-3-7z' fill='%23ffedd7'/%3E%3Cpath d='M13 4h6v5h-6z' fill='%23dc5000'/%3E%3C/svg%3E" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preload" href="assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -36,7 +35,7 @@
       <a href="#donnees">3. Données traitées</a>
       <a href="#finalites">4. Finalités et bases légales</a>
       <a href="#destinataires">5. Destinataires</a>
-      <a href="#polices">6. Polices de caractères</a>
+      <a href="#polices">6. Ressources externes</a>
       <a href="#durees">7. Durées de conservation</a>
       <a href="#transferts">8. Transferts hors UE</a>
       <a href="#securite">9. Sécurité</a>
@@ -60,6 +59,7 @@
           <li>il ne comporte aucun formulaire ; la prise de contact se fait par courriel, à votre initiative ;</li>
           <li>il n'utilise <b>aucun outil de mesure d'audience</b>, aucun traceur publicitaire, aucun pixel de réseau social ;</li>
           <li>il ne dépose <b>aucun cookie</b> et n'inscrit aucune information dans le stockage local de votre navigateur ;</li>
+          <li>il ne charge <b>aucune ressource depuis un serveur tiers</b> : ni police de caractères, ni bibliothèque, ni image distante ;</li>
           <li>les réponses que vous saisissez dans le questionnaire « L'épreuve » sont traitées <b>exclusivement dans votre navigateur</b>. Elles ne sont transmises à aucun serveur, ne sont pas enregistrées et disparaissent dès que vous fermez ou rechargez la page. Le responsable de traitement n'a aucun moyen d'en prendre connaissance.</li>
         </ul>
         <p>Les seules données traitées sont donc celles que vous transmettez volontairement, et celles nécessaires à l'exécution des prestations de formation.</p>
@@ -113,13 +113,10 @@
       </section>
 
       <section class="art" id="polices">
-        <h2><i>06</i>Polices de caractères et ressources externes</h2>
-        <p>Les pages de ce site chargent leurs polices de caractères depuis le service Google Fonts (<i>fonts.googleapis.com</i> et <i>fonts.gstatic.com</i>). Ce chargement transmet à Google votre adresse IP ainsi que des informations techniques sur votre navigateur, sans qu'un cookie soit déposé.</p>
-        <p>Aucune autre ressource externe n'est chargée : le code, les styles et les illustrations sont hébergés avec le site.</p>
-        <div class="note-box">
-          <b>Recommandation technique</b>
-          <p>Cette transmission d'adresse IP vers un service établi aux États-Unis a donné lieu à des contentieux en Europe, et plusieurs autorités de contrôle la jugent contestable en l'absence de consentement. <b>La solution est simple et sans contrepartie : héberger les fichiers de police avec le site.</b> Les polices utilisées ici sont libres et le permettent. Cela supprime le transfert, supprime cet article entier, et accélère même l'affichage. Dites-moi si vous voulez que je le fasse — c'est une intervention courte.</p>
-        </div>
+        <h2><i>06</i>Ressources externes</h2>
+        <p><b>Ce site ne charge aucune ressource depuis un serveur tiers.</b> La totalité des fichiers nécessaires à son affichage — feuille de styles, script, illustrations et polices de caractères — est hébergée avec le site lui-même.</p>
+        <p>En particulier, les polices de caractères ne sont pas appelées depuis un service de distribution externe. Aucune donnée technique, adresse IP comprise, n'est donc transmise à un tiers du simple fait de la consultation de ces pages.</p>
+        <p>Les polices employées, Figtree et JetBrains Mono, sont distribuées sous licence SIL Open Font License version 1.1, dont le texte est joint aux fichiers.</p>
       </section>
 
       <section class="art" id="durees">
@@ -139,7 +136,8 @@
 
       <section class="art" id="transferts">
         <h2><i>08</i>Transferts hors Union européenne</h2>
-        <p>En dehors du chargement des polices mentionné à l'article 6, et sous réserve des services de messagerie et outils listés à l'article 5, aucun transfert de données hors de l'Union européenne n'est réalisé. Lorsqu'un tel transfert existe, il est encadré par les garanties appropriées prévues au chapitre V du RGPD, notamment les clauses contractuelles types de la Commission européenne.</p>
+        <p>La consultation du site n'entraîne par elle-même aucun transfert de données hors de l'Union européenne, aucune ressource tierce n'étant chargée (article 6).</p>
+        <p>Un tel transfert ne peut résulter que des outils listés à l'article 5, notamment du service de messagerie électronique utilisé pour les échanges. Lorsqu'il existe, il est encadré par les garanties appropriées prévues au chapitre V du RGPD, notamment les clauses contractuelles types de la Commission européenne.</p>
       </section>
 
       <section class="art" id="securite">

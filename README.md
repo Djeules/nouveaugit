@@ -30,9 +30,15 @@ avec transition douce sur `--bg`, `--bg-2` et `--glow`.
 La référence utilise **Halyard Display** (Adobe Fonts, licence requise) pour ~99 % du texte :
 graisse 500, capitales, interlignage serré pour les titres ; graisse 400 pour le corps.
 
-Ce site utilise **Figtree** (Google Fonts, libre), la substitution géométrique la plus proche,
-plus **JetBrains Mono** pour les étiquettes techniques. Pour coller à 100 % à la référence,
+Ce site utilise **Figtree**, la substitution géométrique libre la plus proche, plus
+**JetBrains Mono** pour les étiquettes techniques. Pour coller à 100 % à la référence,
 remplacer la déclaration `--sans` dans `assets/css/styles.css` par Halyard Display.
+
+Les deux polices sont **hébergées avec le site** (`assets/fonts/`), en version variable,
+sous licence SIL Open Font License 1.1 — les fichiers `LICENSE-*.txt` doivent rester
+à côté des `.woff2`. Le site ne fait donc **aucune requête vers un serveur tiers** :
+rien à charger depuis un service de polices, aucune adresse IP de visiteur transmise, et
+une politique de confidentialité qui peut l'affirmer sans réserve. Total : 132 Ko.
 
 > L'interlignage a été légèrement ouvert (`.94` au lieu de `.86`) : les capitales accentuées
 > françaises (É, À, Ô) ont besoin de plus de place que l'anglais de la référence.
@@ -104,5 +110,4 @@ copie du BibTeX, menu plein écran en mobile.
 - [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
 - [ ] Corriger les chiffres de la section « L'auteur » (formés, années, recommandation)
 - [ ] Remplacer les témoignages fictifs par de vrais, ou les retirer
-- [ ] Héberger les polices avec le site plutôt que via Google Fonts (RGPD)
 - [ ] Faire relire les CGV par un professionnel du droit
