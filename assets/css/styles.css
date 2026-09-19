@@ -298,7 +298,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ---------- scène d'atelier ---------- */
 .mockup{
-  position:absolute;left:0;right:0;bottom:0;height:min(76%,780px);z-index:1;pointer-events:none;
+  position:absolute;left:0;right:0;bottom:0;height:min(78%,800px);z-index:1;pointer-events:none;
   overflow:hidden;will-change:transform;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 100%);
           mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 100%);
@@ -306,12 +306,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mockup__desk{
   position:absolute;inset:0;
   background:
-    repeating-linear-gradient(94deg,rgba(0,0,0,.16) 0 2px,transparent 2px 13px),
-    linear-gradient(170deg,#6b4526,#4a2e18 55%,#331f10);
+    repeating-linear-gradient(93deg,rgba(60,32,12,.11) 0 3px,transparent 3px 22px),
+    linear-gradient(112deg,#78502c 0%,#b8874f 34%,#cf9d63 56%,#9c6c3e 78%,#6a4526 100%);
 }
 .mockup__mat{
-  position:absolute;left:-4%;right:-4%;top:11%;bottom:3.5%;
-  transform:rotate(-1.5deg);border-radius:14px;overflow:hidden;
+  position:absolute;left:-3%;right:-7%;top:5%;bottom:20%;
+  transform:rotate(1.9deg);border-radius:14px;overflow:hidden;
   background:linear-gradient(165deg,#3c4a35,#2b3527 58%,#222b20);
   box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07);
 }
@@ -334,7 +334,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* le bon de commande glissé sous le stylo */
 .mockup__paper{
-  position:absolute;left:44%;bottom:5%;width:clamp(178px,17vw,268px);aspect-ratio:1/1.3;
+  position:absolute;left:48%;bottom:4%;width:clamp(160px,15.5vw,244px);aspect-ratio:1/1.3;
   transform:rotate(-7deg);border-radius:3px;
   background:linear-gradient(158deg,#f4e9d6,#ddcfb6 62%,#c7b89d);
   box-shadow:0 22px 44px rgba(0,0,0,.5),0 2px 0 rgba(255,255,255,.22) inset;
@@ -351,7 +351,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* le trombone */
 .mockup__clip{
-  position:absolute;right:26%;bottom:22%;width:17px;height:48px;
+  position:absolute;right:24%;bottom:30%;width:17px;height:48px;
   border:2.5px solid rgba(206,214,222,.75);border-radius:12px;
   transform:rotate(31deg);
   box-shadow:0 5px 12px rgba(0,0,0,.5);
@@ -361,7 +361,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border:2.5px solid rgba(206,214,222,.55);border-radius:10px;border-top-color:transparent;
 }
 .mockup__pen{
-  position:absolute;left:46.2%;bottom:7.5%;width:clamp(31px,2.98vw,47px);height:auto;
+  position:absolute;left:50%;bottom:6%;width:clamp(28px,2.72vw,43px);height:auto;
   transform:rotate(20deg);transform-origin:50% 50%;
   filter:drop-shadow(14px 26px 24px rgba(0,0,0,.62));
   will-change:transform;
@@ -369,9 +369,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mockup__haze{
   position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(78% 64% at 46% 52%,transparent,rgba(16,9,4,.34) 86%),
-    linear-gradient(180deg,rgba(16,9,4,.72),rgba(16,9,4,.22) 26%,transparent 44%),
-    linear-gradient(0deg,rgba(16,9,4,.6),rgba(16,9,4,.2) 14%,transparent 30%);
+    linear-gradient(118deg,rgba(16,9,4,.5) 0%,rgba(16,9,4,.16) 38%,rgba(16,9,4,0) 62%),
+    radial-gradient(86% 72% at 58% 40%,transparent,rgba(16,9,4,.32) 92%),
+    linear-gradient(180deg,rgba(16,9,4,.72),rgba(16,9,4,.2) 22%,transparent 38%),
+    linear-gradient(0deg,rgba(16,9,4,.42),rgba(16,9,4,.12) 12%,transparent 26%);
 }
 
 /* ---------- cartel translucide et pied du hero ---------- */
@@ -385,18 +386,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border:1px solid rgba(255,237,215,.2);
   /* Voile clair relevé au pixel sur la référence : il éclaircit le fond au lieu
      de l'assombrir, et le flou efface la trame du tapis. */
-  background:
-    linear-gradient(168deg,rgba(214,196,172,.05),rgba(214,196,172,0) 52%),
-    rgba(178,139,97,.58);
-  backdrop-filter:blur(24px) saturate(108%);-webkit-backdrop-filter:blur(24px) saturate(108%);
-  box-shadow:0 26px 60px rgba(0,0,0,.34);
+  background:rgba(181,150,113,.64);
+  backdrop-filter:blur(26px) saturate(104%);-webkit-backdrop-filter:blur(26px) saturate(104%);
+  box-shadow:0 26px 60px rgba(0,0,0,.3);
 }
 .hero__credit{
-  margin:0;font-size:clamp(.92rem,1.3vw,1.1rem);font-weight:600;line-height:1.24;
+  margin:0;font-size:clamp(.96rem,1.42vw,1.2rem);font-weight:600;line-height:1.26;
   text-transform:uppercase;letter-spacing:.005em;color:#fff9f2;
 }
 .hero__claim{
-  margin:0;font-size:clamp(1rem,1.25vw,1.15rem);font-weight:450;line-height:1.44;
+  margin:0;font-size:clamp(1.02rem,1.36vw,1.2rem);font-weight:500;line-height:1.42;
   color:#fff9f2;max-width:34ch;
 }
 .hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
@@ -820,10 +819,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* le cartel devient opaque : la feuille ne doit plus transparaître derrière le texte */
   .hero__card{
     max-width:100%;
-    background:
-      linear-gradient(168deg,rgba(214,196,172,.05),rgba(214,196,172,0) 52%),
-      rgba(178,139,97,.57);
-    backdrop-filter:blur(20px) saturate(106%);-webkit-backdrop-filter:blur(20px) saturate(106%);
+    background:rgba(181,150,113,.64);
+    backdrop-filter:blur(22px) saturate(104%);-webkit-backdrop-filter:blur(22px) saturate(104%);
   }
   .hero__credit{font-size:.88rem}
   .hero__claim{font-size:.94rem}
@@ -834,12 +831,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .hero__stats b{font-size:1.12rem;min-width:5.2ch}
   /* la nature morte se replie dans le coin, simplement entrevue */
   .mockup{height:min(70%,580px)}
-  .mockup__paper{width:124px;left:auto;right:0;bottom:3%;padding:15px 13px;gap:6px}
+  .mockup__mat{left:-6%;right:-10%;top:4%;bottom:11%}
+  .mockup__paper{width:124px;left:auto;right:0;bottom:2%;padding:15px 13px;gap:6px}
   .mockup__paper-head{height:7px}
   .mockup__paper-line{height:3px}
   .mockup__paper-sign{margin-top:15px;font-size:.4rem}
   .mockup__paper-rule{margin-top:2px}
-  .mockup__pen{left:auto;right:4.5%;bottom:5%;width:26px}
+  .mockup__pen{left:auto;right:4.5%;bottom:4%;width:26px}
   .mockup__clip,.mockup__rule{display:none}
   .bench__row{grid-template-columns:1fr auto;row-gap:10px}
   .bench__row .bar{grid-column:1 / -1;order:3}
