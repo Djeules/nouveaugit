@@ -168,14 +168,33 @@ Google et ferait tomber la promesse « aucune ressource tierce ».
 
 Le bouton de réservation est un **lien sortant**, jamais un module intégré : un widget
 Cal.com ou Calendly poserait des cookies tiers sur la page. L'URL apparaît à deux endroits,
-signalés par un commentaire `⚠️ REMPLACER` :
+signalés par un commentaire `⚠️` :
 
 ```
-grep -rn "cal.com/julien" *.html
+grep -rn "cal.com" *.html
 ```
+
+L'événement Cal.com est configuré en trente minutes, visioconférence Cal Video,
+slug `diagnostic` — c'est ce slug que les deux liens du site attendent.
 
 > Le formulaire ne fonctionne que sur Netlify. En prévisualisation locale ou dans un
 > artefact Claude, l'envoi échoue — c'est normal.
+
+## Image de partage
+
+`assets/img/og.jpg` est rendue depuis `tools/og-image.html` avec les polices et la
+scène du site : voir `tools/README-og.md` pour la refabriquer. Les cinq pages portent
+les balises Open Graph et Twitter Card qui la déclarent.
+
+Open Graph exige des **URL absolues** : le domaine apparaît donc en clair dans chaque
+`<head>`, sous la forme du jeton `https://VOTRE-DOMAINE.fr`. Une seule commande
+le remplace partout :
+
+```
+sed -i 's#https://VOTRE-DOMAINE.fr#https://votre-vrai-domaine.fr#g' *.html
+```
+
+Tant que ce jeton est là, LinkedIn affichera le lien sans visuel.
 
 ## Avant la mise en ligne
 
@@ -185,7 +204,9 @@ grep -rn "cal.com/julien" *.html
 - [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
 - [ ] Corriger les chiffres de la section « L'auteur » (formés, années, recommandation)
 - [ ] Remplacer les témoignages fictifs par de vrais, ou les retirer
-- [ ] Remplacer l'URL de réservation aux deux emplacements signalés
+- [ ] Renommer le slug Cal.com en `diagnostic` (ou corriger les deux liens du site)
+- [ ] Remplacer le jeton `https://VOTRE-DOMAINE.fr` par le domaine réel (cinq pages)
+- [ ] Vérifier l'aperçu dans le LinkedIn Post Inspector après la mise en ligne
 - [ ] Activer la détection des formulaires dans Netlify et brancher la notification
 - [ ] Compléter le nom et le NDA du partenaire Qualiopi dans les CGV (article 6)
 - [ ] Faire relire les CGV par un professionnel du droit

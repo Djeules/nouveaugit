@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Julien — image de partage (1200×630)</title>
+<!--
+  Gabarit de l'image de partage (Open Graph / LinkedIn / X).
+  Ce fichier n'est pas publié : il sert uniquement à fabriquer assets/img/og.png.
+  Rendu : voir tools/README-og.md
+-->
+<style>
+@font-face{
+  font-family:'Figtree';font-style:normal;font-weight:300 900;
+  src:url('../assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;
+  src:url('../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+}
+:root{
+  --walnut:#100904;--cream:#ffedd7;--ember:#dc5000;
+  --sans:"Figtree",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;overflow:hidden;background:var(--walnut)}
+body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialiased}
+
+.card{position:relative;width:1200px;height:630px;overflow:hidden;background:var(--walnut)}
+
+/* ---------- la scène d'atelier, reprise du hero ---------- */
+.desk{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(93deg,rgba(60,32,12,.11) 0 3px,transparent 3px 22px),
+    linear-gradient(112deg,#78502c 0%,#b8874f 34%,#cf9d63 56%,#9c6c3e 78%,#6a4526 100%);
+}
+.mat{
+  position:absolute;left:22%;right:-12%;top:-12%;bottom:-16%;
+  transform:rotate(1.9deg);border-radius:14px;overflow:hidden;
+  background:linear-gradient(165deg,#3c4a35,#2b3527 58%,#222b20);
+  box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.grid{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(to right,rgba(226,236,214,.075) 0 1px,transparent 1px 30px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.075) 0 1px,transparent 1px 30px),
+    repeating-linear-gradient(to right,rgba(226,236,214,.16) 0 1px,transparent 1px 150px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.16) 0 1px,transparent 1px 150px);
+  background-position:22px 18px;
+}
+.paper{
+  position:absolute;left:50%;bottom:19%;width:180px;aspect-ratio:1/1.3;
+  transform:rotate(-7deg);border-radius:3px;
+  background:linear-gradient(158deg,#f4e9d6,#ddcfb6 62%,#c7b89d);
+  box-shadow:0 22px 44px rgba(0,0,0,.5),0 2px 0 rgba(255,255,255,.22) inset;
+  display:grid;align-content:start;gap:10px;padding:26px 24px;
+}
+.paper i{display:block;height:5px;border-radius:2px;background:rgba(40,28,16,.2)}
+.paper i.head{height:10px;width:46%;background:rgba(40,28,16,.62)}
+.paper i.short{width:58%}
+.paper b{
+  margin-top:26px;font-family:var(--mono);font-size:8px;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(40,28,16,.5);
+}
+.paper u{display:block;height:1px;background:rgba(40,28,16,.38);text-decoration:none}
+.clip{
+  position:absolute;right:14%;bottom:56%;width:17px;height:48px;
+  border:2.5px solid rgba(206,214,222,.75);border-radius:12px;
+  transform:rotate(31deg);box-shadow:0 5px 12px rgba(0,0,0,.5);
+}
+.clip::after{
+  content:"";position:absolute;left:4px;top:8px;right:4px;bottom:-9px;
+  border:2.5px solid rgba(206,214,222,.55);border-radius:10px;border-top-color:transparent;
+}
+.pen{
+  position:absolute;left:57%;bottom:17%;width:36px;height:auto;
+  transform:rotate(20deg);transform-origin:50% 50%;
+  filter:drop-shadow(14px 26px 24px rgba(0,0,0,.62));
+}
+.haze{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(16,9,4,.98) 0%,rgba(16,9,4,.96) 22%,rgba(16,9,4,.82) 38%,rgba(16,9,4,.46) 50%,rgba(16,9,4,.14) 62%,rgba(16,9,4,0) 74%),
+    radial-gradient(78% 86% at 74% 46%,transparent,rgba(16,9,4,.46) 96%),
+    linear-gradient(180deg,rgba(16,9,4,.5),transparent 28%),
+    linear-gradient(0deg,rgba(16,9,4,.55),rgba(16,9,4,.12) 16%,transparent 32%);
+}
+.glow{
+  position:absolute;left:-10%;bottom:-40%;width:70%;height:110%;
+  background:radial-gradient(closest-side,rgba(220,80,0,.26),transparent 72%);
+}
+
+/* ---------- le texte ---------- */
+.copy{
+  position:absolute;left:68px;top:64px;bottom:64px;width:590px;z-index:4;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.eyebrow{
+  display:flex;align-items:center;gap:11px;
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(255,237,215,.6);
+}
+.eyebrow s{width:7px;height:7px;border-radius:50%;background:var(--ember);text-decoration:none}
+.wordmark{margin-top:16px;font-size:64px;font-weight:500;letter-spacing:-.045em;line-height:.9;color:#fff9f2}
+
+.claim{font-size:45px;font-weight:600;line-height:1.06;letter-spacing:-.022em;color:#fff9f2}
+.claim em{font-style:normal;color:var(--ember)}
+
+.sign{display:grid;gap:9px}
+.sign hr{border:0;height:1px;background:rgba(255,237,215,.18)}
+.sign p{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(255,237,215,.56);
+}
+.sign p b{font-weight:500;color:rgba(255,237,215,.86)}
+.sign p s{color:rgba(255,237,215,.28);text-decoration:none}
+
+/* le grain, comme sur le site */
+.grain{
+  position:absolute;inset:0;z-index:5;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBarrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".06"/>
+      <stop offset="14%" stop-color="#ffedd7" stop-opacity=".34"/>
+      <stop offset="33%" stop-color="#ffedd7" stop-opacity=".92"/>
+      <stop offset="47%" stop-color="#ffedd7" stop-opacity=".58"/>
+      <stop offset="64%" stop-color="#ffedd7" stop-opacity=".30"/>
+      <stop offset="84%" stop-color="#ffedd7" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="gCap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d2400"/><stop offset="22%" stop-color="#dc5000"/>
+      <stop offset="44%" stop-color="#ff8a3d"/><stop offset="62%" stop-color="#dc5000"/>
+      <stop offset="100%" stop-color="#581d00"/>
+    </linearGradient>
+    <linearGradient id="gTip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5c3d17"/><stop offset="28%" stop-color="#e0b371"/>
+      <stop offset="52%" stop-color="#f7dcae"/><stop offset="74%" stop-color="#b6873f"/>
+      <stop offset="100%" stop-color="#4a2f11"/>
+    </linearGradient>
+    <linearGradient id="gInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a0c04"/><stop offset="40%" stop-color="#3a1d08"/>
+      <stop offset="100%" stop-color="#120802"/>
+    </linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="card">
+  <div class="desk"></div>
+  <div class="mat">
+    <div class="grid"></div>
+    <div class="paper">
+      <i class="head"></i><i></i><i></i><i class="short"></i>
+      <b>Bon pour accord</b><u></u>
+    </div>
+    <svg class="pen" viewBox="0 0 160 1000">
+      <g><path d="M62 44c0-9 7-16 18-16s18 7 18 16v252H62z" fill="url(#gCap)"/>
+      <path d="M96 62c8 1 14 5 14 12v104c0 8-5 12-14 13z" fill="#c24500"/>
+      <rect x="62" y="270" width="36" height="8" fill="#8e3000" opacity=".8"/>
+      <path d="M70 44c0-7 4-12 8-13v250h-8z" fill="#ff9a58" opacity=".55"/></g>
+      <g><path d="M60 296h40v492H60z" fill="url(#gBarrel)"/>
+      <rect x="60" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".35"/>
+      <rect x="98.4" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".18"/>
+      <rect x="71" y="296" width="1" height="492" fill="#100904" opacity=".30"/>
+      <rect x="88" y="296" width="1" height="492" fill="#100904" opacity=".22"/>
+      <rect x="74" y="300" width="12" height="484" fill="url(#gInk)" opacity=".92"/>
+      <rect x="64" y="330" width="3" height="380" fill="url(#gGlass)" opacity=".7"/></g>
+      <g><path d="M60 788h40l-9 58H69z" fill="url(#gTip)"/>
+      <path d="M69 846h22l-6 32h-10z" fill="url(#gTip)"/>
+      <path d="M76 878h8l-2 14h-4z" fill="#e8cb9b"/></g>
+    </svg>
+  </div>
+  <div class="haze"></div>
+  <div class="glow"></div>
+
+  <div class="copy">
+    <div>
+      <p class="eyebrow"><s></s>Le Julien · Édition cristal · Disponible</p>
+      <p class="wordmark">Julien</p>
+    </div>
+
+    <p class="claim">Le stylo à bille le plus inutilement sophistiqué du monde.</p>
+
+    <div class="sign">
+      <hr>
+      <p><b>Vendez-moi ce stylo.</b></p>
+      <p>Julien — formateur aux techniques de vente</p>
+    </div>
+  </div>
+
+  <div class="grain"></div>
+</div>
+</body>
+</html>

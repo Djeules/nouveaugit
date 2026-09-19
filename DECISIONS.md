@@ -186,7 +186,34 @@ Deuxième piège lié : dans une grille avec `align-items: start`, la colonne d'
 collant n'est pas étirée à la hauteur de la ligne — il décroche à mi-parcours. La colonne
 doit être en `align-self: stretch`, l'élément collant étant à l'intérieur.
 
-## 11. Ce qui reste à faire
+## 11. L'image de partage, rendue et non dessinée
+
+Un lien collé dans LinkedIn, Slack ou iMessage est presque toujours vu **avant** le site.
+Sans `og:image`, il s'affiche en ligne de texte grise ; c'est le seul endroit où un
+travail de plusieurs semaines peut être annulé par une balise manquante.
+
+L'image n'a pas été dessinée dans un outil graphique. `tools/og-image.html` est une page
+de 1200 × 630 qui recharge les polices, les couleurs et la scène d'atelier du hero, et
+qu'on photographie avec Chromium en 2× avant de réduire. Trois conséquences : la charte
+ne peut pas diverger, la retouche se fait en CSS, et le fichier pèse 70 Ko parce que rien
+n'est photographique.
+
+Ce qui a été écarté :
+
+- **Le cartel translucide du hero.** Reproduit tel quel, il devenait illisible à 300 px de
+  large — la largeur réelle d'un aperçu dans un fil mobile. Le partage est une affiche,
+  pas une copie de la page : titre plein cadre, scène repoussée à droite.
+- **Un mot en ember dans le titre.** Le site ne colore jamais un mot dans un titre ;
+  l'accent est déjà porté par le capuchon du stylo.
+- **Tout chiffre.** Prix, dates, nombre de clients : les réseaux sociaux mettent l'image
+  en cache pendant des mois, une correction ne les rattrape pas.
+
+Open Graph n'accepte que des URL absolues, ce qui oblige à inscrire le domaine en clair
+dans chaque `<head>`. Plutôt qu'un domaine provisoire qui survivrait silencieusement à la
+mise en ligne, le fichier porte le jeton `https://VOTRE-DOMAINE.fr` : il est visible, il
+est unique, et un seul `sed` le remplace sur les cinq pages.
+
+## 12. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
