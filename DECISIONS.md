@@ -213,27 +213,37 @@ dans chaque `<head>`. Plutôt qu'un domaine provisoire qui survivrait silencieus
 mise en ligne, le fichier porte le jeton `https://VOTRE-DOMAINE.fr` : il est visible, il
 est unique, et un seul `sed` le remplace sur les cinq pages.
 
-## 12. Les vraies personnes ne vivent pas dans la fiction
+## 12. La frontière passe à la Divulgation, pas avant
 
-Les cinq témoignages d'origine étaient inventés et placés en section 09, « Adoption »,
-c'est-à-dire **avant la Divulgation**. En y installant les vrais — Christian Marquer,
-Anthony Bouvier, Isabelle Bertrand, Nine, Noah Fauchard — on leur faisait cautionner un
-stylo imaginaire, au milieu de benchmarks truqués, quelques écrans avant que le site
-n'avoue que tout est une mise en scène. La blague n'en souffrait pas ; leur parole, si.
+Premier jugement, erroné : j'avais supprimé la section « Adoption » et ses cinq
+témoignages inventés, au motif qu'on n'installe pas de fausses personnes sur le site
+d'un formateur. Julien a tranché autrement, et mieux : **tout ce qui précède le
+dénouement fait partie de la mise en scène, et doit être assumé comme tel.**
 
-Le carrousel a donc changé de tiers. Il est passé entre « L'auteur » et « Parlons-en »,
-et la section fictive a disparu avec ses faux témoins — les numéros 10 à 14 ont glissé
-d'un cran, le compte final restant à quinze.
+Il a raison, pour une raison que j'avais manquée : ces cinq témoins ne cautionnent pas
+son activité. Ils parlent d'un stylo qui signe des contrats à 240 000 € et d'un
+fournisseur qui n'augmente jamais ses tarifs. Ils appartiennent au décor, exactement
+comme les benchmarks truqués et le BibTeX. Les retirer n'était pas une précaution,
+c'était un trou dans la démonstration.
 
-La règle qui en découle, et qui vaut pour tout ce qui viendra ensuite : **la fiction
-s'arrête à la Divulgation.** Avant, tout peut être inventé, le pied de page le dit.
-Après, rien ne peut l'être. Un logo client, un chiffre, une étude de cas placés du
-mauvais côté de cette frontière ne sont plus un jeu mais une allégation.
+La frontière utile n'est donc pas « vrai / faux », c'est **avant / après la
+Divulgation** :
 
-Les citations sont reproduites telles quelles. Trois retouches, et rien d'autre : une
-coquille (« dés » → « dès »), une majuscule parasite (« Management »), une virgule
-manquante après « Ce qui m'a frappé ». Aucune phrase n'a été raccourcie ni reformulée —
-le « Tout était parfait » un peu plat d'Isabelle vaut mieux que ce que j'en aurais fait.
+- **Avant** — tout peut être inventé, et l'est ouvertement. Le pied de page le déclare,
+  la section 12 le confirme. Un lecteur qui s'arrêterait à la section 9 n'a pas été
+  trompé : il a été mis en scène, et le site le lui dira dix écrans plus bas.
+- **Après** — plus rien ne peut l'être. Les chiffres, les témoignages, l'offre, les
+  financements : tout ce qui suit le dénouement engage une activité réelle, et la
+  moindre invention y devient une allégation commerciale.
+
+Le carrousel existe donc en deux exemplaires, et c'est la meilleure version des deux
+idées : la même forme revient après la bascule, avec de vraies voix dedans. Le visiteur
+reconnaît le composant et mesure d'un coup ce qui a changé.
+
+Conséquence technique : le composant ne peut plus s'appuyer sur un identifiant unique.
+`initCarousel` s'applique à chaque `.carousel` et résout ses puces, ses flèches et ses
+cartes **à l'intérieur de lui-même**. Le site compte désormais seize actes, ce que les
+métadonnées Open Graph annoncent.
 
 ## 13. Ce qui reste à faire
 

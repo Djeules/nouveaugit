@@ -602,14 +602,17 @@
   }
 
   /* ---------------------------------------------------
-     20. Carrousel de témoignages
+     20. Carrousels de témoignages
+     Il y en a deux : celui de la fiction, avant la Divulgation,
+     et celui des vraies voix, après. Même composant, aucun
+     identifiant unique — tout se résout dans le carrousel courant.
      --------------------------------------------------- */
-  const car = $('#quotesCarousel');
-  if (car) {
+  $$('.carousel').forEach(car => {
     const view  = $('.carousel__viewport', car);
     const cards = $$('.quote', car);
-    const dots  = $('#quotesDots');
+    const dots  = $('.carousel__dots', car);
     const arrows = $$('.carousel__arrow', car);
+    if (!view || !dots || !cards.length || arrows.length < 2) return;
     let index = 0, timer = null, engaged = false;
 
     cards.forEach((_, i) => {
@@ -690,7 +693,7 @@
 
     addEventListener('resize', () => goTo(index, false));
     requestAnimationFrame(() => goTo(0, false));
-  }
+  });
 
   /* premier rendu, une fois tous les composants construits */
   requestAnimationFrame(onScroll);
