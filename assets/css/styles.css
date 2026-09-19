@@ -769,7 +769,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .pillar dd{margin:0;font-size:var(--fs-lead);line-height:1.62;color:var(--cream-62);max-width:62ch}
 .pillar dd b{color:var(--cream)}
 
-.sign{display:grid;gap:18px;max-width:78ch}
+/* Le seul visage du site, et la seule photographie. Tout le reste est
+   fabriqué — le stylo, l'atelier, le papier. Elle arrive après la
+   Divulgation : c'est là que le site cesse d'être une construction. */
+.sign{
+  display:grid;grid-template-columns:minmax(0,266px) minmax(0,1fr);
+  gap:clamp(24px,4vw,64px);align-items:start;
+}
+.sign__portrait{margin:0}
+.sign__portrait img{
+  display:block;width:100%;height:auto;border-radius:10px;
+  filter:contrast(1.02);
+}
+.sign__text{display:grid;gap:18px;max-width:70ch}
 .sign__who{
   margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--ember);
@@ -917,6 +929,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 @media (max-width:900px){
   .pillar,.band,.sprint__grid{grid-template-columns:1fr;gap:16px}
+  .sign{grid-template-columns:1fr;gap:26px}
+  .sign__portrait img{max-width:300px}
   .band__price{margin-top:6px}
 }
 

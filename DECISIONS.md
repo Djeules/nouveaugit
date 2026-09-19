@@ -307,7 +307,28 @@ catalogue.
 La méthode, enfin, ne reprend pas le défilement collant de l'Anatomie. Trois principes
 posés à plat, en deux colonnes, comme un contrat qu'on lit d'un coup.
 
-## 15. Ce qui reste à faire
+## 15. Une seule photographie, et c'est un visage
+
+Le site ne contient aucune image photographique : le stylo est du CSS, l'atelier un
+dégradé, la feuille un rectangle. C'est cohérent avec son propos — le premier tiers est
+une construction, et il finit par l'avouer.
+
+D'où la règle : **la seule photographie du site est le portrait de Julien, et elle
+arrive après la Divulgation.** Elle n'est pas un élément de plus, c'est le moment où le
+site cesse d'être fabriqué. Douze actes d'objet rendu par ordinateur, puis un homme
+photographié. Pour quelqu'un qui s'apprête à passer deux jours en tête-à-tête à
+1 850 €, savoir qui sera dans la pièce n'est pas un détail.
+
+Le portrait d'origine est en noir et blanc sur fond noir. Posé tel quel sur une page
+chaude, il aurait paru collé. Il est donc passé en bichromie entre `#0c0603` et
+`#f6e3c9` : les noirs tombent sur le fond du site, qui absorbe le fond de la photo, et
+les blancs sur la crème. 30 Ko.
+
+Le fichier actuel est **provisoire** : il a été recadré dans une capture d'écran de
+téléphone, faute de pouvoir atteindre le site d'origine depuis cet environnement. Il
+tient à la taille d'affichage, pas au-delà. À remplacer par l'original.
+
+## 16. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
