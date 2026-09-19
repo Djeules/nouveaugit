@@ -1118,3 +1118,66 @@ body.is-ready .hero__glow{opacity:1}
 .carousel__arrow:hover::after{border-color:var(--cream)}
 .carousel__arrow:disabled{opacity:.3;cursor:default}
 .carousel__arrow:disabled:hover{border-color:rgba(255,237,215,.34);background:none}
+
+/* =========================================================
+   CONTACT — les deux chemins : l'agenda, ou le formulaire
+   ========================================================= */
+.contact{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.6vw,42px);
+  width:100%;max-width:1100px;margin-top:clamp(20px,3vw,40px);text-align:left;
+}
+.contact__pick,.contact__form{
+  padding:clamp(24px,2.6vw,38px);border-radius:14px;
+  border:1px solid var(--cork);background:linear-gradient(160deg,rgba(56,36,22,.5),rgba(16,9,4,.34));
+  display:grid;gap:16px;align-content:start;
+}
+.contact__pick{border-color:rgba(220,80,0,.45);background:linear-gradient(160deg,rgba(220,80,0,.15),rgba(16,9,4,.4))}
+.contact__tag{
+  margin:0;font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cream-44);
+}
+.contact__h{margin:0;font-size:clamp(1.3rem,2.1vw,1.8rem);font-weight:600;line-height:1.14;letter-spacing:-.02em}
+.contact__points{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.contact__points li{position:relative;padding-left:20px;color:var(--cream-80);font-size:.94rem;line-height:1.45}
+.contact__points li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--ember)}
+.contact__pick .btn{justify-self:start;margin-top:4px}
+.contact__note{margin:0;font-family:var(--mono);font-size:.58rem;line-height:1.7;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cream-44)}
+
+.contact__form form{display:grid;gap:14px}
+.field{display:grid;gap:7px}
+.field label{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-62)}
+.field label i{font-style:normal;color:var(--cream-44)}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 14px;border-radius:9px;
+  border:1px solid var(--cork);background:rgba(16,9,4,.55);color:var(--cream);
+  font-family:var(--sans);font-size:.95rem;line-height:1.4;
+  transition:border-color .35s var(--ease),background .35s var(--ease);
+}
+.field textarea{resize:vertical;min-height:96px}
+.field select{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--cream-62) 50%),linear-gradient(135deg,var(--cream-62) 50%,transparent 50%);
+  background-position:calc(100% - 19px) calc(50% + 1px),calc(100% - 14px) calc(50% + 1px);
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:38px}
+.field select option{background:#1a0f07;color:var(--cream)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--ember);background:rgba(16,9,4,.75);
+  box-shadow:0 0 0 3px rgba(220,80,0,.18);
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--cream-24)}
+.contact__form .btn{justify-self:start;margin-top:4px}
+.contact__rgpd{margin:2px 0 0;font-size:.82rem;line-height:1.5;color:var(--cream-44)}
+.contact__rgpd a{color:var(--cream-62);text-decoration:underline;text-underline-offset:3px}
+.contact__rgpd a:hover{color:var(--ember)}
+/* pot de miel : invisible pour l'humain, tentant pour le robot */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+@media (max-width:900px){
+  .contact{grid-template-columns:1fr}
+}
+
+/* ---------- page de remerciement ---------- */
+.merci{min-height:100svh;display:grid;place-items:center;padding:var(--gutter);text-align:center}
+.merci__inner{display:grid;gap:22px;justify-items:center;max-width:56ch}
+.merci__mark{font-size:clamp(2.6rem,9vw,6rem);font-weight:700;letter-spacing:-.04em;text-transform:uppercase;line-height:.9;margin:0}
+.merci__row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px}

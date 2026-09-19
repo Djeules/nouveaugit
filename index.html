@@ -105,6 +105,7 @@
     <a href="#recherche">Recherche</a>
     <a href="#epreuve">L'épreuve</a>
     <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
   </nav>
   <a class="btn btn--sm nav__cta" href="#revelation" data-magnetic><span>Précommander</span></a>
   <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><i></i><i></i></button>
@@ -118,6 +119,7 @@
   <a href="#tarifs">Tarifs</a>
   <a href="#epreuve">L'épreuve</a>
   <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <main id="top">
@@ -672,13 +674,63 @@
   </div>
 </section>
 
-<section class="cta" data-bg="ember">
+<section class="cta" id="contact" data-bg="ember">
   <div class="cta__inner">
+    <p class="section-label reveal" data-reveal>15 — Parlons-en</p>
     <h2 class="display voice" data-split>Vendez mieux que ce stylo.</h2>
-    <p class="lead reveal" data-reveal data-delay="200">Trente minutes d'échange pour cadrer votre besoin. Sans engagement, et sans diaporama.</p>
-    <div class="cta__row reveal" data-reveal data-delay="280">
-      <a class="btn btn--lg" href="mailto:julien.marquer@gmail.com?subject=Formation%20vente" data-magnetic><span>Réserver un échange</span></a>
-      <a class="btn btn--ghost btn--lg" href="#julien" data-magnetic><span>Voir les formations</span></a>
+    <p class="lead reveal" data-reveal data-delay="180">Trente minutes pour cadrer votre besoin. Sans engagement, et sans diaporama.</p>
+
+    <div class="contact">
+      <div class="contact__pick reveal" data-reveal data-delay="260">
+        <p class="contact__tag">Le plus direct</p>
+        <h3 class="contact__h">Prenez trente minutes<br>dans mon agenda.</h3>
+        <ul class="contact__points">
+          <li>En visio, ou au téléphone si vous préférez.</li>
+          <li>Vous repartez avec un avis franc, même si ce n'est pas avec moi.</li>
+          <li>Aucun engagement, aucune relance automatique.</li>
+        </ul>
+        <!-- ⚠️ REMPLACER par votre URL Cal.com (ou Calendly) -->
+        <a class="btn btn--lg" href="https://cal.com/julien/diagnostic" target="_blank" rel="noopener" data-booking data-magnetic><span>Réserver trente minutes</span></a>
+        <p class="contact__note">Le lien ouvre un onglet chez mon outil de réservation. Cette page, elle, ne charge rien.</p>
+      </div>
+
+      <div class="contact__form reveal" data-reveal data-delay="340">
+        <p class="contact__tag">Ou écrivez-moi</p>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="piege" action="/merci.html">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hp"><label>Laissez ce champ vide <input name="piege" tabindex="-1" autocomplete="off" /></label></p>
+
+          <div class="field">
+            <label for="f-nom">Nom et prénom</label>
+            <input id="f-nom" name="nom" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="f-mail">Adresse e-mail professionnelle</label>
+            <input id="f-mail" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="f-soc">Entreprise <i>(facultatif)</i></label>
+            <input id="f-soc" name="entreprise" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="f-sujet">Ce qui vous amène</label>
+            <select id="f-sujet" name="sujet">
+              <option value="vendre">Vendre mieux — discours, prospection, closing</option>
+              <option value="choisi">Être choisi — positionnement, marque, contenu</option>
+              <option value="site">Un site en deux jours</option>
+              <option value="equipes">Former mes équipes</option>
+              <option value="autre">Autre chose</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-msg">En deux lignes, votre situation</label>
+            <textarea id="f-msg" name="message" rows="4" required></textarea>
+          </div>
+
+          <button class="btn btn--lg" type="submit"><span>Envoyer</span></button>
+          <p class="contact__rgpd">Vos réponses ne servent qu'à vous répondre. Ni revente, ni inscription à quoi que ce soit. <a href="politique-de-confidentialite.html">Ce qu'on en fait exactement</a>.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -695,7 +747,7 @@
     </div>
     <div class="foot__col">
       <p class="foot__label">Contact</p>
-      <a href="mailto:julien.marquer@gmail.com">Écrire à Julien</a><a href="#faq">FAQ</a><a href="mentions-legales.html">Mentions légales</a>
+      <a href="#contact">Écrire à Julien</a><a href="#faq">FAQ</a><a href="mentions-legales.html">Mentions légales</a>
     </div>
   </div>
   <div class="foot__mark" aria-hidden="true"><span>JULIEN</span></div>

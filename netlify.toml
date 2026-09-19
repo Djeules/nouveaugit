@@ -1,0 +1,20 @@
+# Déploiement Netlify — site statique, aucun build nécessaire.
+[build]
+  publish = "."
+  command = ""
+
+# En-têtes de sécurité. La politique de sécurité du contenu est volontairement
+# stricte : le site ne charge aucune ressource tierce, et ne doit pas commencer.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -154,6 +154,29 @@ copie du BibTeX, menu plein écran en mobile.
 - **Mentions légales** : à ajouter si le site est mis en ligne.
 
 
+## Déploiement et conversion
+
+Le site est déployé sur **Netlify** (`netlify.toml` à la racine, aucun build). Deux réglages
+à faire une seule fois dans l'interface Netlify :
+
+1. **Site configuration → Forms → Enable form detection**, puis redéployer une fois.
+2. **Forms → Form notifications → Add notification → Email**, vers votre adresse.
+
+Le formulaire de contact utilise **Netlify Forms** (100 envois/mois sur l'offre gratuite),
+avec un **pot de miel** comme anti-spam — surtout pas reCAPTCHA, qui chargerait des scripts
+Google et ferait tomber la promesse « aucune ressource tierce ».
+
+Le bouton de réservation est un **lien sortant**, jamais un module intégré : un widget
+Cal.com ou Calendly poserait des cookies tiers sur la page. L'URL apparaît à deux endroits,
+signalés par un commentaire `⚠️ REMPLACER` :
+
+```
+grep -rn "cal.com/julien" *.html
+```
+
+> Le formulaire ne fonctionne que sur Netlify. En prévisualisation locale ou dans un
+> artefact Claude, l'envoi échoue — c'est normal.
+
 ## Avant la mise en ligne
 
 - [ ] Remplir tous les champs `.tbd` des trois pages légales
@@ -162,4 +185,7 @@ copie du BibTeX, menu plein écran en mobile.
 - [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
 - [ ] Corriger les chiffres de la section « L'auteur » (formés, années, recommandation)
 - [ ] Remplacer les témoignages fictifs par de vrais, ou les retirer
+- [ ] Remplacer l'URL de réservation aux deux emplacements signalés
+- [ ] Activer la détection des formulaires dans Netlify et brancher la notification
+- [ ] Compléter le nom et le NDA du partenaire Qualiopi dans les CGV (article 6)
 - [ ] Faire relire les CGV par un professionnel du droit
