@@ -125,6 +125,22 @@ vert avec sa trame et ses graduations imprimées, bon de commande, trombone, et 
 posé en travers. Le vert du tapis est l'**olive** de la palette à quatre valeurs, déclarée
 dès le départ dans les tokens et restée inutilisée jusqu'ici.
 
+### La teinte du cartel, relevée au pixel
+
+Le cartel ne doit **jamais assombrir** la scène : il l'éclaircit. Relevé sur une capture de
+la référence, son voile vaut environ `rgba(175,150,128,.33)` avec un flou d'arrière-plan
+marqué ; quel que soit ce qui passe derrière — tapis vert ou bois clair — il converge vers
+une teinte chaude autour de **`rgb(128,107,80)`**, luminance 100 à 115.
+
+Notre scène étant plus sombre que le bureau éclairé de la référence, atteindre la même
+teinte finale demande un voile plus couvrant (`rgba(178,139,97,.58)`). C'est la teinte
+rendue qui compte, pas l'opacité déclarée.
+
+Sur cette teinte, aucun texte clair n'atteint 4,5:1 — le cartel de la référence échoue
+lui-même pour son second paragraphe. Nous restons donc à l'extrémité sombre de la
+fourchette mesurée (luminance 93 à 105) et le texte est en blanc chaud `#fff9f2`, ce qui
+donne 4,74:1. Toute modification du voile doit être revérifiée sur ce point.
+
 Une vraie photographie peut remplacer la scène : il suffit de poser une image en fond de
 `.mockup` et de masquer ses enfants.
 

@@ -382,18 +382,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero__card{
   flex:1 1 380px;max-width:min(520px,100%);
   display:grid;gap:14px;padding:clamp(20px,2.2vw,30px);border-radius:12px;
-  border:1px solid rgba(255,237,215,.16);
-  background:linear-gradient(152deg,rgba(255,237,215,.14),rgba(255,237,215,.05) 58%,rgba(16,9,4,.12));
-  backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);
-  box-shadow:0 26px 60px rgba(0,0,0,.4);
+  border:1px solid rgba(255,237,215,.2);
+  /* Voile clair relevé au pixel sur la référence : il éclaircit le fond au lieu
+     de l'assombrir, et le flou efface la trame du tapis. */
+  background:
+    linear-gradient(168deg,rgba(214,196,172,.05),rgba(214,196,172,0) 52%),
+    rgba(178,139,97,.58);
+  backdrop-filter:blur(24px) saturate(108%);-webkit-backdrop-filter:blur(24px) saturate(108%);
+  box-shadow:0 26px 60px rgba(0,0,0,.34);
 }
 .hero__credit{
   margin:0;font-size:clamp(.92rem,1.3vw,1.1rem);font-weight:600;line-height:1.24;
-  text-transform:uppercase;letter-spacing:.005em;color:var(--cream);
+  text-transform:uppercase;letter-spacing:.005em;color:#fff9f2;
 }
 .hero__claim{
-  margin:0;font-size:clamp(1rem,1.25vw,1.15rem);font-weight:400;line-height:1.44;
-  color:var(--cream-80);max-width:34ch;
+  margin:0;font-size:clamp(1rem,1.25vw,1.15rem);font-weight:450;line-height:1.44;
+  color:#fff9f2;max-width:34ch;
 }
 .hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
 
@@ -816,8 +820,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* le cartel devient opaque : la feuille ne doit plus transparaître derrière le texte */
   .hero__card{
     max-width:100%;
-    background:linear-gradient(152deg,rgba(46,33,21,.93),rgba(21,13,7,.92));
-    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    background:
+      linear-gradient(168deg,rgba(214,196,172,.05),rgba(214,196,172,0) 52%),
+      rgba(178,139,97,.57);
+    backdrop-filter:blur(20px) saturate(106%);-webkit-backdrop-filter:blur(20px) saturate(106%);
   }
   .hero__credit{font-size:.88rem}
   .hero__claim{font-size:.94rem}
