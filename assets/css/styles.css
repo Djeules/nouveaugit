@@ -652,7 +652,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .reveal-act__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(26px,4vw,52px)}
 .reveal-act__title{max-width:16ch}
-.reveal-act__body{display:grid;gap:20px;max-width:54ch;justify-self:end;padding-right:clamp(0px,9vw,170px)}
+.reveal-act__body{display:grid;gap:20px;max-width:54ch;justify-self:end;
+  /* le stylo décoratif est incliné : sa pointe balaie loin vers la gauche.
+     La colonne de texte se tient à distance plutôt que de passer dessous. */
+  padding-right:clamp(0px,14vw,250px)}
 .reveal-act__body b{color:var(--cream);font-weight:600}
 .reveal-act__pen{position:absolute;top:50%;right:-3%;transform:translateY(-50%) rotate(24deg);
   width:clamp(80px,9vw,140px);height:min(80vh,820px);opacity:.34;z-index:1;pointer-events:none}

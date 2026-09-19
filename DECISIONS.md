@@ -245,7 +245,40 @@ Conséquence technique : le composant ne peut plus s'appuyer sur un identifiant 
 cartes **à l'intérieur de lui-même**. Le site compte désormais seize actes, ce que les
 métadonnées Open Graph annoncent.
 
-## 13. Ce qui reste à faire
+## 13. Le miroir joue sur le rôle, jamais sur la forme
+
+La symétrie décrite plus haut a un piège : reprendre les mêmes composants après la
+bascule produirait un copier-coller, et un copier-coller se voit. La règle est donc plus
+stricte — chaque section d'après répond au **rôle** d'une section d'avant, et n'emprunte
+rien à son apparence.
+
+La ligne de partage est l'interaction elle-même :
+
+- **Dans la fiction, tout se cache et se révèle.** Accordéon qu'on déplie, carrousel
+  qu'on fait défiler, stylo en 3D qu'on tourne, cartes qui réagissent au survol. Une
+  fiche produit ménage ses effets, c'est sa nature.
+- **Après la bascule, tout est montré d'un coup.** Un tableau qu'on lit, des questions
+  dont les réponses sont déjà écrites, une colonne de texte. Ce qui se déplie relève du
+  spectacle ; ce qui est écrit relève de l'engagement.
+
+Conséquence directe, à traiter : les vrais témoignages sont encore dans un carrousel.
+Cinq personnes réelles rangées derrière des flèches, c'est la grammaire de la fiction.
+
+Deux gestes typographiques scellent la bascule, tous deux gratuits :
+
+- **La numérotation meurt avec la fiction.** « 12 — Divulgation » est la dernière
+  étiquette numérotée du site. Le compte appartenait à la fiche produit ; il n'a plus
+  d'objet une fois l'aveu passé. Bénéfice secondaire : plus aucune renumérotation à
+  chaque ajout, et les métadonnées de partage annoncent désormais « douze actes, puis
+  la vérité ».
+- **Le registre bas de casse devient la loi** de tout ce qui suit.
+
+La Divulgation, enfin, ne se contente plus de parler de Julien. Elle retourne la phrase
+vers le visiteur : ce stylo ne valait rien et il lui a donné neuf minutes ; son offre,
+elle, vaut quelque chose et tient dans une plaquette que personne ne lit. Sans ce
+retournement, la révélation restait une performance qu'on admire au lieu d'un miroir.
+
+## 14. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
