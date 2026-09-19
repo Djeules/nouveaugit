@@ -328,7 +328,27 @@ Le fichier actuel est **provisoire** : il a été recadré dans une capture d'é
 téléphone, faute de pouvoir atteindre le site d'origine depuis cet environnement. Il
 tient à la taille d'affichage, pas au-delà. À remplacer par l'original.
 
-## 16. Ce qui reste à faire
+## 16. Des monogrammes plutôt que des visages empruntés
+
+Les vrais témoignages étaient en texte seul. La tentation, courante, est d'y coller des
+portraits de banque d'images. Elle annulerait tout le travail du chapitre 12 : on ne
+passe pas des heures à remplacer cinq faux témoignages par cinq vrais pour poser ensuite
+le visage d'un inconnu sous le nom d'Isabelle Bertrand. Et une vraie photo de client
+demanderait son accord pour l'image, distinct de l'autorisation de citation.
+
+Chaque témoignage porte donc un disque de couleur avec ses initiales. Ça n'affirme rien,
+ça identifie. Les cinq teintes sont toutes prises dans le vocabulaire existant — ember,
+le brun du cartel, un olive assombri pour le contraste, le brun du capuchon, le sable de
+la pointe du stylo. Aucune couleur nouvelle n'entre dans la palette.
+
+Détail technique qui a coûté un aller-retour : `.quote span` porte le style monospace
+des fonctions, avec une spécificité de (0,1,1). Une règle `.mono` seule, à (0,1,0), perd
+— les initiales héritaient de la casse et du corps des étiquettes. Les règles sont
+scopées en `.quote .mono`.
+
+Le carrousel de la fiction n'en reçoit pas. Un écart de plus entre les deux moitiés.
+
+## 17. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à

@@ -600,6 +600,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .quote b{font-size:.9rem;font-weight:600}
 .quote span{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-44)}
 
+/* Monogrammes des vrais témoignages. Pas de photographie : le seul visage
+   du site est celui de Julien, et un portrait de banque sous un nom réel
+   annulerait le travail fait pour rendre ces témoignages vérifiables.
+   Les cinq teintes sont toutes prises dans le vocabulaire existant. */
+#temoignages .quote footer{display:flex;align-items:center;gap:14px}
+#temoignages .quote__who{display:grid;gap:3px;font:inherit;letter-spacing:normal;text-transform:none;color:inherit}
+/* `.quote span` porte le style monospace des fonctions ; sa spécificité
+   (0,1,1) l'emporterait sur `.mono` seul. Les règles sont donc scopées. */
+.quote .mono{
+  flex:none;width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:var(--sans);font-size:.92rem;font-weight:600;
+  letter-spacing:.01em;text-transform:none;
+}
+.quote .mono--1{background:var(--ember);color:#190b03}
+.quote .mono--2{background:#b5926f;color:#190b03}
+.quote .mono--3{background:#5f5c45;color:#fffaf2}
+.quote .mono--4{background:#8e3000;color:#ffedd7}
+.quote .mono--5{background:#e0b371;color:#190b03}
+
 /* =========================================================
    TARIFS
    ========================================================= */
