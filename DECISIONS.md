@@ -213,7 +213,29 @@ dans chaque `<head>`. Plutôt qu'un domaine provisoire qui survivrait silencieus
 mise en ligne, le fichier porte le jeton `https://VOTRE-DOMAINE.fr` : il est visible, il
 est unique, et un seul `sed` le remplace sur les cinq pages.
 
-## 12. Ce qui reste à faire
+## 12. Les vraies personnes ne vivent pas dans la fiction
+
+Les cinq témoignages d'origine étaient inventés et placés en section 09, « Adoption »,
+c'est-à-dire **avant la Divulgation**. En y installant les vrais — Christian Marquer,
+Anthony Bouvier, Isabelle Bertrand, Nine, Noah Fauchard — on leur faisait cautionner un
+stylo imaginaire, au milieu de benchmarks truqués, quelques écrans avant que le site
+n'avoue que tout est une mise en scène. La blague n'en souffrait pas ; leur parole, si.
+
+Le carrousel a donc changé de tiers. Il est passé entre « L'auteur » et « Parlons-en »,
+et la section fictive a disparu avec ses faux témoins — les numéros 10 à 14 ont glissé
+d'un cran, le compte final restant à quinze.
+
+La règle qui en découle, et qui vaut pour tout ce qui viendra ensuite : **la fiction
+s'arrête à la Divulgation.** Avant, tout peut être inventé, le pied de page le dit.
+Après, rien ne peut l'être. Un logo client, un chiffre, une étude de cas placés du
+mauvais côté de cette frontière ne sont plus un jeu mais une allégation.
+
+Les citations sont reproduites telles quelles. Trois retouches, et rien d'autre : une
+coquille (« dés » → « dès »), une majuscule parasite (« Management »), une virgule
+manquante après « Ce qui m'a frappé ». Aucune phrase n'a été raccourcie ni reformulée —
+le « Tout était parfait » un peu plat d'Isabelle vaut mieux que ce que j'en aurais fait.
+
+## 13. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
