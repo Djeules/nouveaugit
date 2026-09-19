@@ -278,7 +278,36 @@ vers le visiteur : ce stylo ne valait rien et il lui a donné neuf minutes ; son
 elle, vaut quelque chose et tient dans une plaquette que personne ne lit. Sans ce
 retournement, la révélation restait une performance qu'on admire au lieu d'un miroir.
 
-## 14. Ce qui reste à faire
+## 14. L'offre : les mots du client, pas les miens
+
+Les quatre « formations » de la section L'auteur étaient de mon invention. Julien a
+fourni la vraie offre, déjà écrite sur son site Framer, et elle est meilleure que ce que
+j'aurais produit parce qu'elle est précise : quatre heures, huit heures, seize heures,
+un plan d'action de trente jours, une session de suivi à J+30, huit clients en simultané.
+Les listes sont reprises telles quelles.
+
+Trois écarts assumés par rapport à la source :
+
+- **« CPF » est retiré**, « financement OPCO possible » est conservé. Le CPF suppose un
+  enregistrement RNCP ou RS au nom de l'organisme ; un partenariat ne le couvre pas.
+  L'OPCO, si — et c'est ce que Julien annonce déjà.
+- **Le partenaire Qualiopi n'est pas nommé**, à sa demande. Le site ne porte donc aucune
+  section financement : la seule mention est la ligne « financement OPCO possible » des
+  deux formats. Les CGV, elles, contiennent encore le montage en attente de décision.
+- **« Starter Plan » et « Growth Plan » deviennent « Demi-journée » et « Journée
+  complète ».** Ce site parle français et nomme les choses par ce qu'elles sont ;
+  « Sprint Site » reste, c'est un nom de produit.
+
+La forme suit la règle du chapitre 13. La grille fictive du stylo est faite de trois
+cartes côte à côte qui réagissent au survol ; la vraie est faite de bandes séparées par
+des filets, sans rien à déplier ni à survoler. La formation signature occupe sa propre
+section sur fond ember — la « porte séparée » demandée, visible sans être mélangée au
+catalogue.
+
+La méthode, enfin, ne reprend pas le défilement collant de l'Anatomie. Trois principes
+posés à plat, en deux colonnes, comme un contrat qu'on lit d'un coup.
+
+## 15. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à

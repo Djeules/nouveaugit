@@ -150,7 +150,7 @@ copie du BibTeX, menu plein écran en mobile.
 
 - **Contact** : l'adresse e‑mail dans le CTA final et le pied de page.
 - **Chiffres** : `data-count` dans la section « L'auteur ». Deux chiffres réels (50 dirigeants, 20 ans) ; la troisième case est libre, réservée au taux de recommandation quand il sera mesuré.
-- **Formations** : les quatre cartes `.offer`.
+- **Offre** : les bandes `.band` de la section `#offre` et le bloc `#sprint`.
 - **Mentions légales** : à ajouter si le site est mis en ligne.
 
 
