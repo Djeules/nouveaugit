@@ -109,7 +109,36 @@ renvoie plus de lumière, ce qui fait lire le tube comme du cristal et laisse vo
 colonne d'encre. C'est ce terme qui fait toute la matière — le retirer donnerait un tube
 de plastique gris.
 
-## 9. Un piège CSS à ne pas réintroduire
+## 9. Le hero : le nom en grand, l'argument dans le cartel
+
+D'après la vraie page d'accueil de la référence. Le très grand mot n'est pas la promesse,
+c'est **la marque** ; la phrase de vente est reléguée dans un cartel translucide en bas à
+gauche, comme l'étiquette d'une œuvre au mur. Le nom occupe l'espace, l'argument se lit en
+petit — et c'est ce décalage qui fait l'allure.
+
+Sémantiquement, le `<h1>` reste la phrase (« Le stylo à bille le plus inutilement
+sophistiqué du monde. ») dans le cartel ; le mot « JULIEN » est un élément de marque, pas
+un titre.
+
+La scène d'atelier est **entièrement dessinée en CSS** : bureau en bois, tapis de découpe
+vert avec sa trame et ses graduations imprimées, bon de commande, trombone, et le stylo
+posé en travers. Le vert du tapis est l'**olive** de la palette à quatre valeurs, déclarée
+dès le départ dans les tokens et restée inutilisée jusqu'ici.
+
+Une vraie photographie peut remplacer la scène : il suffit de poser une image en fond de
+`.mockup` et de masquer ses enfants.
+
+### Deux pièges rencontrés
+
+Un `padding` en pourcentage se résout sur la **largeur du bloc conteneur**, jamais sur
+celle de l'élément : `padding: 10% 11%` sur une feuille de 218 px dans un conteneur de
+1744 px produisait 384 px de rembourrage, qui forçait la largeur du bloc. Les rembourrages
+de la scène sont donc en pixels.
+
+Les tailles de la nature morte sont calées sur la fenêtre (`clamp(…vw…)`) et non sur le
+conteneur, pour que le rapport stylo/feuille reste constant à toutes les largeurs.
+
+## 10. Un piège CSS à ne pas réintroduire
 
 `body { overflow-x: hidden }` transforme le body en conteneur de défilement et **neutralise
 tous les `position: sticky` de la page**. Le symptôme est discret : les éléments collants
@@ -122,7 +151,7 @@ Deuxième piège lié : dans une grille avec `align-items: start`, la colonne d'
 collant n'est pas étirée à la hauteur de la ligne — il décroche à mi-parcours. La colonne
 doit être en `align-self: stretch`, l'élément collant étant à l'intérieur.
 
-## 10. Ce qui reste à faire
+## 11. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à

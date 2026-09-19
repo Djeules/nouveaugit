@@ -124,32 +124,59 @@
 
 <section class="hero" data-bg="walnut">
   <div class="hero__glow" aria-hidden="true"></div>
-  <div class="hero__grid">
+
+  <!-- Scène d'atelier : tapis de découpe, bon de commande, le stylo posé dessus -->
+  <div class="mockup" aria-hidden="true">
+    <div class="mockup__desk"></div>
+    <div class="mockup__mat">
+      <div class="mockup__grid"></div>
+      <div class="mockup__rule mockup__rule--y" data-ruler="y"></div>
+      <div class="mockup__rule mockup__rule--x" data-ruler="x"></div>
+
+      <div class="mockup__paper">
+        <span class="mockup__paper-head"></span>
+        <span class="mockup__paper-line"></span>
+        <span class="mockup__paper-line"></span>
+        <span class="mockup__paper-line mockup__paper-line--short"></span>
+        <span class="mockup__paper-sign">Bon pour accord</span>
+        <span class="mockup__paper-rule"></span>
+      </div>
+
+      <div class="mockup__clip"></div>
+      <svg class="mockup__pen" viewBox="0 0 160 1000"><use href="#pen"/></svg>
+    </div>
+    <div class="mockup__haze"></div>
+  </div>
+
+  <div class="hero__top">
     <p class="eyebrow reveal" data-reveal><span class="dot"></span>LE JULIEN · OPEN WEIGHT · DISPONIBLE</p>
-    <h1 class="display voice hero__title" data-split>Le stylo à bille le plus inutilement sophistiqué du monde.</h1>
+    <p class="hero__wordmark reveal" data-reveal data-delay="70">Julien</p>
+    <p class="lead hero__lead reveal" data-reveal data-delay="190">Corps hexagonal en polystyrène cristal. Bille en carbure de tungstène de 1,0&nbsp;mm. Trois mille deux cents mètres d'écriture continue, sans mise à jour, sans cloud, sans consentement aux cookies.</p>
   </div>
 
-  <div class="hero__stage" aria-hidden="true">
-    <svg class="pen pen--hero" viewBox="0 0 160 1000"><use href="#pen"/></svg>
-  </div>
-
-  <div class="hero__base">
-    <div class="hero__aside reveal" data-reveal data-delay="240">
-      <p class="lead">Corps hexagonal en polystyrène cristal. Bille en carbure de tungstène de 1,0&nbsp;mm. Trois mille deux cents mètres d'écriture continue, sans mise à jour, sans cloud, sans consentement aux cookies.</p>
+  <div class="hero__floor">
+    <div class="hero__card reveal" data-reveal data-delay="300">
+      <p class="hero__credit">Conçu, écrit et mis en scène par Julien,<br>formateur aux techniques de vente.</p>
+      <h1 class="hero__claim">Le stylo à bille le plus inutilement sophistiqué du monde.</h1>
       <div class="hero__cta">
         <a class="btn" href="#revelation" data-magnetic data-preorder><span>Précommander</span></a>
         <a class="btn btn--ghost" href="#recherche" data-magnetic><span>Lire le papier</span></a>
       </div>
       <p class="cta-reply" id="ctaReply" role="status" aria-live="polite"></p>
     </div>
-    <ul class="hero__stats">
-      <li class="reveal" data-reveal data-delay="360"><b data-count="3200" data-suffix=" m">0</b><span>autonomie d'écriture</span></li>
-      <li class="reveal" data-reveal data-delay="440"><b data-count="6" data-suffix=" faces">0</b><span>géométrie anti‑roulement</span></li>
-      <li class="reveal" data-reveal data-delay="520"><b data-count="0" data-suffix=" ms">0</b><span>latence au démarrage</span></li>
-    </ul>
-  </div>
 
-  <a class="hero__scroll" href="#manifeste" aria-label="Défiler"><i></i><span>Défiler</span></a>
+    <div class="hero__meta">
+      <ul class="hero__stats">
+        <li class="reveal" data-reveal data-delay="380"><b data-count="3200" data-suffix=" m">0</b><span>autonomie d'écriture</span></li>
+        <li class="reveal" data-reveal data-delay="440"><b data-count="6" data-suffix=" faces">0</b><span>géométrie anti‑roulement</span></li>
+        <li class="reveal" data-reveal data-delay="500"><b data-count="0" data-suffix=" ms">0</b><span>latence au démarrage</span></li>
+      </ul>
+      <a class="scroll-cue" href="#manifeste">
+        <span>Défiler pour continuer</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
 </section>
 
 <div class="ticker" aria-hidden="true">

@@ -231,7 +231,8 @@
      11. Anatomie : étapes + rotation du stylo
      --------------------------------------------------- */
   const steps = $$('.step');
-  const penHero = $('.pen--hero');
+  const mockup = $('.mockup');
+  const mockPen = $('.mockup__pen');
   const penReveal = $('.pen--reveal');
   const halo = $('.anatomy__halo');
 
@@ -252,9 +253,10 @@
     lastY = y;
 
     if (!reduced) {
-      if (penHero) {
-        const p = clamp(y / innerHeight, 0, 1.4);
-        penHero.style.transform = `translateY(${p * 130}px) rotate(${p * 26}deg) scale(${1 - p * 0.08})`;
+      if (mockup) {
+        const p = clamp(y / innerHeight, 0, 1);
+        mockup.style.transform = `translateY(${p * -54}px) scale(${1 + p * 0.07})`;
+        if (mockPen) mockPen.style.transform = `rotate(${20 + p * 14}deg) translate(${p * -18}px, ${p * 26}px)`;
       }
       if (penReveal) {
         const r = penReveal.closest('section').getBoundingClientRect();
@@ -457,6 +459,12 @@
     inst.ball.style.transform =
       `translateY(${inst.ball.dataset.y}px) rotateY(${-rotY}deg) rotateX(${-tiltX}deg)`;
   }
+
+  // graduations imprimées du tapis de découpe
+  $$('[data-ruler]').forEach(r => {
+    const n = r.dataset.ruler === 'y' ? 8 : 12;
+    r.innerHTML = Array.from({ length: n }, (_, i) => `<span>${(i + 2) * 10}</span>`).join('');
+  });
 
   const lits = $$('[data-lit]');
   const pens = {};
