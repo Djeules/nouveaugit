@@ -149,7 +149,7 @@ copie du BibTeX, menu plein écran en mobile.
 ## À personnaliser
 
 - **Contact** : l'adresse e‑mail dans le CTA final et le pied de page.
-- **Chiffres** : `data-count` dans la section « L'auteur » (commerciaux formés, années, recommandation).
+- **Chiffres** : `data-count` dans la section « L'auteur ». Deux chiffres réels (50 dirigeants, 20 ans) ; la troisième case est libre, réservée au taux de recommandation quand il sera mesuré.
 - **Formations** : les quatre cartes `.offer`.
 - **Mentions légales** : à ajouter si le site est mis en ligne.
 
@@ -202,7 +202,6 @@ Tant que ce jeton est là, LinkedIn affichera le lien sans visuel.
 - [ ] Supprimer les encadrés `.note-box` des pages légales
 - [ ] Choisir l'option TVA dans les CGV (article 5) et supprimer l'autre
 - [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
-- [ ] Corriger les chiffres de la section « L'auteur » (formés, années, recommandation)
 - [ ] Remplacer les témoignages fictifs par de vrais, ou les retirer
 - [ ] Renommer le slug Cal.com en `diagnostic` (ou corriger les deux liens du site)
 - [ ] Remplacer le jeton `https://VOTRE-DOMAINE.fr` par le domaine réel (cinq pages)
