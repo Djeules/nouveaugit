@@ -207,5 +207,4 @@ Tant que ce jeton est là, LinkedIn affichera le lien sans visuel.
 - [ ] Vérifier l'aperçu dans le LinkedIn Post Inspector après la mise en ligne
 - [ ] Activer la détection des formulaires dans Netlify et brancher la notification
 - [ ] Compléter le nom et le NDA du partenaire Qualiopi dans les CGV (article 6)
-- [ ] Remplacer `assets/img/julien.jpg` par le portrait d'origine en pleine définition
 - [ ] Faire relire les CGV par un professionnel du droit

@@ -793,14 +793,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    fabriqué — le stylo, l'atelier, le papier. Elle arrive après la
    Divulgation : c'est là que le site cesse d'être une construction. */
 .sign{
-  display:grid;grid-template-columns:minmax(0,266px) minmax(0,1fr);
+  display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);
   gap:clamp(24px,4vw,64px);align-items:start;
 }
 .sign__portrait{margin:0}
-.sign__portrait img{
-  display:block;width:100%;height:auto;border-radius:10px;
-  filter:contrast(1.02);
-}
+.sign__portrait img{display:block;width:100%;height:auto}
 .sign__text{display:grid;gap:18px;max-width:70ch}
 .sign__who{
   margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;

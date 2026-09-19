@@ -319,14 +319,22 @@ site cesse d'être fabriqué. Douze actes d'objet rendu par ordinateur, puis un 
 photographié. Pour quelqu'un qui s'apprête à passer deux jours en tête-à-tête à
 1 850 €, savoir qui sera dans la pièce n'est pas un détail.
 
-Le portrait d'origine est en noir et blanc sur fond noir. Posé tel quel sur une page
-chaude, il aurait paru collé. Il est donc passé en bichromie entre `#0c0603` et
-`#f6e3c9` : les noirs tombent sur le fond du site, qui absorbe le fond de la photo, et
-les blancs sur la crème. 30 Ko.
+**Première tentative, ratée.** Le portrait d'origine, noir et blanc sur fond noir, a été
+passé en bichromie chaude pour « entrer dans la palette ». Résultat : un rectangle sépia
+posé sur un fond brun, avec un bord net. J'avais traité la photo au lieu de traiter sa
+rencontre avec la page — la même erreur que sur le cartel du hero, au chapitre 8.
 
-Le fichier actuel est **provisoire** : il a été recadré dans une capture d'écran de
-téléphone, faute de pouvoir atteindre le site d'origine depuis cet environnement. Il
-tient à la taille d'affichage, pas au-delà. À remplacer par l'original.
+**La bonne réponse est de supprimer le bord, pas de l'accorder.** Le portrait est
+détouré, en niveaux de gris fidèles, et le buste se dissout vers le bas sous un dégradé
+d'opacité. Il n'y a plus de cadre à faire correspondre : la figure émerge du fond.
+
+Deux points techniques qui valent d'être retenus :
+
+- Un détourage par remplissage par diffusion échoue sur ce type d'image : la chemise
+  claire et le fond blanc ont des valeurs trop proches, et le contour part en lambeaux
+  aux épaules. Le fichier utilisé est un détourage propre fourni par Julien.
+- Le fichier est en **niveaux de gris + alpha** (mode `LA`), deux canaux au lieu de
+  quatre. 191 Ko pour 540 px de large, là où un RGBA en pesait le double.
 
 ## 16. Des monogrammes plutôt que des visages empruntés
 
