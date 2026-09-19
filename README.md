@@ -200,7 +200,7 @@ Tant que ce jeton est là, LinkedIn affichera le lien sans visuel.
 
 - [ ] Remplir tous les champs `.tbd` des trois pages légales
 - [ ] Supprimer les encadrés `.note-box` des pages légales
-- [ ] Choisir l'option TVA dans les CGV (article 5) et supprimer l'autre
+- [ ] Choisir l'option TVA dans les CGV (article 5) — les prix du site sont affichés HT
 - [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
 - [ ] Renommer le slug Cal.com en `diagnostic` (ou corriger les deux liens du site)
 - [ ] Remplacer le jeton `https://VOTRE-DOMAINE.fr` par le domaine réel (cinq pages)
