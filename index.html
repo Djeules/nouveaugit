@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expert bâtiment — Saint-Nazaire</title>
+<meta name="description" content="Expertise bâtiment indépendante à Saint-Nazaire et sur la presqu'île : avant achat, fissures, humidité, réception de travaux, malfaçons.">
+
+<!--
+  ============================================================
+  À REMPLACER AVANT MISE EN LIGNE (cherchez les crochets [ ]) :
+  [Prénom Nom]        — votre nom
+  [06 XX XX XX XX]    — téléphone (2 endroits + lien tel:)
+  [prenom@domaine.fr] — e-mail (2 endroits + lien mailto:)
+  [XX] ans            — votre expérience
+  [vos diplômes]      — formation / certifications
+  [Assureur]          — RC pro
+  [SIRET]             — numéro SIRET
+  [tarifs]            — les 3 montants de la section Honoraires
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap">
+
+<style>
+:root {
+  --paper:      #f1f2ef;
+  --surface:    #fbfbfa;
+  --ink:        #15181a;
+  --ink-soft:   #4a5154;
+  --rule:       #d9dbd6;
+  --accent:     #2f5aa0;
+  --accent-ink: #26497f;
+  --on-accent:  #ffffff;
+
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body:    "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #121415;
+    --surface:    #191c1d;
+    --ink:        #e8e9e5;
+    --ink-soft:   #9aa1a3;
+    --rule:       #2a2e30;
+    --accent:     #8bb0ec;
+    --accent-ink: #a9c6f4;
+    --on-accent:  #0f1213;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #121415;
+  --surface:    #191c1d;
+  --ink:        #e8e9e5;
+  --ink-soft:   #9aa1a3;
+  --rule:       #2a2e30;
+  --accent:     #8bb0ec;
+  --accent-ink: #a9c6f4;
+  --on-accent:  #0f1213;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 0 0;
+}
+
+/* ---- grille : marge d'annotations + colonne de texte ---- */
+.band {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 36px;
+  padding-block: 44px;
+  border-top: 1px solid var(--rule);
+}
+.band:first-of-type { border-top: 0; }
+
+@media (min-width: 760px) {
+  .band { grid-template-columns: 132px minmax(0, 1fr); padding-block: 60px; }
+}
+
+.mark {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 6px;
+}
+.mark span { color: var(--accent); }
+
+.col { max-width: 62ch; }
+
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 6.2vw, 3.1rem); line-height: 1.05; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.3rem, 3.2vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 14px; }
+h3 { font-size: 1rem; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+p  { margin: 0 0 14px; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---- en-tête ---- */
+.top {
+  display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline;
+  padding-block: 26px 0;
+  font-family: var(--f-mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.top strong { color: var(--ink); font-weight: 500; }
+.top .sep { color: var(--accent); }
+
+/* ---- accroche ---- */
+.lede { font-size: clamp(1.05rem, 2.4vw, 1.2rem); color: var(--ink-soft); margin-top: 20px; }
+.lede em { font-style: italic; color: var(--ink); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn {
+  font-family: var(--f-body); font-size: 0.95rem; font-weight: 500;
+  padding: 11px 20px; border: 1px solid var(--accent); border-radius: 2px;
+  background: var(--accent); color: var(--on-accent); text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.btn:hover { background: var(--accent-ink); color: var(--on-accent); }
+.btn.ghost { background: transparent; color: var(--accent-ink); }
+.btn.ghost:hover { background: var(--surface); color: var(--ink); }
+
+/* ---- prestations ---- */
+.list { display: grid; gap: 22px 34px; grid-template-columns: 1fr; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 560px) { .list { grid-template-columns: 1fr 1fr; } }
+.list p { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ---- déroulé numéroté (vraie séquence) ---- */
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; }
+.steps li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 14px; align-items: baseline; }
+.steps .n { font-family: var(--f-mono); font-size: 0.95rem; color: var(--accent); }
+.steps p { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ---- secteur ---- */
+.towns { font-size: 0.95rem; color: var(--ink-soft); }
+.towns b { color: var(--ink); font-weight: 500; }
+
+/* ---- honoraires ---- */
+.prices { border-top: 1px solid var(--rule); margin-top: 6px; }
+.prices div {
+  display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; align-items: baseline;
+  padding: 12px 0; border-bottom: 1px solid var(--rule);
+}
+.prices dt { font-weight: 500; }
+.prices dd { margin: 0; font-family: var(--f-mono); font-size: 0.9rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+/* ---- contact ---- */
+.contact { display: grid; gap: 14px 30px; grid-template-columns: 1fr; font-size: 0.98rem; }
+@media (min-width: 560px) { .contact { grid-template-columns: 1fr 1fr; } }
+.contact .k {
+  display: block; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 2px;
+}
+.contact a { font-weight: 500; }
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-block: 24px 40px;
+  font-family: var(--f-mono); font-size: 11.5px; line-height: 1.8;
+  letter-spacing: 0.04em; color: var(--ink-soft);
+}
+footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="top">
+    <strong>[Prénom Nom]</strong>
+    <span class="sep">/</span>
+    <span>Expert bâtiment indépendant</span>
+    <span class="sep">/</span>
+    <span>Saint-Nazaire</span>
+  </header>
+
+  <main>
+
+    <section class="band">
+      <p class="mark"><span>◆</span> Bonjour</p>
+      <div class="col">
+        <h1>Je regarde vos murs de très près. Comme ça, vous pouvez arrêter de le faire.</h1>
+        <p class="lede">Une fissure qui s'allonge, une odeur de cave au rez-de-chaussée, un chantier
+        qui « sera fini la semaine prochaine » depuis trois mois : je viens voir, je vous dis ce qu'il
+        en est <em>vraiment</em>, et vous repartez avec un rapport écrit plutôt qu'avec un doute.</p>
+        <div class="actions">
+          <a class="btn" href="tel:+33600000000">[06 XX XX XX XX]</a>
+          <a class="btn ghost" href="mailto:[prenom@domaine.fr]">Écrire un mot</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <p class="mark">Ce que je fais</p>
+      <div class="col">
+        <h2>Six situations, toujours les mêmes</h2>
+        <ul class="list">
+          <li>
+            <h3>Avant d'acheter</h3>
+            <p>Je visite le bien avec vous (ou sans vous) avant la signature. Deux heures qui évitent
+            parfois vingt ans de regrets.</p>
+          </li>
+          <li>
+            <h3>Fissures et structure</h3>
+            <p>Retrait-gonflement des argiles, tassement, reprise de charge mal faite : je distingue
+            la fissure qui vit de celle qui inquiète.</p>
+          </li>
+          <li>
+            <h3>Humidité, salpêtre, mérule</h3>
+            <p>Remontées capillaires, condensation, infiltration. Sur le littoral, le coupable n'est
+            jamais celui qu'on croit.</p>
+          </li>
+          <li>
+            <h3>Réception de travaux et VEFA</h3>
+            <p>Je vous accompagne à la livraison et je rédige les réserves. Une liste précise vaut
+            mieux qu'un « ça se voit un peu » sur le procès-verbal.</p>
+          </li>
+          <li>
+            <h3>Malfaçons et litiges</h3>
+            <p>Constat des désordres, chiffrage des reprises, appui en expertise amiable
+            contradictoire ou en dommages-ouvrage.</p>
+          </li>
+          <li>
+            <h3>Avis avant travaux</h3>
+            <p>Vous hésitez entre trois devis qui racontent trois histoires différentes. Je lis, je
+            traduis, je vous dis lequel tient la route.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band">
+      <p class="mark">Le déroulé</p>
+      <div class="col">
+        <h2>Quatre étapes, pas une de plus</h2>
+        <ol class="steps">
+          <li>
+            <span class="n">01</span>
+            <div>
+              <h3>On s'appelle</h3>
+              <p>Quinze minutes, gratuitement. Parfois ça se règle au téléphone — je vous le dirai.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <div>
+              <h3>Je viens sur place</h3>
+              <p>Deux à trois heures sur site : mesures d'humidité, fissuromètre, niveau, photos,
+              et beaucoup de questions sur l'histoire du bâtiment.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <div>
+              <h3>Vous recevez le rapport</h3>
+              <p>Sous huit jours. Photos légendées, causes probables, travaux à prévoir, ordre de
+              priorité. Écrit pour être lu, pas pour impressionner.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">04</span>
+            <div>
+              <h3>On en reparle</h3>
+              <p>Un appel pour relire ensemble, poser vos questions, et décider de la suite. Inclus.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band">
+      <p class="mark">Secteur</p>
+      <div class="col">
+        <h2>Saint-Nazaire et alentours</h2>
+        <p class="towns"><b>Saint-Nazaire, Trignac, Donges, Montoir-de-Bretagne, Saint-Brevin,
+        Pornichet, La Baule, Guérande, Le Croisic, La Turballe, Herbignac, Pontchâteau, Savenay,
+        Missillac</b> — et plus largement la presqu'île et l'estuaire, jusqu'à l'ouest de Nantes.</p>
+        <p class="towns">Au-delà, appelez quand même : si le dossier est intéressant, je prends la
+        route.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <p class="mark">Qui je suis</p>
+      <div class="col">
+        <h2>[XX] ans de chantiers, puis l'envie d'être du côté du propriétaire</h2>
+        <p>J'ai passé l'essentiel de ma carrière à construire et à suivre des ouvrages dans la région.
+        Aujourd'hui je travaille en indépendant, sans entreprise de travaux derrière moi : je n'ai
+        rien à vous vendre d'autre qu'un avis honnête. C'est tout l'intérêt.</p>
+        <p>Formation : [vos diplômes]. Assurance responsabilité civile professionnelle chez
+        [Assureur]. Je travaille pour des particuliers, des copropriétés et quelques agences
+        qui préfèrent savoir avant de vendre.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <p class="mark">Honoraires</p>
+      <div class="col">
+        <h2>Annoncés avant, pas après</h2>
+        <dl class="prices">
+          <div>
+            <dt>Visite conseil avant achat</dt>
+            <dd>à partir de [tarif] € TTC</dd>
+          </div>
+          <div>
+            <dt>Expertise avec rapport écrit</dt>
+            <dd>à partir de [tarif] € TTC</dd>
+          </div>
+          <div>
+            <dt>Assistance à réception de travaux</dt>
+            <dd>à partir de [tarif] € TTC</dd>
+          </div>
+        </dl>
+        <p style="margin-top:14px" class="towns">Devis ferme après notre appel, selon la surface et la
+        distance. Pas de supplément découvert en bas de facture.</p>
+      </div>
+    </section>
+
+    <section class="band" id="contact">
+      <p class="mark"><span>◆</span> Contact</p>
+      <div class="col">
+        <h2>Décrivez-moi le problème en trois phrases</h2>
+        <p class="lede" style="margin-top:0">Je réponds sous 24 heures, souvent le soir — la journée,
+        je suis sur le toit de quelqu'un.</p>
+        <div class="contact">
+          <p><span class="k">Téléphone</span><a href="tel:+33600000000">[06 XX XX XX XX]</a></p>
+          <p><span class="k">E-mail</span><a href="mailto:[prenom@domaine.fr]">[prenom@domaine.fr]</a></p>
+          <p><span class="k">Disponibilité</span>Lundi au samedi, 8 h – 19 h</p>
+          <p><span class="k">Secteur</span>Saint-Nazaire, presqu'île, estuaire</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>[Prénom Nom] — Expert en bâtiment indépendant · SIRET [SIRET] · RC pro [Assureur]</p>
+    <p>Ce site ne dépose aucun cookie et ne mesure rien du tout. Il se contente d'exister.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
