@@ -186,15 +186,18 @@ slug `diagnostic` — c'est ce slug que les deux liens du site attendent.
 scène du site : voir `tools/README-og.md` pour la refabriquer. Les cinq pages portent
 les balises Open Graph et Twitter Card qui la déclarent.
 
-Open Graph exige des **URL absolues** : le domaine apparaît donc en clair dans chaque
-`<head>`, sous la forme du jeton `https://VOTRE-DOMAINE.fr`. Une seule commande
-le remplace partout :
+Le domaine est `avecjulien.fr`. Open Graph exigeant des URL absolues, il apparaît en
+clair dans les cinq `<head>`, ainsi que dans `sitemap.xml` et `robots.txt`. En cas de
+changement :
 
 ```
-sed -i 's#https://VOTRE-DOMAINE.fr#https://votre-vrai-domaine.fr#g' *.html
+grep -rl "avecjulien.fr" . --include=*.html --include=*.xml --include=*.txt
 ```
 
-Tant que ce jeton est là, LinkedIn affichera le lien sans visuel.
+`index.html` porte aussi un bloc JSON-LD `ProfessionalService`. Il est en ligne, donc
+soumis au `script-src` de la politique de sécurité : celle-ci l'autorise **par son
+empreinte sha256**, inscrite dans `netlify.toml`. Toute modification du bloc impose de
+recalculer cette empreinte, sinon le navigateur le bloque.
 
 ## Avant la mise en ligne
 
@@ -203,7 +206,6 @@ Tant que ce jeton est là, LinkedIn affichera le lien sans visuel.
 - [ ] Choisir l'option TVA dans les CGV (article 5) — les prix du site sont affichés HT
 - [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
 - [ ] Renommer le slug Cal.com en `diagnostic` (ou corriger les deux liens du site)
-- [ ] Remplacer le jeton `https://VOTRE-DOMAINE.fr` par le domaine réel (cinq pages)
 - [ ] Vérifier l'aperçu dans le LinkedIn Post Inspector après la mise en ligne
 - [ ] Activer la détection des formulaires dans Netlify et brancher la notification
 - [ ] Compléter le nom et le NDA du partenaire Qualiopi dans les CGV (article 6)

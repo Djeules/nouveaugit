@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# merci.html n'est pas bloquée ici : elle porte déjà un noindex, et il faut
+# pouvoir la visiter pour le lire. L'interdire empêcherait de le voir.
+
+Sitemap: https://avecjulien.fr/sitemap.xml
