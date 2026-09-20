@@ -12,7 +12,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self' 'sha256-dS6xW2f86eEjWfJVX2eEMrO/FKInUa5Si3r3I3R6Trc='; form-action 'self'; frame-ancestors 'self'; base-uri 'self'"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self' 'sha256-3hLtOxOqM92hxMCkBfawQyMhmej+fTDKt14HjHVqzqI='; form-action 'self'; frame-ancestors 'self'; base-uri 'self'"
 
 [[headers]]
   for = "/assets/fonts/*"
