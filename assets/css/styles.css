@@ -390,13 +390,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   backdrop-filter:blur(26px) saturate(104%);-webkit-backdrop-filter:blur(26px) saturate(104%);
   box-shadow:0 26px 60px rgba(0,0,0,.3);
 }
-.hero__credit{
-  margin:0;font-size:clamp(.96rem,1.42vw,1.2rem);font-weight:600;line-height:1.26;
-  text-transform:uppercase;letter-spacing:.005em;color:#fff9f2;
-}
+/* Le titre reprend le poids que portait la ligne de crédit supprimée :
+   un cartel affiche d'abord le nom de l'objet, pas la notice. */
 .hero__claim{
-  margin:0;font-size:clamp(1.02rem,1.36vw,1.2rem);font-weight:500;line-height:1.42;
-  color:#fff9f2;max-width:34ch;
+  margin:0;font-size:clamp(1.02rem,1.5vw,1.3rem);font-weight:600;line-height:1.28;
+  text-transform:uppercase;letter-spacing:.005em;color:#fff9f2;max-width:26ch;
 }
 .hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
 
@@ -1015,8 +1013,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     background:rgba(181,150,113,.64);
     backdrop-filter:blur(22px) saturate(104%);-webkit-backdrop-filter:blur(22px) saturate(104%);
   }
-  .hero__credit{font-size:.88rem}
-  .hero__claim{font-size:.94rem}
+  .hero__claim{font-size:.95rem}
   .hero__cta .btn{padding:13px 18px;font-size:.8rem}
   .hero__meta{justify-items:start;text-align:left;width:100%;gap:12px}
   .hero__stats{grid-template-columns:1fr;gap:7px;width:100%}

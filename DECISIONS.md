@@ -386,7 +386,42 @@ ont donné des résultats contradictoires sur la bascule du bouton. La vérifica
 tranche lit un effet secondaire mesurable — ici la largeur de la barre de progression,
 qui prouve que la boucle de défilement s'est exécutée.
 
-## 18. Ce qui reste à faire
+## 18. Le cartel ne doit rien annoncer
+
+La carte du hero portait « Conçu, écrit et **mis en scène** par Julien, **formateur aux
+techniques de vente** ». Remarqué par Julien lui-même : cette ligne livre le dénouement
+dans le premier écran. Elle annonce à la fois qu'il y a une mise en scène et qui la
+signe, douze sections avant la Divulgation. Un visiteur qui la lit n'est plus dans le
+jeu ; il assiste à une démonstration dont il connaît la fin.
+
+Elle est supprimée. Comme elle portait le poids typographique du cartel, c'est le titre
+qui le reprend : un cartel de musée affiche d'abord le nom de l'objet, pas la notice.
+
+### Une régression, et la leçon qu'elle coûte
+
+La capture qui a servi à valider ce changement a révélé autre chose : les compteurs
+restaient à zéro. Cause : le correctif de l'écran de chargement, posé une heure plus
+tôt, appelait `startObservers()` **de façon synchrone** pendant l'évaluation du module.
+La fonction lit `observersStarted`, `counters` et `bars`, tous déclarés plus bas —
+d'où une `ReferenceError` de zone morte temporelle qui interrompait **tout le script**.
+
+Deux publics touchés, et le second est le pire : les visiteurs en animations réduites,
+et **tout visiteur revenant dans la même session** — c'est-à-dire précisément le chemin
+que le correctif venait d'ajouter. Le site se serait dégradé pour les gens qui
+reviennent, sans que rien ne le signale.
+
+Le code d'origine différait déjà cet appel d'un tour ; c'était la parade au même piège,
+et je l'ai retirée sans voir pourquoi elle était là. La règle qui en découle :
+**un appel différé d'un `setTimeout(…, 0)` sans explication est une précaution, pas une
+maladresse — on cherche la raison avant de la supprimer.** Celle-ci est désormais
+commentée dans le fichier.
+
+Second enseignement : le contrôle « aucune erreur JavaScript » que j'avais passé ne
+prouvait rien, parce qu'il s'exécutait en session vierge et en mouvement normal — les
+deux seuls cas où le bogue ne se déclenche pas. Un contrôle doit couvrir les chemins
+ajoutés, pas le chemin par défaut.
+
+## 19. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à

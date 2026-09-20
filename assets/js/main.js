@@ -19,10 +19,14 @@
   (function runBoot() {
     if (!boot) return;
 
+    // `startObservers` lit `observersStarted`, `counters` et `bars`, tous
+    // déclarés plus bas dans ce fichier. L'appeler ici, pendant l'évaluation
+    // du module, lève une ReferenceError de zone morte temporelle qui
+    // interrompt tout le script. Il est donc toujours différé d'un tour.
     const done = () => {
       boot.classList.add('is-done');
       document.body.classList.add('is-ready');
-      startObservers();
+      setTimeout(startObservers, 0);
     };
 
     // Le compteur durait 1,4 s en moyenne et jusqu'à 2,8 s, pour un délai
@@ -34,7 +38,6 @@
 
     if (reduced || seen) {
       done();
-      if (reduced) setTimeout(startObservers, 0);
       return;
     }
     try { sessionStorage.setItem('julien:boot', '1'); } catch (e) {}
