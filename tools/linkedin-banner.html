@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Julien — bannière LinkedIn (1584×396)</title>
+<!--
+  Gabarit de la bannière de profil LinkedIn.
+  Ce fichier n'est pas une page du site : il sert à fabriquer l'image.
+  Rendu : voir tools/README-og.md, section « Bannière LinkedIn ».
+
+  Contraintes propres à LinkedIn, qui expliquent la composition :
+  — 1584 × 396 (ratio 4:1) ;
+  — la photo de profil ronde recouvre le BAS GAUCHE sur desktop : les
+    330 premiers pixels ne portent donc aucun texte ;
+  — la bannière est souvent vue à 400 px de large sur mobile, d'où deux
+    lignes courtes et grandes plutôt qu'un paragraphe.
+-->
+<style>
+@font-face{
+  font-family:'Figtree';font-style:normal;font-weight:300 900;
+  src:url('../assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;
+  src:url('../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+}
+:root{
+  --walnut:#100904;--cream:#ffedd7;--ember:#dc5000;
+  --sans:"Figtree",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1584px;height:396px;overflow:hidden;background:var(--walnut)}
+body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialiased}
+
+.band{position:relative;width:1584px;height:396px;overflow:hidden;background:var(--walnut)}
+
+/* ---------- la scène d'atelier, reprise du hero ---------- */
+.desk{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(93deg,rgba(60,32,12,.11) 0 3px,transparent 3px 22px),
+    linear-gradient(104deg,#5c3a1f 0%,#86603a 38%,#b8874f 62%,#8d6238 82%,#5e3d21 100%);
+}
+.mat{
+  position:absolute;left:47%;right:-8%;top:-34%;bottom:-38%;
+  transform:rotate(1.4deg);border-radius:14px;overflow:hidden;
+  background:linear-gradient(162deg,#3c4a35,#2b3527 58%,#222b20);
+  box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.grid{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(to right,rgba(226,236,214,.075) 0 1px,transparent 1px 30px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.075) 0 1px,transparent 1px 30px),
+    repeating-linear-gradient(to right,rgba(226,236,214,.16) 0 1px,transparent 1px 150px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.16) 0 1px,transparent 1px 150px);
+  background-position:18px 22px;
+}
+.paper{
+  position:absolute;right:3%;top:22%;width:200px;aspect-ratio:1/1.3;
+  transform:rotate(-6deg);border-radius:3px;
+  background:linear-gradient(158deg,#f4e9d6,#ddcfb6 62%,#c7b89d);
+  box-shadow:0 20px 42px rgba(0,0,0,.5),0 2px 0 rgba(255,255,255,.22) inset;
+  display:grid;align-content:start;gap:11px;padding:28px 26px;
+}
+.paper i{display:block;height:5px;border-radius:2px;background:rgba(40,28,16,.2)}
+.paper i.head{height:11px;width:46%;background:rgba(40,28,16,.62)}
+.paper i.short{width:58%}
+.paper b{
+  margin-top:24px;font-family:var(--mono);font-size:9px;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(40,28,16,.5);
+}
+.paper u{display:block;height:1px;background:rgba(40,28,16,.38);text-decoration:none}
+/* le stylo traverse en diagonale : à 4:1, un stylo debout ne tiendrait pas */
+.pen{
+  position:absolute;left:46%;top:50%;width:40px;height:auto;
+  transform:translateY(-50%) rotate(118deg);transform-origin:50% 50%;
+  filter:drop-shadow(16px 22px 26px rgba(0,0,0,.62));
+}
+.haze{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(16,9,4,.99) 0%,rgba(16,9,4,.98) 40%,rgba(16,9,4,.93) 55%,rgba(16,9,4,.72) 64%,rgba(16,9,4,.34) 74%,rgba(16,9,4,.06) 86%,rgba(16,9,4,0) 94%),
+    radial-gradient(72% 130% at 80% 50%,transparent,rgba(16,9,4,.5) 98%),
+    linear-gradient(180deg,rgba(16,9,4,.46),transparent 34%),
+    linear-gradient(0deg,rgba(16,9,4,.5),transparent 36%);
+}
+.glow{
+  position:absolute;left:-6%;bottom:-70%;width:46%;height:170%;
+  background:radial-gradient(closest-side,rgba(220,80,0,.24),transparent 72%);
+}
+
+/* ---------- le texte ----------
+   left:360 — au-delà de la photo de profil, qui mord le bas gauche. */
+.copy{
+  position:absolute;left:360px;top:0;bottom:0;width:720px;z-index:4;
+  display:flex;flex-direction:column;justify-content:center;gap:22px;
+}
+.eyebrow{
+  display:flex;align-items:center;gap:11px;
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(255,237,215,.6);
+}
+.eyebrow s{width:7px;height:7px;border-radius:50%;background:var(--ember);text-decoration:none;flex:none}
+
+.claim{font-size:53px;font-weight:600;line-height:1.1;letter-spacing:-.026em;color:#fff9f2}
+.claim em{font-style:normal;color:var(--ember)}
+
+.sign{display:grid;gap:11px}
+.sign hr{border:0;height:1px;background:rgba(255,237,215,.18)}
+.sign p{
+  display:flex;align-items:baseline;gap:14px;
+  font-family:var(--mono);font-size:15px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(255,237,215,.56);
+}
+.sign p b{font-weight:500;color:rgba(255,237,215,.92)}
+.sign p s{color:rgba(255,237,215,.28);text-decoration:none}
+
+.grain{
+  position:absolute;inset:0;z-index:5;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBarrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".06"/>
+      <stop offset="14%" stop-color="#ffedd7" stop-opacity=".34"/>
+      <stop offset="33%" stop-color="#ffedd7" stop-opacity=".92"/>
+      <stop offset="47%" stop-color="#ffedd7" stop-opacity=".58"/>
+      <stop offset="64%" stop-color="#ffedd7" stop-opacity=".30"/>
+      <stop offset="84%" stop-color="#ffedd7" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="gCap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d2400"/><stop offset="22%" stop-color="#dc5000"/>
+      <stop offset="44%" stop-color="#ff8a3d"/><stop offset="62%" stop-color="#dc5000"/>
+      <stop offset="100%" stop-color="#581d00"/>
+    </linearGradient>
+    <linearGradient id="gTip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5c3d17"/><stop offset="28%" stop-color="#e0b371"/>
+      <stop offset="52%" stop-color="#f7dcae"/><stop offset="74%" stop-color="#b6873f"/>
+      <stop offset="100%" stop-color="#4a2f11"/>
+    </linearGradient>
+    <linearGradient id="gInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a0c04"/><stop offset="40%" stop-color="#3a1d08"/>
+      <stop offset="100%" stop-color="#120802"/>
+    </linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="band">
+  <div class="desk"></div>
+  <div class="mat">
+    <div class="grid"></div>
+    <div class="paper">
+      <i class="head"></i><i></i><i></i><i class="short"></i>
+      <b>Bon pour accord</b><u></u>
+    </div>
+    <svg class="pen" viewBox="0 0 160 1000">
+      <g><path d="M62 44c0-9 7-16 18-16s18 7 18 16v252H62z" fill="url(#gCap)"/>
+      <path d="M96 62c8 1 14 5 14 12v104c0 8-5 12-14 13z" fill="#c24500"/>
+      <rect x="62" y="270" width="36" height="8" fill="#8e3000" opacity=".8"/>
+      <path d="M70 44c0-7 4-12 8-13v250h-8z" fill="#ff9a58" opacity=".55"/></g>
+      <g><path d="M60 296h40v492H60z" fill="url(#gBarrel)"/>
+      <rect x="60" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".35"/>
+      <rect x="98.4" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".18"/>
+      <rect x="71" y="296" width="1" height="492" fill="#100904" opacity=".30"/>
+      <rect x="88" y="296" width="1" height="492" fill="#100904" opacity=".22"/>
+      <rect x="74" y="300" width="12" height="484" fill="url(#gInk)" opacity=".92"/>
+      <rect x="64" y="330" width="3" height="380" fill="url(#gGlass)" opacity=".7"/></g>
+      <g><path d="M60 788h40l-9 58H69z" fill="url(#gTip)"/>
+      <path d="M69 846h22l-6 32h-10z" fill="url(#gTip)"/>
+      <path d="M76 878h8l-2 14h-4z" fill="#e8cb9b"/></g>
+    </svg>
+  </div>
+  <div class="haze"></div>
+  <div class="glow"></div>
+
+  <div class="copy">
+    <p class="eyebrow"><s></s>Formation aux techniques de vente</p>
+
+    <p class="claim">Un très bon produit.<br><em>Une très mauvaise histoire.</em></p>
+
+    <div class="sign">
+      <hr>
+      <p><b>avecjulien.fr</b><s>·</s>Vingt ans de terrain B2B</p>
+    </div>
+  </div>
+
+  <div class="grain"></div>
+</div>
+</body>
+</html>
