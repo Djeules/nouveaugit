@@ -199,14 +199,26 @@ soumis au `script-src` de la politique de sécurité : celle-ci l'autorise **par
 empreinte sha256**, inscrite dans `netlify.toml`. Toute modification du bloc impose de
 recalculer cette empreinte, sinon le navigateur le bloque.
 
+## Obligations qui ne s'arrêtent pas à la mise en ligne
+
+Trois points extraits des encadrés retirés des pages légales, parce qu'ils
+survivent à la publication :
+
+- **« Cet enregistrement ne vaut pas agrément de l'État »** doit figurer partout où
+  le numéro de déclaration d'activité apparaît — devis, conventions, plaquettes,
+  signatures de courriel. Pas seulement sur le site. Son omission est sanctionnée
+  (art. L. 6352-12 du Code du travail).
+- **Les demandes d'aménagement liées au handicap**, prévues par les CGV, peuvent
+  révéler des données de santé. Elles ne se stockent pas dans un tableur partagé.
+- **Toute brique tierce ajoutée au site** — mesure d'audience, vidéo intégrée,
+  formulaire externe, pixel publicitaire — fait tomber la promesse « aucune
+  ressource tierce », impose un bandeau de consentement et oblige à rouvrir la
+  politique de confidentialité. C'est la décision la plus coûteuse à revenir en
+  arrière.
+
 ## Avant la mise en ligne
 
-- [ ] Remplir tous les champs `.tbd` des trois pages légales
-- [ ] Supprimer les encadrés `.note-box` des pages légales
-- [ ] Choisir l'option TVA dans les CGV (article 5) — les prix du site sont affichés HT
-- [ ] Remplacer l'adresse e-mail par une adresse sur votre nom de domaine
 - [ ] Renommer le slug Cal.com en `diagnostic` (ou corriger les deux liens du site)
 - [ ] Vérifier l'aperçu dans le LinkedIn Post Inspector après la mise en ligne
 - [ ] Activer la détection des formulaires dans Netlify et brancher la notification
-- [ ] Compléter le nom et le NDA du partenaire Qualiopi dans les CGV (article 6)
 - [ ] Faire relire les CGV par un professionnel du droit
