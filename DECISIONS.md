@@ -421,7 +421,35 @@ prouvait rien, parce qu'il s'exécutait en session vierge et en mouvement normal
 deux seuls cas où le bogue ne se déclenche pas. Un contrôle doit couvrir les chemins
 ajoutés, pas le chemin par défaut.
 
-## 19. Ce qui reste à faire
+## 19. Nommer l'erreur plutôt que la corriger
+
+Julien a relu la partie fiction et trouvé qu'elle vendait trop peu par le bénéfice.
+Relecture section par section : il a raison pour trois d'entre elles, tort pour les
+autres. 02 Anatomie, 03 Capacités et 04 Format sont déjà orientées utilité — « le stylo
+ne roule pas hors de la table : il attend », « vos données restent sur le papier ».
+En revanche 06 Évaluation est de la qualité intrinsèque pure, et 07 Modèle comme
+08 Recherche n'offrent aucune utilité au lecteur en trente et trente-neuf mots.
+
+**Ces trois sections n'ont pas été enrichies, pour deux raisons.** D'abord leur platitude
+est le sujet : un lancement de modèle publie des benchmarks, des poids ouverts et un
+papier, et c'est ce qu'elles imitent. Ensuite et surtout, le quiz accorde trois points à
+« promouvoir sa valeur d'utilité » et un seul à « argumenter sur la qualité
+intrinsèque » — or le site passe deux mille mots à faire le coup à un point.
+
+Ce n'était pas une incohérence à réparer, c'était une démonstration que personne
+n'énonçait. La phrase existait pourtant, enfouie dans l'explication de la question 1 du
+quiz, qui n'apparaît qu'après avoir répondu. Elle est remontée dans la Divulgation, en
+deuxième paragraphe, là où tout le monde passe.
+
+Le site prouvait qu'il sait **mettre en scène**. Il prouve désormais qu'il sait
+**diagnostiquer une argumentation**, ce qu'un dirigeant achète plus volontiers. Coût :
+trois phrases, contre la réécriture de sept sections.
+
+Détail d'écriture : « je vous ai **à peine** dit à quoi ce stylo vous sert » et non
+« à aucun moment ». Les sections 02 à 04 disent bien l'utilité par endroits ; sur un
+site bâti sur la précision, une exagération vérifiable coûte plus qu'elle ne rapporte.
+
+## 20. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
