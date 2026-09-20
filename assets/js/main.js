@@ -18,24 +18,35 @@
   const bootPct = $('#bootPct');
   (function runBoot() {
     if (!boot) return;
-    let p = 0;
-    const tick = () => {
-      p = Math.min(100, p + Math.random() * 13 + 4);
-      if (bootPct) bootPct.textContent = String(Math.round(p)).padStart(3, '0');
-      if (p < 100) return setTimeout(tick, 90);
-      setTimeout(() => {
-        boot.classList.add('is-done');
-        document.body.classList.add('is-ready');
-        startObservers();
-      }, 340);
-    };
-    if (reduced) {
+
+    const done = () => {
       boot.classList.add('is-done');
       document.body.classList.add('is-ready');
-      setTimeout(startObservers, 0);
-    } else {
-      setTimeout(tick, 180);
+      startObservers();
+    };
+
+    // Le compteur durait 1,4 s en moyenne et jusqu'à 2,8 s, pour un délai
+    // entièrement fabriqué : la page était prête. Au-delà d'une seconde,
+    // le rebond décroche. Il est plafonné à ~600 ms, et il ne se joue
+    // qu'une fois par session — celui qui revient ne le revoit pas.
+    let seen = false;
+    try { seen = sessionStorage.getItem('julien:boot') === '1'; } catch (e) {}
+
+    if (reduced || seen) {
+      done();
+      if (reduced) setTimeout(startObservers, 0);
+      return;
     }
+    try { sessionStorage.setItem('julien:boot', '1'); } catch (e) {}
+
+    let p = 0;
+    const tick = () => {
+      p = Math.min(100, p + Math.random() * 22 + 14);
+      if (bootPct) bootPct.textContent = String(Math.round(p)).padStart(3, '0');
+      if (p < 100) return setTimeout(tick, 60);
+      setTimeout(done, 200);
+    };
+    setTimeout(tick, 120);
   })();
 
   /* ---------------------------------------------------
@@ -240,6 +251,14 @@
      12. Boucle de défilement (parallaxe, progression, états)
      --------------------------------------------------- */
   let ticking = false;
+
+  const navCta = $('.nav__cta');
+  const revelation = $('#revelation');
+  // Une seule source pour l'adresse de réservation : celle du lien de la
+  // section Contact. Elle n'est donc jamais dupliquée dans le script.
+  const BOOKING = $('[data-booking]')?.getAttribute('href') || '#contact';
+  let ctaLive = false;
+
   function onScroll() {
     const y = scrollY;
     const docH = document.documentElement.scrollHeight - innerHeight;
@@ -249,6 +268,28 @@
     if (nav) {
       nav.classList.toggle('is-stuck', y > 40);
       nav.classList.toggle('is-hidden', y > lastY && y > 520 && !menu?.classList.contains('is-open'));
+    }
+
+    // Avant la Divulgation, le bouton appartient à la fiction. Après, il
+    // devient le seul chemin réel — sans quoi la réservation n'apparaît
+    // qu'à 94 % de la page, après vingt-six écrans de défilement.
+    if (navCta && revelation) {
+      const past = y + innerHeight * 0.6 > revelation.offsetTop;
+      if (past !== ctaLive) {
+        ctaLive = past;
+        const label = navCta.querySelector('span');
+        if (past) {
+          navCta.href = BOOKING;
+          navCta.target = '_blank';
+          navCta.rel = 'noopener';
+          if (label) label.textContent = 'Réserver trente minutes';
+        } else {
+          navCta.href = '#revelation';
+          navCta.removeAttribute('target');
+          navCta.removeAttribute('rel');
+          if (label) label.textContent = 'Précommander';
+        }
+      }
     }
     lastY = y;
 

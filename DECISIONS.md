@@ -356,7 +356,37 @@ scopées en `.quote .mono`.
 
 Le carrousel de la fiction n'en reçoit pas. Un écart de plus entre les deux moitiés.
 
-## 17. Ce qui reste à faire
+## 17. L'audit avant mise en ligne, et ses quatre correctifs
+
+Mesures prises sur le code, pas d'impression : page de 22 593 px, soit 27,8 écrans, et
+le lien de réservation à **94 %** de la hauteur — un seul lien vers Cal.com sur toute la
+page. Tous les autres boutons renvoyaient dans la fiction. Le site était une impasse.
+
+Quatre correctifs, dans l'ordre de leur effet sur la conversion :
+
+1. **Le bouton de la barre bascule à la Divulgation.** Avant, il dit « Précommander » et
+   appartient au décor ; après, il devient « Réserver trente minutes » et pointe sur
+   l'agenda. L'adresse est lue sur le lien `[data-booking]` de la section Contact : une
+   seule source, jamais dupliquée dans le script.
+2. **La navigation contient un chemin réel.** « L'offre » entre dans la barre et dans le
+   menu ; entre 900 et 1 100 px, ce sont « Benchmarks » et « Recherche » qui s'effacent,
+   jamais lui. Et « Tarifs » disparaît du menu mobile : il menait à la grille du stylo,
+   donc le visiteur qui cherchait un prix tombait sur une plaisanterie. C'était le piège
+   le plus coûteux du site, puisqu'il frappait le visiteur le plus qualifié.
+3. **L'écran de chargement passe de 1,4 s (jusqu'à 2,8 s) à ~450 ms**, et ne se joue
+   qu'une fois par session. Le délai était entièrement fabriqué : la page était prête.
+4. **Le ton des étiquettes passe de 44 % à 56 % d'opacité.** Il était à 3,93:1 sur
+   walnut et 3,69:1 sur bark, sous le seuil AA de 4,5 pour du petit texte, alors qu'il
+   porte les numéros de section, les unités de prix et les fonctions des témoins.
+   À 56 % : 5,8:1 et 5,1:1. Les filets restent à 24 %, ils ne portent rien.
+
+Leçon d'outillage, au passage : sous `--virtual-time-budget`, Chromium ordonnance les
+minuteurs et les trames d'animation autrement qu'en temps réel. Deux sondes identiques
+ont donné des résultats contradictoires sur la bascule du bouton. La vérification qui
+tranche lit un effet secondaire mesurable — ici la largeur de la barre de progression,
+qui prouve que la boucle de défilement s'est exécutée.
+
+## 18. Ce qui reste à faire
 
 Voir la liste en fin de `README.md`. Les points bloquants avant une mise en ligne réelle :
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
