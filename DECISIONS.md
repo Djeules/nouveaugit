@@ -665,3 +665,44 @@ répondre 200 (les cinq pages, le CSS, le JS, une police, l'image de partage,
 robots.txt, sitemap.xml) et ce qui doit répondre 404 (`DECISIONS.md`,
 `CLAUDE.md`, `README.md`, `tools/`). Un serveur local lancé depuis `site/`
 reproduit exactement ce que Netlify servira.
+
+---
+
+## 24. Le calque était invisible là où le site se lit
+
+Julien : « je ne vois pas les animations ». Il lit le site sur son
+téléphone. Le calque de plan et sa capsule portaient
+`@media (max-width:980px){.draft{display:none}}`, posé la veille avec ce
+commentaire : *« la colonne du stylo passe derrière le texte »*.
+
+C'était une supposition, et elle était fausse. Sous 900 px, l'Anatomie passe
+en une colonne : la scène devient une bande fixe de 56 svh en haut de
+l'écran, et les étapes défilent dessous. Le cadre coté n'a jamais eu de
+paragraphe sous lui — il suit la bande, exactement comme le stylo.
+
+Deux erreurs empilées, et la seconde est la plus coûteuse :
+
+1. Décrire une mise en page sans la regarder. Trois lignes de
+   `@media (max-width:900px)` disaient le contraire de ce que j'affirmais.
+2. Poser la coupure à **980 px** quand la bascule de mise en page est à
+   **900 px**. Même si le motif avait été bon, la borne était fausse.
+
+Résultat : une journée de travail invisible sur le seul écran où le site est
+réellement lu. La règle « vérifier, pas supposer » de `CLAUDE.md` vise les
+régressions ; celle-ci n'en était pas une, elle était pire — une
+fonctionnalité livrée éteinte, et qu'aucun contrôle ne pouvait signaler
+puisqu'elle se comportait exactement comme écrit.
+
+Le calque s'affiche donc sous 900 px, à l'échelle de la bande (46 svh). La
+capsule y resserre son corps et son interlettrage : « Parfaitement
+hexagonal, sérieusement » fait trente-sept signes, et devait tenir sans
+déborder ni passer à la ligne.
+
+À retenir : **toute `@media` qui masque un élément doit nommer la règle de
+mise en page qu'elle compense, et partager sa borne.** Une valeur ronde
+choisie au jugé ne tombe jamais au bon endroit.
+
+Limite du contrôle : Chromium impose une largeur de fenêtre minimale de
+485 px en mode sans interface. Le rendu a donc été vérifié à 490 px, et le
+comportement sous 400 px déduit des largeurs — le cadre y est à 64 vw, la
+capsule à largeur de contenu fixe.
