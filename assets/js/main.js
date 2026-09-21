@@ -292,6 +292,12 @@
   const mockPen = $('.mockup__pen');
   const penReveal = $('.pen--reveal');
   const halo = $('.anatomy__halo');
+  const draftCote = $('#draftCote');
+  /* La cote visée est mémorisée à part : pendant le fondu de substitution,
+     le texte affiché est encore l'ancien, et comparer au textContent
+     relancerait le minuteur à chaque image de défilement. */
+  let coteWanted = draftCote ? draftCote.textContent.trim() : '';
+  let coteTimer = 0;
 
   /* ---------------------------------------------------
      12. Boucle de défilement (parallaxe, progression, états)
@@ -367,6 +373,18 @@
         if (r.top < innerHeight * 0.62 && r.bottom > innerHeight * 0.18) active = s;
       });
       steps.forEach(s => s.classList.toggle('is-active', s === active));
+      if (active && draftCote) {
+        const c = active.dataset.cote || '';
+        if (c && c !== coteWanted) {
+          coteWanted = c;
+          draftCote.classList.add('is-swapping');
+          clearTimeout(coteTimer);
+          coteTimer = setTimeout(() => {
+            draftCote.textContent = coteWanted;
+            draftCote.classList.remove('is-swapping');
+          }, 280);
+        }
+      }
       if (active && halo) {
         halo.style.background = active.dataset.step === 'tip'
           ? 'radial-gradient(circle,rgba(247,220,174,.26),transparent 64%)'

@@ -537,3 +537,60 @@ réduit. C'est un compromis, retenu parce que leur contenu est répété et
 qu'aucune information n'y figure qu'on ne retrouve ailleurs sur la page.
 Si un bandeau devait un jour porter une information unique, il lui faudrait
 un vrai bouton de pause.
+
+---
+
+## 22. Le plan d'atelier de l'Anatomie
+
+Julien avait suggéré lui-même la sortie : « reprendre le concept de stylo en
+style graphique ». C'était la bonne, et meilleure qu'un décalque d'oryzo.ai.
+Leur site anime des photographies — des dizaines de rendus 3D d'un objet qui
+existe. Ici il n'y a qu'un volume construit en CSS. Copier leurs mouvements
+sans leur matière n'aurait donné que du vide en mouvement.
+
+Le registre juste était sous la main depuis le début : un objet à trente
+centimes présenté avec l'appareil d'un plan coté. C'est ce que fait tout le
+texte de la fiction ; il ne manquait que le dessin.
+
+D'où un calque par-dessus le volume — équerres de cadrage, graduations,
+croix de visée, points d'ancrage — qui se tire au premier passage. Et une
+cote, sous le cadre, qui suit l'étape qu'on est en train de lire : ⌀ 3,2 mm
+pour le capuchon, Hex. 8,0 mm pour le corps, 3 200 m pour le réservoir,
+⌀ 1,0 mm ±0,01 pour la bille. Les valeurs ne sont pas inventées pour
+l'occasion : elles sont déjà dans les paragraphes, le plan ne fait que les
+désigner.
+
+Deux raisons de ne pas accrocher les cotes au stylo lui-même : il tourne
+(`drawPen` reçoit un angle, pas une translation) et il grandit de 30 % sur
+la traversée. Un cadre fixe ne se désaligne jamais ; des repères collés à
+l'objet auraient glissé en permanence.
+
+### Deux pièges, tous deux invisibles à l'exécution
+
+**`stroke-dasharray` deviné.** Pour escamoter un tracé et le dérouler
+ensuite, le dasharray doit valoir au moins la longueur du chemin. Sur un
+`<path>` fait de sous-chemins disjoints, cette longueur ne se devine pas :
+une valeur trop courte laisse des morceaux visibles et crée un motif qui se
+répète. La réponse est `pathLength="1"` sur le path, qui normalise sa
+longueur — `stroke-dasharray:1; stroke-dashoffset:1` l'escamote alors
+exactement, quel que soit le dessin.
+
+**`transform:none` sur ce qui se centre par transform.** Le calque se place
+au centre par `translate(-50%,-50%)`. La règle `[data-reveal].is-in` pose
+`transform:none` : le cadre serait parti en bas à droite au moment précis où
+il devient visible. Il a fallu deux sélecteurs plus spécifiques
+(`.draft[data-reveal]` et le même suffixé `.is-in`) pour repasser devant.
+Règle générale à retenir : **un élément centré par transform ne peut pas
+porter `data-reveal` sans se protéger**, et l'erreur ne se voit qu'à
+l'instant de l'apparition.
+
+### Ce que le banc n'a pas pu confirmer
+
+Sous `--virtual-time-budget`, la boucle de défilement ne rejoue pas : elle
+passe par `requestAnimationFrame`, qui ne se replanifie pas. L'étape active
+reste donc figée sur la première, et la cote avec elle. Contrôle négatif
+concluant : les deux sont figées **ensemble**, ce qui situe le blocage dans
+la boucle et non dans la greffe — si la cote était en cause, l'étape
+changerait sans elle. Le reste est du code de production déjà éprouvé.
+
+À confirmer dans un vrai navigateur, en descendant les quatre étapes.

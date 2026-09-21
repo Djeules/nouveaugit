@@ -241,6 +241,30 @@
     <div class="anatomy__stage">
       <div class="pen3d" data-pen3d="anatomy" aria-hidden="true"></div>
       <div class="anatomy__halo" aria-hidden="true"></div>
+
+      <!-- Calque de plan d'atelier. Le stylo tourne sur lui-même sans se
+           déplacer : un cadre de cotation fixe peut donc l'encadrer sans
+           jamais se désaligner. Les traits se tirent au premier passage,
+           comme une planche qu'on trace ; la cote affichée suit l'étape
+           qu'on est en train de lire, et sort du `data-cote` de celle-ci. -->
+      <div class="draft" data-reveal aria-hidden="true">
+        <svg class="draft__grid" viewBox="0 0 300 620" preserveAspectRatio="none" focusable="false">
+          <!-- équerres de cadrage -->
+          <path class="draft__corner" pathLength="1" d="M4 46V4h42M254 4h42v42M296 574v42h-42M46 616H4v-42"/>
+          <!-- graduations du bord gauche, tous les 40 -->
+          <path class="draft__ticks" pathLength="1" d="M4 100h9M4 140h5M4 180h5M4 220h9M4 260h5M4 300h5M4 340h9M4 380h5M4 420h5M4 460h9M4 500h5M4 540h5"/>
+          <!-- ligne de cote, à droite -->
+          <path class="draft__dim" d="M283 96v428M278 96h10M278 524h10"/>
+          <!-- croix de visée -->
+          <path class="draft__cross" pathLength="1" d="M150 296v28M136 310h28"/>
+          <!-- points d'ancrage -->
+          <g class="draft__nodes">
+            <rect x="47" y="93" width="5" height="5"/><rect x="247" y="93" width="5" height="5"/>
+            <rect x="47" y="521" width="5" height="5"/><rect x="247" y="521" width="5" height="5"/>
+          </g>
+        </svg>
+        <p class="draft__cote" id="draftCote">⌀ 3,2 mm</p>
+      </div>
     </div>
   </div>
   <div class="anatomy__steps">
@@ -250,28 +274,28 @@
       <p class="lead">Chaque composant a été conservé exactement tel qu'il était depuis 1950, parce que la perfection ne se refactorise pas.</p>
     </header>
 
-    <article class="step" data-step="cap">
+    <article class="step" data-step="cap" data-cote="⌀ 3,2 mm">
       <p class="step__idx">01</p>
       <h3>Capuchon ventilé</h3>
       <p>Un alésage traversant de 3,2&nbsp;mm assure la circulation de l'air. Une décision d'ingénierie qui a sauvé plus de vies que la plupart des mises à jour de sécurité.</p>
       <dl class="step__spec"><div><dt>Matériau</dt><dd>Polypropylène</dd></div><div><dt>Clip</dt><dd>Monobloc</dd></div></dl>
     </article>
 
-    <article class="step" data-step="barrel">
+    <article class="step" data-step="barrel" data-cote="Hex. 8,0 mm">
       <p class="step__idx">02</p>
       <h3>Corps hexagonal</h3>
       <p>Six pans parfaitement réguliers. Le stylo ne roule pas hors de la table : il attend. Transparence cristal pour un contrôle permanent du niveau d'encre — aucune télémétrie requise.</p>
       <dl class="step__spec"><div><dt>Profil</dt><dd>Hex. 8,0 mm</dd></div><div><dt>Optique</dt><dd>Cristal</dd></div></dl>
     </article>
 
-    <article class="step" data-step="ink">
+    <article class="step" data-step="ink" data-cote="3 200 m">
       <p class="step__idx">03</p>
       <h3>Réservoir longue portée</h3>
       <p>Encre à base d'huile, viscosité stable de −10&nbsp;°C à 55&nbsp;°C. Trois kilomètres deux cents de trait continu : soit environ quarante‑cinq mille signatures, ou une seule très mauvaise décision contractuelle.</p>
       <dl class="step__spec"><div><dt>Autonomie</dt><dd>3 200 m</dd></div><div><dt>Encre</dt><dd>Oil‑based</dd></div></dl>
     </article>
 
-    <article class="step" data-step="tip">
+    <article class="step" data-step="tip" data-cote="⌀ 1,0 mm ±0,01">
       <p class="step__idx">04</p>
       <h3>Bille carbure de tungstène</h3>
       <p>Usinée à 1,0&nbsp;mm, tolérance ±0,01. Elle tourne dans son logement laiton depuis plus longtemps que n'importe quel modèle de langage n'a existé, et elle fonctionne toujours hors connexion.</p>

@@ -508,6 +508,64 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:radial-gradient(circle,rgba(220,80,0,.22),transparent 64%);filter:blur(10px);
   transition:background .8s var(--ease)}
 .pen--anatomy{transition:transform 1.1s var(--ease-out)}
+
+/* ---------- Calque de plan d'atelier ----------
+   Un objet à trente centimes présenté avec l'appareil d'un plan coté :
+   c'est le registre de toute la fiction, transposé en dessin. Le calque
+   se pose par-dessus le stylo sans l'occulter — il n'intercepte ni le
+   pointeur ni les lecteurs d'écran. */
+.draft{
+  position:absolute;left:50%;top:50%;
+  width:min(80vw,340px);height:min(78vh,700px);
+  pointer-events:none;z-index:2;
+}
+/* Piège : le calque se centre par un transform, et `[data-reveal].is-in`
+   pose `transform:none` — le cadre partirait en bas à droite au moment
+   précis où il devient visible. Les deux sélecteurs ci-dessous repassent
+   devant, à l'arrêt comme en apparition. Le calque n'a donc que le fondu,
+   sans la montée des autres blocs : un plan se révèle, il ne glisse pas. */
+.draft[data-reveal],
+.draft[data-reveal].is-in{transform:translate(-50%,-50%)}
+.draft__grid{width:100%;height:100%;overflow:visible}
+.draft__grid path,.draft__grid rect{vector-effect:non-scaling-stroke}
+.draft__corner,.draft__ticks,.draft__dim,.draft__cross{
+  fill:none;stroke:var(--cream-24);stroke-width:1;
+}
+.draft__corner{stroke:var(--cream-24);stroke-width:1.4}
+.draft__dim{stroke-dasharray:3 4}  /* tirets de dessin, pas d'animation */
+.draft__cross{stroke:var(--ember);opacity:.72}
+.draft__nodes rect{fill:var(--ember);stroke:none}
+
+/* Les traits se tirent au premier passage. Chaque tracé porte
+   `pathLength="1"` : sa longueur réelle, somme de sous-chemins disjoints
+   et difficile à deviner, est alors normalisée à 1, et un dasharray de 1
+   l'escamote exactement — ni segment oublié, ni motif qui se répète.
+   Une valeur devinée « assez grande » ne marche pas : plus courte que le
+   chemin, elle en laisse des morceaux visibles. */
+.draft__corner{stroke-dasharray:1;stroke-dashoffset:1}
+.draft__ticks{stroke-dasharray:1;stroke-dashoffset:1}
+.draft__cross{stroke-dasharray:1;stroke-dashoffset:1}
+.draft.is-in .draft__corner{stroke-dashoffset:0;transition:stroke-dashoffset 1.5s var(--ease-out) .15s}
+.draft.is-in .draft__ticks{stroke-dashoffset:0;transition:stroke-dashoffset 1.2s var(--ease-out) .5s}
+.draft.is-in .draft__cross{stroke-dashoffset:0;transition:stroke-dashoffset .7s var(--ease-out) .9s}
+.draft__nodes{opacity:0;transition:opacity .5s var(--ease) 1.1s}
+.draft.is-in .draft__nodes{opacity:1}
+
+/* La cote de l'étape courante, sous le cadre. Elle se change en fondu :
+   une valeur qui se substitue à une autre, pas une valeur qui arrive. */
+.draft__cote{
+  position:absolute;left:0;right:0;bottom:-6px;margin:0;text-align:center;
+  font-family:var(--mono);font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cream-56);
+  transition:opacity .28s var(--ease);
+}
+.draft__cote.is-swapping{opacity:0}
+
+@media (max-width:980px){
+  /* La colonne du stylo passe derrière le texte : le cadre coté
+     deviendrait un quadrillage sous les paragraphes. */
+  .draft{display:none}
+}
 .anatomy__steps{display:grid;gap:clamp(60px,12vh,150px);padding-block:clamp(70px,16vh,190px) clamp(160px,54vh,540px)}
 .anatomy__head{display:grid;gap:18px}
 .step{display:grid;gap:14px;max-width:44ch;opacity:.34;transition:opacity .7s var(--ease)}
@@ -1128,6 +1186,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .line > i{transform:none}
   .grain{display:none}
   .manifeste__text w{color:var(--cream)}
+  /* le plan est tracé d'emblée : rien ne se tire sous les yeux */
+  .draft__corner,.draft__ticks,.draft__cross{stroke-dashoffset:0}
+  .draft__nodes{opacity:1}
   /* le bandeau s'arrête sur sa première liste ; la copie de bouclage,
      qui ne sert qu'à la couture, disparaît */
   /* le bandeau s'immobilise sur sa première liste ; la seconde ne sert
