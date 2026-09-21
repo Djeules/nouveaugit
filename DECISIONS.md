@@ -749,14 +749,25 @@ En comptant les mots pour mesurer l'effet de la coupe, découverte d'un
 défaut sans rapport avec elle. La Divulgation affirmait « vous venez de lire
 **près de deux mille mots** ». La fiction en compte **1 301**.
 
-C'est l'endroit du site où un chiffre faux coûte le plus cher : le
-paragraphe où l'on dit au lecteur qu'il vient d'être manipulé, et comment.
-Y exagérer de moitié fissure précisément ce qu'on cherche à établir, et
-quelqu'un le vérifiera. Corrigé en « mille trois cents mots » — seul
-changement conservé de l'aller-retour, parce qu'il ne dépendait pas de la
-coupe.
+Second comptage, sur le DOM rendu cette fois, script exécuté, pour inclure
+ce que le configurateur et les carrousels fabriquent à la volée :
+**1 207 mots**. Le comptage sur le fichier source était même un peu
+généreux.
 
-**Règle à en tirer : tout chiffre énoncé après la Divulgation doit être
-recompté quand on touche à ce qui précède.** La frontière ne sépare pas
-seulement le faux du vrai — elle crée une dépendance, puisque le vrai
-d'après parle du faux d'avant.
+J'ai proposé « mille trois cents mots ». **Julien a tranché pour le
+maintien de « près de deux mille »**, et c'est sa décision : la phrase est
+sa signature, et elle appartient à un texte de vente avant d'appartenir à
+un rapport. Le chiffre reste donc tel quel.
+
+L'objection est consignée ici plutôt que répétée : c'est le seul endroit du
+site où l'on explique au lecteur qu'il vient d'être manipulé, et un
+arrondi de moitié y est vérifiable en une minute. Si la question revient,
+il existe une troisième voie qui garde le rythme sans le chiffre — « vous
+venez de passer neuf minutes sur un objet en plastique moulé », la durée
+étant déjà annoncée plus loin dans la même phrase.
+
+**Ce qui reste vrai quoi qu'il arrive : tout chiffre énoncé après la
+Divulgation doit être recompté quand on touche à ce qui précède.** La
+frontière ne sépare pas seulement le faux du vrai — elle crée une
+dépendance, puisque le vrai d'après parle du faux d'avant. Le compte du
+jour : 1 207 mots.
