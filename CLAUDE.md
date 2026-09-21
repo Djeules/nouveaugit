@@ -27,7 +27,19 @@ centimes avec le sérieux d'un lancement produit, puis le site avoue.
    offre, financements engagent une activité réelle.
 2. **Le miroir joue sur le rôle des sections, jamais sur leur forme.** Dans la
    fiction tout se déplie — accordéon, carrousel, survol. Après la bascule,
-   tout est montré d'un coup.
+   tout est montré d'un coup : rien ne se cache derrière un geste.
+
+   Cette règle porte sur ce qui **retient une information**, pas sur le
+   mouvement. Le mouvement, lui, change de registre sans disparaître :
+   avant la Divulgation il séduit — ample, gratuit, il fait attendre, et
+   c'est précisément le sujet de la page ; après, il accompagne — même
+   vocabulaire, amplitude divisée, jamais un retard à la lecture. Les
+   variables `--rise`, `--rise-dur`, `--line-dur`, `--line-tilt` et
+   `--line-step` règlent ce partage en un seul endroit, sous
+   `#revelation ~ *`.
+
+   Une seconde moitié sans mouvement n'aurait pas l'air sobre : elle aurait
+   l'air bâclée. Or c'est elle qui vend.
 3. **Aucune ressource tierce.** Polices auto-hébergées, zéro script externe,
    zéro traceur. C'est ce qui dispense le site de bandeau cookies.
 

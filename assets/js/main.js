@@ -132,11 +132,24 @@
   /* ---------------------------------------------------
      4. Apparitions au défilement
      --------------------------------------------------- */
+  /* La Divulgation partage aussi le mouvement en deux régimes. Le CSS règle
+     l'amplitude (voir « RÉGIME RÉEL » dans styles.css) ; il reste la
+     cascade des délais, qui vit dans le HTML. Un élément situé APRÈS la
+     Divulgation — et non DANS celle-ci, qui garde l'amplitude pleine —
+     voit son délai divisé par deux. */
+  const revelationSec = $('#revelation');
+  const isAfterReveal = el => {
+    if (!revelationSec) return false;
+    const rel = revelationSec.compareDocumentPosition(el);
+    return !!(rel & Node.DOCUMENT_POSITION_FOLLOWING) &&
+           !(rel & Node.DOCUMENT_POSITION_CONTAINED_BY);
+  };
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const el = e.target;
-      const d = Number(el.dataset.delay || 0);
+      const d = Number(el.dataset.delay || 0) * (isAfterReveal(el) ? 0.5 : 1);
       setTimeout(() => { el.classList.add('is-in'); el.dataset.wasIn = '1'; }, d);
       io.unobserve(el);
     });
@@ -216,6 +229,36 @@
     });
   }, { threshold: 0.01, rootMargin: '-45% 0px -45% 0px' });
   $$('[data-bg]').forEach(el => bgIO.observe(el));
+
+  /* ---------------------------------------------------
+     8 bis. La barre marque la section courante
+     ---------------------------------------------------
+     Même motif d'observation que le fond ci-dessus : une bande centrale
+     de 10 % de la hauteur, donc une seule section retenue à la fois,
+     sans les hésitations d'un scrollspy calculé au pixel. Seules les
+     sections qui ont un lien dans la barre sont observées. --------- */
+  const navLinks = $$('.nav__links a');
+  const linkById = new Map();
+  navLinks.forEach(a => {
+    const id = (a.getAttribute('href') || '').slice(1);
+    if (id) linkById.set(id, a);
+  });
+  const watched = [...linkById.keys()]
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  if (watched.length) {
+    const currentIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const a = linkById.get(e.target.id);
+        if (!a || a.classList.contains('is-current')) return;
+        navLinks.forEach(l => l.classList.remove('is-current'));
+        a.classList.add('is-current');
+      });
+    }, { threshold: 0.01, rootMargin: '-45% 0px -45% 0px' });
+    watched.forEach(sec => currentIO.observe(sec));
+  }
 
   /* ---------------------------------------------------
      9. Navigation : masquage + état collé

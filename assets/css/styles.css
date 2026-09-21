@@ -78,6 +78,17 @@
   /* Courbes */
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
+
+  /* Amplitude du mouvement. Dans la fiction, le mouvement séduit : il a le
+     droit d'être ample et de faire attendre, c'est le sujet de la page.
+     Après la Divulgation, ces mêmes variables sont divisées — le
+     vocabulaire ne change pas, seule l'amplitude. Voir le bloc
+     « RÉGIME RÉEL » plus bas. */
+  --rise:26px;        /* de combien monte une apparition */
+  --rise-dur:.95s;    /* en combien de temps */
+  --line-dur:1.05s;   /* les lignes de titre qui se relèvent */
+  --line-tilt:3deg;   /* leur inclinaison de départ */
+  --line-step:.08s;   /* le pas de leur cascade */
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -203,10 +214,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .btn--lg{padding:20px 40px;font-size:.95rem}
 
 /* ---------- Apparitions ---------- */
-[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .95s var(--ease-out),transform .95s var(--ease-out)}
+[data-reveal]{opacity:0;transform:translate3d(0,var(--rise),0);transition:opacity var(--rise-dur) var(--ease-out),transform var(--rise-dur) var(--ease-out)}
 [data-reveal].is-in{opacity:1;transform:none}
 .line{display:block;overflow:hidden;padding-top:.14em;margin-top:-.14em}
-.line > i{display:block;font-style:inherit;transform:translate3d(0,110%,0) rotate(3deg);transition:transform 1.05s var(--ease-out)}
+.line > i{display:block;font-style:inherit;transform:translate3d(0,110%,0) rotate(var(--line-tilt));transition:transform var(--line-dur) var(--ease-out)}
 .is-in .line > i,.line.is-in > i{transform:none}
 
 /* =========================================================
@@ -241,6 +252,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease-out);
 }
 .nav__links a:hover{color:var(--cream)}
+/* La section qu'on est en train de lire s'allume dans la barre. Le trait
+   se déploie depuis la gauche, là où le survol le déploie depuis la
+   droite : les deux gestes ne se confondent pas. */
+.nav__links a.is-current{color:var(--cream)}
+.nav__links a.is-current::after{transform:scaleX(1);transform-origin:left}
 .nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
 .nav__burger{display:none;width:40px;height:40px;place-items:center;gap:6px}
 .nav__burger i{display:block;width:20px;height:1.5px;background:var(--cream);transition:transform .45s var(--ease),opacity .3s}
@@ -431,13 +447,39 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    TICKER
    ========================================================= */
 .ticker{
-  overflow:hidden;border-block:1px solid var(--line);
+  position:relative;overflow:hidden;border-block:1px solid var(--line);
   padding-block:18px;background:rgba(56,36,22,.28);backdrop-filter:blur(6px);
+  /* les deux bouts se dissolvent au lieu d'être tranchés net par le bord */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
-.ticker__track{display:flex;align-items:center;gap:34px;width:max-content;animation:slide 34s linear infinite}
+.ticker__track{display:flex;align-items:center;gap:34px;width:max-content;animation:slide var(--ticker-dur,34s) linear infinite}
 .ticker__track span{font-size:clamp(.9rem,1.6vw,1.35rem);font-weight:500;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
 .ticker__track em{color:var(--ember);font-style:normal;font-size:.8rem}
 @keyframes slide{to{transform:translateX(-50%)}}
+/* Le défilement s'arrête sous le pointeur et sous le clavier. Ce n'est pas
+   la commande de pause explicite qu'exige le critère WCAG 2.2.2 pour un
+   mouvement de plus de cinq secondes : c'est le compromis retenu pour une
+   bande décorative, dont le contenu est répété et ne porte rien qu'on ne
+   retrouve ailleurs. Mouvement réduit : elle ne bouge pas du tout. */
+.ticker:hover .ticker__track,
+.ticker:focus-within .ticker__track{animation-play-state:paused}
+
+/* Le même bandeau de l'autre côté de la Divulgation, en sourdine : plus
+   lent, plus petit, et le losange perd l'ember. Ce ne sont plus des
+   caractéristiques inventées, ce sont les quatre sujets réels — ils
+   n'ont pas à clignoter. */
+.ticker--reel{
+  --ticker-dur:58s;
+  background:rgba(56,36,22,.16);border-block-color:var(--cream-12);
+  padding-block:15px;
+}
+.ticker--reel .ticker__track{gap:30px}
+.ticker--reel .ticker__track span{
+  font-size:clamp(.8rem,1.15vw,1rem);font-weight:500;
+  letter-spacing:.14em;color:var(--cream-62);
+}
+.ticker--reel .ticker__track em{color:var(--olive);font-size:.7rem}
 
 /* =========================================================
    MANIFESTE
@@ -681,6 +723,36 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .reveal-act__body b{color:var(--cream);font-weight:600}
 .reveal-act__pen{position:absolute;top:50%;right:-3%;transform:translateY(-50%) rotate(24deg);
   width:clamp(80px,9vw,140px);height:min(80vh,820px);opacity:.34;z-index:1;pointer-events:none}
+
+/* =========================================================
+   RÉGIME RÉEL — après la Divulgation
+   =========================================================
+   La frontière du site n'est pas qu'une frontière de contenu, c'en est
+   une de mouvement. Avant, le mouvement séduit : il est ample, il fait
+   attendre, il met en scène — c'est exactement ce que la page dénonce en
+   le pratiquant. Après, il accompagne : même vocabulaire, amplitude
+   divisée par deux, aucune inclinaison. Il guide l'œil sans jamais
+   retarder l'accès à une information.
+
+   Ce que la règle du projet interdit après la bascule reste interdit et
+   n'est pas affaire d'animation : rien ne se cache. Pas d'accordéon, pas
+   de carrousel, pas de survol qui révèle. Les prix, l'offre et les
+   retours sont montrés d'un coup.
+
+   `#revelation ~ *` couvre toutes les sections suivantes et le pied de
+   page, sans un attribut à poser dans le HTML : ils sont tous frères
+   dans <main>. La Divulgation elle-même garde l'amplitude pleine — elle
+   est le sommet de la mise en scène, pas sa sortie. */
+#revelation ~ *{
+  --rise:12px;
+  --rise-dur:.55s;
+  --line-dur:.62s;
+  --line-tilt:0deg;
+  --line-step:.035s;
+}
+
+/* Après la bascule : plus lent, plus sourd, et la pastille perd l'ember.
+   Ce bandeau-là énumère une offre réelle, il n'a pas à clignoter. */
 
 /* =========================================================
    L'ÉPREUVE — quiz de vente
@@ -1056,14 +1128,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .line > i{transform:none}
   .grain{display:none}
   .manifeste__text w{color:var(--cream)}
+  /* le bandeau s'arrête sur sa première liste ; la copie de bouclage,
+     qui ne sert qu'à la couture, disparaît */
+  /* le bandeau s'immobilise sur sa première liste ; la seconde ne sert
+     qu'à la couture de la boucle et déborde hors du cadre */
+  .ticker__track{animation:none;transform:none}
 }
 
-/* ---------- Décalage des lignes de titre ---------- */
-.line:nth-child(1) > i{transition-delay:.02s}
-.line:nth-child(2) > i{transition-delay:.10s}
-.line:nth-child(3) > i{transition-delay:.18s}
-.line:nth-child(4) > i{transition-delay:.26s}
-.line:nth-child(5) > i{transition-delay:.34s}
+/* ---------- Décalage des lignes de titre ----------
+   Le pas est une variable pour que le régime réel puisse resserrer la
+   cascade sans réécrire les cinq règles. À .08s, les valeurs calculées
+   sont celles d'origine : .02 / .10 / .18 / .26 / .34 s. */
+.line:nth-child(1) > i{transition-delay:calc(var(--line-step) * .25)}
+.line:nth-child(2) > i{transition-delay:calc(var(--line-step) * 1.25)}
+.line:nth-child(3) > i{transition-delay:calc(var(--line-step) * 2.25)}
+.line:nth-child(4) > i{transition-delay:calc(var(--line-step) * 3.25)}
+.line:nth-child(5) > i{transition-delay:calc(var(--line-step) * 4.25)}
 .line:nth-child(6) > i{transition-delay:.42s}
 .line .w{display:inline}
 

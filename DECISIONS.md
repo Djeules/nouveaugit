@@ -455,3 +455,85 @@ Voir la liste en fin de `README.md`. Les points bloquants avant une mise en lign
 champs `.tbd` des pages légales, suppression des encadrés de remarques, option TVA à
 trancher, chiffres réels de la section « L'auteur », témoignages fictifs, et relecture des
 CGV par un professionnel du droit.
+
+---
+
+## 21. Le mouvement a deux régimes, pas deux territoires
+
+Julien a comparé le site à oryzo.ai et a eu raison sur un point que j'avais
+mal lu : le site a des **apparitions**, pas une **mise en scène**. Tout y
+arrive de la même façon — fondu plus montée — quand un site de lancement
+varie ses registres.
+
+Ma première réponse a été de refuser d'animer la seconde moitié, au nom de
+la règle du miroir. C'était une lecture trop littérale. La règle interdit ce
+qui **retient une information** derrière un geste : accordéon, carrousel,
+survol. Elle n'a jamais interdit le mouvement — la seconde moitié en avait
+déjà, titres découpés et compteurs compris.
+
+Julien a proposé la bonne sortie : les mêmes procédés partout, en amplitude
+réduite après la bascule. Son argument porte plus loin que le mien. Une
+seconde moitié visuellement pauvre n'a pas l'air sobre, elle a l'air
+bâclée — et c'est elle qui vend. Le contraste doit être un contraste de
+**registre**, pas de **qualité**.
+
+D'où le partage, tenu par cinq variables sous `#revelation ~ *` :
+
+|                | Fiction | Réel |
+|----------------|---------|------|
+| `--rise`       | 26 px   | 12 px |
+| `--rise-dur`   | .95 s   | .55 s |
+| `--line-dur`   | 1.05 s  | .62 s |
+| `--line-tilt`  | 3 deg   | 0 |
+| `--line-step`  | .08 s   | .035 s |
+
+Le sélecteur `#revelation ~ *` couvre toutes les sections suivantes et le
+pied de page sans un attribut à poser : ils sont frères dans `<main>`. La
+Divulgation elle-même garde le plein régime — elle est le sommet de la mise
+en scène, pas sa sortie. Côté JS, les délais écrits dans le HTML sont
+divisés par deux pour les éléments situés **après** la Divulgation et non
+**dans** celle-ci : `compareDocumentPosition` doit écarter
+`DOCUMENT_POSITION_CONTAINED_BY`, sinon les quatre paragraphes de l'aveu
+passent en régime réel.
+
+### Le piège du jour : j'ai réinventé un composant qui existait
+
+J'ai écrit un bandeau défilant complet — CSS, balisage, animation — avant de
+découvrir qu'il y en avait déjà un entre le hero et le manifeste, sous les
+mêmes noms de classe. Mes règles, plus bas dans la feuille, écrasaient
+silencieusement les siennes : le fond translucide et le corps de texte
+d'origine avaient disparu sans qu'aucune erreur ne soit levée.
+
+Corrigé en gardant l'original et en l'étendant : un masque aux deux bords,
+la pause au survol, et une variante `.ticker--reel`. Le site n'a donc pas
+deux bandeaux de fiction mais **un de chaque côté de la frontière** — ce qui
+est exactement le miroir, appliqué au mouvement, et plus sobre que ce que
+j'avais prévu.
+
+La leçon n'est pas « lire le CSS avant d'écrire ». C'est : **chercher le nom
+de classe qu'on s'apprête à créer**, une commande de trois secondes qui
+aurait évité une demi-heure.
+
+### Ce que le banc d'essai ne sait pas faire
+
+Sous `--virtual-time-budget`, un `IntersectionObserver` branché au
+chargement se déclenche (le fond suit bien la section), mais celui des
+apparitions, branché 2 600 ms après `load`, ne voit rien après un scroll
+programmatique. Et `--screenshot` capture avant que ce scroll ait eu lieu,
+là où `--dump-dom` attend. D'où des contrôles contradictoires : page noire à
+l'image, état correct à la sonde.
+
+Ce qui a fini par trancher : sonder l'état avec `--dump-dom`, et juger
+l'apparence dans une page isolée qui charge la vraie feuille de style avec
+les deux bandeaux extraits du HTML. Deux outils, deux questions — au lieu
+d'un outil auquel on demande les deux.
+
+### Accessibilité : une limite assumée
+
+Le critère WCAG 2.2.2 demande une commande explicite pour tout mouvement
+automatique de plus de cinq secondes. Les bandeaux n'en ont pas : ils
+s'arrêtent au survol et au focus, et ne bougent pas du tout en mouvement
+réduit. C'est un compromis, retenu parce que leur contenu est répété et
+qu'aucune information n'y figure qu'on ne retrouve ailleurs sur la page.
+Si un bandeau devait un jour porter une information unique, il lui faudrait
+un vrai bouton de pause.
