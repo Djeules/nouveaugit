@@ -587,10 +587,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   50%    {transform:translate(-50%,-7px)}
 }
 
-@media (max-width:980px){
-  /* La colonne du stylo passe derrière le texte : le cadre coté
-     deviendrait un quadrillage sous les paragraphes. */
-  .draft{display:none}
+/* Sous 900 px, l'Anatomie passe en une colonne : la scène du stylo devient
+   une bande fixe en haut de l'écran (56svh), et les étapes défilent
+   dessous. Le cadre coté reste donc parfaitement à sa place — il ne se
+   superpose à aucun paragraphe. Il suit simplement la bande.
+
+   Version précédente : `display:none` sous 980 px, au motif que « la
+   colonne du stylo passe derrière le texte ». C'était une supposition, et
+   elle était fausse. Résultat : tout ce travail était invisible sur le
+   seul écran où le site est réellement lu. */
+@media (max-width:900px){
+  .draft{width:min(64vw,250px);height:46svh}
+  /* le texte de la capsule est long : il se resserre plutôt que de
+     déborder de l'écran ou de passer à la ligne */
+  .capsule{
+    top:-13px;padding:7px 13px 7px 8px;gap:8px;
+    font-size:.56rem;letter-spacing:.08em;
+  }
+  .capsule__mark{width:18px;height:18px}
+  .draft__cote{bottom:-4px;letter-spacing:.16em}
 }
 .anatomy__steps{display:grid;gap:clamp(60px,12vh,150px);padding-block:clamp(70px,16vh,190px) clamp(160px,54vh,540px)}
 .anatomy__head{display:grid;gap:18px}

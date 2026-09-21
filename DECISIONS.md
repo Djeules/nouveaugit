@@ -622,3 +622,46 @@ sur quoi zoomer. La place manque autant que la matière.
 Le reprendre voudrait dire ajouter une section-traversée à une page qui fait
 déjà vingt-sept écrans, pour un geste que le site produit ailleurs. Mieux
 vaut ne pas le faire que le faire à moitié.
+
+---
+
+## 23. Le dépôt se coupe en deux
+
+`avecjulien.fr/decisions.md` répondait 200. Vingt-deux chapitres y
+expliquaient à qui voulait les lire que les onze premières sections sont une
+mise en scène, à quel moment la bascule tombe et ce qu'elle doit produire
+chez le lecteur. `CLAUDE.md`, `README.md` et `tools/` étaient servis de la
+même façon.
+
+Ce n'est pas un problème de confidentialité — rien là-dedans n'est secret.
+C'est que ce site ne produit son effet qu'une fois, sur quelqu'un qui ne l'a
+pas vu venir, et que le mode d'emploi du tour se trouvait posé à côté du
+tour, indexable.
+
+La coupure retenue est celle qui ne demande de réécrire aucun chemin :
+`publish = "site"` dans `netlify.toml`, et tout ce qui part en ligne
+déménage dans `site/`. Les liens du site sont tous relatifs, ils survivent
+au déplacement sans une modification. Les URL publiques ne bougent pas
+davantage : `avecjulien.fr/cgv.html` reste `avecjulien.fr/cgv.html`.
+
+`netlify.toml` reste à la racine — Netlify l'y cherche. Les gabarits de
+`tools/` pointaient vers `../assets/fonts/` et pointent désormais vers
+`../site/assets/fonts/`.
+
+Effet de bord assumé : `tools/linkedin-banner.jpg` n'est plus téléchargeable
+depuis le site. Il avait servi une fois, à récupérer la bannière sur un
+téléphone ; il reste dans le dépôt.
+
+Les autres voies avaient chacune leur défaut. Des redirections 404 par
+chemin laissent les fichiers en ligne et se contentent de les cacher, en
+oubliant le prochain fichier ajouté. Renommer en fichiers pointés est
+illisible. Un `.gitignore` ne s'applique pas au déploiement. Le dossier
+publié était la seule réponse qui vaut aussi pour ce qu'on écrira demain.
+
+### Le contrôle qui compte
+
+Pas « le site s'affiche-t-il encore ». Les deux listes : ce qui doit
+répondre 200 (les cinq pages, le CSS, le JS, une police, l'image de partage,
+robots.txt, sitemap.xml) et ce qui doit répondre 404 (`DECISIONS.md`,
+`CLAUDE.md`, `README.md`, `tools/`). Un serveur local lancé depuis `site/`
+reproduit exactement ce que Netlify servira.

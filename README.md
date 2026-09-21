@@ -32,9 +32,9 @@ graisse 500, capitales, interlignage serré pour les titres ; graisse 400 pour l
 
 Ce site utilise **Figtree**, la substitution géométrique libre la plus proche, plus
 **JetBrains Mono** pour les étiquettes techniques. Pour coller à 100 % à la référence,
-remplacer la déclaration `--sans` dans `assets/css/styles.css` par Halyard Display.
+remplacer la déclaration `--sans` dans `site/assets/css/styles.css` par Halyard Display.
 
-Les deux polices sont **hébergées avec le site** (`assets/fonts/`), en version variable,
+Les deux polices sont **hébergées avec le site** (`site/assets/fonts/`), en version variable,
 sous licence SIL Open Font License 1.1 — les fichiers `LICENSE-*.txt` doivent rester
 à côté des `.woff2`. Le site ne fait donc **aucune requête vers un serveur tiers** :
 rien à charger depuis un service de polices, aucune adresse IP de visiteur transmise, et
@@ -68,9 +68,24 @@ trois.
 
 ## Structure
 
-`index.html` · `mentions-legales.html` · `cgv.html` · `politique-de-confidentialite.html`
-`assets/css/styles.css` · `assets/js/main.js`
-Aucune dépendance, aucune étape de build. Ouvrir `index.html` suffit.
+Le dépôt est coupé en deux : **ce qui part en ligne** et **ce qui reste ici**.
+
+```
+site/           ← le seul dossier publié (netlify.toml : publish = "site")
+  index.html · merci.html
+  mentions-legales.html · cgv.html · politique-de-confidentialite.html
+  robots.txt · sitemap.xml
+  assets/css/styles.css · assets/js/main.js · assets/fonts/ · assets/img/
+netlify.toml    ← doit rester à la racine, Netlify l'y cherche
+CLAUDE.md · DECISIONS.md · README.md · tools/   ← versionnés, jamais servis
+```
+
+Cette coupure n'est pas une affaire de confidentialité : `DECISIONS.md`
+explique par quel dispositif la page opère, et ce site ne produit son effet
+qu'une fois, sur quelqu'un qui ne l'a pas vu venir. Le mode d'emploi n'a
+rien à faire à côté du tour.
+
+Aucune dépendance, aucune étape de build. Ouvrir `site/index.html` suffit.
 
 ### Pages légales
 
@@ -182,7 +197,7 @@ slug `diagnostic` — c'est ce slug que les deux liens du site attendent.
 
 ## Image de partage
 
-`assets/img/og.jpg` est rendue depuis `tools/og-image.html` avec les polices et la
+`site/assets/img/og.jpg` est rendue depuis `tools/og-image.html` avec les polices et la
 scène du site : voir `tools/README-og.md` pour la refabriquer. Les cinq pages portent
 les balises Open Graph et Twitter Card qui la déclarent.
 
@@ -194,7 +209,7 @@ changement :
 grep -rl "avecjulien.fr" . --include=*.html --include=*.xml --include=*.txt
 ```
 
-`index.html` porte aussi un bloc JSON-LD `ProfessionalService`. Il est en ligne, donc
+`site/index.html` porte aussi un bloc JSON-LD `ProfessionalService`. Il est en ligne, donc
 soumis au `script-src` de la politique de sécurité : celle-ci l'autorise **par son
 empreinte sha256**, inscrite dans `netlify.toml`. Toute modification du bloc impose de
 recalculer cette empreinte, sinon le navigateur le bloque.

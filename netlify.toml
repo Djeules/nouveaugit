@@ -1,6 +1,13 @@
 # Déploiement Netlify — site statique, aucun build nécessaire.
+#
+# `publish = "site"` et non la racine : seul ce dossier part en ligne. Tout
+# ce qui vit à côté — DECISIONS.md, CLAUDE.md, README.md, tools/ — reste
+# versionné dans le dépôt sans être servi. Ce n'est pas une question de
+# confidentialité : DECISIONS.md raconte par quel dispositif la page opère,
+# et ce site ne produit son effet qu'une fois, sur quelqu'un qui ne l'a pas
+# vu venir. Le mode d'emploi n'a rien à faire à côté du tour.
 [build]
-  publish = "."
+  publish = "site"
   command = ""
 
 # En-têtes de sécurité. La politique de sécurité du contenu est volontairement

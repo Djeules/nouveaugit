@@ -1,14 +1,15 @@
 # Refabriquer l'image de partage
 
-`assets/img/og.jpg` (1200 × 630) est l'image que LinkedIn, Slack, WhatsApp,
+`site/assets/img/og.jpg` (1200 × 630) est l'image que LinkedIn, Slack, WhatsApp,
 iMessage et X affichent quand quelqu'un colle un lien vers le site.
 Elle n'est pas dessinée dans un outil graphique : elle est **rendue depuis
 le site lui-même**, à partir de `tools/og-image.html`, qui réutilise les
 polices, les couleurs et la scène d'atelier du hero. Modifier la charte
 suffit donc à régénérer une image cohérente.
 
-`tools/` n'est pas publié en tant que page ; le fichier ne pèse rien et
-sert de source, comme un fichier `.psd` qu'on garde à côté du `.jpg`.
+`tools/` vit hors du dossier publié (`site/`) : ces gabarits sont des
+sources, comme un `.psd` qu'on garde à côté du `.jpg`. Leurs `@font-face`
+pointent donc vers `../site/assets/fonts/`.
 
 ## Procédure
 
@@ -26,7 +27,7 @@ python3 - <<'PY'
 from PIL import Image
 im = Image.open('og2x.png').convert('RGB')
 im.crop((0, 0, 2400, 1260)).resize((1200, 630), Image.LANCZOS) \
-  .save('assets/img/og.jpg', 'JPEG', quality=90, optimize=True, progressive=True)
+  .save('site/assets/img/og.jpg', 'JPEG', quality=90, optimize=True, progressive=True)
 PY
 ```
 

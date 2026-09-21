@@ -16,6 +16,12 @@ Site statique — HTML, CSS et JavaScript à la main, aucune étape de
 compilation. Hébergé sur Netlify, déployé depuis la branche
 `claude/sales-trainer-website-6dcqzc`.
 
+**Tout ce qui part en ligne vit dans `site/`.** Le reste du dépôt —
+`CLAUDE.md`, `DECISIONS.md`, `README.md`, `tools/` — est versionné mais
+jamais servi : `netlify.toml` publie `site/` et rien d'autre. Un fichier
+ajouté à la racine n'est pas en ligne ; un fichier ajouté dans `site/`
+l'est.
+
 Il vend une formation aux techniques de vente **en faisant la démonstration
 de ce qu'il vend** : douze sections traitent un stylo à bille à trente
 centimes avec le sérieux d'un lancement produit, puis le site avoue.
