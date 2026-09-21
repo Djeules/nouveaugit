@@ -691,21 +691,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .note p:last-child{margin:6px 0 0;color:var(--cream-62);font-size:.9rem;line-height:1.5}
 
 /* =========================================================
-   MODÈLE
-   ========================================================= */
-.model{padding:var(--sec-y) var(--gutter);max-width:var(--maxw);margin-inline:auto;
-  display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,5vw,90px);align-items:start}
-.model__head{display:grid;gap:20px;position:sticky;top:110px}
-.model__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
-.model__table{display:grid;gap:0;border-top:1px solid var(--line)}
-.model__tr{display:grid;grid-template-columns:1.25fr .6fr .6fr 1.3fr;gap:16px;padding:19px 0;border-bottom:1px solid var(--line);
-  font-size:.88rem;align-items:center;transition:background .4s var(--ease),padding-inline .4s var(--ease)}
-.model__tr:not(.model__tr--head):hover{background:rgba(255,237,215,.04);padding-inline:12px}
-.model__tr--head span{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-56)}
-.model__tr span:first-child{font-family:var(--mono);font-size:.82rem;color:var(--cream)}
-.model__tr span:last-child{color:var(--cream-62)}
-
-/* =========================================================
    RECHERCHE
    ========================================================= */
 .research{padding:var(--sec-y) var(--gutter)}
