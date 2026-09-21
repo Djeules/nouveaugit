@@ -706,3 +706,57 @@ Limite du contrôle : Chromium impose une largeur de fenêtre minimale de
 485 px en mode sans interface. Le rendu a donc été vérifié à 490 px, et le
 comportement sous 400 px déduit des largeurs — le cadre y est à 64 vw, la
 capsule à largeur de contenu fixe.
+
+---
+
+## 25. Une coupe envisagée, mesurée, puis annulée
+
+Julien a trouvé la page trop longue sur mobile et demandé la suppression de
+la section 07 (Modèle). Elle a été faite, mesurée, puis annulée sur sa
+demande. Ce qui reste de l'aller-retour, ce sont les chiffres — et un défaut
+découvert en chemin.
+
+**La coupe rapportait 828 px sur 21 605, soit 3,8 %** : de 25,1 à 24,2
+écrans à 490 px de large. Une section en moins pour moins d'un écran de
+défilement gagné.
+
+Hauteurs relevées à cette largeur, à garder pour la prochaine fois :
+
+| Fiction | px | | Réel | px |
+|---|---:|---|---|---:|
+| Anatomie | 1 930 | | Méthode | 1 997 |
+| Tarifs | 1 451 | | Offre | 1 597 |
+| Benchmarks | 1 272 | | Contact | 1 539 |
+| Recherche | 1 066 | | Sprint | 939 |
+| Format | 1 039 | | Divulgation | 888 |
+| Capacités | 967 | | Épreuve | 857 |
+| Configurateur | 832 | | Pied de page | 771 |
+| Modèle | 798 | | Témoignages | 749 |
+| Manifeste | 598 | | | |
+| **Total fiction** | **12 219** | | **Total réel** | **9 385** |
+
+Deux enseignements pour toute demande de raccourcissement à venir. **Aucune
+section ne pèse plus de 9 %** : il n'existe pas de coupe unique qui
+raccourcisse la page de façon sensible, et la chercher revient à sacrifier
+une section pour rien. Et **la fiction pèse 12 219 px contre 9 385 au
+réel** : y couper pour abréger revient à raboter la démonstration qui donne
+son poids à l'aveu. Les leviers utiles sont ailleurs — les espacements
+verticaux sur mobile, qui ne coûtent aucun contenu.
+
+### Ce qui est resté : le chiffre de la Divulgation
+
+En comptant les mots pour mesurer l'effet de la coupe, découverte d'un
+défaut sans rapport avec elle. La Divulgation affirmait « vous venez de lire
+**près de deux mille mots** ». La fiction en compte **1 301**.
+
+C'est l'endroit du site où un chiffre faux coûte le plus cher : le
+paragraphe où l'on dit au lecteur qu'il vient d'être manipulé, et comment.
+Y exagérer de moitié fissure précisément ce qu'on cherche à établir, et
+quelqu'un le vérifiera. Corrigé en « mille trois cents mots » — seul
+changement conservé de l'aller-retour, parce qu'il ne dépendait pas de la
+coupe.
+
+**Règle à en tirer : tout chiffre énoncé après la Divulgation doit être
+recompté quand on touche à ce qui précède.** La frontière ne sépare pas
+seulement le faux du vrai — elle crée une dépendance, puisque le vrai
+d'après parle du faux d'avant.
