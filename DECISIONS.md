@@ -594,3 +594,31 @@ la boucle et non dans la greffe — si la cote était en cause, l'étape
 changerait sans elle. Le reste est du code de production déjà éprouvé.
 
 À confirmer dans un vrai navigateur, en descendant les quatre étapes.
+
+### La capsule, et le zoom qu'on ne fera pas
+
+La capsule flottante était le dernier procédé d'oryzo.ai absent d'ici : une
+pastille posée sur un visuel, texte en capitales et pastille ronde à gauche,
+qui respire lentement. Elle coiffe le plan de l'Anatomie — intitulé en haut,
+cote en bas — et achève de lire le cadre comme un cartouche. Son texte ne
+change pas : une seule chose bouge dans ce cadre, et c'est la cote.
+
+Nouvelle rencontre avec le même piège, sous un autre angle. La correction
+précédente avait accroché le centrage du calque au sélecteur
+`.draft[data-reveal]` : retirer `data-reveal` du balisage aurait suffi à
+déporter le cadre, sans que rien ne le signale. Le centrage est revenu sur
+`.draft` lui-même, la protection contre `transform:none` restant à part.
+**Une correction de spécificité ne doit pas déplacer la règle de base ; elle
+doit s'ajouter à côté.**
+
+**Le zoom au défilement n'a pas été fait, et ne le sera pas tel quel.** Chez
+Oryzo, la macro du bouchon fonctionne parce qu'ils ont des dizaines de
+rendus d'un objet réel : leur zoom est un changement d'image. Ici il n'y a
+qu'un volume construit en CSS, que l'Anatomie fait déjà tourner et grandir
+de 30 % sur toute sa traversée. Un second zoom ailleurs redirait la même
+chose, et la seule section encore libre — 03, Capacités — n'a aucun visuel
+sur quoi zoomer. La place manque autant que la matière.
+
+Le reprendre voudrait dire ajouter une section-traversée à une page qui fait
+déjà vingt-sept écrans, pour un geste que le site produit ailleurs. Mieux
+vaut ne pas le faire que le faire à moitié.

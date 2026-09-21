@@ -515,16 +515,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    se pose par-dessus le stylo sans l'occulter — il n'intercepte ni le
    pointeur ni les lecteurs d'écran. */
 .draft{
-  position:absolute;left:50%;top:50%;
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:min(80vw,340px);height:min(78vh,700px);
   pointer-events:none;z-index:2;
 }
 /* Piège : le calque se centre par un transform, et `[data-reveal].is-in`
    pose `transform:none` — le cadre partirait en bas à droite au moment
-   précis où il devient visible. Les deux sélecteurs ci-dessous repassent
-   devant, à l'arrêt comme en apparition. Le calque n'a donc que le fondu,
-   sans la montée des autres blocs : un plan se révèle, il ne glisse pas. */
-.draft[data-reveal],
+   précis où il devient visible. La règle ci-dessous repasse devant.
+   Le centrage reste porté par `.draft` lui-même : si `data-reveal`
+   disparaissait un jour du balisage, le cadre resterait en place. Le
+   calque n'a donc que le fondu, sans la montée des autres blocs — un plan
+   se révèle, il ne glisse pas. */
 .draft[data-reveal].is-in{transform:translate(-50%,-50%)}
 .draft__grid{width:100%;height:100%;overflow:visible}
 .draft__grid path,.draft__grid rect{vector-effect:non-scaling-stroke}
@@ -560,6 +561,31 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transition:opacity .28s var(--ease);
 }
 .draft__cote.is-swapping{opacity:0}
+
+/* ---------- Capsule d'intitulé ----------
+   Une pastille posée sur le plan, qui respire. Le flottement est lent et
+   de faible amplitude : sous le seuil où l'œil le suit consciemment, mais
+   assez pour que le cadre n'ait pas l'air d'une image fixe. */
+.capsule{
+  position:absolute;left:50%;top:-14px;transform:translateX(-50%);
+  margin:0;display:inline-flex;align-items:center;gap:11px;
+  padding:9px 18px 9px 10px;border-radius:999px;white-space:nowrap;
+  background:rgba(56,36,22,.5);border:1px solid var(--cream-12);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  font-family:var(--mono);font-size:var(--fs-label);font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cream-80);
+  animation:capsule-float 7s var(--ease) infinite;
+}
+.capsule__mark{
+  width:22px;height:22px;flex:none;
+  padding:3px;border-radius:50%;background:rgba(220,80,0,.14);
+}
+.capsule__mark polygon{fill:none;stroke:var(--ember);stroke-width:1.4}
+.capsule__mark circle{fill:var(--ember)}
+@keyframes capsule-float{
+  0%,100%{transform:translate(-50%,0)}
+  50%    {transform:translate(-50%,-7px)}
+}
 
 @media (max-width:980px){
   /* La colonne du stylo passe derrière le texte : le cadre coté
@@ -1189,6 +1215,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* le plan est tracé d'emblée : rien ne se tire sous les yeux */
   .draft__corner,.draft__ticks,.draft__cross{stroke-dashoffset:0}
   .draft__nodes{opacity:1}
+  .capsule{animation:none;transform:translateX(-50%)}
   /* le bandeau s'arrête sur sa première liste ; la copie de bouclage,
      qui ne sert qu'à la couture, disparaît */
   /* le bandeau s'immobilise sur sa première liste ; la seconde ne sert
