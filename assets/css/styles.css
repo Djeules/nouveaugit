@@ -224,9 +224,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border-bottom-color:var(--line);padding-block:13px;
 }
 .nav.is-hidden{transform:translateY(-102%)}
-.nav__brand{display:inline-flex;align-items:flex-start;gap:3px}
-.nav__word{font-size:1.06rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;line-height:1}
-.nav__reg{font-size:.5rem;color:var(--ember);line-height:1;margin-top:1px}
+/* Le logo porte le même lettrage que le titre du hero : graisse 700 et
+   approche négative. Le serrage est un cran plus doux que les -.045em du
+   hero — à 1,25 rem les jambages se toucheraient, alors qu'à 13 rem ils
+   respirent encore. Même dessin, corrigé optiquement. */
+.nav__brand{display:inline-flex;align-items:flex-start;gap:2px}
+.nav__word{font-size:1.25rem;font-weight:700;letter-spacing:-.032em;text-transform:uppercase;line-height:1}
+.nav__reg{font-size:.5rem;color:var(--ember);line-height:1;margin-top:2px}
 .nav__links{display:flex;gap:clamp(14px,2vw,34px)}
 .nav__links a{
   position:relative;font-size:.8rem;color:var(--cream-62);letter-spacing:.02em;
