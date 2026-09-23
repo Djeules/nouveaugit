@@ -617,13 +617,13 @@
     const meta      = $('.quiz__meta', quiz);
 
     const TIERS = [
-      { min: 0, max: 3, title: 'À retravailler',
+      { min: 0, max: 4, title: 'À retravailler',
         msg: "Vos réflexes actuels parlent du produit : ses qualités, son prix, ses usages. Aucun ne parle de la personne en face. C'est la correction la plus rentable qui existe, et c'est aussi la plus rapide — elle se voit dès le rendez‑vous suivant." },
-      { min: 4, max: 6, title: 'De bons réflexes',
+      { min: 5, max: 8, title: 'De bons réflexes',
         msg: "Vous savez déjà ne pas vendre n'importe comment. Ce qui vous manque n'est pas l'intuition, c'est la méthode qui la rend reproductible un mardi à 17 h, face à un acheteur pressé, quand l'intuition ne répond plus." },
-      { min: 7, max: 9, title: 'Vous êtes performant',
+      { min: 9, max: 12, title: 'Vous êtes performant',
         msg: "Vous vendez bien, et vous le savez. La marche suivante ne se joue plus sur les arguments mais sur le cadrage : qui mène l'entretien, à partir de quelle question, et à quel moment vous cessez de parler." },
-      { min: 10, max: 99, title: 'Soyez redoutable',
+      { min: 13, max: 99, title: 'Soyez redoutable',
         msg: "Score maximal. Vous n'avez pas besoin qu'on vous apprenne à vendre — vous avez besoin qu'on vous apprenne à faire vendre les autres. C'est un métier différent, et c'est celui sur lequel se jouent les chiffres d'une équipe." }
     ];
 

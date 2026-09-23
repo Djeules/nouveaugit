@@ -771,3 +771,65 @@ Divulgation doit être recompté quand on touche à ce qui précède.** La
 frontière ne sépare pas seulement le faux du vrai — elle crée une
 dépendance, puisque le vrai d'après parle du faux d'avant. Le compte du
 jour : 1 207 mots.
+
+---
+
+## 26. Le quiz refait : pourquoi on devinait sans réfléchir
+
+Julien a trouvé le quiz « trop évident, comme si les gens pouvaient sentir la
+bonne réponse ». Le défaut n'était pas la difficulté des sujets, il était
+structurel, et tenait en trois points.
+
+**La forme trahissait la réponse.** Dans trois questions sur quatre, la bonne
+option était la seule formulée comme une question ou comme une non-action.
+Le motif se repère à la deuxième question, et on répond juste sans lire.
+
+**Les distracteurs étaient des repoussoirs.** « Valoriser son prix bas »,
+« Je peux vous faire un geste », « Une réduction » — des fautes que personne
+ne choisit. Un distracteur utile est une pratique que des commerciaux
+compétents emploient vraiment.
+
+**La morale était connue d'avance.** Dans un quiz de vente, tout le monde
+sait que la réponse attendue est *écouter, questionner, se taire*. On tombe
+juste par réflexe culturel, sans compétence.
+
+Cinq questions remplacent les quatre, sur le même balisage. Les options sont
+désormais toutes défendables, et la distinction porte sur une nuance : le
+bon geste au mauvais moment, la bonne question posée trop tôt. La cinquième
+demande **l'erreur** et non la bonne pratique, ce qui casse le réflexe de
+chercher la réponse vertueuse.
+
+### Le piège qu'on a failli recréer
+
+Julien a donné ses bonnes réponses : A, C, A, A, A. Quatre A sur cinq — un
+motif plus lisible encore que celui qu'on venait de corriger. Les options
+ont été redistribuées sans toucher au fond : les bonnes réponses tombent en
+**C, A, D, B, D**.
+
+**À tenir pour toute question ajoutée plus tard : vérifier la distribution
+des lettres avant de publier.** C'est une vérification de dix secondes qui
+annule des heures de travail sur le contenu quand on l'oublie.
+
+Barème : 3 points pour la bonne réponse, 2 pour la défendable, 1 pour la
+médiocre, 0 pour la fautive — quinze points au total. Le maximum se calcule
+tout seul en JS, mais **les quatre paliers de résultat étaient en dur sur
+12** et ont dû être recalés sur 0-4 / 5-8 / 9-12 / 13+.
+
+### Trois retouches visuelles signalées par Julien
+
+**Le cartel du hero** était le seul objet beige du site — `rgba(181,150,113,.64)`,
+une couleur relevée sur la référence d'origine et reprise nulle part
+ailleurs. Il prend la teinte des autres cadres du site. Bénéfice second, plus
+sérieux que l'esthétique : son texte est en crème clair, et le contraste
+passe de **3,57:1 à 11,68:1** sur le pire fond. L'ancien était sous le seuil
+AA sans que personne l'ait vu.
+
+**Le bon de commande** était à l'aplomb du texte centré du hero, qui devenait
+illisible sur la dernière ligne. Déplacé de 48 % à 64 %, le stylo de 50 % à
+54 % pour qu'ils se détachent l'un de l'autre sans quitter la scène.
+
+**Le stylo de la Divulgation** occupait la droite, où il serrait la colonne
+de texte — d'où le `padding-right` de 250 px qu'elle portait pour s'en
+écarter, et le quart de page vide en bas à gauche que Julien a remarqué. Le
+stylo passe à gauche, dans ce vide ; le texte récupère sa largeur. Un
+objet mal placé créait deux défauts à la fois.
