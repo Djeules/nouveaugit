@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Julien — stories Instagram (5 × 1080×1920)</title>
+<!--
+  Cinq stories Instagram, empilées puis découpées — même méthode que le
+  carrousel. Charte reprise telle quelle du site.
+
+  ZONES RÉSERVÉES PAR INSTAGRAM, et c'est ce qui commande toute la mise en
+  page : l'interface recouvre environ 250 px en haut (photo, nom, heure) et
+  250 px en bas (champ « Envoyer un message »). Tout ce qui compte tient
+  donc entre y=260 et y=1660.
+
+  Les planches 2 et 3 laissent en plus une grande zone vide au centre bas :
+  elle accueille le sticker QUIZ natif d'Instagram, qui accepte quatre
+  réponses et désigne la bonne. Dessiner les options aurait été une faute —
+  un sticker natif génère une interaction comptée par l'algorithme, une
+  image n'en génère aucune.
+-->
+<style>
+@font-face{
+  font-family:'Figtree';font-style:normal;font-weight:300 900;
+  src:url('../site/assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;
+  src:url('../site/assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+}
+:root{
+  --walnut:#100904; --cream:#ffedd7; --bark:#382416; --cork:#40372e;
+  --ember:#dc5000;  --olive:#6e6a4f; --deep:#0a0502;
+  --cream-80:rgba(255,237,215,.80);
+  --cream-62:rgba(255,237,215,.62);
+  --cream-56:rgba(255,237,215,.56);
+  --cream-24:rgba(255,237,215,.24);
+  --line:rgba(255,237,215,.14);
+  --sans:"Figtree",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:var(--walnut)}
+body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialiased}
+
+.st{
+  position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--walnut);
+  display:flex;flex-direction:column;
+  padding:260px 82px 280px;   /* les deux bandes que l'interface recouvre */
+}
+.st::after{
+  content:"";position:absolute;inset:0;z-index:6;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.st > *{position:relative;z-index:4}
+.veil{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(80% 42% at 20% 12%,rgba(220,80,0,.17),transparent 70%),
+    linear-gradient(180deg,rgba(26,15,7,.8),transparent 34%),
+    linear-gradient(0deg,rgba(10,5,2,.9),transparent 38%);
+}
+.mark{
+  display:flex;align-items:flex-start;gap:4px;
+  font-size:36px;font-weight:700;letter-spacing:-.032em;text-transform:uppercase;line-height:1;
+}
+.mark sup{font-size:16px;color:var(--ember);line-height:1;margin-top:2px}
+
+.eyebrow{
+  display:flex;align-items:center;gap:16px;margin-top:54px;
+  font-family:var(--mono);font-size:24px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cream-56);
+}
+.eyebrow s{width:12px;height:12px;border-radius:50%;background:var(--ember);text-decoration:none;flex:none}
+
+.big{font-size:118px;font-weight:700;line-height:.92;letter-spacing:-.045em;color:#fff9f2}
+.mid{font-size:68px;font-weight:600;line-height:1.1;letter-spacing:-.028em;color:#fff9f2}
+.mid em{font-style:normal;color:var(--ember)}
+.say{margin-top:34px;font-size:40px;line-height:1.32;color:var(--cream-80);max-width:20ch}
+
+.foot{
+  margin-top:auto;padding-top:38px;border-top:1px solid var(--line);
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+  font-family:var(--mono);font-size:24px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--cream-56);
+}
+.foot b{font-weight:500;color:var(--cream-80)}
+
+/* l'emplacement réservé au sticker natif : un cadre en pointillés qui ne
+   part pas à l'export, il sert de repère de pose sur les planches 2 et 3 */
+.slot{
+  margin-top:52px;height:520px;border:2px dashed rgba(255,237,215,.18);
+  border-radius:28px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:22px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,237,215,.3);text-align:center;padding:0 40px;
+}
+
+/* scène d'atelier, planche 1 */
+.desk{
+  position:absolute;inset:0;z-index:0;
+  background:
+    repeating-linear-gradient(93deg,rgba(60,32,12,.11) 0 4px,transparent 4px 26px),
+    linear-gradient(112deg,#78502c 0%,#b8874f 34%,#cf9d63 56%,#9c6c3e 78%,#6a4526 100%);
+}
+.mat{
+  position:absolute;left:-10%;right:-10%;top:40%;bottom:-18%;z-index:1;
+  transform:rotate(2deg);border-radius:20px;overflow:hidden;
+  background:linear-gradient(165deg,#3c4a35,#2b3527 58%,#222b20);
+  box-shadow:0 40px 90px rgba(0,0,0,.55);
+}
+.grid{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(to right,rgba(226,236,214,.075) 0 1px,transparent 1px 36px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.075) 0 1px,transparent 1px 36px),
+    repeating-linear-gradient(to right,rgba(226,236,214,.16) 0 1px,transparent 1px 180px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.16) 0 1px,transparent 1px 180px);
+}
+.pen{
+  position:absolute;left:62%;top:48%;width:104px;height:auto;z-index:2;
+  transform:translate(-50%,0) rotate(18deg);
+  filter:drop-shadow(22px 40px 34px rgba(0,0,0,.62));
+}
+.haze{
+  position:absolute;inset:0;z-index:3;
+  background:
+    linear-gradient(180deg,rgba(16,9,4,.96) 0%,rgba(16,9,4,.82) 24%,rgba(16,9,4,.3) 42%,transparent 56%),
+    linear-gradient(0deg,rgba(16,9,4,.95) 0%,rgba(16,9,4,.6) 16%,transparent 34%);
+}
+.st--cover{padding:0}
+.cover__in{position:absolute;inset:0;z-index:5;padding:260px 82px 280px;display:flex;flex-direction:column}
+
+.cue{
+  margin-top:auto;display:flex;align-items:center;gap:18px;
+  font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--cream-80);
+}
+.cue i{
+  width:54px;height:54px;border-radius:50%;border:2px solid var(--cream-24);
+  display:grid;place-items:center;font-style:normal;font-size:30px;color:var(--ember);
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBarrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".06"/>
+      <stop offset="14%" stop-color="#ffedd7" stop-opacity=".34"/>
+      <stop offset="33%" stop-color="#ffedd7" stop-opacity=".92"/>
+      <stop offset="47%" stop-color="#ffedd7" stop-opacity=".58"/>
+      <stop offset="64%" stop-color="#ffedd7" stop-opacity=".30"/>
+      <stop offset="84%" stop-color="#ffedd7" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="gCap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d2400"/><stop offset="22%" stop-color="#dc5000"/>
+      <stop offset="44%" stop-color="#ff8a3d"/><stop offset="62%" stop-color="#dc5000"/>
+      <stop offset="100%" stop-color="#581d00"/>
+    </linearGradient>
+    <linearGradient id="gTip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5c3d17"/><stop offset="28%" stop-color="#e0b371"/>
+      <stop offset="52%" stop-color="#f7dcae"/><stop offset="74%" stop-color="#b6873f"/>
+      <stop offset="100%" stop-color="#4a2f11"/>
+    </linearGradient>
+    <linearGradient id="gInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a0c04"/><stop offset="40%" stop-color="#3a1d08"/>
+      <stop offset="100%" stop-color="#120802"/>
+    </linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity="0"/>
+    </linearGradient>
+    <symbol id="pen" viewBox="0 0 160 1000">
+      <g><path d="M62 44c0-9 7-16 18-16s18 7 18 16v252H62z" fill="url(#gCap)"/>
+      <path d="M96 62c8 1 14 5 14 12v104c0 8-5 12-14 13z" fill="#c24500"/>
+      <rect x="62" y="270" width="36" height="8" fill="#8e3000" opacity=".8"/>
+      <path d="M70 44c0-7 4-12 8-13v250h-8z" fill="#ff9a58" opacity=".55"/></g>
+      <g><path d="M60 296h40v492H60z" fill="url(#gBarrel)"/>
+      <rect x="60" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".35"/>
+      <rect x="98.4" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".18"/>
+      <rect x="71" y="296" width="1" height="492" fill="#100904" opacity=".30"/>
+      <rect x="88" y="296" width="1" height="492" fill="#100904" opacity=".22"/>
+      <rect x="74" y="300" width="12" height="484" fill="url(#gInk)" opacity=".92"/>
+      <rect x="64" y="330" width="3" height="380" fill="url(#gGlass)" opacity=".7"/></g>
+      <g><path d="M60 788h40l-9 58H69z" fill="url(#gTip)"/>
+      <path d="M69 846h22l-6 32h-10z" fill="url(#gTip)"/>
+      <path d="M76 878h8l-2 14h-4z" fill="#e8cb9b"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 1 · l'accroche -->
+<section class="st st--cover">
+  <div class="desk"></div>
+  <div class="mat"><div class="grid"></div></div>
+  <svg class="pen" viewBox="0 0 160 1000"><use href="#pen"/></svg>
+  <div class="haze"></div>
+  <div class="cover__in">
+    <p class="mark">Julien<sup>®</sup></p>
+    <p class="eyebrow"><s></s>Le test que je fais passer</p>
+    <h1 class="big" style="margin-top:44px">Vends-moi<br>ce stylo.</h1>
+    <p class="say">Presque tout le monde répond en parlant du stylo.</p>
+    <p class="cue"><i>›</i>Cinq questions</p>
+  </div>
+</section>
+
+<!-- 2 · question posée, sticker quiz natif par-dessus -->
+<section class="st">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="eyebrow"><s></s>Question 1</p>
+  <h2 class="mid" style="margin-top:40px">« Vends-moi ce stylo. »<br>Votre <em>première phrase</em> ?</h2>
+  <div class="slot">Posez ici le sticker QUIZ — quatre réponses, la bonne&nbsp;: C</div>
+  <div class="foot"><b>Répondez</b><span>La suite dans la story</span></div>
+</section>
+
+<!-- 3 · deuxième question, même dispositif -->
+<section class="st">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="eyebrow"><s></s>Question 3</p>
+  <h2 class="mid" style="margin-top:40px">« Votre stylo est <em>trop cher</em>. »</h2>
+  <div class="slot">Posez ici le sticker QUIZ — quatre réponses, la bonne&nbsp;: D</div>
+  <div class="foot"><b>Répondez</b><span>Correction sur le site</span></div>
+</section>
+
+<!-- 4 · le site, sans rien dévoiler -->
+<section class="st">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <h2 class="mid" style="margin-top:110px">Il y a un site.<br>Il vend un stylo<br>à <em>trente centimes</em>.</h2>
+  <p class="say" style="margin-top:44px">Vous allez le lire jusqu'au bout. C'est précisément le problème.</p>
+  <div class="foot"><b>avecjulien.fr</b><span>Neuf minutes</span></div>
+</section>
+
+<!-- 5 · l'appel, place laissée au sticker lien -->
+<section class="st">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <h2 class="big" style="margin-top:130px">Faites<br>le test.</h2>
+  <p class="say" style="margin-top:40px">Cinq questions, deux minutes, votre score à la fin.</p>
+  <div class="slot" style="height:300px;margin-top:64px">Posez ici le sticker LIEN vers avecjulien.fr</div>
+  <div class="foot"><b>avecjulien.fr</b><span>Formation aux techniques de vente</span></div>
+</section>
+
+</body>
+</html>

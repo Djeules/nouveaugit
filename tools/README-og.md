@@ -136,3 +136,41 @@ de rendu.
 - **Les bonnes réponses ne sont jamais à la même lettre** (ici C, A, D, B,
   D). Un lecteur qui repère un motif répond juste sans lire le fond — c'est
   le défaut qui a fait refaire ce quiz.
+
+---
+
+# Instagram
+
+Deux gabarits, même méthode que le carrousel : rendu d'un seul tenant puis
+découpe. La démarche et les légendes sont dans `tools/METHODE-SOCIAL.md`.
+
+```bash
+python3 -m http.server 8094          # depuis la racine du dépôt
+
+# stories — 5 × 1080×1920
+chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+  --window-size=1080,9600 --virtual-time-budget=8000 \
+  --screenshot=st.png http://127.0.0.1:8094/tools/instagram-stories.html
+
+# carrés — 3 × 1080×1080
+chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+  --window-size=1080,3240 --virtual-time-budget=8000 \
+  --screenshot=sq.png http://127.0.0.1:8094/tools/instagram-grille.html
+```
+
+## Contraintes propres à Instagram
+
+- **Une story mesure 1080 × 1920, mais l'interface en recouvre 250 px en
+  haut et 250 px en bas.** Tout ce qui compte tient entre y=260 et y=1660 :
+  c'est ce qui commande le `padding` des planches.
+- **Le sticker natif plutôt que l'option dessinée.** Les stories 2 et 3
+  laissent une zone vide en pointillés pour le sticker QUIZ d'Instagram,
+  qui accepte quatre réponses et désigne la bonne. Un sticker produit une
+  interaction comptée par l'algorithme, une image n'en produit aucune.
+- **Aucun lien cliquable dans un post.** Le lien vit en bio, ou dans un
+  sticker de story. Les pieds de planche portent malgré tout l'URL : on la
+  retient ou on la tape.
+- **Le carrousel 4:5 sert sur les deux réseaux.** C'est le même format que
+  LinkedIn, il n'a pas été refait.
+- **Le carré ne performe plus dans le fil**, mais c'est lui qui compose la
+  grille du profil. Les trois carrés sont conçus pour tenir ensemble.
