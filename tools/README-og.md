@@ -93,3 +93,46 @@ PY
   étant grand et gras.
 - **Rien de chiffré qui bouge.** Une bannière reste en place des années et
   personne ne pense à la corriger.
+
+---
+
+# Carrousel LinkedIn
+
+`tools/carrousel-linkedin.html` produit les sept planches du carrousel
+« Vends-moi ce stylo » : une couverture, une mise en place, cinq questions.
+Mêmes fichiers de police, même palette et même scène d'atelier que le site,
+d'où le chemin `../site/assets/fonts/` dans les `@font-face`.
+
+```bash
+python3 -m http.server 8096          # depuis la racine du dépôt
+
+chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+  --window-size=1080,9450 --virtual-time-budget=8000 \
+  --screenshot=carr.png http://127.0.0.1:8096/tools/carrousel-linkedin.html
+
+python3 - <<'PY'
+from PIL import Image
+im = Image.open('carr.png').convert('RGB')
+pages = [im.crop((0, i*1350, 1080, (i+1)*1350)) for i in range(7)]
+pages[0].save('carrousel.pdf', save_all=True, append_images=pages[1:], resolution=72.0)
+PY
+```
+
+Les sept planches sont rendues **d'un seul tenant** puis découpées : une
+capture par planche multiplierait les chargements de police et les écarts
+de rendu.
+
+## Contraintes propres au carrousel
+
+- **1080 × 1350** (4:5). C'est le plus haut que LinkedIn accepte, donc
+  celui qui occupe le plus de fil sur mobile.
+- **LinkedIn veut un PDF**, pas une série d'images : un carrousel s'y
+  téléverse comme « document ».
+- **Lisible à 400 px de large**, soit une réduction de 2,7 fois. D'où les
+  questions à 58 px et les options à 33 px : en dessous, les options
+  deviennent une texture.
+- **Aucune correction sur les planches.** Les questions sont la promesse,
+  les réponses sont sur le site. C'est ce qui donne une raison de cliquer.
+- **Les bonnes réponses ne sont jamais à la même lettre** (ici C, A, D, B,
+  D). Un lecteur qui repère un motif répond juste sans lire le fond — c'est
+  le défaut qui a fait refaire ce quiz.

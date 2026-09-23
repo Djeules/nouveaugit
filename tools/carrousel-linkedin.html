@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Julien — carrousel LinkedIn (7 × 1080×1350)</title>
+<!--
+  Gabarit du carrousel LinkedIn. Sept planches empilées, rendues d'un seul
+  tenant puis découpées : voir tools/README-og.md, section « Carrousel ».
+
+  Charte reprise telle quelle du site : mêmes fichiers de police, mêmes
+  valeurs de palette, même scène d'atelier que le hero. Aucune ressource
+  tierce, comme partout ailleurs.
+
+  Format 4:5, le plus haut que LinkedIn accepte : il occupe le maximum de
+  hauteur dans le fil sur mobile. Les corps de texte sont calibrés pour
+  rester lisibles à 400 px de large, soit une réduction de 2,7 fois.
+-->
+<style>
+@font-face{
+  font-family:'Figtree';font-style:normal;font-weight:300 900;
+  src:url('../site/assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;
+  src:url('../site/assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+}
+:root{
+  --walnut:#100904; --cream:#ffedd7; --bark:#382416; --cork:#40372e;
+  --ember:#dc5000;  --olive:#6e6a4f; --deep:#0a0502;
+  --cream-80:rgba(255,237,215,.80);
+  --cream-62:rgba(255,237,215,.62);
+  --cream-56:rgba(255,237,215,.56);
+  --cream-24:rgba(255,237,215,.24);
+  --cream-12:rgba(255,237,215,.12);
+  --line:rgba(255,237,215,.14);
+  --sans:"Figtree",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:var(--walnut)}
+body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialiased}
+
+.slide{
+  position:relative;width:1080px;height:1350px;overflow:hidden;
+  background:var(--walnut);
+  display:flex;flex-direction:column;
+  padding:86px 78px 74px;
+}
+.slide::after{ /* le grain du site */
+  content:"";position:absolute;inset:0;z-index:6;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.slide > *{position:relative;z-index:4}
+
+/* voile de dégradé, repris du fond réactif du site */
+.veil{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(85% 55% at 18% 6%,rgba(220,80,0,.15),transparent 70%),
+    linear-gradient(180deg,rgba(26,15,7,.85),transparent 42%),
+    linear-gradient(0deg,rgba(10,5,2,.92),transparent 46%);
+}
+
+/* ---------- en-tête et pied, communs à toutes les planches ---------- */
+.mark{
+  display:flex;align-items:flex-start;gap:4px;
+  font-size:34px;font-weight:700;letter-spacing:-.032em;text-transform:uppercase;line-height:1;
+}
+.mark sup{font-size:15px;color:var(--ember);line-height:1;margin-top:2px}
+
+.foot{
+  margin-top:auto;padding-top:34px;border-top:1px solid var(--line);
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+  font-family:var(--mono);font-size:21px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--cream-56);
+}
+.foot b{font-weight:500;color:var(--cream-80)}
+
+.eyebrow{
+  display:flex;align-items:center;gap:15px;
+  font-family:var(--mono);font-size:22px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cream-56);
+}
+.eyebrow s{width:11px;height:11px;border-radius:50%;background:var(--ember);text-decoration:none;flex:none}
+
+/* ---------- planche 1 : la couverture, scène d'atelier du hero ---------- */
+.cover{padding:0}
+.desk{
+  position:absolute;inset:0;z-index:0;
+  background:
+    repeating-linear-gradient(93deg,rgba(60,32,12,.11) 0 4px,transparent 4px 26px),
+    linear-gradient(112deg,#78502c 0%,#b8874f 34%,#cf9d63 56%,#9c6c3e 78%,#6a4526 100%);
+}
+.mat{
+  position:absolute;left:-8%;right:-8%;top:34%;bottom:-16%;z-index:1;
+  transform:rotate(1.9deg);border-radius:18px;overflow:hidden;
+  background:linear-gradient(165deg,#3c4a35,#2b3527 58%,#222b20);
+  box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.grid{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(to right,rgba(226,236,214,.075) 0 1px,transparent 1px 34px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.075) 0 1px,transparent 1px 34px),
+    repeating-linear-gradient(to right,rgba(226,236,214,.16) 0 1px,transparent 1px 170px),
+    repeating-linear-gradient(to bottom,rgba(226,236,214,.16) 0 1px,transparent 1px 170px);
+  background-position:24px 20px;
+}
+.pen{
+  position:absolute;left:68%;top:27%;width:112px;height:auto;z-index:2;
+  transform:translate(-50%,0) rotate(19deg);
+  filter:drop-shadow(22px 40px 34px rgba(0,0,0,.62));
+}
+.haze{
+  position:absolute;inset:0;z-index:3;
+  background:
+    linear-gradient(180deg,rgba(16,9,4,.97) 0%,rgba(16,9,4,.88) 22%,rgba(16,9,4,.42) 40%,rgba(16,9,4,.12) 52%,transparent 62%),
+    linear-gradient(0deg,rgba(16,9,4,.96) 0%,rgba(16,9,4,.7) 18%,transparent 40%),
+    radial-gradient(70% 55% at 50% 20%,rgba(220,80,0,.2),transparent 72%);
+}
+.cover__in{
+  position:absolute;inset:0;z-index:5;padding:86px 78px 74px;
+  display:flex;flex-direction:column;
+}
+.cover__title{
+  margin-top:64px;max-width:8ch;font-size:118px;font-weight:700;line-height:.9;
+  letter-spacing:-.045em;color:#fff9f2;text-shadow:0 20px 64px rgba(0,0,0,.5);
+}
+.cover__sub{
+  margin-top:40px;max-width:19ch;font-size:37px;line-height:1.3;color:var(--cream-80);
+}
+
+/* ---------- planche 2 : la mise en place ---------- */
+.lead{margin-top:132px;font-size:46px;line-height:1.28;max-width:21ch;color:#fff9f2}
+.lead em{font-style:normal;color:var(--ember)}
+.lead + .lead{margin-top:34px;font-size:35px;color:var(--cream-80);max-width:26ch}
+
+/* ---------- planches 3 à 7 : les questions ---------- */
+.qnum{
+  margin-top:64px;font-family:var(--mono);font-size:23px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ember);
+}
+.qtext{
+  margin-top:26px;font-size:58px;font-weight:600;line-height:1.14;
+  letter-spacing:-.022em;color:#fff9f2;max-width:17ch;
+}
+.opts{margin-top:auto;padding-bottom:30px;display:grid;gap:19px;list-style:none}
+.opt{
+  display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+  padding:23px 26px;border:1px solid var(--cork);border-radius:14px;
+  background:rgba(56,36,22,.32);
+}
+.opt b{
+  font-family:var(--mono);font-size:24px;font-weight:500;color:var(--ember);
+  line-height:1.45;
+}
+.opt span{font-size:33px;line-height:1.35;color:var(--cream-80)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBarrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".06"/>
+      <stop offset="14%" stop-color="#ffedd7" stop-opacity=".34"/>
+      <stop offset="33%" stop-color="#ffedd7" stop-opacity=".92"/>
+      <stop offset="47%" stop-color="#ffedd7" stop-opacity=".58"/>
+      <stop offset="64%" stop-color="#ffedd7" stop-opacity=".30"/>
+      <stop offset="84%" stop-color="#ffedd7" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="gCap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d2400"/><stop offset="22%" stop-color="#dc5000"/>
+      <stop offset="44%" stop-color="#ff8a3d"/><stop offset="62%" stop-color="#dc5000"/>
+      <stop offset="100%" stop-color="#581d00"/>
+    </linearGradient>
+    <linearGradient id="gTip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5c3d17"/><stop offset="28%" stop-color="#e0b371"/>
+      <stop offset="52%" stop-color="#f7dcae"/><stop offset="74%" stop-color="#b6873f"/>
+      <stop offset="100%" stop-color="#4a2f11"/>
+    </linearGradient>
+    <linearGradient id="gInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a0c04"/><stop offset="40%" stop-color="#3a1d08"/>
+      <stop offset="100%" stop-color="#120802"/>
+    </linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffedd7" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#ffedd7" stop-opacity="0"/>
+    </linearGradient>
+    <symbol id="pen" viewBox="0 0 160 1000">
+      <g><path d="M62 44c0-9 7-16 18-16s18 7 18 16v252H62z" fill="url(#gCap)"/>
+      <path d="M96 62c8 1 14 5 14 12v104c0 8-5 12-14 13z" fill="#c24500"/>
+      <rect x="62" y="270" width="36" height="8" fill="#8e3000" opacity=".8"/>
+      <path d="M70 44c0-7 4-12 8-13v250h-8z" fill="#ff9a58" opacity=".55"/></g>
+      <g><path d="M60 296h40v492H60z" fill="url(#gBarrel)"/>
+      <rect x="60" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".35"/>
+      <rect x="98.4" y="296" width="1.6" height="492" fill="#ffedd7" opacity=".18"/>
+      <rect x="71" y="296" width="1" height="492" fill="#100904" opacity=".30"/>
+      <rect x="88" y="296" width="1" height="492" fill="#100904" opacity=".22"/>
+      <rect x="74" y="300" width="12" height="484" fill="url(#gInk)" opacity=".92"/>
+      <rect x="64" y="330" width="3" height="380" fill="url(#gGlass)" opacity=".7"/></g>
+      <g><path d="M60 788h40l-9 58H69z" fill="url(#gTip)"/>
+      <path d="M69 846h22l-6 32h-10z" fill="url(#gTip)"/>
+      <path d="M76 878h8l-2 14h-4z" fill="#e8cb9b"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ 1 · couverture ============ -->
+<section class="slide cover">
+  <div class="desk"></div>
+  <div class="mat"><div class="grid"></div></div>
+  <svg class="pen" viewBox="0 0 160 1000"><use href="#pen"/></svg>
+  <div class="haze"></div>
+  <div class="cover__in">
+    <p class="mark">Julien<sup>®</sup></p>
+    <h1 class="cover__title">Vends-moi<br>ce stylo.</h1>
+    <p class="cover__sub">Cinq questions. Deux minutes. La plupart des gens en ratent trois.</p>
+    <div class="foot"><b>avecjulien.fr</b><span>Formation aux techniques de vente</span></div>
+  </div>
+</section>
+
+<!-- ============ 2 · la mise en place ============ -->
+<section class="slide">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="lead">Presque tout le monde répond <em>en parlant du stylo</em>.</p>
+  <p class="lead">C'est l'erreur. Et elle coûte bien plus cher qu'un stylo : on la répète devant des offres à cinquante mille euros.</p>
+  <div class="foot"><b>Cinq questions</b><span>Répondez avant de faire défiler</span></div>
+</section>
+
+<!-- ============ 3 à 7 · les questions ============ -->
+<section class="slide">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="qnum">Question 1 / 5</p>
+  <h2 class="qtext">« Vends-moi ce stylo. » Votre première phrase&nbsp;:</h2>
+  <ul class="opts">
+    <li class="opt"><b>A</b><span>« De quoi auriez-vous besoin, en ce moment&nbsp;? »</span></li>
+    <li class="opt"><b>B</b><span>« Il écrit trois mille deux cents mètres. Vous en pensez quoi&nbsp;? »</span></li>
+    <li class="opt"><b>C</b><span>« Qu'est-ce que vous écrivez, dans une journée&nbsp;? »</span></li>
+    <li class="opt"><b>D</b><span>« Avant d'en parler — vous en avez un sur vous&nbsp;? »</span></li>
+  </ul>
+  <div class="foot"><b>avecjulien.fr</b><span>La correction est sur le site</span></div>
+</section>
+
+<section class="slide">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="qnum">Question 2 / 5</p>
+  <h2 class="qtext">Il répond&nbsp;: « Je n'ai pas besoin de stylo. »</h2>
+  <ul class="opts">
+    <li class="opt"><b>A</b><span>« Personne n'a besoin d'un stylo. On a besoin de ne pas en chercher un. »</span></li>
+    <li class="opt"><b>B</b><span>« Quand avez-vous signé un document pour la dernière fois&nbsp;? »</span></li>
+    <li class="opt"><b>C</b><span>« D'accord. On arrête là&nbsp;? »</span></li>
+    <li class="opt"><b>D</b><span>« Vous avez raison. Qu'est-ce qui vous ferait changer d'avis&nbsp;? »</span></li>
+  </ul>
+  <div class="foot"><b>avecjulien.fr</b><span>La correction est sur le site</span></div>
+</section>
+
+<section class="slide">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="qnum">Question 3 / 5</p>
+  <h2 class="qtext">« Votre stylo est trop cher. »</h2>
+  <ul class="opts">
+    <li class="opt"><b>A</b><span>« Je comprends. Quel budget aviez-vous en tête&nbsp;? »</span></li>
+    <li class="opt"><b>B</b><span>Vous ne dites rien et vous attendez.</span></li>
+    <li class="opt"><b>C</b><span>« Qu'est-ce qui vous ferait dire que le prix est juste&nbsp;? »</span></li>
+    <li class="opt"><b>D</b><span>« Trop cher par rapport à quoi&nbsp;? »</span></li>
+  </ul>
+  <div class="foot"><b>avecjulien.fr</b><span>La correction est sur le site</span></div>
+</section>
+
+<section class="slide">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="qnum">Question 4 / 5</p>
+  <h2 class="qtext">Vous venez d'annoncer votre prix. Il se tait six secondes.</h2>
+  <ul class="opts">
+    <li class="opt"><b>A</b><span>« Je sens une hésitation. Sur quoi&nbsp;? »</span></li>
+    <li class="opt"><b>B</b><span>Vous vous taisez aussi.</span></li>
+    <li class="opt"><b>C</b><span>« Et ce prix comprend le suivi à trente jours. »</span></li>
+    <li class="opt"><b>D</b><span>« Je vous laisse y réfléchir&nbsp;? »</span></li>
+  </ul>
+  <div class="foot"><b>avecjulien.fr</b><span>La correction est sur le site</span></div>
+</section>
+
+<section class="slide">
+  <div class="veil"></div>
+  <p class="mark">Julien<sup>®</sup></p>
+  <p class="qnum">Question 5 / 5</p>
+  <h2 class="qtext">Il veut une proposition écrite dès le premier appel. Le réflexe qui coûte le plus cher&nbsp;:</h2>
+  <ul class="opts">
+    <li class="opt"><b>A</b><span>Demander qui d'autre devra la valider.</span></li>
+    <li class="opt"><b>B</b><span>Y joindre trois références clients.</span></li>
+    <li class="opt"><b>C</b><span>Demander un second échange avant de l'écrire.</span></li>
+    <li class="opt"><b>D</b><span>L'envoyer le soir même.</span></li>
+  </ul>
+  <div class="foot"><b>avecjulien.fr</b><span>La correction est sur le site</span></div>
+</section>
+
+</body>
+</html>
