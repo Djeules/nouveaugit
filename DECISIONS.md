@@ -833,3 +833,27 @@ de texte — d'où le `padding-right` de 250 px qu'elle portait pour s'en
 écarter, et le quart de page vide en bas à gauche que Julien a remarqué. Le
 stylo passe à gauche, dans ce vide ; le texte récupère sa largeur. Un
 objet mal placé créait deux défauts à la fois.
+
+### Le « y » coupé : une compensation qui n'était faite qu'à moitié
+
+Julien a vu que le jambage du « y » de « stylo » était tranché net dans le
+titre de la Divulgation.
+
+Le mécanisme de découpe en lignes enferme chaque ligne dans un bloc à
+`overflow:hidden` — c'est ce masque qui permet au texte de monter depuis le
+bas à l'apparition. Avec une interligne de `.94`, cette boîte est plus
+courte que les glyphes eux-mêmes : elle rogne ce qui dépasse.
+
+La parade était déjà là, mais d'un seul côté :
+`padding-top:.14em; margin-top:-.14em` élargit la boîte vers le haut pour
+les accents et annule l'effet sur le flux. Rien n'avait été fait en bas,
+alors que c'est le côté des jambages — y, g, p, q, j.
+
+Corrigé par `padding-block:.14em .18em` et la marge négative
+correspondante. Un peu plus en bas qu'en haut : un jambage descend plus
+loin sous la ligne de base qu'un accent ne monte au-dessus des capitales.
+
+**La leçon générale : une compensation de boîte se fait toujours sur les
+deux axes.** Le défaut ne se voit que sur les mots qui portent une
+descendante, ce qui le rend invisible à la relecture — « Ce stylo ne vaut
+rien » l'a montré parce que c'est le plus grand titre du site.
