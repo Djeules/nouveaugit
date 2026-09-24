@@ -222,19 +222,26 @@ aperçoive.
 
 |  | Profil personnel | Page (entreprise) |
 |---|---|---|
-| Format | 1584 × 396 | 1128 × 191 |
-| Rapport | 4:1 | près de 6:1 |
+| Format | 1584 × 396 | **1128 × 434** |
+| Rapport | 4:1 | environ 2,6:1 |
 | L'image de profil | ronde, mord le bas gauche | carrée, mord le bas gauche |
 | Zone à laisser libre | 330 px | 200 px |
+
+**Le 1128 × 191 que documente LinkedIn depuis des années ne correspond plus
+à son propre outil de recadrage.** Une image à ce rapport arrive dans le
+cadre entourée de deux bandes noires, et il faut la zoomer pour la remplir —
+donc la rogner. Le rapport a été relevé d'après la fenêtre de recadrage
+elle-même, mesurée sur une capture : environ 2,6:1. À vérifier de nouveau
+si LinkedIn refait son interface.
 
 ```bash
 chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
   --window-size=2256,520 --virtual-time-budget=7000 \
   --screenshot=pg.png http://127.0.0.1:8092/tools/linkedin-page-banner.html
-# puis recadrer à 2256×382 et réduire à 1128×191
+# puis recadrer à 2256×868 et enregistrer en JPEG
 ```
 
-Le rendu se fait au double (2256 × 382) puis se réduit : LinkedIn sert la
+Le rendu se fait au double (2256 × 868) puis se réduit : LinkedIn sert la
 bannière en pleine largeur sur écran dense, et une image posée à sa taille
 nominale y paraît molle.
 
@@ -248,3 +255,14 @@ La feuille « bon pour accord » de la scène d'atelier a dû sauter : à cette
 hauteur, elle n'était plus qu'un coin clair tranché par le bord droit. Un
 décor pensé pour un format ne se transpose pas en changeant les
 proportions — il se retaille.
+
+## Livrer en JPEG, pas en PNG
+
+LinkedIn rejette régulièrement les PNG de grande taille sur cette page —
+« Échec de la mise à jour de l'image de couverture » sans autre précision.
+Le JPEG passe, et il pèse six fois moins : 117 Ko contre 695.
+
+Quand le téléversement échoue malgré cela, l'ordre à suivre : réessayer en
+navigation privée (les bloqueurs de contenu interceptent l'envoi), puis
+depuis un autre navigateur. L'erreur vient presque toujours de là, pas du
+fichier.
