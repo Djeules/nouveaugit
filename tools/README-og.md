@@ -174,3 +174,41 @@ chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
   LinkedIn, il n'a pas été refait.
 - **Le carré ne performe plus dans le fil**, mais c'est lui qui compose la
   grille du profil. Les trois carrés sont conçus pour tenir ensemble.
+
+---
+
+# Logo
+
+`tools/logo/` contient le logo en SVG vectoriel et en PNG transparent,
+quatre teintes et un monogramme. Usages détaillés dans
+`tools/logo/LISEZ-MOI.md`.
+
+Les contours sont **extraits de la police**, pas dessinés : le script fige
+Figtree à la graisse 700, lit les glyphes de `JULIEN` et du `®`, applique
+l'approche de −0,032 em du site et écrit les chemins. Le logo et les titres
+du site ne peuvent donc pas diverger — ils viennent de la même source.
+
+```bash
+pip install fontTools brotli
+```
+
+Le script complet est dans l'historique git du commit « Le logo décliné en
+SVG vectoriel… ». Les étapes :
+
+1. `instancer.instantiateVariableFont(font, {'wght': 700})`
+2. pour chaque lettre, `SVGPathPen` puis avance de `advanceWidth − 32`
+   (l'approche, en unités d'un em de 1000)
+3. le `®` à 40 % du corps, son sommet aligné sur la hauteur de capitale
+4. l'axe des y d'un SVG descend, celui d'une police monte : les chemins
+   sont retournés par `translate(0 h) scale(1 -1)`
+
+Les PNG sont rendus par Chromium avec
+`--default-background-color=00000000` — c'est cette option, et elle seule,
+qui donne un fond réellement transparent — puis recadrés au contenu avec
+`Image.getbbox()`.
+
+**Piège rencontré :** la fenêtre de rendu doit être plus grande que l'image
+dans les deux dimensions. Une fenêtre trop courte tronque sans rien
+signaler, et le recadrage automatique masque ensuite la troncature — le
+monogramme carré est sorti sans ses coins inférieurs avant qu'on s'en
+aperçoive.
