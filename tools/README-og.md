@@ -222,26 +222,37 @@ aperçoive.
 
 |  | Profil personnel | Page (entreprise) |
 |---|---|---|
-| Format | 1584 × 396 | **1128 × 434** |
-| Rapport | 4:1 | environ 2,6:1 |
+| Format | 1584 × 396 | **1128 × 191** |
+| Rapport | 4:1 | environ 6:1 |
 | L'image de profil | ronde, mord le bas gauche | carrée, mord le bas gauche |
-| Zone à laisser libre | 330 px | 200 px |
+| Zone à laisser libre | 330 px (21 %) | **420 px (18,5 %)** |
 
-**Le 1128 × 191 que documente LinkedIn depuis des années ne correspond plus
-à son propre outil de recadrage.** Une image à ce rapport arrive dans le
-cadre entourée de deux bandes noires, et il faut la zoomer pour la remplir —
-donc la rogner. Le rapport a été relevé d'après la fenêtre de recadrage
-elle-même, mesurée sur une capture : environ 2,6:1. À vérifier de nouveau
-si LinkedIn refait son interface.
+### Ne pas croire l'outil de recadrage
+
+La fenêtre de recadrage de LinkedIn est bien plus haute que la bannière
+qu'elle produit : une image au bon rapport de 6:1 y apparaît entre deux
+bandes noires, ce qui donne envie de fournir une image plus haute. C'est un
+piège — elle sera ensuite rognée en haut et en bas, et la dernière ligne de
+texte disparaîtra.
+
+**Mesurer sur la page publiée, pas dans l'éditeur.** Relevé sur la page en
+ligne : bannière affichée 1260 × 207, soit 6,1:1, et le logo carré couvre
+de 3,4 % à 18,5 % de la largeur. Le texte démarre donc à 26 %.
+
+### 191 pixels ne tiennent que trois blocs
+
+Une accroche sur deux lignes et une signature, pas davantage. Le surtitre a
+sauté : il redisait la catégorie que LinkedIn affiche déjà sous le nom de la
+page.
 
 ```bash
 chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
   --window-size=2256,520 --virtual-time-budget=7000 \
   --screenshot=pg.png http://127.0.0.1:8092/tools/linkedin-page-banner.html
-# puis recadrer à 2256×868 et enregistrer en JPEG
+# puis recadrer à 2256×382 et enregistrer en JPEG
 ```
 
-Le rendu se fait au double (2256 × 868) puis se réduit : LinkedIn sert la
+Le rendu se fait au double (2256 × 382) puis se réduit : LinkedIn sert la
 bannière en pleine largeur sur écran dense, et une image posée à sa taille
 nominale y paraît molle.
 

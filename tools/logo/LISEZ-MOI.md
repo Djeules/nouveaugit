@@ -42,6 +42,22 @@ monogramme reste lisible.
 `monogramme-creme-sur-walnut-1080.png` est la version à téléverser comme
 photo de profil : carré plein, prêt à l'emploi.
 
+Deux points de fabrication, appris sur la page LinkedIn :
+
+**Le carré n'a pas de coins arrondis.** Les plateformes appliquent leur
+propre masque ; deux arrondis superposés laissent une frange autour du
+logo. Le fichier est un carré franc, c'est LinkedIn qui l'arrondit.
+
+**Le J touche presque les bords.** Une marge confortable, qui paraît juste
+à 1080 px, donne un logo minuscule perdu dans son cadre une fois réduit à
+56 px — la taille d'un avatar en commentaire. Vérifié aux trois tailles
+d'affichage : 240, 120 et 56 px.
+
+**Le liseré blanc autour de la photo vient de LinkedIn**, pas du fichier. Il
+n'est pas supprimable : LinkedIn le dessine autour de toute photo de page.
+Le seul moyen de le rendre invisible serait de donner au logo un fond
+blanc, ce qui coûterait bien plus que ça ne rapporterait.
+
 ## Deux règles
 
 **Ne jamais recomposer le logo à la main** en tapant « JULIEN » dans une
