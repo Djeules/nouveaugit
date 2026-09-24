@@ -212,3 +212,39 @@ dans les deux dimensions. Une fenêtre trop courte tronque sans rien
 signaler, et le recadrage automatique masque ensuite la troncature — le
 monogramme carré est sorti sans ses coins inférieurs avant qu'on s'en
 aperçoive.
+
+---
+
+# Bannière de Page LinkedIn
+
+`tools/linkedin-page-banner.html` — **à ne pas confondre** avec
+`linkedin-banner.html`, qui est celle du **profil personnel**.
+
+|  | Profil personnel | Page (entreprise) |
+|---|---|---|
+| Format | 1584 × 396 | 1128 × 191 |
+| Rapport | 4:1 | près de 6:1 |
+| L'image de profil | ronde, mord le bas gauche | carrée, mord le bas gauche |
+| Zone à laisser libre | 330 px | 200 px |
+
+```bash
+chromium --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+  --window-size=2256,520 --virtual-time-budget=7000 \
+  --screenshot=pg.png http://127.0.0.1:8092/tools/linkedin-page-banner.html
+# puis recadrer à 2256×382 et réduire à 1128×191
+```
+
+Le rendu se fait au double (2256 × 382) puis se réduit : LinkedIn sert la
+bannière en pleine largeur sur écran dense, et une image posée à sa taille
+nominale y paraît molle.
+
+## Ce que 191 pixels de haut imposent
+
+**Deux lignes de texte, et rien d'autre.** Sur le profil personnel, la
+hauteur de 396 px laisse respirer un surtitre, une accroche et une
+signature. Ici, tout ce qui dépasse trois blocs devient un pâté.
+
+La feuille « bon pour accord » de la scène d'atelier a dû sauter : à cette
+hauteur, elle n'était plus qu'un coin clair tranché par le bord droit. Un
+décor pensé pour un format ne se transpose pas en changeant les
+proportions — il se retaille.
