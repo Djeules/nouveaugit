@@ -933,3 +933,119 @@ découpage en lignes de `data-split` avale les `<br>` (il découpe sur
 les blancs après les avoir remplacés par des espaces). Un titre découpé
 ne peut donc pas forcer son retour à la ligne — celui de la Pl. 02 n'en
 a pas.
+
+---
+
+## 28. Sept retouches de Julien, dont trois planches refaites
+
+Liste reçue d'un bloc, traitée d'un bloc. Les images jointes au message
+(la page d'accueil d'oryzo.ai notamment) ne sont pas parvenues à la
+session, et le site de la référence n'était pas joignable depuis le
+conteneur : tout ce qui « s'inspire d'Oryzo » ci-dessous part de la
+description de Julien et des relevés déjà consignés ici (§9, §22).
+
+### Le hero : un verre à la place du bon pour accord
+
+Le bon pour accord redisait en petit ce que le cartel dit en grand. Il
+est remplacé par un **whisky vu du dessus, posé sur un sous-verre en
+liège** — idée de Julien pour le verre ; le liège est un salut à la
+référence, qui vend précisément un sous-verre. Tout est en SVG : glaçons,
+ménisque, paroi épaisse, tache de lumière ambrée projetée sur le tapis.
+L'ombre part en bas à droite, comme celle du stylo.
+
+Le stylo se couche en travers, la pointe vers le verre. Son angle de
+repos vit dans l'attribut `data-rot` du SVG, que le script lit : la
+parallaxe du défilement l'écrasait auparavant avec une valeur en dur. Son
+ombre portée est exprimée dans le repère du stylo — un `drop-shadow` est
+appliqué *avant* la rotation —, d'où les valeurs (-11, 25) qui retombent
+en bas à droite une fois tournées de -58°.
+
+Le cartel passe de 520 à **372 px** — la largeur de ses deux boutons — et
+remonte d'environ un dixième d'écran (`margin-bottom:11vh`) : il flotte
+au-dessus du pied du hero au lieu de s'y poser.
+
+L'image de partage `og.jpg` montre encore l'ancienne scène, bon compris ;
+son texte alternatif la décrit donc toujours correctement. La refaire
+demande de reprendre `tools/og-image.html` et de la photographier à
+nouveau (§11).
+
+### 01 Manifeste : la main qui présente le stylo
+
+Deuxième section de la référence : le produit tenu à bout de doigts,
+comme une pierre qu'on montre, un texte en grand à gauche et un texte en
+monospace à droite, sur un fond de teinte pierre. Transposé ici **sans
+photographie** — le §15 réserve la seule photo du site au portrait de
+Julien : la main est un dessin au trait, dans le registre du calque de
+l'Anatomie (loupe pointillée, cote de 148 mm, légende « Fig. 1 »), avec
+des étincelles ember à la pointe pour le « diamant ».
+
+La main a été construite par squelette — axe de chaque doigt, largeur à
+chaque phalange — puis lissée ; les premiers essais tracés au jugé
+donnaient des doigts filiformes. Elle fait le geste de pincement
+pouce-index, les trois autres doigts déployés, et entre par le bord bas
+de la section, qui la coupe. Les traits se tirent au premier passage
+(`pathLength="1"`, comme au §22) ; en mouvement réduit, tout est tracé
+d'emblée.
+
+Le texte du manifeste est conservé **mot pour mot**, simplement réparti :
+la première phrase à gauche, avec l'allumage mot à mot, la seconde et la
+signature à droite. Le petit stylo de la signature disparaît, le dessin
+le remplace.
+
+La teinte du fond est la variable `--stage-bg` (`#d9cfc1`), faute d'avoir
+pu la relever au pixel sur la référence. C'est la seule valeur à changer.
+
+Piège rencontré : sur téléphone, le stylo 3D de l'Anatomie déborde de sa
+bande vers le haut. Sur fond sombre, cela ne se voyait pas ; sur ce fond
+clair, il passait par-dessus la main. La section et les planches portent
+donc `z-index:1`.
+
+### Le stylo du Format, allongé
+
+Julien le trouvait trapu, à raison : 632 unités de long pour 52 de
+diamètre, douze fois plus long que large, quand un vrai stylo à bille
+l'est dix-neuf fois. `buildPen` accepte désormais un corps propre à
+chaque instance (`data-barrel`) : celui du Format passe de 402 à 590, le
+capuchon et la pointe gardent leur taille. L'échelle suit la hauteur du
+cadre, pour que le stylo y tienne entier à toutes les largeurs.
+
+### Trois corrections de couleur
+
+- **Le portrait** est baissé d'un tiers et réchauffé juste assez pour
+  tirer ses gris vers le brun du fond (`brightness(.7) sepia(.2)`) — loin
+  de la bichromie abandonnée au §15. Ses bords latéraux se dissolvent
+  comme le bas : l'épaule n'est plus tranchée par le cadre de l'image.
+- **1 850 €** passe en ember, comme les 690 et 990 € de l'offre.
+- **Les deux cartes de contact** ont exactement le même fond. L'une était
+  voilée d'ember, l'autre de brun ; côte à côte, les deux teintes ne se
+  répondaient pas. La hiérarchie est portée par le contenu.
+
+### Les planches, refaites
+
+Critique de Julien, juste : les trois planches du §27 reprenaient les
+visuels des réseaux presque tels quels. Même fond crème trois fois, et
+en bas de chacune la marque et une pagination « Pl. 01 / 03 » — des
+signatures utiles sur une image isolée dans un fil, absurdes au milieu
+d'une page qui est déjà signée.
+
+- **Pl. 01, le témoignage : fond ember**, dégradé de lumière, et une
+  poche de manteau au trait d'où dépassent le capuchon et son agrafe.
+  Walnut plein pour tout le texte : le walnut atténué tombe sous 4,5:1
+  sur ember.
+- **Pl. 02, la nomenclature : noir de tirage**, tramé comme un calque
+  (filets de 32 px, repères de 160 px). Noir neutre et non walnut, pour
+  se distinguer des sections sombres voisines. Les pièces sont redessinées
+  au trait crème.
+- **Pl. 03, le prix : reste crème**, seule planche claire, avec un grain
+  de lumière et un tampon de prix qui tourne dans l'angle.
+
+Plus aucun pied de planche. Le nombre de mots de la fiction, recompté sur
+le DOM comme le §25 l'exige, est inchangé : **1 224** avant et après.
+
+### Contrôles
+
+1 440, 1 024, 390 et 360 px ; mouvement normal et réduit ; seconde visite
+dans la même session. Aucune erreur, aucun débordement horizontal. Les
+apparitions « restées masquées » que signale un défilement programmatique
+rapide existent à l'identique sur la version précédente : c'est le banc
+(§21), pas le site — un défilement à vitesse de lecture n'en laisse aucune.

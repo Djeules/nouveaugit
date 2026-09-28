@@ -290,6 +290,8 @@
   const steps = $$('.step');
   const mockup = $('.mockup');
   const mockPen = $('.mockup__pen');
+  // angle de repos du stylo du hero : une seule source, l'attribut du SVG
+  const mockRot = mockPen ? Number(mockPen.dataset.rot || 0) : 0;
   const penReveal = $('.pen--reveal');
   const halo = $('.anatomy__halo');
   const draftCote = $('#draftCote');
@@ -349,7 +351,7 @@
       if (mockup) {
         const p = clamp(y / innerHeight, 0, 1);
         mockup.style.transform = `translateY(${p * -54}px) scale(${1 + p * 0.07})`;
-        if (mockPen) mockPen.style.transform = `rotate(${20 + p * 14}deg) translate(${p * -18}px, ${p * 26}px)`;
+        if (mockPen) mockPen.style.transform = `rotate(${mockRot + p * 10}deg) translate(${p * -14}px, ${p * 20}px)`;
       }
       if (penReveal) {
         const r = penReveal.closest('section').getBoundingClientRect();
@@ -402,7 +404,10 @@
     if (pens.pop) {
       const r = $('#portable').getBoundingClientRect();
       const q = clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
-      drawPen(pens.pop, reduced ? 26 : -60 + q * 340, 10, 0.58);
+      // l'échelle suit la hauteur du cadre : le stylo allongé doit y tenir
+      // entier à toutes les largeurs, sans jamais dépasser son échelle d'origine
+      const s = Math.min(0.58, pens.pop.host.clientHeight / pens.pop.total);
+      drawPen(pens.pop, reduced ? 26 : -60 + q * 340, 10, s);
     }
 
     // Stylo 3D de la section Anatomie : rotation et échelle sur toute la traversée
@@ -485,7 +490,10 @@
   const APO = w => w * 0.8660254;   // apothème d'un hexagone régulier
 
   function buildPen(host) {
-    const { W, CAP, BARREL, TIP, INK } = PEN;
+    const { W, CAP, TIP, INK } = PEN;
+    // Un stylo peut porter son propre corps (`data-barrel`) : celui du
+    // Format est allongé, le capuchon et la pointe gardent leur taille.
+    const BARREL = Number(host.dataset.barrel) || PEN.BARREL;
     const R = APO(W), total = CAP + BARREL + TIP, half = total / 2;
     const capY    = -half + CAP / 2;
     const barrelY = -half + CAP + BARREL / 2;
@@ -542,7 +550,7 @@
     glow.className = 'pen3d__glow';
 
     host.replaceChildren(glow, rot);
-    return { host, rot, faces, ball, scale: 1 };
+    return { host, rot, faces, ball, scale: 1, total };
   }
 
   function drawPen(inst, rotY, tiltX, scale) {

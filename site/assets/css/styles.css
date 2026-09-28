@@ -359,38 +359,44 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mockup__rule--y span{transform:rotate(-90deg)}
 .mockup__rule--x{left:6%;right:10%;bottom:9px;align-items:flex-end}
 
-/* le bon de commande glissé sous le stylo */
-.mockup__paper{
-  position:absolute;left:64%;bottom:4%;width:clamp(160px,15.5vw,244px);aspect-ratio:1/1.3;
-  transform:rotate(-7deg);border-radius:3px;
-  background:linear-gradient(158deg,#f4e9d6,#ddcfb6 62%,#c7b89d);
-  box-shadow:0 22px 44px rgba(0,0,0,.5),0 2px 0 rgba(255,255,255,.22) inset;
-  display:grid;align-content:start;gap:10px;padding:26px 24px;
+/* Le whisky vu du dessus, sur son sous-verre en liège.
+   Le bon pour accord qui occupait cette place est parti : il redisait en
+   petit ce que le cartel dit en grand. Le verre, lui, raconte une scène —
+   quelqu'un vient de poser son stylo — et le liège salue la référence,
+   qui vend un sous-verre avec le même sérieux. Tout est dessiné en SVG :
+   l'ombre part en bas à droite, comme celle du stylo, la lumière venant
+   du haut-droit (voir le voile `.mockup__haze`). */
+.mockup__glass{
+  position:absolute;right:9%;top:22%;width:clamp(180px,17.5vw,280px);height:auto;overflow:visible;
+  transform:rotate(-8deg);
 }
-.mockup__paper-head{height:10px;width:46%;border-radius:2px;background:rgba(40,28,16,.62)}
-.mockup__paper-line{height:5px;border-radius:2px;background:rgba(40,28,16,.2)}
-.mockup__paper-line--short{width:58%}
-.mockup__paper-sign{
-  margin-top:30px;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;
-  text-transform:uppercase;color:rgba(40,28,16,.5);
-}
-.mockup__paper-rule{height:1px;background:rgba(40,28,16,.38)}
+.glass__shade{fill:#000;opacity:.5}
+/* le reflet du liquide tourne très lentement : l'œil le perçoit sans le suivre */
+.glass__ice{transform-origin:160px 160px;animation:ice-drift 26s ease-in-out infinite alternate}
+.glass__glint{animation:glint 9s var(--ease) infinite alternate}
+@keyframes ice-drift{from{transform:rotate(0)}to{transform:rotate(14deg)}}
+@keyframes glint{from{opacity:.6}to{opacity:1}}
 
 /* le trombone */
 .mockup__clip{
-  position:absolute;right:24%;bottom:30%;width:17px;height:48px;
+  position:absolute;left:38%;top:66%;width:17px;height:48px;
   border:2.5px solid rgba(206,214,222,.75);border-radius:12px;
-  transform:rotate(31deg);
+  transform:rotate(-24deg);
   box-shadow:0 5px 12px rgba(0,0,0,.5);
 }
 .mockup__clip::after{
   content:"";position:absolute;left:4px;top:8px;right:4px;bottom:-9px;
   border:2.5px solid rgba(206,214,222,.55);border-radius:10px;border-top-color:transparent;
 }
+/* Le stylo couché en travers, la pointe vers le verre. Son angle de base
+   est lu par le script dans `data-rot` : le CSS ne sert qu'au premier
+   rendu. L'ombre est décalée dans le repère du stylo, donc tourné avec
+   lui — (-11, 25) une fois tourné de -58° retombe en bas à droite,
+   parallèle à celle du verre. */
 .mockup__pen{
-  position:absolute;left:54%;bottom:6%;width:clamp(28px,2.72vw,43px);height:auto;
-  transform:rotate(20deg);transform-origin:50% 50%;
-  filter:drop-shadow(14px 26px 24px rgba(0,0,0,.62));
+  position:absolute;left:50%;top:30%;width:clamp(32px,3.7vw,58px);height:auto;
+  transform:rotate(-58deg);transform-origin:50% 50%;
+  filter:drop-shadow(-11px 25px 22px rgba(0,0,0,.6));
   will-change:transform;
 }
 .mockup__haze{
@@ -407,9 +413,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   position:relative;z-index:4;max-width:var(--maxw);width:100%;margin-inline:auto;
   display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);justify-content:space-between;align-items:flex-end;
 }
+/* Comme sur la référence : un cartel étroit, qui flotte au-dessus du pied
+   de page au lieu d'y être posé. Il s'arrêtait à 46 px du bas sur 520 px
+   de large et se lisait comme un bandeau ; il se resserre à la largeur de
+   ses deux boutons et remonte d'environ un dixième d'écran. */
 .hero__card{
-  flex:1 1 380px;max-width:min(520px,100%);
-  display:grid;gap:14px;padding:clamp(20px,2.2vw,30px);border-radius:12px;
+  flex:0 1 372px;max-width:min(372px,100%);
+  margin-bottom:clamp(0px,11vh,120px);
+  display:grid;gap:14px;padding:clamp(18px,1.8vw,24px);border-radius:12px;
   border:1px solid var(--cork);
   /* Le cartel était le seul objet beige du site — une couleur relevée sur la
      référence et reprise nulle part ailleurs. Il prend la teinte des autres
@@ -423,7 +434,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* Le titre reprend le poids que portait la ligne de crédit supprimée :
    un cartel affiche d'abord le nom de l'objet, pas la notice. */
 .hero__claim{
-  margin:0;font-size:clamp(1.02rem,1.5vw,1.3rem);font-weight:600;line-height:1.28;
+  margin:0;font-size:clamp(1rem,1.32vw,1.18rem);font-weight:600;line-height:1.28;
   text-transform:uppercase;letter-spacing:.005em;color:#fff9f2;max-width:26ch;
 }
 .hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
@@ -494,16 +505,108 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* =========================================================
    MANIFESTE
    ========================================================= */
-.manifeste{padding:var(--sec-y) var(--gutter);max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(34px,5vw,74px)}
-.manifeste__text{
-  margin:0;font-size:clamp(1.5rem,4.1vw,3.35rem);font-weight:400;line-height:1.14;letter-spacing:-.022em;
-  max-width:24ch;
+/* La mise en page de la deuxième section de la référence : le produit au
+   centre, tenu à bout de doigts comme une pierre qu'on montre ; un texte
+   en grand à gauche, un texte en monospace à droite ; un fond de teinte
+   pierre, seul fond clair de la page avec la planche du prix. La main
+   entre par le bord bas de la section et y est coupée — elle n'est pas
+   posée, elle arrive. La teinte est une variable : si elle doit coller
+   au pixel près à la référence, c'est la seule valeur à changer. */
+.stage{
+  --stage-bg:#d9cfc1;
+  --stage-hand:#f2ece3;   /* la main, un ton plus pâle que le fond */
+  --stage-ink:var(--walnut);
+  --stage-ink-62:rgba(16,9,4,.62);
+  --stage-ink-16:rgba(16,9,4,.16);
+  /* z-index : le stylo 3D de l'Anatomie, juste après, déborde de sa
+     bande vers le haut sur téléphone ; sur ce fond clair il se voyait
+     par-dessus la main. La section passe donc devant. */
+  position:relative;z-index:1;overflow:hidden;
+  background:
+    radial-gradient(46% 62% at 50% 64%,rgba(255,249,240,.55),transparent 72%),
+    var(--stage-bg);
+  color:var(--stage-ink);
+  padding:clamp(72px,9vw,140px) var(--gutter) 0;
 }
-.manifeste__text w{display:inline-block;color:var(--cream-12);transition:color .5s var(--ease)}
-.manifeste__text w.is-lit{color:var(--cream)}
-.manifeste__sig{display:flex;align-items:center;gap:22px;border-top:1px solid var(--line);padding-top:26px}
-.pen--mini{width:26px;height:150px;flex:none;transform:rotate(38deg);filter:none;opacity:.85}
-.manifeste__sig p{margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-56);max-width:40ch}
+.stage__inner{
+  max-width:var(--maxw);margin-inline:auto;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,min(560px,40vw)) minmax(0,1fr);
+  grid-template-rows:auto 1fr;column-gap:clamp(20px,3vw,56px);
+}
+.stage__label{grid-column:1 / -1;color:var(--stage-ink-62);margin-bottom:clamp(20px,3vw,40px)}
+.stage__lede{
+  grid-column:1;grid-row:2;align-self:center;margin:0 0 clamp(60px,10vw,160px);
+  font-size:clamp(1.55rem,2.75vw,2.9rem);font-weight:500;line-height:1.06;letter-spacing:-.032em;
+  max-width:13ch;
+}
+.manifeste__text w{display:inline-block;color:var(--stage-ink-16);transition:color .5s var(--ease)}
+.manifeste__text w.is-lit{color:var(--stage-ink)}
+.stage__fig{grid-column:2;grid-row:2;position:relative;margin:0;align-self:end}
+.stage__side{
+  grid-column:3;grid-row:2;align-self:end;justify-self:end;
+  display:grid;gap:22px;max-width:32ch;margin-bottom:clamp(60px,9vw,140px);
+}
+.stage__note{
+  margin:0;font-family:var(--mono);font-size:clamp(.72rem,.86vw,.84rem);line-height:1.7;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--stage-ink);
+}
+.stage__sig{
+  margin:0;padding-top:16px;border-top:1px solid var(--stage-ink-16);
+  font-family:var(--mono);font-size:var(--fs-label);line-height:1.7;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--stage-ink-62);
+}
+.stage__cap{
+  position:absolute;left:0;bottom:clamp(18px,2.4vw,34px);
+  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--stage-ink-62);
+}
+
+/* ---------- le dessin ---------- */
+.gem__art{display:block;width:100%;height:auto}
+.gem__fill{fill:var(--stage-hand)}
+.gem__nostroke{stroke:none}
+.gem__line{fill:none;stroke:var(--stage-ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.gem__fill.gem__line{fill:var(--stage-hand)}
+.gem__fine{stroke-width:1.1;opacity:.5}
+.gem__loupe{fill:none;stroke:var(--stage-ink);stroke-opacity:.35;stroke-dasharray:2 5}
+.gem__tick,.gem__dim,.gem__ext{fill:none;stroke:var(--stage-ink);stroke-opacity:.45}
+.gem__dim{stroke-dasharray:3 4}
+.gem__label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;fill:var(--stage-ink);opacity:.62}
+.gem__barrel{fill:#fff9f2;stroke:var(--stage-ink);stroke-width:1.5}
+.gem__ink{stroke:#3a1d08;stroke-width:3;stroke-linecap:round}
+.gem__hi{stroke:#fff;stroke-width:1.5;opacity:.9}
+.gem__tipcone{fill:#e0b371;stroke:var(--stage-ink);stroke-width:1.5;stroke-linejoin:round}
+.gem__ball{fill:var(--stage-ink)}
+.gem__cap{fill:var(--ember);stroke:var(--stage-ink);stroke-width:1.5}
+.gem__clip{fill:none;stroke:var(--stage-ink);stroke-width:1.5}
+.gem__rays{stroke:var(--ember);stroke-width:1.5;stroke-linecap:round}
+.gem__star{fill:var(--ember);transform-box:fill-box;transform-origin:center;animation:twinkle 3.2s var(--ease) infinite}
+.gem__star--s{animation-delay:-1.6s}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(.55) rotate(45deg);opacity:.55}}
+
+/* Le trait se tire au premier passage, comme le calque de l'Anatomie :
+   `pathLength="1"` sur chaque tracé, donc un dasharray de 1 l'escamote
+   exactement. Le stylo et le plan arrivent ensuite, en fondu. */
+.stage__fig .gem__line{stroke-dasharray:1;stroke-dashoffset:1}
+.stage__fig.is-in .gem__line{stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--ease-out) .1s}
+.stage__fig .gem__pen,.stage__fig .gem__plan,.stage__fig .gem__spark{opacity:0;transition:opacity 1s var(--ease) 1.2s}
+.stage__fig.is-in .gem__pen,.stage__fig.is-in .gem__plan,.stage__fig.is-in .gem__spark{opacity:1}
+.stage__fig.is-in .gem__plan{transition-delay:1.7s}
+
+/* Sous 900 px, les trois colonnes s'empilent : le texte, puis le dessin
+   qui monte du bas de la section, le texte monospace entre les deux. */
+@media (max-width:900px){
+  .stage__inner{grid-template-columns:1fr;grid-template-rows:none;row-gap:26px}
+  .stage__label{margin-bottom:0}
+  .stage__lede,.stage__fig,.stage__side{grid-column:1;grid-row:auto}
+  /* le dessin passe en dernier : la main reste coupée par le bord bas de
+     la section, comme sur grand écran, au lieu de s'arrêter en plein texte */
+  .stage__fig{order:3}
+  .stage__lede{margin:0;max-width:16ch}
+  .stage__side{justify-self:start;margin:0;max-width:44ch}
+  .stage__fig{width:min(100%,460px);justify-self:center;margin-top:10px}
+  .stage__cap{display:none}
+}
 
 /* =========================================================
    ANATOMIE (sticky)
@@ -981,7 +1084,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   gap:clamp(24px,4vw,64px);align-items:start;
 }
 .sign__portrait{margin:0}
-.sign__portrait img{display:block;width:100%;height:auto}
+/* Le portrait ressortait comme une photo posée sur la page : blancs de
+   chemise à pleine luminance sur un fond walnut. Il est baissé d'un tiers
+   et réchauffé juste assez pour que ses gris tirent vers le brun du fond —
+   loin de la bichromie sépia abandonnée au §15 : les tons chair restent.
+   Les deux bords latéraux se dissolvent comme le bas le faisait déjà :
+   l'épaule n'est plus tranchée net par le cadre de l'image. */
+.sign__portrait img{
+  display:block;width:100%;height:auto;
+  filter:brightness(.7) contrast(1.06) sepia(.2) saturate(.92);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 80%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 80%,transparent 100%);
+}
 .sign__text{display:grid;gap:18px;max-width:70ch}
 .sign__who{
   margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;
@@ -1120,7 +1234,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .sprint__amount{
   margin:0;font-size:clamp(2.4rem,5vw,4rem);font-weight:500;letter-spacing:-.045em;line-height:1;
-  font-variant-numeric:tabular-nums;color:var(--cream);
+  font-variant-numeric:tabular-nums;color:var(--ember);   /* comme les 690 et 990 € de l'offre */
 }
 .sprint__amount em{font-style:normal;font-size:.48em}
 .sprint__unit{
@@ -1163,46 +1277,90 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .foot__disclaimer{max-width:62ch;text-align:right}
 
 /* =========================================================
-   PLANCHES — trois feuilles claires dans la fiction
+   PLANCHES — trois pleines pages dans la fiction
    =========================================================
-   La fiction enchaîne neuf fonds sombres. Les planches sont le négatif
-   du site : le crème devient le papier, le walnut devient l'encre. Aucune
-   couleur n'entre dans la palette — seul l'ember des petits numéros est
-   assombri, parce que l'ember pur ne fait que 3,5:1 sur crème : assez pour
-   le grand prix (texte large), pas pour une étiquette de 12 px.
+   La fiction enchaîne neuf fonds sombres. Les planches cassent la suite,
+   chacune dans sa propre couleur — ember, noir de tirage, crème — au lieu
+   de trois fois le même crème : une première version les faisait toutes
+   identiques, et la répétition annulait la rupture qu'elles devaient
+   produire. Aucune couleur n'entre dans la palette.
+
    Ce ne sont pas des sections : pas de numéro, pas de `data-bg`, et le
-   fond réactif garde simplement la teinte de la section d'avant. */
+   fond réactif garde simplement la teinte de la section d'avant. Elles
+   n'ont pas non plus de pied de page : la pagination « Pl. 01 / 03 » et
+   la marque en bas de planche venaient des visuels faits pour les
+   réseaux, où elles signent une image isolée. Dans la page, elles
+   signaient une page… qui est déjà signée. */
 .plate{
   --ink:var(--walnut);
   --ink-62:rgba(16,9,4,.62);       /* 5,6:1 sur crème */
   --ink-14:rgba(16,9,4,.14);
   --ember-ink:#b84300;             /* ember assombri : 4,8:1 sur crème */
-  position:relative;background:var(--cream);color:var(--ink);
-  padding:clamp(56px,6.4vw,104px) var(--gutter) clamp(26px,3vw,44px);
+  position:relative;z-index:1;overflow:hidden;isolation:isolate;
+  background:var(--cream);color:var(--ink);
+  padding:clamp(64px,7.4vw,124px) var(--gutter);
 }
-.plate__inner{max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(30px,4.4vw,64px)}
+.plate__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(30px,4.4vw,64px)}
 .plate .eyebrow{color:var(--ink-62)}
 .plate .eyebrow .dot{box-shadow:none}
-.plate__foot{
-  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-  padding-top:clamp(16px,1.8vw,24px);border-top:1px solid var(--ink-14);
-  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-62);
-}
-.plate__foot b{font-weight:500;color:var(--ink)}
 
-/* ---------- Planche 1 : le témoignage ---------- */
+/* ---------- Planche 1 : le témoignage, sur ember ----------
+   Le walnut sur ember fait 4,9:1 au plus sombre du dégradé : le texte
+   reste donc en walnut plein, jamais en walnut atténué, et le point de
+   l'étiquette passe au walnut — un point ember sur ember disparaîtrait. */
+.plate--quote{
+  --ink-62:var(--walnut);
+  background:
+    radial-gradient(70% 90% at 12% 0%,rgba(255,154,88,.55),transparent 62%),
+    radial-gradient(60% 80% at 100% 100%,rgba(110,36,0,.42),transparent 66%),
+    var(--ember);
+}
+.plate--quote .eyebrow .dot{background:var(--walnut);animation:none}
 .plate__quote{margin:0;display:grid;gap:clamp(22px,3vw,40px);padding-block:clamp(8px,2.6vw,40px)}
 .plate__quote p{
-  margin:0;max-width:24ch;
-  font-size:clamp(1.75rem,4.9vw,4.6rem);font-weight:500;line-height:1.04;letter-spacing:-.032em;
+  margin:0;max-width:22ch;
+  font-size:clamp(1.75rem,4.7vw,4.4rem);font-weight:500;line-height:1.04;letter-spacing:-.032em;
 }
 .plate__quote footer{
   display:flex;align-items:center;gap:clamp(14px,2vw,26px);
-  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-62);
+  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
 }
-.plate__quote footer::before{content:"";flex:none;width:clamp(34px,4.4vw,64px);height:1.5px;background:var(--ember)}
+.plate__quote footer::before{content:"";flex:none;width:clamp(34px,4.4vw,64px);height:1.5px;background:var(--ink)}
 
-/* ---------- Planche 2 : la nomenclature ---------- */
+/* la poche de manteau, au trait, qui rappelle la phrase sans l'illustrer
+   mot pour mot : on ne voit que le capuchon et son agrafe */
+.plate__pocket{
+  position:absolute;z-index:1;right:clamp(-40px,4vw,110px);top:50%;
+  width:clamp(200px,24vw,360px);height:auto;transform:translateY(-46%) rotate(6deg);
+  overflow:visible;pointer-events:none;
+}
+.plate__pocket path{stroke:var(--walnut);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.plate__pocket .pk-fabric{fill:#c94a02}   /* opaque : le corps du stylo disparaît dedans */
+.plate__pocket .pk-stitch{fill:none;stroke-dasharray:5 6;opacity:.7}
+.plate__pocket .pk-crease{fill:none;opacity:.4}
+.plate__pocket .pk-cap,.plate__pocket .pk-clip{fill:var(--walnut)}
+.plate__pocket .pk-barrel{fill:#fff9f2}
+.plate__pocket .pk-line{stroke:#fff9f2;opacity:.35}
+
+/* ---------- Planche 2 : la nomenclature, en tirage de plan ----------
+   Fond noir tramé comme un calque : filets de 32 px, repères de 160 px.
+   Le noir est neutre et non walnut, pour ne pas se fondre dans les
+   sections voisines ; la trame achève de le distinguer. */
+.plate--parts{
+  --ink:var(--cream);
+  --ink-62:var(--cream-62);
+  --ink-14:var(--cream-12);
+  --ember-ink:var(--ember);        /* 4,6:1 sur ce noir */
+  background:
+    radial-gradient(60% 70% at 50% 45%,rgba(220,80,0,.10),transparent 70%),
+    repeating-linear-gradient(to right,rgba(255,237,215,.07) 0 1px,transparent 1px 160px),
+    repeating-linear-gradient(to bottom,rgba(255,237,215,.07) 0 1px,transparent 1px 160px),
+    repeating-linear-gradient(to right,rgba(255,237,215,.028) 0 1px,transparent 1px 32px),
+    repeating-linear-gradient(to bottom,rgba(255,237,215,.028) 0 1px,transparent 1px 32px),
+    #060504;
+  background-position:center;
+  border-block:1px solid var(--cream-12);
+}
 .plate__head{display:grid;gap:clamp(18px,2.4vw,30px)}
 .parts{
   list-style:none;margin:0;padding:0;
@@ -1211,7 +1369,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   gap:1px;background:var(--ink-14);border:1px solid var(--ink-14);
 }
 .part{
-  background:var(--cream);
+  background:rgba(6,5,4,.86);
   display:grid;justify-items:center;align-content:end;
   padding:clamp(22px,3vw,46px) 8px clamp(18px,2.2vw,32px);text-align:center;
 }
@@ -1221,20 +1379,41 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 /* vue éclatée : la pièce se soulève sous le pointeur */
 .part:hover svg{transform:translate3d(0,-8px,0)}
-.part svg :is(path,rect,circle){stroke:var(--ink);stroke-width:2.2px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.part svg :is(path,rect,circle){stroke:var(--cream-80);stroke-width:1.6px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .part .f-ember{fill:var(--ember)}
-.part .f-light{fill:#fff9f2}
+.part .f-light{fill:rgba(255,237,215,.1)}
 .part .f-sand{fill:#e0b371}
-.part .f-walnut{fill:var(--walnut)}
+.part .f-walnut{fill:#1a0f07}
 .part .f-none{fill:none}
-.part .s-fine{stroke:var(--ink-14)}
-.part .s-ink{stroke:#3a1d08;stroke-width:5px;stroke-linecap:round}
-.part .f-glint{fill:#fff9f2;stroke:none;opacity:.55}
+.part .s-fine{stroke:var(--cream-24)}
+.part .s-ink{stroke:#7a4a24;stroke-width:5px;stroke-linecap:round}
+.part .f-glint{fill:#fff9f2;stroke:none;opacity:.7}
 .part__idx{margin:0 0 6px;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;color:var(--ember-ink)}
 .part__name{margin:0;font-size:clamp(.9rem,1.3vw,1.3rem);font-weight:450;letter-spacing:-.01em}
 .plate__coda{margin:0;font-size:clamp(1.35rem,2.8vw,2.5rem);font-weight:400;letter-spacing:-.02em;color:var(--ink-62)}
 
-/* ---------- Planche 3 : le prix ---------- */
+/* ---------- Planche 3 : le prix, sur crème ----------
+   La seule planche claire. Le papier a un grain de lumière, et un tampon
+   d'étiquette tourne dans l'angle — un cachet de prix public, qui dit
+   « prix » avant qu'on ait lu le chiffre. */
+.plate--price{
+  background:
+    radial-gradient(80% 90% at 85% 10%,rgba(255,255,255,.55),transparent 60%),
+    radial-gradient(70% 80% at 0% 100%,rgba(224,179,113,.28),transparent 66%),
+    var(--cream);
+}
+.plate__stamp{
+  position:absolute;z-index:1;right:clamp(12px,6vw,120px);top:clamp(28px,5vw,80px);
+  width:clamp(120px,15vw,210px);height:auto;pointer-events:none;
+  animation:stamp-turn 48s linear infinite;
+}
+@keyframes stamp-turn{to{transform:rotate(360deg)}}
+.plate__stamp .st-ring{fill:none;stroke:var(--ember-ink);stroke-width:1.4}
+.plate__stamp .st-ring--in{stroke-dasharray:2 5}
+.plate__stamp .st-text{
+  font-family:var(--mono);font-size:11.2px;letter-spacing:.22em;text-transform:uppercase;fill:var(--ember-ink);
+}
+.plate__stamp .st-star{fill:var(--ember)}
 .plate__pricing{display:grid;gap:clamp(18px,2.6vw,36px);padding-block:clamp(0px,1.6vw,24px)}
 .plate__price{
   margin:0;font-size:clamp(5.2rem,24vw,19rem);font-weight:500;line-height:.86;letter-spacing:-.055em;
@@ -1248,6 +1427,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 @media (max-width:1180px){
   .parts{grid-template-columns:repeat(3,1fr)}
+}
+/* Sur téléphone, la poche passe derrière la citation, en filigrane : à
+   côté, elle écraserait une colonne déjà étroite. */
+@media (max-width:720px){
+  .plate__pocket{right:-70px;width:220px;opacity:.28}
+  .plate__stamp{width:96px;top:22px;right:14px}
 }
 
 /* =========================================================
@@ -1296,12 +1481,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* la nature morte se replie dans le coin, simplement entrevue */
   .mockup{height:min(70%,580px)}
   .mockup__mat{left:-6%;right:-10%;top:4%;bottom:11%}
-  .mockup__paper{width:124px;left:auto;right:0;bottom:2%;padding:15px 13px;gap:6px}
-  .mockup__paper-head{height:7px}
-  .mockup__paper-line{height:3px}
-  .mockup__paper-sign{margin-top:15px;font-size:.4rem}
-  .mockup__paper-rule{margin-top:2px}
-  .mockup__pen{left:auto;right:4.5%;bottom:4%;width:26px}
+  /* le verre descend dans l'angle bas-droit, à côté des chiffres alignés
+     à gauche ; le stylo se couche sous le cartel, pointé vers lui */
+  .mockup__glass{width:150px;top:auto;right:-10%;bottom:8%}
+  .mockup__pen{left:30%;top:52%;width:26px}
   .mockup__clip,.mockup__rule{display:none}
   .bench__row{grid-template-columns:1fr auto;row-gap:10px}
   .bench__row .bar{grid-column:1 / -1;order:3}
@@ -1325,7 +1508,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   [data-reveal]{opacity:1;transform:none}
   .line > i{transform:none}
   .grain{display:none}
-  .manifeste__text w{color:var(--cream)}
+  .manifeste__text w{color:var(--stage-ink)}
+  .stage__fig .gem__line{stroke-dashoffset:0}
+  .stage__fig .gem__pen,.stage__fig .gem__plan,.stage__fig .gem__spark{opacity:1}
   /* le plan est tracé d'emblée : rien ne se tire sous les yeux */
   .draft__corner,.draft__ticks,.draft__cross{stroke-dashoffset:0}
   .draft__nodes{opacity:1}
@@ -1478,7 +1663,7 @@ body.is-ready .hero__glow{opacity:1}
 .pop__frame{
   position:relative;margin-top:clamp(14px,2.4vw,30px);
   border:1px dashed rgba(255,237,215,.28);border-radius:4px;
-  min-height:clamp(380px,56vh,620px);
+  min-height:clamp(440px,70vh,720px);
   display:grid;place-items:center;
   background:radial-gradient(60% 60% at 50% 50%,rgba(220,80,0,.10),transparent 70%);
 }
@@ -1498,7 +1683,9 @@ body.is-ready .hero__glow{opacity:1}
 .pop__tick{position:absolute;left:50%;width:1px;height:16px;background:var(--cream-56)}
 .pop__tick--t{top:8%}
 .pop__tick--b{bottom:8%}
-.pop__pen{position:relative;width:clamp(120px,14vw,190px);height:min(46vh,430px);z-index:2}
+/* Le corps est allongé d'un tiers (`data-barrel`) : un vrai stylo à bille
+   est dix-neuf fois plus long que large, celui-ci ne l'était que douze. */
+.pop__pen{position:relative;width:clamp(120px,14vw,190px);height:min(60vh,560px);z-index:2}
 
 /* fausse interface — second accent, franchement pop */
 .hud{
@@ -1547,7 +1734,7 @@ body.is-ready .hero__glow{opacity:1}
 
 @media (max-width:820px){
   .pop__frame{min-height:0;padding:30px 16px 22px;grid-auto-flow:row;gap:18px}
-  .pop__pen{height:38vh}
+  .pop__pen{height:50svh}
   .hud{position:relative;right:auto;top:auto;width:100%}
   .pop__ring{width:min(96%,360px)}
   .footnote{text-align:left}
@@ -1602,12 +1789,20 @@ body.is-ready .hero__glow{opacity:1}
   display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.6vw,42px);
   width:100%;max-width:1100px;margin-top:clamp(20px,3vw,40px);text-align:left;
 }
+/* Les deux cartes portent exactement le même fond. La carte de l'agenda
+   avait un voile ember et celle du formulaire un voile brun : posées côte
+   à côte sur le halo de la section, elles donnaient deux teintes qui ne
+   se répondaient pas. La hiérarchie est portée par le contenu — un seul
+   bouton plein de chaque côté —, pas par la couleur du fond. Le fond est
+   assez dense pour que le halo ember de la section ne les teinte pas
+   différemment selon leur place. */
 .contact__pick,.contact__form{
   padding:clamp(24px,2.6vw,38px);border-radius:14px;
-  border:1px solid var(--cork);background:linear-gradient(160deg,rgba(56,36,22,.5),rgba(16,9,4,.34));
+  border:1px solid rgba(220,80,0,.32);
+  background:linear-gradient(160deg,rgba(40,22,10,.78),rgba(16,9,4,.72));
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   display:grid;gap:16px;align-content:start;
 }
-.contact__pick{border-color:rgba(220,80,0,.45);background:linear-gradient(160deg,rgba(220,80,0,.15),rgba(16,9,4,.4))}
 .contact__tag{
   margin:0;font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;
   text-transform:uppercase;color:var(--cream-56);
