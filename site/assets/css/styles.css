@@ -1163,6 +1163,94 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .foot__disclaimer{max-width:62ch;text-align:right}
 
 /* =========================================================
+   PLANCHES — trois feuilles claires dans la fiction
+   =========================================================
+   La fiction enchaîne neuf fonds sombres. Les planches sont le négatif
+   du site : le crème devient le papier, le walnut devient l'encre. Aucune
+   couleur n'entre dans la palette — seul l'ember des petits numéros est
+   assombri, parce que l'ember pur ne fait que 3,5:1 sur crème : assez pour
+   le grand prix (texte large), pas pour une étiquette de 12 px.
+   Ce ne sont pas des sections : pas de numéro, pas de `data-bg`, et le
+   fond réactif garde simplement la teinte de la section d'avant. */
+.plate{
+  --ink:var(--walnut);
+  --ink-62:rgba(16,9,4,.62);       /* 5,6:1 sur crème */
+  --ink-14:rgba(16,9,4,.14);
+  --ember-ink:#b84300;             /* ember assombri : 4,8:1 sur crème */
+  position:relative;background:var(--cream);color:var(--ink);
+  padding:clamp(56px,6.4vw,104px) var(--gutter) clamp(26px,3vw,44px);
+}
+.plate__inner{max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(30px,4.4vw,64px)}
+.plate .eyebrow{color:var(--ink-62)}
+.plate .eyebrow .dot{box-shadow:none}
+.plate__foot{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding-top:clamp(16px,1.8vw,24px);border-top:1px solid var(--ink-14);
+  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-62);
+}
+.plate__foot b{font-weight:500;color:var(--ink)}
+
+/* ---------- Planche 1 : le témoignage ---------- */
+.plate__quote{margin:0;display:grid;gap:clamp(22px,3vw,40px);padding-block:clamp(8px,2.6vw,40px)}
+.plate__quote p{
+  margin:0;max-width:24ch;
+  font-size:clamp(1.75rem,4.9vw,4.6rem);font-weight:500;line-height:1.04;letter-spacing:-.032em;
+}
+.plate__quote footer{
+  display:flex;align-items:center;gap:clamp(14px,2vw,26px);
+  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-62);
+}
+.plate__quote footer::before{content:"";flex:none;width:clamp(34px,4.4vw,64px);height:1.5px;background:var(--ember)}
+
+/* ---------- Planche 2 : la nomenclature ---------- */
+.plate__head{display:grid;gap:clamp(18px,2.4vw,30px)}
+.parts{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  /* les filets sont le fond de la liste, vu entre les cases */
+  gap:1px;background:var(--ink-14);border:1px solid var(--ink-14);
+}
+.part{
+  background:var(--cream);
+  display:grid;justify-items:center;align-content:end;
+  padding:clamp(22px,3vw,46px) 8px clamp(18px,2.2vw,32px);text-align:center;
+}
+.part svg{
+  height:clamp(84px,11vw,168px);width:auto;overflow:visible;margin-bottom:clamp(12px,1.6vw,20px);
+  transition:transform .8s var(--ease-out);
+}
+/* vue éclatée : la pièce se soulève sous le pointeur */
+.part:hover svg{transform:translate3d(0,-8px,0)}
+.part svg :is(path,rect,circle){stroke:var(--ink);stroke-width:2.2px;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.part .f-ember{fill:var(--ember)}
+.part .f-light{fill:#fff9f2}
+.part .f-sand{fill:#e0b371}
+.part .f-walnut{fill:var(--walnut)}
+.part .f-none{fill:none}
+.part .s-fine{stroke:var(--ink-14)}
+.part .s-ink{stroke:#3a1d08;stroke-width:5px;stroke-linecap:round}
+.part .f-glint{fill:#fff9f2;stroke:none;opacity:.55}
+.part__idx{margin:0 0 6px;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.24em;color:var(--ember-ink)}
+.part__name{margin:0;font-size:clamp(.9rem,1.3vw,1.3rem);font-weight:450;letter-spacing:-.01em}
+.plate__coda{margin:0;font-size:clamp(1.35rem,2.8vw,2.5rem);font-weight:400;letter-spacing:-.02em;color:var(--ink-62)}
+
+/* ---------- Planche 3 : le prix ---------- */
+.plate__pricing{display:grid;gap:clamp(18px,2.6vw,36px);padding-block:clamp(0px,1.6vw,24px)}
+.plate__price{
+  margin:0;font-size:clamp(5.2rem,24vw,19rem);font-weight:500;line-height:.86;letter-spacing:-.055em;
+  color:var(--ember);white-space:nowrap;
+}
+.plate__after{
+  margin:0;max-width:34ch;
+  font-size:clamp(1.2rem,2.5vw,2.3rem);font-weight:450;line-height:1.22;letter-spacing:-.02em;
+}
+.plate__after span{display:block;color:var(--ink-62)}
+
+@media (max-width:1180px){
+  .parts{grid-template-columns:repeat(3,1fr)}
+}
+
+/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width:1180px){
