@@ -857,3 +857,79 @@ loin sous la ligne de base qu'un accent ne monte au-dessus des capitales.
 deux axes.** Le défaut ne se voit que sur les mots qui portent une
 descendante, ce qui le rend invisible à la relecture — « Ce stylo ne vaut
 rien » l'a montré parce que c'est le plus grand titre du site.
+
+---
+
+## 27. Trois planches claires dans la fiction
+
+Julien a trouvé le défilement monotone et proposé d'insérer, entre les
+sections, des bannières reprenant les visuels faits pour les réseaux :
+la nomenclature à six pièces, le témoignage de la poche de manteau, le
+prix en très grand. Il avait raison sur le diagnostic : de l'accroche à
+la Divulgation, la fiction enchaîne neuf fonds sombres — walnut, bark,
+deep — que le fond réactif fait glisser l'un dans l'autre. Tout y est
+soigné et tout y a la même valeur.
+
+### Le négatif du site, pas une couleur de plus
+
+Les planches sont en **crème plein cadre, texte walnut** : la palette
+retournée. Aucune teinte n'entre, sauf l'ember des petits numéros,
+assombri en `#b84300` — l'ember pur ne fait que 3,5:1 sur crème, assez
+pour le prix (texte large), pas pour une étiquette de 12 px (4,8:1).
+
+Ce ne sont **pas des sections** : `<aside>`, sans numéro — la
+numérotation 01-12 reste intacte et rien n'est à renuméroter — et sans
+`data-bg`, pour que le fond réactif garde la teinte d'avant et qu'aucune
+teinte « planche » n'ait à exister dans `THEMES`. Leur pagination
+« Pl. 01 / 03 » les désigne comme une série d'annexes au plan, dans le
+registre du cartouche de l'Anatomie.
+
+### Placement
+
+- **Pl. 01, le témoignage, après 04 Format.** « Il tient dans une
+  poche » précède ; la poche de manteau arrive en écho. Placée avant, la
+  planche aurait éventé la chute du titre. Témoignage inventé, donc
+  permis : il est avant la Divulgation, comme ceux de l'Adoption. Le
+  « Défiler pour continuer » du Format pointe désormais sur la planche,
+  pour ne pas la sauter.
+- **Pl. 02, la nomenclature, entre 06 Évaluation et 07 Modèle**, à la
+  demande de Julien. Les six pièces sont dessinées en SVG dans un même
+  repère (80 × 200, posées sur y = 196), donc à la même échelle — sauf
+  la bille, grossie. Titre en capitales : c'est la voix fiche produit
+  (§4), quel que soit le visuel d'origine.
+- **Pl. 03, le prix, juste avant 10 Tarifs.**
+
+### Deux écarts avec les visuels d'origine
+
+**Le prix passe de 1,00 € à 0,30 €.** Le site dit 0,30 € dans l'offre
+Unité, dans le témoignage de Thomas D., et « trente centimes » partout
+ailleurs. Un chiffre du stylo ne se corrige jamais à un seul endroit.
+
+**« La page va au bout. Vous verrez pourquoi. » devient « Le prix, lui,
+n'a pas suivi. »** La phrase d'origine est écrite pour un post, qui
+donne envie de venir voir. Sur la page, deux sections avant la
+Divulgation, elle annonce qu'il y a un dénouement — exactement ce que le
+§18 a retiré du cartel.
+
+### Ce que ça coûte
+
+Mesuré contre la version précédente : **+1 373 px à 390 px de large
+(+6,0 %), +2 284 px à 1 440 px (+10 %)**. Le §25 a établi qu'aucune
+coupe ne rapporte plus de 9 % ; ces trois planches en coûtent autant
+sur desktop. C'est le prix du rythme. Si la longueur revient comme
+reproche, c'est la Pl. 03 qu'on retire en premier : c'est celle qui
+redit le plus la section qui la suit.
+
+Recomptage imposé par le §25 : **+75 mots** à la fiction, au même
+comptage sur le DOM rendu. « Près de deux mille » reste la décision de
+Julien ; l'écart qu'elle représente se réduit d'autant.
+
+### Contrôles
+
+1 440, 1 024, 390 et 360 px ; mouvement normal et réduit ; seconde visite
+dans la même session. Aucune erreur, aucun débordement horizontal,
+aucune apparition restée masquée. Un piège évité en passant : le
+découpage en lignes de `data-split` avale les `<br>` (il découpe sur
+les blancs après les avoir remplacés par des espaces). Un titre découpé
+ne peut donc pas forcer son retour à la ligne — celui de la Pl. 02 n'en
+a pas.
