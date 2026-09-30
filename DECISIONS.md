@@ -1109,9 +1109,13 @@ Ce qu'il a fallu suivre derrière :
   et « Tarifs ». Le code de copie du BibTeX est retiré du script.
 
 **Le compte de mots, recompté comme le §25 l'exige : 1 203 → 937** (DOM
-rendu, tout ce qui précède la Divulgation). « Près de deux mille mots »
-reste la décision de Julien. L'écart atteint maintenant le double, et la
-troisième voie du §25 (« neuf minutes ») est plus que jamais la sortie.
+rendu, tout ce qui précède la Divulgation). L'écart avec « près de deux
+mille mots » atteignait le double : **Julien a retenu la troisième voie du
+§25.** La Divulgation s'ouvre désormais sur « Vous venez de passer neuf
+minutes sur un objet en plastique moulé » : plus aucun chiffre à
+recompter quand la fiction change, et « neuf minutes » a été retiré de la
+fin de la phrase pour ne pas le dire deux fois. Le rappel du quatrième
+paragraphe (« vous lui avez accordé neuf minutes ») reste : il est voulu.
 La page passe de 24 963 à 21 838 px à 1 440 px de large (−12,5 %).
 
 ### Après la bascule
