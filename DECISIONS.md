@@ -1049,3 +1049,88 @@ dans la même session. Aucune erreur, aucun débordement horizontal. Les
 apparitions « restées masquées » que signale un défilement programmatique
 rapide existent à l'identique sur la version précédente : c'est le banc
 (§21), pas le site — un défilement à vitesse de lecture n'en laisse aucune.
+
+---
+
+## 29. Neuf actes au lieu de douze, et une offre en deux lignes
+
+Nouvelle liste de Julien, traitée d'un bloc.
+
+### Le cartel du hero, en colonne
+
+Julien a renvoyé une capture d'oryzo.ai : le cartel y est **plus haut que
+large**, le titre en capitales en haut, un filet pointillé vers le bas, et
+en dessous un petit texte calé à droite. Le nôtre, à 372 px de large pour
+deux boutons, se lisait encore comme un bandeau.
+
+Il passe à 250-310 px de large (21 vw), en colonne : titre en haut, filet
+pointillé, bouton « Précommander » calé à droite en bas. C'est sa
+**hauteur** qui le fait remonter, son pied restant aligné sur les chiffres
+de droite.
+
+Cette hauteur est plafonnée à `100svh - 450px` : à 1 280 × 720, une
+hauteur fixée à 48 svh poussait le pied du hero sous la ligne de
+flottaison et cachait le « Défiler pour continuer ». Vérifié de 1 920 × 1 080
+à 360 × 740 : le hero fait toujours exactement la hauteur de l'écran.
+
+Le bouton « Lire le papier » disparaît avec la section Recherche vers
+laquelle il pointait. Il n'en reste qu'un, et c'est celui qui compte (§5).
+
+Le nom passe de « JULIEN » à **« LE JULIEN »** : le nom du produit, pas
+celui du vendeur, ce qui sert encore la fiction. Le corps baisse d'un cran
+(13,2 vw, 18 vw sur téléphone) et le mot ne peut plus passer à la ligne.
+Le logo de la barre et celui du pied de page restent « JULIEN ».
+
+### La main du Manifeste est retirée
+
+À la demande de Julien. Le texte ne bouge pas. La grille passe de trois
+colonnes à deux, et la section retrouve un rembourrage bas : il valait
+zéro parce que la main était coupée par le bord de la section. Tout le CSS
+du dessin (`.gem__*`, `.stage__fig`) part avec elle.
+
+### Trois sections de la fiction supprimées
+
+**07 Modèle, 08 Recherche et 10 Tarifs.** La numérotation est refaite :
+07 Adoption, 08 FAQ, 09 Divulgation. La dernière question de la FAQ
+(« Ce site est-il sérieux ? ») disparaît aussi.
+
+Ce qu'il a fallu suivre derrière :
+
+- **La Divulgation** citait « un article de recherche » parmi ce qu'elle
+  avait vendu. Il n'existe plus : remplacé par « des témoignages
+  inventés », qui visent l'Adoption, toujours en place. La règle du §25
+  (le vrai d'après parle du faux d'avant) s'applique dans les deux sens.
+- **La planche du prix** (Pl. 03) devient le seul prix de la fiction.
+  Le §27 la désignait comme la première à retirer parce qu'elle redisait
+  la grille qui la suivait ; la grille partie, elle ne redit plus rien.
+- **La FAQ** passe en fond walnut : sans les Tarifs entre elles, elle
+  aurait suivi l'Adoption sur le même bark.
+- La barre, le menu et le pied de page perdent « Modèle », « Recherche »
+  et « Tarifs ». Le code de copie du BibTeX est retiré du script.
+
+**Le compte de mots, recompté comme le §25 l'exige : 1 203 → 937** (DOM
+rendu, tout ce qui précède la Divulgation). « Près de deux mille mots »
+reste la décision de Julien. L'écart atteint maintenant le double, et la
+troisième voie du §25 (« neuf minutes ») est plus que jamais la sortie.
+La page passe de 24 963 à 21 838 px à 1 440 px de large (−12,5 %).
+
+### Après la bascule
+
+- **La méthode** devient « Formation · Accompagnement · Création », avec
+  pour titre les trois promesses de Julien, une par ligne. Les trois
+  principes restent tels quels.
+- **Le bloc Julien** était tassé : un portrait haut à côté d'un texte qui
+  s'arrêtait à mi-hauteur. Le portrait s'élargit (400 px), le texte se
+  centre sur lui, et chaque élément prend de l'air. « 50 » devient
+  « 50+ ».
+- **L'offre** prend le format proposé par Julien : une ligne par format
+  (numéro, nom, ce que ça produit, prix et durée). « Demi-journée » et
+  « Journée complète » deviennent **Formation** et **Accompagnement**.
+  Les listes détaillées sont retirées. Deux mentions en survivent dans la
+  ligne des modalités : « TVA non applicable », et « financement OPCO
+  possible », la seule mention de financement du site (§14).
+  L'étiquette est « Formats », **sans le numéro 11** proposé : la
+  numérotation s'arrête à 09 avec la Divulgation (§13), et un « 11 » placé
+  après elle ne suivrait rien.
+- « ½ journée » est écrit « Demi-journée » : le « ½ » manque à la police
+  mono auto-hébergée, qui le rendait comme un « % ».

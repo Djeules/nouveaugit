@@ -73,7 +73,7 @@
       requestAnimationFrame(loop);
     })();
 
-    $$('a, button, summary, .card, .plan, .offer, .quote').forEach(el => {
+    $$('a, button, summary, .card, .quote').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('is-hot'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('is-hot'));
     });
@@ -460,21 +460,6 @@
       card.style.setProperty('--my', `${e.clientY - r.top}px`);
     });
   });
-
-  /* ---------------------------------------------------
-     15. Copie du BibTeX
-     --------------------------------------------------- */
-  const copyBtn = $('[data-copy]');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
-      const code = $('.code code')?.textContent || '';
-      try { await navigator.clipboard.writeText(code); } catch (_) {}
-      const old = copyBtn.textContent;
-      copyBtn.textContent = 'Copié';
-      setTimeout(() => { copyBtn.textContent = old; }, 1600);
-    });
-  }
-
 
   /* ---------------------------------------------------
      19. Stylo 3D — prisme hexagonal construit en CSS

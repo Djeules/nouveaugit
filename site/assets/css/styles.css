@@ -317,7 +317,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:grid;justify-items:center;gap:clamp(10px,1.6vw,20px);text-align:center;
 }
 .hero__wordmark{
-  margin:0;font-size:clamp(3.6rem,14.6vw,13.5rem);font-weight:700;line-height:.84;
+  margin:0;font-size:clamp(3.2rem,13.2vw,12.5rem);font-weight:700;line-height:.84;white-space:nowrap;
   letter-spacing:-.045em;text-transform:uppercase;color:var(--cream);
   text-shadow:0 18px 60px rgba(0,0,0,.45);
 }
@@ -413,18 +413,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   position:relative;z-index:4;max-width:var(--maxw);width:100%;margin-inline:auto;
   display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);justify-content:space-between;align-items:flex-end;
 }
-/* Comme sur la référence : un cartel étroit, qui flotte au-dessus du pied
-   de page au lieu d'y être posé. Il s'arrêtait à 46 px du bas sur 520 px
-   de large et se lisait comme un bandeau ; il se resserre à la largeur de
-   ses deux boutons et remonte d'environ un dixième d'écran. */
+/* Comme sur la référence : un cartel en colonne, plus haut que large. Le
+   titre en haut, un filet pointillé, puis le bouton calé à droite en bas.
+   C'est sa hauteur qui le fait remonter vers le milieu de l'écran : le
+   pied reste aligné sur les chiffres de droite. */
 .hero__card{
-  flex:0 1 372px;max-width:min(372px,100%);
-  margin-bottom:clamp(0px,11vh,120px);
-  display:grid;gap:14px;padding:clamp(18px,1.8vw,24px);border-radius:12px;
+  flex:0 0 auto;width:clamp(250px,21vw,310px);max-width:100%;
+  /* la hauteur suit l'écran, mais jamais au point de pousser le pied du
+     hero sous la ligne de flottaison : 450 px, c'est la barre, le nom et
+     le texte d'accroche au-dessus. */
+  min-height:clamp(240px,min(46svh,100svh - 450px),440px);
+  display:flex;flex-direction:column;gap:14px;padding:clamp(20px,1.9vw,28px);border-radius:12px;
   border:1px solid var(--cork);
   /* Le cartel était le seul objet beige du site — une couleur relevée sur la
      référence et reprise nulle part ailleurs. Il prend la teinte des autres
-     cadres (.card, .quiz__card, .plan) : sombre, translucide, bordée de cork.
+     cadres (.card, .quiz__card) : sombre, translucide, bordée de cork.
      Bénéfice second : son texte était déjà en crème clair, donc peu contrasté
      sur du beige. Le flou reste, il efface la trame du tapis. */
   background:linear-gradient(160deg,rgba(56,36,22,.74),rgba(16,9,4,.62));
@@ -434,10 +437,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* Le titre reprend le poids que portait la ligne de crédit supprimée :
    un cartel affiche d'abord le nom de l'objet, pas la notice. */
 .hero__claim{
-  margin:0;font-size:clamp(1rem,1.32vw,1.18rem);font-weight:600;line-height:1.28;
-  text-transform:uppercase;letter-spacing:.005em;color:#fff9f2;max-width:26ch;
+  margin:0;font-size:clamp(1.18rem,1.72vw,1.6rem);font-weight:600;line-height:1.12;
+  text-transform:uppercase;letter-spacing:-.005em;color:#fff9f2;
 }
-.hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
+.hero__cta{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;
+  margin-top:auto;padding-top:clamp(16px,2vh,22px);border-top:1px dotted rgba(255,249,242,.5);
+}
+.hero__card .cta-reply{margin:0;min-height:0}
 
 .hero__meta{display:grid;gap:clamp(14px,2vw,26px);justify-items:end;text-align:right}
 .hero__stats{
@@ -505,46 +512,43 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* =========================================================
    MANIFESTE
    ========================================================= */
-/* La mise en page de la deuxième section de la référence : le produit au
-   centre, tenu à bout de doigts comme une pierre qu'on montre ; un texte
-   en grand à gauche, un texte en monospace à droite ; un fond de teinte
-   pierre, seul fond clair de la page avec la planche du prix. La main
-   entre par le bord bas de la section et y est coupée — elle n'est pas
-   posée, elle arrive. La teinte est une variable : si elle doit coller
-   au pixel près à la référence, c'est la seule valeur à changer. */
+/* La mise en page de la deuxième section de la référence : un texte en
+   grand à gauche, un texte en monospace à droite, sur un fond de teinte
+   pierre, seul fond clair de la page avec la planche du prix. La main qui
+   tenait le stylo au centre a été retirée : les deux textes se partagent
+   la largeur. La teinte est une variable : si elle doit coller au pixel
+   près à la référence, c'est la seule valeur à changer. */
 .stage{
   --stage-bg:#d9cfc1;
-  --stage-hand:#f2ece3;   /* la main, un ton plus pâle que le fond */
   --stage-ink:var(--walnut);
   --stage-ink-62:rgba(16,9,4,.62);
   --stage-ink-16:rgba(16,9,4,.16);
   /* z-index : le stylo 3D de l'Anatomie, juste après, déborde de sa
      bande vers le haut sur téléphone ; sur ce fond clair il se voyait
-     par-dessus la main. La section passe donc devant. */
+     par-dessus le texte. La section passe donc devant. */
   position:relative;z-index:1;overflow:hidden;
   background:
     radial-gradient(46% 62% at 50% 64%,rgba(255,249,240,.55),transparent 72%),
     var(--stage-bg);
   color:var(--stage-ink);
-  padding:clamp(72px,9vw,140px) var(--gutter) 0;
+  padding:clamp(72px,9vw,140px) var(--gutter);
 }
 .stage__inner{
   max-width:var(--maxw);margin-inline:auto;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,min(560px,40vw)) minmax(0,1fr);
-  grid-template-rows:auto 1fr;column-gap:clamp(20px,3vw,56px);
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+  grid-template-rows:auto 1fr;column-gap:clamp(20px,5vw,96px);
 }
 .stage__label{grid-column:1 / -1;color:var(--stage-ink-62);margin-bottom:clamp(20px,3vw,40px)}
 .stage__lede{
-  grid-column:1;grid-row:2;align-self:center;margin:0 0 clamp(60px,10vw,160px);
-  font-size:clamp(1.55rem,2.75vw,2.9rem);font-weight:500;line-height:1.06;letter-spacing:-.032em;
-  max-width:13ch;
+  grid-column:1;grid-row:2;align-self:center;margin:0;
+  font-size:clamp(1.7rem,3.5vw,3.6rem);font-weight:500;line-height:1.04;letter-spacing:-.034em;
+  max-width:15ch;
 }
 .manifeste__text w{display:inline-block;color:var(--stage-ink-16);transition:color .5s var(--ease)}
 .manifeste__text w.is-lit{color:var(--stage-ink)}
-.stage__fig{grid-column:2;grid-row:2;position:relative;margin:0;align-self:end}
 .stage__side{
-  grid-column:3;grid-row:2;align-self:end;justify-self:end;
-  display:grid;gap:22px;max-width:32ch;margin-bottom:clamp(60px,9vw,140px);
+  grid-column:2;grid-row:2;align-self:end;justify-self:end;
+  display:grid;gap:22px;max-width:32ch;
 }
 .stage__note{
   margin:0;font-family:var(--mono);font-size:clamp(.72rem,.86vw,.84rem);line-height:1.7;
@@ -555,57 +559,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   font-family:var(--mono);font-size:var(--fs-label);line-height:1.7;letter-spacing:.16em;
   text-transform:uppercase;color:var(--stage-ink-62);
 }
-.stage__cap{
-  position:absolute;left:0;bottom:clamp(18px,2.4vw,34px);
-  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.2em;text-transform:uppercase;
-  color:var(--stage-ink-62);
-}
-
-/* ---------- le dessin ---------- */
-.gem__art{display:block;width:100%;height:auto}
-.gem__fill{fill:var(--stage-hand)}
-.gem__nostroke{stroke:none}
-.gem__line{fill:none;stroke:var(--stage-ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.gem__fill.gem__line{fill:var(--stage-hand)}
-.gem__fine{stroke-width:1.1;opacity:.5}
-.gem__loupe{fill:none;stroke:var(--stage-ink);stroke-opacity:.35;stroke-dasharray:2 5}
-.gem__tick,.gem__dim,.gem__ext{fill:none;stroke:var(--stage-ink);stroke-opacity:.45}
-.gem__dim{stroke-dasharray:3 4}
-.gem__label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;fill:var(--stage-ink);opacity:.62}
-.gem__barrel{fill:#fff9f2;stroke:var(--stage-ink);stroke-width:1.5}
-.gem__ink{stroke:#3a1d08;stroke-width:3;stroke-linecap:round}
-.gem__hi{stroke:#fff;stroke-width:1.5;opacity:.9}
-.gem__tipcone{fill:#e0b371;stroke:var(--stage-ink);stroke-width:1.5;stroke-linejoin:round}
-.gem__ball{fill:var(--stage-ink)}
-.gem__cap{fill:var(--ember);stroke:var(--stage-ink);stroke-width:1.5}
-.gem__clip{fill:none;stroke:var(--stage-ink);stroke-width:1.5}
-.gem__rays{stroke:var(--ember);stroke-width:1.5;stroke-linecap:round}
-.gem__star{fill:var(--ember);transform-box:fill-box;transform-origin:center;animation:twinkle 3.2s var(--ease) infinite}
-.gem__star--s{animation-delay:-1.6s}
-@keyframes twinkle{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(.55) rotate(45deg);opacity:.55}}
-
-/* Le trait se tire au premier passage, comme le calque de l'Anatomie :
-   `pathLength="1"` sur chaque tracé, donc un dasharray de 1 l'escamote
-   exactement. Le stylo et le plan arrivent ensuite, en fondu. */
-.stage__fig .gem__line{stroke-dasharray:1;stroke-dashoffset:1}
-.stage__fig.is-in .gem__line{stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--ease-out) .1s}
-.stage__fig .gem__pen,.stage__fig .gem__plan,.stage__fig .gem__spark{opacity:0;transition:opacity 1s var(--ease) 1.2s}
-.stage__fig.is-in .gem__pen,.stage__fig.is-in .gem__plan,.stage__fig.is-in .gem__spark{opacity:1}
-.stage__fig.is-in .gem__plan{transition-delay:1.7s}
-
-/* Sous 900 px, les trois colonnes s'empilent : le texte, puis le dessin
-   qui monte du bas de la section, le texte monospace entre les deux. */
+/* Sous 900 px, les deux colonnes s'empilent : le grand texte, puis le
+   texte monospace. */
 @media (max-width:900px){
   .stage__inner{grid-template-columns:1fr;grid-template-rows:none;row-gap:26px}
   .stage__label{margin-bottom:0}
-  .stage__lede,.stage__fig,.stage__side{grid-column:1;grid-row:auto}
-  /* le dessin passe en dernier : la main reste coupée par le bord bas de
-     la section, comme sur grand écran, au lieu de s'arrêter en plein texte */
-  .stage__fig{order:3}
-  .stage__lede{margin:0;max-width:16ch}
-  .stage__side{justify-self:start;margin:0;max-width:44ch}
-  .stage__fig{width:min(100%,460px);justify-self:center;margin-top:10px}
-  .stage__cap{display:none}
+  .stage__lede,.stage__side{grid-column:1;grid-row:auto}
+  .stage__lede{max-width:16ch}
+  .stage__side{justify-self:start;max-width:44ch}
 }
 
 /* =========================================================
@@ -804,45 +765,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .note p:last-child{margin:6px 0 0;color:var(--cream-62);font-size:.9rem;line-height:1.5}
 
 /* =========================================================
-   MODÈLE
-   ========================================================= */
-.model{padding:var(--sec-y) var(--gutter);max-width:var(--maxw);margin-inline:auto;
-  display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,5vw,90px);align-items:start}
-.model__head{display:grid;gap:20px;position:sticky;top:110px}
-.model__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
-.model__table{display:grid;gap:0;border-top:1px solid var(--line)}
-.model__tr{display:grid;grid-template-columns:1.25fr .6fr .6fr 1.3fr;gap:16px;padding:19px 0;border-bottom:1px solid var(--line);
-  font-size:.88rem;align-items:center;transition:background .4s var(--ease),padding-inline .4s var(--ease)}
-.model__tr:not(.model__tr--head):hover{background:rgba(255,237,215,.04);padding-inline:12px}
-.model__tr--head span{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-56)}
-.model__tr span:first-child{font-family:var(--mono);font-size:.82rem;color:var(--cream)}
-.model__tr span:last-child{color:var(--cream-62)}
-
-/* =========================================================
-   RECHERCHE
-   ========================================================= */
-.research{padding:var(--sec-y) var(--gutter)}
-.research__grid{max-width:var(--maxw);margin-inline:auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,90px)}
-.research__col{display:grid;gap:22px;align-content:start}
-.research__meta{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:0}
-.research__meta li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
-.research__meta span{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-56)}
-.research__meta b{font-size:.9rem;font-weight:500}
-.code{position:relative;margin:0;border:1px solid var(--cork);border-radius:var(--r);background:rgba(10,5,2,.62);overflow:hidden}
-.code figcaption{padding:12px 18px;border-bottom:1px solid var(--cork);font-family:var(--mono);font-size:.62rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--cream-56)}
-.code pre{margin:0;padding:22px 18px;overflow-x:auto}
-.code code{font-family:var(--mono);font-size:.76rem;line-height:1.7;color:var(--cream-80);white-space:pre}
-.code__copy{position:absolute;top:8px;right:10px;padding:7px 13px;border-radius:999px;border:1px solid var(--cork);
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-62);
-  transition:color .4s,border-color .4s,background .4s}
-.code__copy:hover{color:var(--walnut);background:var(--cream);border-color:var(--cream)}
-.research__files{display:grid;gap:0;border-top:1px solid var(--line)}
-.research__files div{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:.86rem}
-.research__files span{font-family:var(--mono);color:var(--cream-80)}
-.research__files b{font-weight:400;color:var(--cream-56);font-family:var(--mono);font-size:.78rem}
-
-/* =========================================================
    TÉMOIGNAGES
    ========================================================= */
 .quotes{padding:var(--sec-y) var(--gutter)}
@@ -875,26 +797,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .quote .mono--3{background:#5f5c45;color:#fffaf2}
 .quote .mono--4{background:#8e3000;color:#ffedd7}
 .quote .mono--5{background:#e0b371;color:#190b03}
-
-/* =========================================================
-   TARIFS
-   ========================================================= */
-.pricing{padding:var(--sec-y) var(--gutter)}
-.plans{max-width:var(--maxw);margin-inline:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,34px);align-items:stretch}
-.plan{position:relative;padding:clamp(28px,2.8vw,46px);border:1px solid var(--cork);border-radius:var(--r);
-  background:rgba(16,9,4,.4);display:grid;gap:12px;align-content:start;transition:transform .7s var(--ease-out),border-color .5s}
-.plan:hover{transform:translateY(-6px);border-color:var(--cream-24)}
-.plan--feature{border-color:rgba(220,80,0,.55);background:linear-gradient(170deg,rgba(220,80,0,.14),rgba(16,9,4,.5))}
-.plan__badge{position:absolute;top:-11px;left:clamp(28px,2.8vw,46px);padding:5px 13px;border-radius:999px;background:var(--ember);color:#fff;
-  font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;margin:0}
-.plan__name{margin:0;font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-56)}
-.plan__price{margin:4px 0 0;font-size:clamp(2.2rem,4.4vw,3.4rem);font-weight:500;letter-spacing:-.04em;line-height:1}
-.plan__price em{font-style:normal;font-size:.42em;color:var(--cream-56);margin-left:2px}
-.plan__sub{margin:0;color:var(--cream-62);font-size:.92rem}
-.plan ul{list-style:none;margin:16px 0 22px;padding:0;display:grid;gap:11px}
-.plan li{position:relative;padding-left:20px;font-size:.9rem;color:var(--cream-80)}
-.plan li::before{content:"";position:absolute;left:0;top:.52em;width:7px;height:7px;border-radius:50%;background:var(--ember);opacity:.85}
-.plan .btn{justify-self:start}
 
 /* =========================================================
    FAQ
@@ -1060,7 +962,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    ========================================================= */
 .method{padding:var(--sec-y) var(--gutter)}
 .method__inner{max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(34px,5vw,70px)}
-.method__head{display:grid;gap:20px;max-width:58ch}
+.method__head{display:grid;gap:20px}
+.method__head .lead{max-width:58ch}
+/* trois promesses, une par ligne : le titre porte l'offre entière */
+.method__title{font-size:clamp(1.9rem,4vw,3.6rem);line-height:1.02;max-width:24ch}
 
 .pillars{margin:0;display:grid;gap:0}
 .pillar{
@@ -1079,9 +984,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* Le seul visage du site, et la seule photographie. Tout le reste est
    fabriqué — le stylo, l'atelier, le papier. Elle arrive après la
    Divulgation : c'est là que le site cesse d'être une construction. */
+/* Le bloc se lisait tassé : un portrait haut à côté d'une colonne de texte
+   serrée qui s'arrêtait à mi-hauteur. Le portrait s'élargit, le texte se
+   centre sur lui et chaque élément prend de l'air. */
 .sign{
-  display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);
-  gap:clamp(24px,4vw,64px);align-items:start;
+  display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);
+  gap:clamp(28px,6vw,110px);align-items:center;
+  padding-top:clamp(20px,4vw,64px);
 }
 .sign__portrait{margin:0}
 /* Le portrait ressortait comme une photo posée sur la page : blancs de
@@ -1096,19 +1005,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 80%,transparent 100%);
           mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 80%,transparent 100%);
 }
-.sign__text{display:grid;gap:18px;max-width:70ch}
+.sign__text{display:grid;gap:clamp(22px,2.6vw,36px);max-width:68ch}
 .sign__who{
   margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--ember);
 }
-.sign__what{margin:0;font-size:var(--fs-lead);line-height:1.6;color:var(--cream-80)}
+.sign__what{margin:0;font-size:clamp(1.1rem,1.5vw,1.5rem);line-height:1.55;color:var(--cream-80)}
 .sign__facts{
-  list-style:none;margin:6px 0 0;padding:0;
-  display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);
+  list-style:none;margin:clamp(6px,1.4vw,18px) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,80px);
 }
-.sign__facts li{display:grid;gap:6px}
+.sign__facts li{display:grid;gap:10px}
 .sign__facts b{
-  font-size:clamp(1.4rem,2.6vw,2rem);font-weight:500;letter-spacing:-.035em;line-height:1;
+  font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:500;letter-spacing:-.035em;line-height:1;
   font-variant-numeric:tabular-nums;color:var(--ember);
 }
 .sign__facts span{
@@ -1120,7 +1029,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sign__path{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:0}
 .sign__path li{
   display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;
-  padding:11px 0;border-top:1px solid var(--line);
+  padding:15px 0;border-top:1px solid var(--line);
 }
 .sign__path li:last-child{border-bottom:1px solid var(--line)}
 .sign__path b{font-size:1rem;font-weight:600;letter-spacing:-.01em;color:var(--cream)}
@@ -1149,41 +1058,31 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sell__inner{max-width:var(--maxw);margin-inline:auto;display:grid;gap:clamp(30px,4vw,56px)}
 .sell__head{display:grid;gap:20px;max-width:58ch}
 
-.band{
-  display:grid;grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr);
-  gap:clamp(20px,4vw,70px);padding:clamp(26px,3.2vw,44px) 0;
-  border-top:1px solid var(--line);
+.formats{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.format{
+  display:grid;grid-template-columns:auto minmax(0,.7fr) minmax(0,1.3fr) auto;
+  gap:clamp(18px,3.4vw,60px);align-items:baseline;
+  padding:clamp(28px,3.4vw,48px) 0;border-top:1px solid var(--line);
 }
-.band:last-of-type{border-bottom:1px solid var(--line)}
-.band__id{display:grid;gap:8px;align-content:start}
-.band__name{
-  margin:0;font-size:clamp(1.15rem,1.9vw,1.7rem);font-weight:600;
-  letter-spacing:-.02em;line-height:1.1;color:var(--cream);
+.format__idx{
+  font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.2em;color:var(--ember);
 }
-.band__time{
-  margin:0;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--cream-56);
+.format__name{
+  margin:0;font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:600;
+  letter-spacing:-.025em;line-height:1.05;color:var(--cream);
 }
+.format__pitch{margin:0;font-size:var(--fs-lead);line-height:1.55;color:var(--cream-80);max-width:46ch}
 /* le montant et sa devise tiennent sur une seule ligne : en grille, un nœud
    de texte et un <em> deviendraient deux éléments, donc deux lignes. */
-.band__price{margin:14px 0 0;display:grid;gap:5px;justify-items:start}
-.band__n{
+.format__price{margin:0;display:grid;gap:8px;justify-items:end;text-align:right}
+.format__n{
   font-size:clamp(2rem,4vw,3.2rem);font-weight:500;letter-spacing:-.04em;line-height:1;
   font-variant-numeric:tabular-nums;color:var(--ember);white-space:nowrap;
 }
-.band__n em{font-style:normal;font-size:.52em;letter-spacing:-.02em}
-.band__unit{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--cream-56);
-}
-.band__body{display:grid;gap:18px;align-content:start}
-.band__pitch{margin:0;font-size:var(--fs-lead);line-height:1.58;color:var(--cream-80);max-width:56ch}
-.band__list{list-style:none;margin:0;padding:0;display:grid;gap:9px;max-width:60ch}
-.band__list li{
-  position:relative;padding-left:22px;font-size:.96rem;line-height:1.5;color:var(--cream-62);
-}
-.band__list li::before{
-  content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--ember);
+.format__n em{font-style:normal;font-size:.52em;letter-spacing:-.02em}
+.format__unit{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--cream-62);
 }
 
 /* ---------- le catalogue des sujets ---------- */
@@ -1243,10 +1142,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 
 @media (max-width:900px){
-  .pillar,.band,.sprint__grid{grid-template-columns:1fr;gap:16px}
-  .sign{grid-template-columns:1fr;gap:26px}
-  .sign__portrait img{max-width:300px}
-  .band__price{margin-top:6px}
+  .pillar,.sprint__grid{grid-template-columns:1fr;gap:16px}
+  .format{grid-template-columns:auto minmax(0,1fr);gap:14px 18px}
+  .format__pitch,.format__price{grid-column:1 / -1}
+  .format__price{justify-items:start;text-align:left;margin-top:4px}
+  .sign{grid-template-columns:1fr;gap:30px;padding-top:0}
+  .sign__portrait img{max-width:320px}
 }
 
 /* =========================================================
@@ -1439,14 +1340,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    RESPONSIVE
    ========================================================= */
 @media (max-width:1180px){
-  .cards,.bench__notes,.quotes__grid,.plans,.foot__top{grid-template-columns:repeat(2,1fr)}
-  .plan--feature{grid-column:span 2}
-  .model,.research__grid,.faq,.config__inner{grid-template-columns:1fr}
-  .model__head,.faq__head{position:static}
+  .cards,.bench__notes,.quotes__grid,.foot__top{grid-template-columns:repeat(2,1fr)}
+  .faq,.config__inner{grid-template-columns:1fr}
+  .faq__head{position:static}
   .hero__floor{gap:26px}
 }
 @media (max-width:1100px){
-  .nav__links a[href="#benchmarks"],.nav__links a[href="#recherche"]{display:none}
+  .nav__links a[href="#benchmarks"]{display:none}
 }
 @media (max-width:900px){
   .nav__links,.nav__cta{display:none}
@@ -1456,19 +1356,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .anatomy__stage .pen3d{height:50svh}
   .anatomy__steps{padding-block:40px;gap:70px}
   .step{opacity:1}
-  .hero__wordmark{font-size:clamp(3.4rem,19vw,7rem)}
+  .hero__wordmark{font-size:clamp(2.6rem,18vw,7rem)}
   .reveal-act__body{justify-self:start}
   .reveal-act__pen{opacity:.2}
 }
 @media (max-width:720px){
-  .cards,.bench__notes,.quotes__grid,.plans,.foot__top{grid-template-columns:1fr}
-  .plan--feature{grid-column:auto}
+  .cards,.bench__notes,.quotes__grid,.foot__top{grid-template-columns:1fr}
   .hero{padding-top:clamp(84px,11vh,120px)}
   .hero__top{gap:8px}
   .hero__lead{font-size:.94rem;line-height:1.36;max-width:36ch}
   /* le cartel devient opaque : la feuille ne doit plus transparaître derrière le texte */
+  /* le cartel garde sa silhouette en colonne, sans le vide qu'elle
+     creuserait sur un écran de téléphone */
   .hero__card{
-    max-width:100%;
+    width:min(100%,300px);min-height:clamp(200px,30svh,260px);
     background:rgba(181,150,113,.64);
     backdrop-filter:blur(22px) saturate(104%);-webkit-backdrop-filter:blur(22px) saturate(104%);
   }
@@ -1488,9 +1389,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .mockup__clip,.mockup__rule{display:none}
   .bench__row{grid-template-columns:1fr auto;row-gap:10px}
   .bench__row .bar{grid-column:1 / -1;order:3}
-  .model__tr{grid-template-columns:1fr auto;row-gap:4px}
-  .model__tr span:nth-child(3){display:none}
-  .model__tr--head{display:none}
   .foot__bottom{flex-direction:column}
   .foot__disclaimer{text-align:left}
   .cursor{display:none}
@@ -1509,8 +1407,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .line > i{transform:none}
   .grain{display:none}
   .manifeste__text w{color:var(--stage-ink)}
-  .stage__fig .gem__line{stroke-dashoffset:0}
-  .stage__fig .gem__pen,.stage__fig .gem__plan,.stage__fig .gem__spark{opacity:1}
   /* le plan est tracé d'emblée : rien ne se tire sous les yeux */
   .draft__corner,.draft__ticks,.draft__cross{stroke-dashoffset:0}
   .draft__nodes{opacity:1}

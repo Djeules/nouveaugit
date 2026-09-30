@@ -23,7 +23,7 @@ ajouté à la racine n'est pas en ligne ; un fichier ajouté dans `site/`
 l'est.
 
 Il vend une formation aux techniques de vente **en faisant la démonstration
-de ce qu'il vend** : douze sections traitent un stylo à bille à trente
+de ce qu'il vend** : neuf sections traitent un stylo à bille à trente
 centimes avec le sérieux d'un lancement produit, puis le site avoue.
 
 ## Les trois règles à ne pas enfreindre
