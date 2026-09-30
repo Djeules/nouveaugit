@@ -16,6 +16,12 @@ Site statique — HTML, CSS et JavaScript à la main, aucune étape de
 compilation. Hébergé sur Netlify, déployé depuis la branche
 `claude/sales-trainer-website-6dcqzc`.
 
+**Chaque envoi sur cette branche coûte un déploiement, et les crédits
+Netlify sont comptés** (épuisés fin septembre 2026 : déploiements suspendus
+jusqu'au cycle suivant). On travaille donc sur `master`, et on n'avance la
+branche de production (`git push origin master:claude/sales-trainer-website-6dcqzc`)
+que **sur demande explicite de Julien**, une fois par série de retouches.
+
 **Tout ce qui part en ligne vit dans `site/`.** Le reste du dépôt —
 `CLAUDE.md`, `DECISIONS.md`, `README.md`, `tools/` — est versionné mais
 jamais servi : `netlify.toml` publie `site/` et rien d'autre. Un fichier
