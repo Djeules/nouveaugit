@@ -5,7 +5,7 @@
 <title>Julien — image de partage (1200×630)</title>
 <!--
   Gabarit de l'image de partage (Open Graph / LinkedIn / X).
-  Ce fichier n'est pas publié : il sert uniquement à fabriquer assets/img/og.png.
+  Ce fichier n'est pas publié : il sert uniquement à fabriquer site/assets/img/og.jpg.
   Rendu : voir tools/README-og.md
 -->
 <style>
@@ -50,23 +50,13 @@ body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialias
     repeating-linear-gradient(to bottom,rgba(226,236,214,.16) 0 1px,transparent 1px 150px);
   background-position:22px 18px;
 }
-.paper{
-  position:absolute;left:50%;bottom:19%;width:180px;aspect-ratio:1/1.3;
-  transform:rotate(-7deg);border-radius:3px;
-  background:linear-gradient(158deg,#f4e9d6,#ddcfb6 62%,#c7b89d);
-  box-shadow:0 22px 44px rgba(0,0,0,.5),0 2px 0 rgba(255,255,255,.22) inset;
-  display:grid;align-content:start;gap:10px;padding:26px 24px;
+.glass{
+  position:absolute;right:13%;top:17%;width:290px;height:auto;
+  filter:drop-shadow(0 18px 26px rgba(0,0,0,.42));
 }
-.paper i{display:block;height:5px;border-radius:2px;background:rgba(40,28,16,.2)}
-.paper i.head{height:10px;width:46%;background:rgba(40,28,16,.62)}
-.paper i.short{width:58%}
-.paper b{
-  margin-top:26px;font-family:var(--mono);font-size:8px;font-weight:400;
-  letter-spacing:.2em;text-transform:uppercase;color:rgba(40,28,16,.5);
-}
-.paper u{display:block;height:1px;background:rgba(40,28,16,.38);text-decoration:none}
+.glass__shade{fill:#000;opacity:.5}
 .clip{
-  position:absolute;right:14%;bottom:56%;width:17px;height:48px;
+  position:absolute;left:70%;top:72%;width:17px;height:48px;
   border:2.5px solid rgba(206,214,222,.75);border-radius:12px;
   transform:rotate(31deg);box-shadow:0 5px 12px rgba(0,0,0,.5);
 }
@@ -74,10 +64,14 @@ body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialias
   content:"";position:absolute;left:4px;top:8px;right:4px;bottom:-9px;
   border:2.5px solid rgba(206,214,222,.55);border-radius:10px;border-top-color:transparent;
 }
+/* le stylo couché en travers, la pointe vers le verre, comme dans le
+   hero. Son ombre est exprimée dans le repère du stylo (le drop-shadow
+   passe avant la rotation) : (-28, 6) retombe en bas à droite une fois
+   tourné de -117°. */
 .pen{
-  position:absolute;left:57%;bottom:17%;width:36px;height:auto;
-  transform:rotate(20deg);transform-origin:50% 50%;
-  filter:drop-shadow(14px 26px 24px rgba(0,0,0,.62));
+  position:absolute;left:48%;top:41%;width:44px;height:auto;
+  transform:rotate(-117deg);transform-origin:50% 50%;
+  filter:drop-shadow(-28px 6px 22px rgba(0,0,0,.6));
 }
 .haze{
   position:absolute;inset:0;
@@ -163,10 +157,71 @@ body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialias
   <div class="desk"></div>
   <div class="mat">
     <div class="grid"></div>
-    <div class="paper">
-      <i class="head"></i><i></i><i></i><i class="short"></i>
-      <b>Bon pour accord</b><u></u>
-    </div>
+    <!-- le verre et son sous-verre en liège, repris tels quels du hero -->
+    <svg class="glass" viewBox="0 0 320 320" focusable="false">
+        <defs>
+          <radialGradient id="gCork" cx="42%" cy="38%" r="70%">
+            <stop offset="0%" stop-color="#cfa679"/>
+            <stop offset="70%" stop-color="#ad8155"/>
+            <stop offset="100%" stop-color="#8a603a"/>
+          </radialGradient>
+          <filter id="fCork" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="1.15" numOctaves="2" seed="7" result="n"/>
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 .2  0 0 0 0 .12  0 0 0 0 .06  0 0 0 -3.2 1.9"/>
+            <feComposite in2="SourceGraphic" operator="in"/>
+          </filter>
+          <radialGradient id="gWhisky" cx="40%" cy="36%" r="68%">
+            <stop offset="0%" stop-color="#f4b35a"/>
+            <stop offset="42%" stop-color="#d27a22"/>
+            <stop offset="78%" stop-color="#9a4a0c"/>
+            <stop offset="100%" stop-color="#5e2604"/>
+          </radialGradient>
+          <radialGradient id="gCaustic" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffb347" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#ffb347" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="gIce" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff6e8" stop-opacity=".72"/>
+            <stop offset="55%" stop-color="#ffe2b8" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#fff6e8" stop-opacity=".5"/>
+          </linearGradient>
+          <linearGradient id="gRim" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fffaf0" stop-opacity=".95"/>
+            <stop offset="45%" stop-color="#fffaf0" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="#fffaf0" stop-opacity=".5"/>
+          </linearGradient>
+          <filter id="fShade" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="13"/></filter>
+          <clipPath id="cLiquid"><circle cx="160" cy="160" r="92"/></clipPath>
+        </defs>
+
+        <!-- ombre portée et tache de lumière ambrée que le verre projette -->
+        <ellipse class="glass__shade" cx="176" cy="182" rx="146" ry="142" filter="url(#fShade)"/>
+        <!-- le sous-verre en liège, et sa trame -->
+        <circle cx="160" cy="160" r="146" fill="url(#gCork)"/>
+        <circle cx="160" cy="160" r="146" fill="#000" filter="url(#fCork)"/>
+        <circle cx="160" cy="160" r="143" fill="none" stroke="#6e4a2a" stroke-opacity=".45" stroke-width="2"/>
+        <circle cx="160" cy="160" r="136" fill="none" stroke="#fff3df" stroke-opacity=".12" stroke-width="1"/>
+        <circle cx="178" cy="176" r="118" fill="url(#gCaustic)"/>
+
+        <!-- le verre : paroi épaisse, liquide, glaçons, reflets -->
+        <circle cx="160" cy="160" r="106" fill="#2a1406" fill-opacity=".35"/>
+        <circle cx="160" cy="160" r="92" fill="url(#gWhisky)"/>
+        <g clip-path="url(#cLiquid)">
+          <g class="glass__ice">
+            <rect x="112" y="98" width="62" height="62" rx="12" transform="rotate(-17 143 129)" fill="url(#gIce)" stroke="#fff6e8" stroke-opacity=".55" stroke-width="1.4"/>
+            <rect x="122" y="108" width="40" height="40" rx="8" transform="rotate(-17 142 128)" fill="none" stroke="#fff6e8" stroke-opacity=".28"/>
+            <rect x="152" y="150" width="54" height="54" rx="11" transform="rotate(24 179 177)" fill="url(#gIce)" stroke="#fff6e8" stroke-opacity=".45" stroke-width="1.4"/>
+            <rect x="162" y="160" width="34" height="34" rx="7" transform="rotate(24 179 177)" fill="none" stroke="#fff6e8" stroke-opacity=".22"/>
+          </g>
+          <ellipse class="glass__glint" cx="128" cy="116" rx="46" ry="20" transform="rotate(-38 128 116)" fill="#fff4dc" fill-opacity=".16"/>
+        </g>
+        <circle cx="160" cy="160" r="92" fill="none" stroke="#ffd79a" stroke-opacity=".55" stroke-width="2"/>
+        <circle cx="160" cy="160" r="99" fill="none" stroke="#fff3df" stroke-opacity=".16" stroke-width="12"/>
+        <circle cx="160" cy="160" r="106" fill="none" stroke="url(#gRim)" stroke-width="2.4"/>
+        <path d="M232 104a92 92 0 0 1 14 44" fill="none" stroke="#fffaf0" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/>
+        <path d="M86 214a98 98 0 0 1-10-20" fill="none" stroke="#fffaf0" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    <div class="clip"></div>
     <svg class="pen" viewBox="0 0 160 1000">
       <g><path d="M62 44c0-9 7-16 18-16s18 7 18 16v252H62z" fill="url(#gCap)"/>
       <path d="M96 62c8 1 14 5 14 12v104c0 8-5 12-14 13z" fill="#c24500"/>
@@ -190,7 +245,7 @@ body{font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialias
   <div class="copy">
     <div>
       <p class="eyebrow"><s></s>Le Julien · Édition cristal · Disponible</p>
-      <p class="wordmark">Julien</p>
+      <p class="wordmark">Le Julien</p>
     </div>
 
     <p class="claim">Le stylo à bille le plus inutilement sophistiqué du monde.</p>

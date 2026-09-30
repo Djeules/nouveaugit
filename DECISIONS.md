@@ -964,10 +964,9 @@ Le cartel passe de 520 à **372 px** — la largeur de ses deux boutons — et
 remonte d'environ un dixième d'écran (`margin-bottom:11vh`) : il flotte
 au-dessus du pied du hero au lieu de s'y poser.
 
-L'image de partage `og.jpg` montre encore l'ancienne scène, bon compris ;
-son texte alternatif la décrit donc toujours correctement. La refaire
-demande de reprendre `tools/og-image.html` et de la photographier à
-nouveau (§11).
+L'image de partage `og.jpg` a été refaite ensuite (§29) : même verre,
+repris tel quel du hero, stylo couché la pointe vers lui, et « Le Julien »
+en titre. Son texte alternatif, sur les cinq pages, suit.
 
 ### 01 Manifeste : la main qui présente le stylo
 
@@ -1138,3 +1137,23 @@ La page passe de 24 963 à 21 838 px à 1 440 px de large (−12,5 %).
   après elle ne suivrait rien.
 - « ½ journée » est écrit « Demi-journée » : le « ½ » manque à la police
   mono auto-hébergée, qui le rendait comme un « % ».
+
+### L'image de partage, refaite
+
+`tools/og-image.html` perd le bon pour accord et reçoit le verre de whisky
+sur son sous-verre en liège, copié tel quel du SVG du hero : une seule
+source de dessin, deux rendus. Le stylo est couché la pointe vers le verre,
+et son ombre est calculée dans son propre repère, comme au §28. Le titre
+passe à « Le Julien ».
+
+Le texte, lui, ne change pas. « Julien, formateur aux techniques de
+vente » en pied d'image annonce le dénouement, ce que le §18 a retiré du
+cartel. Mais la description de la page le dit déjà, et un aperçu de lien
+doit dire qui parle. Si ce choix doit changer, il se change aux deux
+endroits à la fois.
+
+Rendu avec Playwright plutôt qu'avec la commande `chromium` du
+`README-og.md` : même principe (2×, puis réduction LANCZOS), polices
+vérifiées chargées avant la capture. 80 Ko, et lisible à 300 px de large.
+Les réseaux gardent l'ancienne image en cache : passer l'URL dans le Post
+Inspector de LinkedIn pour forcer la relecture.
