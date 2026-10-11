@@ -1,0 +1,11 @@
+{
+  "name": "avecjulien",
+  "private": true,
+  "description": "Site avecjulien.fr — statique, publié depuis le dossier site/ sur Cloudflare Pages",
+  "scripts": {
+    "deploy": "wrangler pages deploy site --project-name avecjulien --branch main --commit-dirty=true"
+  },
+  "devDependencies": {
+    "wrangler": "^4.149.0"
+  }
+}
