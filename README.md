@@ -71,12 +71,13 @@ trois.
 Le dépôt est coupé en deux : **ce qui part en ligne** et **ce qui reste ici**.
 
 ```
-site/           ← le seul dossier publié (netlify.toml : publish = "site")
-  index.html · merci.html
+site/           ← le seul dossier publié (Cloudflare Pages : dossier de sortie = "site")
+  index.html · merci.html · _headers (en-têtes de sécurité, non servi)
   mentions-legales.html · cgv.html · politique-de-confidentialite.html
   robots.txt · sitemap.xml
   assets/css/styles.css · assets/js/main.js · assets/fonts/ · assets/img/
-netlify.toml    ← doit rester à la racine, Netlify l'y cherche
+functions/      ← fonction Cloudflare du formulaire (api/contact.js), à la racine
+package.json    ← script « npm run deploy » (Wrangler)
 CLAUDE.md · DECISIONS.md · README.md · tools/   ← versionnés, jamais servis
 ```
 
@@ -171,15 +172,22 @@ copie du BibTeX, menu plein écran en mobile.
 
 ## Déploiement et conversion
 
-Le site est déployé sur **Netlify** (`netlify.toml` à la racine, aucun build). Deux réglages
-à faire une seule fois dans l'interface Netlify :
+Le site est déployé sur **Cloudflare Pages** (projet `avecjulien`, aucun build, dossier de
+sortie `site`). Les en-têtes de sécurité sont dans `site/_headers`.
 
-1. **Site configuration → Forms → Enable form detection**, puis redéployer une fois.
-2. **Forms → Form notifications → Add notification → Email**, vers votre adresse.
+Le formulaire de contact envoie un POST à `/api/contact`, une **fonction Cloudflare Pages**
+(`functions/api/contact.js`) qui transmet le message par e-mail via **Resend**, puis renvoie
+le visiteur vers `/merci.html`. Anti-spam : un **pot de miel** (champ `piege`) et le contrôle
+de l'en-tête `Origin` — surtout pas reCAPTCHA, qui chargerait des scripts Google et ferait
+tomber la promesse « aucune ressource tierce ». Réglages à faire une seule fois dans
+Cloudflare (projet → Settings → Variables and secrets) :
 
-Le formulaire de contact utilise **Netlify Forms** (100 envois/mois sur l'offre gratuite),
-avec un **pot de miel** comme anti-spam — surtout pas reCAPTCHA, qui chargerait des scripts
-Google et ferait tomber la promesse « aucune ressource tierce ».
+- `RESEND_API_KEY` (secret, obligatoire) — clé d'API Resend ;
+- `CONTACT_TO` (facultatif) — destinataire, par défaut `julien@avecjulien.fr` ;
+- `CONTACT_FROM` (facultatif) — expéditeur, par défaut `Site avecjulien.fr <contact@avecjulien.fr>`,
+  dont le domaine doit être vérifié dans Resend (enregistrements DNS).
+
+Publier à la main depuis un poste : `npm install`, `npx wrangler login`, puis `npm run deploy`.
 
 Le bouton de réservation est un **lien sortant**, jamais un module intégré : un widget
 Cal.com ou Calendly poserait des cookies tiers sur la page. L'URL apparaît à deux endroits,
@@ -192,8 +200,8 @@ grep -rn "cal.com" *.html
 L'événement Cal.com est configuré en trente minutes, visioconférence Cal Video,
 slug `diagnostic` — c'est ce slug que les deux liens du site attendent.
 
-> Le formulaire ne fonctionne que sur Netlify. En prévisualisation locale ou dans un
-> artefact Claude, l'envoi échoue — c'est normal.
+> Le formulaire ne fonctionne que sur Cloudflare (ou avec `npx wrangler pages dev site`, qui
+> exécute aussi la fonction). Ouvert directement comme fichier, l'envoi échoue — c'est normal.
 
 ## Image de partage
 
@@ -211,7 +219,7 @@ grep -rl "avecjulien.fr" . --include=*.html --include=*.xml --include=*.txt
 
 `site/index.html` porte aussi un bloc JSON-LD `ProfessionalService`. Il est en ligne, donc
 soumis au `script-src` de la politique de sécurité : celle-ci l'autorise **par son
-empreinte sha256**, inscrite dans `netlify.toml`. Toute modification du bloc impose de
+empreinte sha256**, inscrite dans `site/_headers`. Toute modification du bloc impose de
 recalculer cette empreinte, sinon le navigateur le bloque.
 
 ## Obligations qui ne s'arrêtent pas à la mise en ligne
@@ -235,5 +243,5 @@ survivent à la publication :
 
 - [ ] Renommer le slug Cal.com en `diagnostic` (ou corriger les deux liens du site)
 - [ ] Vérifier l'aperçu dans le LinkedIn Post Inspector après la mise en ligne
-- [ ] Activer la détection des formulaires dans Netlify et brancher la notification
+- [ ] Renseigner `RESEND_API_KEY` dans Cloudflare, vérifier le domaine dans Resend, envoyer un message test
 - [ ] Faire relire les CGV par un professionnel du droit
