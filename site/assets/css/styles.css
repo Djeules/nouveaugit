@@ -1748,3 +1748,9 @@ body.is-ready .hero__glow{opacity:1}
 .merci__inner{display:grid;gap:22px;justify-items:center;max-width:56ch}
 .merci__mark{font-size:clamp(2.6rem,9vw,6rem);font-weight:700;letter-spacing:-.04em;text-transform:uppercase;line-height:.9;margin:0}
 .merci__row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px}
+
+/* ---------- ressource offerte (methode-5-minutes.html) ---------- */
+.ressource{display:grid;gap:14px;width:min(100%,440px);margin-top:6px;text-align:left}
+.ressource .btn{justify-self:start;margin-top:4px}
+.optin{display:flex;gap:12px;align-items:flex-start;font-size:.86rem;line-height:1.5;color:var(--cream-80);cursor:pointer}
+.optin input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:var(--ember);cursor:pointer}

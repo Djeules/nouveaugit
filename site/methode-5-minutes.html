@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>La méthode des 5 minutes — offerte — Julien</title>
+<meta name="description" content="Vingt automatisations et cinq agents IA pour arrêter de relancer vos devis à la main. Sans une ligne de code. Offerte contre une adresse e-mail." />
+<meta name="theme-color" content="#100904" />
+<link rel="canonical" href="https://avecjulien.fr/methode-5-minutes.html" />
+<meta property="og:site_name" content="Julien" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://avecjulien.fr/methode-5-minutes.html" />
+<meta property="og:title" content="La méthode des 5 minutes — offerte" />
+<meta property="og:description" content="Vingt automatisations et cinq agents IA. Zéro ligne de code. Pour arrêter de relancer vos devis à la main." />
+<meta property="og:image" content="https://avecjulien.fr/assets/img/og.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Le Julien, stylo à bille hexagonal couché sur le tapis de découpe d'un atelier, la pointe vers un whisky posé sur un sous-verre en liège. Titre : le stylo à bille le plus inutilement sophistiqué du monde." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="La méthode des 5 minutes — offerte" />
+<meta name="twitter:description" content="Vingt automatisations et cinq agents IA. Zéro ligne de code. Pour arrêter de relancer vos devis à la main." />
+<meta name="twitter:image" content="https://avecjulien.fr/assets/img/og.jpg" />
+<meta name="twitter:image:alt" content="Le Julien, stylo à bille hexagonal couché sur le tapis de découpe d'un atelier, la pointe vers un whisky posé sur un sous-verre en liège. Titre : le stylo à bille le plus inutilement sophistiqué du monde." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100904'/%3E%3Cpath d='M13 4h6v17l-3 7-3-7z' fill='%23ffedd7'/%3E%3Cpath d='M13 4h6v5h-6z' fill='%23dc5000'/%3E%3C/svg%3E" />
+<link rel="preload" href="assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<main class="merci">
+  <div class="merci__inner">
+    <p class="section-label">Ressource offerte</p>
+    <h1 class="merci__mark">5 minutes.</h1>
+    <p class="lead">La méthode pour arrêter de relancer vos devis à la main. Vingt automatisations, cinq agents IA, zéro ligne de code.</p>
+    <p class="lead">Laissez votre adresse : la méthode s'ouvre aussitôt. Pas de mot de passe, pas de piège.</p>
+
+    <!-- Envoie à functions/api/ressource.js, qui enregistre l'adresse puis renvoie vers methode-5-minutes-merci.html -->
+    <form class="ressource" name="ressource" method="POST" action="/api/ressource">
+      <p class="hp"><label>Laissez ce champ vide <input name="piege" tabindex="-1" autocomplete="off" /></label></p>
+      <input type="hidden" name="ressource" value="methode-5-minutes" />
+
+      <div class="field">
+        <label for="r-mail">Votre adresse e-mail</label>
+        <input id="r-mail" name="email" type="email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="r-prenom">Prénom <i>(facultatif)</i></label>
+        <input id="r-prenom" name="prenom" type="text" autocomplete="given-name" />
+      </div>
+      <label class="optin">
+        <input type="checkbox" name="lettre" value="oui" />
+        <span>Je veux aussi recevoir la lettre de Julien. Une par semaine au plus, désinscription en un clic.</span>
+      </label>
+
+      <button class="btn btn--lg" type="submit"><span>Recevoir la méthode</span></button>
+      <p class="contact__rgpd">Votre adresse sert à vous donner la méthode et, seulement si vous cochez la case, à vous envoyer la lettre. Ni revente, ni prêt. <a href="politique-de-confidentialite.html#donnees">Ce qu'on en fait exactement</a>.</p>
+    </form>
+
+    <p class="contact__note">Le Julien est un stylo à bille. Cette méthode, elle, fonctionne vraiment.</p>
+  </div>
+</main>
+</body>
+</html>

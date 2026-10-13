@@ -1157,3 +1157,25 @@ Rendu avec Playwright plutôt qu'avec la commande `chromium` du
 vérifiées chargées avant la capture. 80 Ko, et lisible à 300 px de large.
 Les réseaux gardent l'ancienne image en cache : passer l'URL dans le Post
 Inspector de LinkedIn pour forcer la relecture.
+
+## 30. Une ressource offerte contre une adresse, sans outil tiers
+
+Plan sur 90 jours (octobre 2026) : capter des contacts en offrant les ressources
+autrefois vendues, à commencer par la méthode des 5 minutes, depuis un carrousel
+Instagram « Commentez MINUTES ». Julien a choisi un formulaire sur son site
+plutôt que Brevo.
+
+- **Stockage dans Cloudflare KV**, liaison `INSCRITS`. Pas de Brevo, pas de
+  module de formulaire externe : la règle n° 3 tient, et la politique de
+  confidentialité n'ajoute aucun sous-traitant (Cloudflare l'était déjà).
+- **La ressource s'ouvre sur la page de remerciement**, sans attendre de
+  courriel. Le domaine n'est pas encore vérifié dans Resend, et un visiteur
+  venu d'Instagram n'attend pas.
+- **La case « lettre » est facultative.** Conditionner une ressource gratuite à
+  l'inscription à une lettre fragilise le consentement ; la case séparée est la
+  forme la plus sûre. Une nouvelle demande sans la case ne retire pas un accord
+  déjà donné : le retrait passe par le lien de désinscription.
+- **Si la liaison KV manque**, le visiteur reçoit quand même la ressource et
+  l'erreur va dans les journaux : on ne punit pas le visiteur d'un réglage oublié.
+- **Export CSV** par `/api/inscrits?cle=…` (secret `EXPORT_CLE`), point-virgule
+  et BOM pour Excel, cellules commençant par `= + - @` neutralisées.

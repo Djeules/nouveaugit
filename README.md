@@ -189,8 +189,27 @@ Cloudflare (projet → Settings → Variables and secrets) :
 
 Publier à la main depuis un poste : `npm install`, `npx wrangler login`, puis `npm run deploy`.
 
+### Ressources offertes (collecte d'adresses)
+
+`site/methode-5-minutes.html` offre la méthode des 5 minutes contre une adresse e-mail. Le
+formulaire envoie un POST à `/api/ressource` (`functions/api/ressource.js`), qui enregistre
+l'adresse dans **Cloudflare KV** puis renvoie vers `methode-5-minutes-merci.html`, d'où la
+ressource s'ouvre (`site/ressources/methode-des-5-minutes.pdf`). La case « lettre » est
+facultative : l'accord pour la lettre n'est jamais une condition pour recevoir la ressource.
+
+Réglages à faire une seule fois dans Cloudflare (projet → Settings) :
+
+- **Bindings** → ajouter une liaison *KV namespace* nommée `INSCRITS` (créer d'abord l'espace
+  de noms dans *Storage & Databases → KV*, par exemple `avecjulien-inscrits`), en Production
+  et en Preview ;
+- **Variables and secrets** → secret `EXPORT_CLE` : une longue phrase connue de vous seul.
+
+La liste se télécharge en CSV (point-virgule, ouvrable dans Excel) à l'adresse
+`/api/inscrits?cle=VOTRE_CLE`. Sans la liaison, le visiteur reçoit quand même la ressource
+mais l'adresse n'est pas gardée.
+
 Le bouton de réservation est un **lien sortant**, jamais un module intégré : un widget
-Cal.com ou Calendly poserait des cookies tiers sur la page. L'URL apparaît à deux endroits,
+Cal.com ou Calendly poserait des cookies tiers sur la page. L'URL apparaît à trois endroits,
 signalés par un commentaire `⚠️` :
 
 ```
