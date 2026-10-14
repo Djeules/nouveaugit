@@ -5,8 +5,8 @@
 //   INSCRITS     liaison KV (la même que pour functions/api/ressource.js)
 //   EXPORT_CLE   secret : une longue phrase que vous seul connaissez. Sans elle, l'export est fermé.
 
-const refus = () =>
-  new Response('Accès refusé.', { status: 403, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } });
+const texte = (status, message) =>
+  new Response(message, { status, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } });
 
 // Comparaison à durée constante, pour ne rien laisser deviner de la clé.
 const egal = (a, b) => {
@@ -25,11 +25,15 @@ const cellule = (v) => {
 };
 
 export async function onRequestGet({ request, env }) {
-  const fournie = new URL(request.url).searchParams.get('cle') || '';
-  if (!env.EXPORT_CLE || !fournie || !egal(fournie, env.EXPORT_CLE)) return refus();
-  if (!env.INSCRITS) {
-    return new Response('La liaison KV INSCRITS n’est pas configurée.', { status: 500, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  // Trois messages distincts, pour savoir quoi corriger sans rien révéler de la clé elle-même.
+  const attendue = (env.EXPORT_CLE || '').trim();
+  if (!attendue) {
+    return texte(503, 'Export fermé : le secret EXPORT_CLE n’est pas présent dans ce déploiement (vérifier qu’il est enregistré, puis relancer le déploiement).');
   }
+  const fournie = (new URL(request.url).searchParams.get('cle') || '').trim();
+  if (!fournie) return texte(403, 'Clé manquante : ajouter ?cle=votre-phrase à la fin de l’adresse.');
+  if (!egal(fournie, attendue)) return texte(403, 'Clé incorrecte.');
+  if (!env.INSCRITS) return texte(500, 'La liaison KV INSCRITS n’est pas configurée.');
 
   const lignes = [['email', 'prenom', 'accord_lettre', 'accord_lettre_depuis', 'ressources', 'premiere_demande', 'derniere_demande']];
   let curseur;
