@@ -1179,3 +1179,27 @@ plutôt que Brevo.
   l'erreur va dans les journaux : on ne punit pas le visiteur d'un réglage oublié.
 - **Export CSV** par `/api/inscrits?cle=…` (secret `EXPORT_CLE`), point-virgule
   et BOM pour Excel, cellules commençant par `= + - @` neutralisées.
+
+## 31. Ressource n° 2 : les 100 prompts pour vendre
+
+Deuxième ressource offerte du plan de collecte (§30), commandée par Julien en
+octobre 2026 : dix parties de dix prompts, du ciblage au pipeline, avec la
+prospection téléphonique, le cold call, le pitch, la préparation du rendez-vous,
+la présentation, l'offre, la négociation et le closing.
+
+- **Une seule source, `tools/ressources/100-prompts-pour-vendre.md`.**
+  `build-prompts.cjs` en tire le HTML puis le PDF. On corrige le texte dans le
+  Markdown et on relance, jamais dans le PDF.
+- **Même charte que la méthode des 5 minutes** (16:9, Poppins, fond `#f6f5f1`,
+  jaune `#e8b723`) : les deux documents forment une série. Les fichiers Poppins
+  vivent dans `tools/ressources/fonts/`, hors de `site/` : ils servent à
+  fabriquer le PDF, qui les embarque, et ne sont jamais servis.
+- **Le script refuse de produire un PDF bancal** : une partie qui n'a pas dix
+  prompts, une police non chargée ou un texte qui déborde de sa case arrêtent
+  la génération. On raccourcit le texte, on ne réduit pas la police.
+- **Aucun chiffre inventé.** Les prompts demandent à l'IA de signaler ses
+  hypothèses et de ne rien ajouter aux faits fournis ; le document lui-même
+  n'avance aucune statistique.
+- **Pas encore en ligne.** Restent la page `site/`, la page de remerciement, la
+  ligne dans `RESSOURCES` de `functions/api/ressource.js` et la copie du PDF
+  dans `site/ressources/`.
