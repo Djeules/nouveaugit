@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PILE Burger · démo avecjulien.fr</title>
+<meta name="description" content="Démo de page animée au scroll : une marque de burger fictive, réalisée par avecjulien.fr.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="demo.css">
+<script src="demo.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top">PILE<span>.</span></a>
+  <nav>
+    <a class="toplink" href="#carte">La carte</a>
+    <a class="toplink solid" href="#carte">Composer</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="story" id="story" aria-label="Le burger se dévoile au scroll">
+    <div class="stage">
+      <canvas id="seq" role="img" aria-label="Un burger se soulève, puis ses ingrédients s'envolent et flottent autour du pain"></canvas>
+      <div class="sticker" aria-hidden="true"><div><b>50+</b>ingrédients</div></div>
+
+      <article class="panel" data-i="0">
+        <span class="kicker">Burgers sur mesure</span>
+        <h1 class="big">Composez-le <span class="hot">vous-même.</span></h1>
+        <p class="lede"><strong>Plus de 50 ingrédients.</strong> Un seul burger au monde : le vôtre.</p>
+        <div class="actions">
+          <a class="btn btn-main" href="#carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Composez-le vous-même</a>
+          <a class="btn btn-ghost" href="#carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Télécharger la carte</a>
+        </div>
+      </article>
+
+      <article class="panel" data-i="1">
+        <span class="kicker">Étape 1</span>
+        <h2 class="big">On lève <span class="hot">le chapeau.</span></h2>
+        <p class="lede">Brioche au sésame, toastée à la minute. Et ce n'est que le début.</p>
+      </article>
+
+      <article class="panel" data-i="2">
+        <span class="kicker">Étape 2</span>
+        <div class="count" aria-label="52 ingrédients"><span id="counter">0</span><sup>+</sup></div>
+        <h2 class="big">Ingrédients <span class="out">au choix.</span></h2>
+        <div class="tags"><span>6 pains</span><span>8 viandes &amp; galettes</span><span>8 fromages</span><span>12 légumes</span><span>8 extras</span><span>10 sauces</span></div>
+      </article>
+
+      <article class="panel" data-i="3">
+        <span class="kicker">Étape 3</span>
+        <h2 class="big">À vous <span class="hot">de jouer.</span></h2>
+        <p class="lede">Empilez ce que vous aimez, dans l'ordre que vous voulez. <span class="serif">On s'occupe du reste.</span></p>
+        <div class="actions">
+          <a class="btn btn-main" href="#carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Composez-le vous-même</a>
+          <a class="btn btn-ghost" href="#carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Télécharger la carte</a>
+        </div>
+      </article>
+
+      <div class="meter" aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section class="steps wrap" aria-labelledby="how">
+    <h2 class="sec-title" id="how">Trois choix, <span class="hot">zéro regret.</span></h2>
+    <div class="step"><em>01</em><h3>Le pain</h3><p>Brioche, charbon, bretzel ou sans pain : c'est la base de tout.</p></div>
+    <div class="step"><em>02</em><h3>Le cœur</h3><p>Bœuf, poulet, saumon ou galette végétale, cuit comme vous l'aimez.</p></div>
+    <div class="step"><em>03</em><h3>Le reste</h3><p>Fromages, légumes, extras et sauces. Autant de couches que vous voulez.</p></div>
+  </section>
+
+  <section class="carte wrap" id="carte" aria-labelledby="carte-title">
+    <div class="carte-head">
+      <div>
+        <h2 class="sec-title" id="carte-title">La carte. <span class="hot">52 ingrédients.</span></h2>
+        <p>Touchez les ingrédients pour composer votre burger. Votre sélection s'affiche à côté, prête à commander.</p>
+      </div>
+      <a class="btn btn-ghost" href="#carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Télécharger la carte (PDF)</a>
+    </div>
+    <div class="groups" id="groups"></div>
+    <aside class="order" aria-live="polite">
+      <h3>Mon burger</h3>
+      <span class="n" id="n">0 ingrédient</span>
+      <ul class="stack" id="stack"><li class="empty">Choisissez d'abord un pain.</li></ul>
+      <button class="btn btn-main" id="go" type="button">Je le veux</button>
+      <p class="done" id="done" hidden>C'est noté ! Présentez cette liste au comptoir.</p>
+      <button class="reset" id="reset" type="button">Tout recommencer</button>
+    </aside>
+  </section>
+
+  <section class="final wrap">
+    <h2 class="big">Le meilleur burger <span class="hot">est le vôtre.</span></h2>
+    <div class="actions">
+      <a class="btn btn-main" href="#carte">Composez-le vous-même</a>
+      <a class="btn btn-ghost" href="#carte">Télécharger la carte</a>
+    </div>
+  </section>
+  <p class="note wrap">Maquette de démonstration réalisée par <a href="/">avecjulien.fr</a>, burger animé à partir d'une vidéo découpée en 153 images : marque, ingrédients et textes sont des exemples. Le bouton « Télécharger la carte » sera relié au PDF de la carte sur le vrai site.</p>
+</main>
+</body>
+</html>

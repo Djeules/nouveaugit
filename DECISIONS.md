@@ -1179,3 +1179,20 @@ plutôt que Brevo.
   l'erreur va dans les journaux : on ne punit pas le visiteur d'un réglage oublié.
 - **Export CSV** par `/api/inscrits?cle=…` (secret `EXPORT_CLE`), point-virgule
   et BOM pour Excel, cellules commençant par `= + - @` neutralisées.
+
+## 31. Une démo de page au scroll, rangée à part dans `site/demos/`
+
+Octobre 2026 : Julien veut montrer en ligne les pages animées au scroll qu'il
+fait réaliser (marque fictive « PILE Burger », vidéo Kling découpée en
+153 images). Elles vivent sous `site/demos/<nom>/`, hors du parcours du site.
+
+- **Rien ne relie la démo au site** : ni menu, ni sitemap, et un `noindex`.
+  C'est une maquette à montrer par lien, pas une page de l'offre ; la règle n° 1
+  n'est donc pas en jeu.
+- **La règle n° 3 tient** : polices Anton, Inter et Instrument Serif
+  auto-hébergées dans le dossier de la démo (licences OFL jointes), feuille de
+  style et script en fichiers séparés, donc aucune entorse à la politique de
+  sécurité de `_headers`. Aucune nouvelle empreinte à calculer.
+- **Les images sont des fichiers WebP séparés** (1280 px, 7 Mo en tout) plutôt
+  qu'intégrées à la page : le navigateur les charge en parallèle et les garde en
+  cache. La page se reconstruit depuis le dossier du projet (`build-site-v6.py`).
