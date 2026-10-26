@@ -1196,3 +1196,13 @@ fait réaliser (marque fictive « PILE Burger », vidéo Kling découpée en
 - **Les images sont des fichiers WebP séparés** (1280 px, 7 Mo en tout) plutôt
   qu'intégrées à la page : le navigateur les charge en parallèle et les garde en
   cache. La page se reconstruit depuis le dossier du projet (`build-site-v6.py`).
+
+## 32. Deuxième démo : « nouvelles perspectives »
+
+Même principe que la section 31, sous `site/demos/nouvelles-perspectives/` : une
+vidéo Hailuo (main, flèche lumineuse qui monte) découpée en 124 images, et une
+seule phrase demandée par Julien. Les logos MiniMax, Hailuo AI et « nmc » et les
+textes anglais incrustés ont été effacés image par image avant le découpage.
+Polices Anton et Instrument Serif copiées dans le dossier de la démo, CSS et JS
+en fichiers, `noindex`. Attention : Cloudflare Pages publie `master` à chaque
+fusion, contrairement à ce que disait l'ancien flux Netlify.
