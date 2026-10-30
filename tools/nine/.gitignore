@@ -1,0 +1,4 @@
+sortie/pages/
+sortie/*.html
+sortie/*.json
+__pycache__/
