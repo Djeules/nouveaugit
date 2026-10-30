@@ -62,9 +62,9 @@ def euros(x):
 # --- En bref ------------------------------------------------------------------------------
 
 EN_BREF = [
-    "Nine peut lancer en janvier un service qu'aucun concurrent trouvé autour de Saint-Nazaire et de Nantes "
-    "ne propose : un rangement qu'on réserve en trois clics, à prix affiché, sans devis ni diagnostic. Les home "
-    "organisers de la région vendent l'inverse, une visite puis un devis, autour de 70 € de l'heure.",
+    "Au lancement, Nine ne vend qu'une chose : du rangement. Un rangement qu'on réserve en trois clics, à prix "
+    "affiché, sans devis ni diagnostic, ce qu'aucun concurrent trouvé autour de Saint-Nazaire et de Nantes ne "
+    "propose. Les home organisers de la région vendent l'inverse, une visite puis un devis, autour de 70 € de l'heure.",
     f"L'objectif de 4 000 € par mois demande environ {round(HEURES_OBJECTIF)} heures facturées par semaine. "
     "C'est un plein temps, trajets en plus. Avec une montée en charge réaliste, l'année 1 donne environ "
     f"{euros(round(NET_ANNEE_1 / 12, -2))} par mois en moyenne, et environ {euros(round(revenu(22)['net'], -2))} "
@@ -74,6 +74,9 @@ EN_BREF = [
     "avance immédiate doivent être en place avant le 4 janvier, fêtes comprises. La micro-entreprise doit "
     "être créée avant le 13 novembre. Sans avance immédiate, le client paie 50 € de l'heure et récupère la "
     "moitié un an plus tard, et l'argument « deux heures pour 50 € » tombe.",
+    "Le site actuel vend autre chose : trois piliers, un diagnostic suivi d'un rapport, une caméra chez le client, "
+    "des prix barrés et un crédit d'impôt annoncé avant que l'entreprise existe. La voix de Nine y est excellente "
+    "et se garde ; l'offre, les prix et le parcours sont à refaire avant d'ouvrir les réservations.",
 ]
 
 # --- Décisions encore ouvertes ------------------------------------------------------------
@@ -84,11 +87,11 @@ DECISIONS = [
      "Les services à la personne passent alors à 10 %.",
      "Afficher 50 € TTC au lancement. L'année 1 reste sous le seuil (hypothèse : environ "
      f"{euros(CA_ANNEE_1)}). Décider du prix 2028 quand le chiffre d'affaires cumulé atteint 30 000 €."),
-    ("Place de L'Allure et du Verbe",
-     "Gardés, c'est décidé. Mais L'Allure n'est pas un service à la personne : pas de crédit d'impôt, "
-     "plafond de 30 % du chiffre d'affaires, comptabilité séparée.",
-     "Hors des trois clics au lancement. Une page « Nine fait aussi » sur le site, sur demande. "
-     "Retirer le parcours complet à 950 € (475 € après crédit d'impôt) : il applique le crédit d'impôt à L'Allure, ce qui est faux."),
+    ("Rangement ou agencement",
+     "Le site présente L'Espace comme un « diagnostic spatial » : où poser le fauteuil, quel meuble bloque la lumière. "
+     "C'est le talent de Nine, mais c'est de l'agencement, et les offres excluent les meubles lourds.",
+     "Nine range, et donne son avis sur la place des meubles dans la fiche « Votre espace organisé ». Elle ne déplace "
+     "que ce qu'une personne seule déplace sans risque. Le mot « diagnostic » disparaît du site."),
     ("Supplément pour l'express sous 48 h",
      "L'intervention sous 48 h est décidée. Reste à savoir si elle coûte plus cher.",
      "Pas de supplément au lancement. Nine garde deux créneaux express libres par semaine, rendus "
@@ -97,8 +100,8 @@ DECISIONS = [
      "À 50 € de l'heure, soit 25 € après crédit d'impôt, une remise de plus ne change pas la décision du client.",
      "Pas de remise. Un parrainage : une heure offerte au client qui en amène un autre."),
     ("Intervention filmée",
-     "Le site de septembre promet une intervention filmée, accessible au client. "
-     "Elle contredit la discrétion promise et pose des questions de données personnelles.",
+     "Le site promet que « chaque prestation en intérieur est enregistrée par une caméra autonome ». "
+     "Filmer chez les gens contredit la discrétion promise et pose de vraies questions de données personnelles.",
      "Abandonner. Les photos avant/après, avec accord écrit, suffisent."),
     ("Zone et jours",
      "Saint-Nazaire et Nantes sont à 60 km l'une de l'autre. Les trajets mangent les marges.",
@@ -126,6 +129,9 @@ RISQUES = [
     ("La confusion ménage / rangement",
      "Le client compare avec une femme de ménage, entre 15 et 25 € de l'heure. Parade : une phrase claire "
      "partout, « on range, on ne nettoie pas », et la différence expliquée sur le site."),
+    ("Le site en ligne",
+     "Il affiche le crédit d'impôt avant toute déclaration, des prix barrés qui ne sont pas des remises, et "
+     "« [Téléphone] · [Email] » en attente. Parade : retirer ces trois points dès cette semaine, refondre le reste avant le 18 décembre."),
     ("Les plateformes à bas prix",
      "Yoojo affiche de l'aide au rangement dès 12 € de l'heure. Parade : ne pas se battre sur le prix, "
      "mais sur le savoir-faire de Nine et la simplicité de la réservation."),
@@ -148,22 +154,23 @@ POSITIONNEMENT = [
      "Le client réserve un créneau comme il réserverait une femme de ménage, et Nine fait le travail. "
      "Elle ne vient pas lui apprendre à ranger : elle range."),
     ("Ce qui ne se copie pas",
-     "Le regard de Nine. La méthode et la rigueur s'apprennent ; voir en deux minutes ce qui ne va pas dans "
-     "un placard, et comment il servirait mieux, ne s'apprend pas. C'est le supplément d'âme de l'intervention."),
+     "Le regard de Nine. Elle le dit mieux que nous : « Face à une pièce, la plupart des gens voient du désordre. "
+     "Moi, je vois un plan. » La méthode et la rigueur s'apprennent ; ce regard-là, non. C'est le supplément d'âme de l'intervention."),
     ("L'histoire",
-     "Un père et sa fille. Nine sur le terrain, Julien derrière : stratégie, marketing, prospection, "
-     "administratif, site. Quand ils construisaient des LEGO, tout était carré et symétrique. "
-     "C'est toujours le cas."),
+     "Nine a 22 ans, un master de lettres modernes et deux classes de collège derrière elle. Elle a grandi en "
+     "rangeant les placards des autres sans qu'on le lui demande. Julien, son père, est derrière : stratégie, "
+     "marketing, prospection, administratif, site. Leurs LEGO étaient carrés et symétriques ; ça n'a pas changé."),
     ("Le ton",
-     "Simple, direct, pince-sans-rire, dans la veine de Jonas Jonasson : on constate les choses sans "
-     "en faire un drame, et le client se reconnaît sans se sentir jugé. Jamais de moquerie, jamais de jargon."),
+     "Nine parle à la première personne, et c'est la meilleure chose du site actuel. On garde cette voix, "
+     "pince-sans-rire à la Jonas Jonasson, et on quitte le registre haut de gamme (Flaubert, « rapport détaillé ») : "
+     "le client doit réserver comme il appelle une femme de ménage, pas comme il commande un audit."),
 ]
 
 LEXIQUE = [
     ("On dit", "ranger, réserver, un créneau, un coin, une pièce, Nine"),
     ("On évite", "coach, home organiser, désencombrement, transformation, accompagnement, bien-être"),
-    ("Exemples", "« Le placard ne va pas se ranger tout seul. On a vérifié. » · "
-                 "« Deux heures. Un placard. De votre côté, il suffit d'ouvrir la porte. »"),
+    ("Exemples", "« Il y a des gens qui rangent un tiroir. Et puis il y a moi. » (Nine, déjà sur le site) · "
+                 "« Le placard ne va pas se ranger tout seul. On a vérifié. »"),
 ]
 
 # --- Concurrence --------------------------------------------------------------------------
@@ -242,12 +249,11 @@ OFFRES = [
 ]
 
 AUTRES_PILIERS = [
-    ("Le Verbe", "Cours de français à domicile, oral et écrit. Service à la personne s'il s'agit de soutien "
-                 "scolaire ou de cours à domicile : crédit d'impôt possible (TVA de 10 % ou 20 % selon le cas, "
-                 "si Nine y est assujettie). Prix à fixer."),
-    ("L'Allure", "Conseil vestimentaire, posture. Hors services à la personne : pas de crédit d'impôt, "
-                 "30 % du chiffre d'affaires au maximum, comptabilité séparée, dispense à demander sur NOVA. "
-                 "Prix à fixer, sans mention de crédit d'impôt."),
+    ("Pas au lancement", "L'offre de démarrage est strictement le rangement. L'Allure et Le Verbe sortent du site "
+                         "et des réservations, et reviendront quand le rangement tourne (par exemple 15 clients de L'habitude)."),
+    ("Le Verbe, plus tard", "Cours de français à domicile : un service à la personne, crédit d'impôt possible."),
+    ("L'Allure, plus tard", "Conseil vestimentaire et posture : hors services à la personne. Pas de crédit d'impôt, "
+                            "30 % du chiffre d'affaires au maximum, comptabilité séparée."),
 ]
 
 # --- Parcours -----------------------------------------------------------------------------
@@ -306,9 +312,9 @@ ADMIN = [
              "de l'Urssaf. Le client n'est prélevé que de la moitié."),
     ("TVA", "Franchise jusqu'à 37 500 € de chiffre d'affaires (seuil majoré 41 250 €). Au-delà, 10 % sur "
             "l'entretien de la maison pour une structure déclarée."),
-    ("L'Allure", "Activité accessoire hors services à la personne : 30 % du chiffre d'affaires de l'année "
-                 "précédente au maximum, comptabilité séparée, dispense demandée sur NOVA. Pour l'année de "
-                 "création, faire confirmer le calcul par la DDETS."),
+    ("Rangement seul", "Le lancement sur le seul rangement évite la question de l'activité exclusive. Le jour où "
+                       "L'Allure revient, elle sera accessoire : 30 % du chiffre d'affaires au maximum, comptabilité "
+                       "séparée, dispense demandée sur NOVA."),
     ("Assurances", "RC pro avant la première intervention, et usage professionnel du véhicule à faire ajouter."),
     ("Médiateur", "Obligatoire pour vendre aux particuliers : son nom figure dans les CGV."),
     ("Le titre", "« Coach » n'est pas un titre protégé en France, contrairement à ce que disaient nos "
@@ -347,6 +353,35 @@ RESEAUX = (
     "résidences seniors, conciergeries."
 )
 
+# --- Le site -----------------------------------------------------------------------------
+# Relevé sur les captures de nine-services.netlify.app envoyées par Julien le 30 octobre 2026.
+
+SITE = [
+    ("Ce qu'on garde", [
+        "La voix de Nine à la première personne, et la page « à propos ».",
+        "Le design : fond crème, titres à empattements, illustrations au trait.",
+        "« Deux offres, pas plus. »",
+        "La charte de confiance signée, et la page RGPD.",
+        "La FAQ, en retirant ce qui parle des piliers et de la caméra.",
+    ]),
+    ("Ce qu'on change", [
+        "Le nom : « un œil neuf » devient « un coin de neuf ».",
+        "L'accroche : « Vous n'aimez pas ranger. Nine, si. » à la place de « votre intérieur, votre allure et vos mots ».",
+        "L'Espace : du rangement, plus de « diagnostic spatial ».",
+        "Les tarifs : Un coin 100 € et Une pièce 200 €, avec le prix après crédit d'impôt écrit à côté.",
+        "« Prendre rendez-vous » et le formulaire par e-mail : une réservation directe en trois clics.",
+        "« Le parcours » (diagnostic, rapport, plan d'action) : les trois clics.",
+    ]),
+    ("Ce qu'on retire", [
+        "L'Allure, Le Verbe et le parcours complet à 950 €.",
+        "L'intervention filmée et la question de la caméra dans la FAQ.",
+        "Les prix barrés : un prix barré annonce une remise, et ce n'en est pas une.",
+        "La mention du crédit d'impôt, jusqu'au récépissé de déclaration.",
+        "« [Téléphone] · [Email] » : à remplir tout de suite.",
+        "« Écosystème responsable », tant qu'il n'y a pas de partenaire de recyclage réel à nommer.",
+    ]),
+]
+
 # --- Feuille de route ---------------------------------------------------------------------
 # (phase, action, responsable, échéance, c'est fait quand…)
 
@@ -367,8 +402,10 @@ ETAPES = [
      "Nine a relu et validé contenu, durée, prix, options et limites"),
     ("Décider", "Fixer les jours et la zone de chaque ville", "Nine", D(2026, 11, 6),
      "Le calendrier type de la semaine est écrit"),
-    ("Décider", "Décider du sort du site actuel (parcours à 950 €, intervention filmée)", "Julien", D(2026, 11, 6),
-     "La liste des pages à modifier est écrite"),
+    ("Décider", "Retirer du site le crédit d'impôt, les prix barrés et les « [Téléphone] · [Email] »", "Julien", D(2026, 11, 6),
+     "Plus aucun des trois n'apparaît en ligne"),
+    ("Décider", "Lister ce qui change sur le site pour le recentrer sur le rangement", "Julien", D(2026, 11, 6),
+     "La liste garder / changer / retirer de ce document est validée par Nine"),
 
     ("Créer l'entreprise", "Créer la micro-entreprise de Nine sur le guichet unique", "Julien", D(2026, 11, 13),
      "L'accusé de dépôt du guichet unique est reçu"),
@@ -382,7 +419,7 @@ ETAPES = [
      "L'attestation ou l'avenant est reçu"),
     ("Créer l'entreprise", "Recevoir le SIRET", "Nine", D(2026, 11, 27),
      "L'avis de situation INSEE est téléchargé"),
-    ("Créer l'entreprise", "Déclarer l'activité services à la personne sur NOVA (et la dispense pour L'Allure)",
+    ("Créer l'entreprise", "Déclarer l'activité services à la personne sur NOVA",
      "Julien", D(2026, 12, 4), "Le récépissé de déclaration est reçu"),
     ("Créer l'entreprise", "Choisir le logiciel de facturation habilité à l'avance immédiate et demander l'habilitation",
      "Julien", D(2026, 12, 4), "Le compte est ouvert et l'habilitation demandée"),
@@ -401,8 +438,8 @@ ETAPES = [
      "Julien", D(2026, 12, 11), "Les quatre modèles sont prêts à l'emploi"),
     ("Préparer", "Paramétrer la réservation : Un coin, Une pièce, L'habitude, créneaux express", "Julien", D(2026, 12, 11),
      "Un proche réserve un créneau test en moins d'une minute"),
-    ("Préparer", "Mettre le site à jour : deux offres en vitrine, réservation en trois clics", "Julien", D(2026, 12, 18),
-     "Le parcours à 950 € et l'intervention filmée ont disparu, la réservation fonctionne"),
+    ("Préparer", "Refondre le site autour du rangement : accroche, deux offres, réservation en trois clics", "Julien", D(2026, 12, 18),
+     "Plus de piliers, de parcours ni de caméra en ligne, et la réservation fonctionne"),
     ("Préparer", "Acheter le matériel", "Nine", D(2026, 12, 11),
      "Le kit complet tient dans le coffre"),
     ("Préparer", "Faire cinq prestations tests chez des proches", "Nine", D(2026, 12, 18),

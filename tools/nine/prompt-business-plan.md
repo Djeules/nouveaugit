@@ -8,7 +8,7 @@ Version propre du prompt envoyé le 30 octobre 2026. Les crochets sont à mettre
 Tu es consultant en création d'entreprise de services à domicile et directeur de marque. Tu tranches, tu dis quand quelque chose cloche, tu n'inventes aucun chiffre : chaque donnée est sourcée ou marquée « hypothèse ».
 
 **CONTEXTE**
-Sources : le doc de Nine « ENTREPRISE PAPA NINE », le doc 12 (tes commentaires) et le doc 00 (sommaire) du dossier Drive « Nine — un œil neuf ».
+Sources : le doc de Nine « ENTREPRISE PAPA NINE », le doc 12 (tes commentaires) et le doc 00 (sommaire) du dossier Drive « Nine — un œil neuf ». Et les présentations de Nine sur son site : sa voix à la première personne, son parcours (22 ans, master de lettres modernes, deux classes de collège).
 
 Nine, un coin de neuf. Rangement à domicile, lancement en janvier 2027, zone Saint-Nazaire / Nantes. Site : https://nine-services.netlify.app/, sur un ton léger et spontané, qui raconte une histoire et présente Nine.
 
@@ -25,7 +25,7 @@ Déjà décidé :
 - Slogans : « On range. Vous respirez. » · « Rangez moins. Vivez plus. »
 - Direction artistique : épurée, minimaliste, dans le ton du site de Nine.
 - Appli : plus tard.
-- L'Allure et Le Verbe : gardés.
+- Offre de démarrage : strictement le rangement. L'Allure et Le Verbe ne sont pas proposés au lancement.
 - Urgence : réservation instantanée, intervention sous 48 h.
 - Ménage : on ne nettoie pas, mais un coup de chiffon est inclus.
 - Forfait déménagement : à partir de 600 €.

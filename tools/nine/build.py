@@ -90,6 +90,8 @@ hr { width: 56px; border: 0; border-top: 2px solid var(--encre); margin: 22px 0;
 .carte .etiquette { font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); margin-top: 8px; }
 .carte.jaune .etiquette { color: var(--encre); }
 .carte.jaune .badge { background: var(--encre); color: var(--jaune); }
+.carte.jaune .liste li::before { background: var(--encre); }
+.carte.jaune .liste li { border-color: rgba(34, 32, 28, 0.25); }
 
 table { width: 100%; border-collapse: collapse; font-size: 11.5px; line-height: 1.45; }
 th { text-align: left; font-weight: 600; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); padding: 0 12px 8px 0; border-bottom: 1.5px solid var(--encre); }
@@ -214,8 +216,8 @@ def construire_pdf():
     suite("Les décisions encore ouvertes.", table(entetes, lignes[4:], cl))
 
     # Risques
-    section("Ce qui peut mal tourner.", "Cinq risques, et ce qu'on fait pour chacun.",
-            cartes(c.RISQUES, 5))
+    section("Ce qui peut mal tourner.", "Six risques, et ce qu'on fait pour chacun.",
+            cartes(c.RISQUES, 3))
 
     # Positionnement
     slogans = "".join(f"<p>{typo(s)}</p>" for s in c.SLOGANS)
@@ -244,11 +246,11 @@ def construire_pdf():
         corps = "".join(f'<div class="etiquette">{k}</div><p>{typo(v)}</p>' for k, v in champs)
         cl = "jaune" if o["vitrine"] else ""
         return f'<div class="carte {cl}"><span class="badge">{num(n)}</span><h3 style="font-size:20px;font-weight:400">{typo(o["nom"])}</h3>{corps}</div>'
-    section("Les offres.", "Deux en vitrine, réservables en trois clics. Deux au second plan.",
+    section("Les offres.", "Du rangement, et rien d'autre au lancement. Deux offres en vitrine, réservables en trois clics ; deux au second plan.",
             '<div class="cartes" style="grid-template-columns: 1fr 1fr">' + fiche(c.OFFRES[0], 1) + fiche(c.OFFRES[1], 2) + "</div>")
     suite("Au second plan.", '<div class="cartes" style="grid-template-columns: 1fr 1fr 0.9fr">'
           + fiche(c.OFFRES[2], 3) + fiche(c.OFFRES[3], 4)
-          + '<div class="carte cadre"><div class="etiquette">Nine fait aussi</div>'
+          + '<div class="carte cadre"><div class="etiquette">L\'Allure et Le Verbe</div>'
           + "".join(f"<h3>{typo(t)}</h3><p>{typo(x)}</p>" for t, x in c.AUTRES_PILIERS) + "</div></div>")
 
     # Parcours
@@ -310,6 +312,14 @@ def construire_pdf():
     section("La marque et les réseaux.", "Nine gère les réseaux, Julien la prospection.",
             f'<div class="trois">{marque}</div><div style="height:14px"></div>'
             + cartes(c.CONTENUS, 5) + f'<div style="height:14px"></div><div class="filet">{typo(c.RESEAUX)}</div>')
+
+    # Le site
+    colonnes = "".join(
+        f'<div class="carte {"jaune" if i == 0 else ("cadre" if i == 2 else "")}"><h3 style="font-size:18px;font-weight:400;margin-top:0">{typo(t)}</h3>'
+        f'<ul class="liste" style="margin-top:8px">' + "".join(f"<li>{typo(x)}</li>" for x in items) + "</ul></div>"
+        for i, (t, items) in enumerate(c.SITE))
+    section("Le site.", "Relevé sur nine-services.netlify.app le 30 octobre. La voix de Nine reste ; l'offre, les prix et le parcours changent.",
+            f'<div class="cartes" style="grid-template-columns: repeat(3, 1fr)">{colonnes}</div>')
 
     # Feuille de route
     phases = "".join(
@@ -386,7 +396,7 @@ def construire_doc():
         h.append(f"<h3>{t(o['nom'])}{' (en vitrine)' if o['vitrine'] else ' (second plan)'}</h3>"
                  + tableau(["Durée", "Prix", "Pour", "Inclus", "Options", "Limites"],
                            [tuple(t(o[k]) for k in ("duree", "prix", "pour", "inclus", "options", "limites"))]))
-    h.append("<h3>Nine fait aussi</h3>" + "".join(f"<p><b>{t(a)}.</b> {t(b)}</p>" for a, b in c.AUTRES_PILIERS))
+    h.append("<h3>L’Allure et Le Verbe</h3>" + "".join(f"<p><b>{t(a)}.</b> {t(b)}</p>" for a, b in c.AUTRES_PILIERS))
     h.append("<h2>La réservation en trois clics</h2><ol>" + "".join(f"<li><b>{t(a)}.</b> {t(b)}</li>" for a, b in c.PARCOURS) + "</ol>"
              + "<h3>Ensuite</h3>" + tableau(["Quand", "Quoi"], [(f"<b>{t(a)}</b>", t(b)) for a, b in c.APRES_RESERVATION]))
     h.append("<h2>Ce qu’on fait, ce qu’on ne fait pas</h2>" + tableau(["Sujet", "Règle"], [(f"<b>{t(a)}</b>", t(b)) for a, b in c.LIMITES]))
@@ -409,6 +419,8 @@ def construire_doc():
     h.append("<h2>La marque et les réseaux</h2>" + "".join(f"<p><b>{t(a)}.</b> {t(b)}</p>" for a, b in c.MARQUE)
              + "<h3>Les contenus</h3><ul>" + "".join(f"<li><b>{t(a)}.</b> {t(b)}</li>" for a, b in c.CONTENUS) + "</ul>"
              + f"<p>{t(c.RESEAUX)}</p>")
+    h.append("<h2>Le site</h2><p>Relevé sur nine-services.netlify.app le 30 octobre 2026. La voix de Nine reste ; l’offre, les prix et le parcours changent.</p>"
+             + "".join(f"<h3>{t(a)}</h3><ul>" + "".join(f"<li>{t(x)}</li>" for x in items) + "</ul>" for a, items in c.SITE))
     h.append("<h2>La feuille de route</h2><p>Chaque étape a un responsable, une échéance et un critère : c’est fait quand on peut le vérifier. "
              "Le même suivi existe en Google Sheet.</p>")
     for i, (p, dates) in enumerate(c.PHASES, 1):
