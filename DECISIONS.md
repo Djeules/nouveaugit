@@ -1206,3 +1206,14 @@ textes anglais incrustés ont été effacés image par image avant le découpage
 Polices Anton et Instrument Serif copiées dans le dossier de la démo, CSS et JS
 en fichiers, `noindex`. Attention : Cloudflare Pages publie `master` à chaque
 fusion, contrairement à ce que disait l'ancien flux Netlify.
+
+## 33. Troisième démo : « Votre vente, pièce par pièce »
+
+Même principe que les sections 31 et 32, sous `site/demos/piece-par-piece/` : une
+vidéo Hailuo d'appareil photo qui se démonte puis se remonte en gros plan,
+découpée en 168 images (WebP 720 px). Le filigrane MiniMax / Hailuo AI et les
+marquages « Nikon » et « Z fc » de l'appareil ont été effacés image par image
+(suivi de chaque mot, puis retouche) : aucune marque tierce n'apparaît. Le fond de
+la scène suit la couleur de la vidéo image par image, d'où l'absence de bord.
+Polices copiées depuis la démo burger, CSS et JS en fichiers, `noindex`. La page se
+reconstruit depuis le dossier du projet (`scroll-appareil-photo/build-site.py`).
