@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mer de nuages · avecjulien.fr</title>
+<meta name="description" content="Sorties guidées pour voir le soleil se lever au-dessus des nuages. Six personnes, un guide, deux heures de marche.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="page.css">
+<script src="page.js" defer></script>
+</head>
+<body>
+<header class="top gutter" id="top-bar">
+  <a class="brand" href="#top">Mer de nuages</a>
+  <a class="cta-top" href="#reserver">Réserver un lever</a>
+</header>
+
+<main id="top">
+  <div class="climb" id="climb">
+    <div class="stage">
+      <canvas id="cv" aria-label="Des crêtes rocheuses émergent d'une mer de nuages dorés, le soleil posé sur l'horizon."></canvas>
+      <div class="words" id="words">
+        <div data-a="0" data-b="0.2" class="line t1"><h1>Au-dessus.</h1><p>Il existe un endroit où le bruit s'arrête. Il est à deux heures de marche.</p></div>
+        <div data-a="0.22" data-b="0.44" class="line t1"><h2>On part dans le noir, <em>on arrive dans la lumière.</em></h2></div>
+        <div data-a="0.46" data-b="0.68" class="line t2"><h2>En bas, tout le monde dort <em>sous les nuages.</em></h2></div>
+        <div data-a="0.7" data-b="1.01" class="line t3"><h2>Toi, tu regardes <em>le jour se lever.</em></h2><p>Six personnes, un guide, un thermos.</p></div>
+      </div>
+      <div class="alt" aria-hidden="true"><span>Altitude <b id="alt">1 850 m</b></span><span>Heure <b id="clock">5 h 40</b></span></div>
+      <div class="hint" id="hint">monte</div>
+      <div class="loader" id="loader">Chargement 0 %</div>
+    </div>
+  </div>
+
+  <section class="gutter" id="idee">
+    <div class="intro">
+      <p class="big" id="glow">On ne vend pas un sommet. On vend vingt minutes de silence, quand le soleil sort des nuages et que personne n'a envie de parler.</p>
+    </div>
+    <dl class="facts gap-top">
+      <div><dt>Départ</dt><dd>4 h 30</dd></div>
+      <div><dt>Marche</dt><dd>2 h<small>à la frontale</small></dd></div>
+      <div><dt>Dénivelé</dt><dd>650<small>m</small></dd></div>
+      <div><dt>Groupe</dt><dd>6<small>max.</small></dd></div>
+    </dl>
+  </section>
+
+  <section class="gutter flush">
+    <h2 class="title">Une matinée, <em>à peu près comme ça.</em></h2>
+    <div class="steps">
+      <div class="step"><time>4 h 30</time><div><p><b>Rendez-vous au parking du col.</b> Café, frontales, on vérifie les chaussures.</p></div></div>
+      <div class="step"><time>4 h 45</time><div><p><b>On monte en silence.</b> Sentier facile, pauses fréquentes, le ciel pâlit doucement.</p></div></div>
+      <div class="step"><time>6 h 50</time><div><p><b>Arrivée sur la crête.</b> Couvertures, thermos, on s'installe face à l'est.</p></div></div>
+      <div class="step"><time>7 h 12</time><div><p><b>Le soleil sort des nuages.</b> C'est le moment. On se tait.</p></div></div>
+      <div class="step"><time>9 h 30</time><div><p><b>Retour au col</b>, petit-déjeuner au refuge, puis la vie normale reprend.</p></div></div>
+    </div>
+  </section>
+
+  <section class="gutter flush" id="reserver">
+    <div class="book">
+      <div class="card">
+        <p class="price">65 €<small>par personne, guide, boissons chaudes et petit-déjeuner compris</small></p>
+        <form class="form" id="form" novalidate>
+          <div class="dates" role="radiogroup" aria-label="Choisir une date">
+            <label><input type="radio" name="d" id="d1" value="1" checked><span>Samedi 14 novembre</span><span>2 places</span></label>
+            <label><input type="radio" name="d" id="d2" value="2"><span>Dimanche 22 novembre</span><span>4 places</span></label>
+            <label><input type="radio" name="d" id="d3" value="3"><span>Samedi 5 décembre</span><span>6 places</span></label>
+          </div>
+          <input type="text" id="nom" placeholder="Ton prénom" autocomplete="given-name" aria-label="Prénom">
+          <input type="email" id="mail" placeholder="Ton e-mail" autocomplete="email" aria-label="E-mail">
+          <button class="btn" type="submit">Je réserve mon lever de soleil</button>
+          <p class="done" id="done" hidden></p>
+        </form>
+      </div>
+      <div class="bring">
+        <h3>À prendre avec toi</h3>
+        <ul><li>Des chaussures de marche</li><li>Une veste chaude, même en été</li><li>Rien d'autre, on s'occupe du reste</li></ul>
+        <h3>Et s'il y a trop de nuages ?</h3>
+        <p>On le sait la veille à 18 h. Si la mer de nuages ne se forme pas, ou si le ciel est bouché au-dessus, on décale gratuitement ou on rembourse.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="end gutter flush"><p>Le monde peut attendre deux heures.</p></section>
+</main>
+
+<footer class="gutter">
+  <span>Mer de nuages est une activité fictive. Page de démonstration d'animation au scroll.</span>
+  <span>Conception et animation : avecjulien.fr</span>
+</footer>
+</body>
+</html>
