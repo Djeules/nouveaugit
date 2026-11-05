@@ -1217,3 +1217,14 @@ marquages « Nikon » et « Z fc » de l'appareil ont été effacés image par i
 la scène suit la couleur de la vidéo image par image, d'où l'absence de bord.
 Polices copiées depuis la démo burger, CSS et JS en fichiers, `noindex`. La page se
 reconstruit depuis le dossier du projet (`scroll-appareil-photo/build-site.py`).
+
+## 34. Quatrième démo : « Mer de nuages »
+
+Même principe que les sections 31 à 33, sous `site/demos/mer-de-nuages/` : une
+vidéo fournie par Julien (crêtes au-dessus d'une mer de nuages au coucher du
+soleil, 20 s) découpée en 180 images WebP, en deux tailles (1600 px, et 960 px
+chargées sur les petits écrans). Activité fictive (sorties lever de soleil),
+texte court qui apparaît mot à mot au scroll. Polices Fraunces (OFL, jointe) et
+Inter auto-hébergées, CSS et JS en fichiers, aucun style en ligne, `noindex`,
+rien ne relie la démo au site. La page se reconstruit depuis le dossier du projet
+(`scroll-mer-de-nuages/build-site.py`).
