@@ -1228,3 +1228,31 @@ texte court qui apparaît mot à mot au scroll. Polices Fraunces (OFL, jointe) e
 Inter auto-hébergées, CSS et JS en fichiers, aucun style en ligne, `noindex`,
 rien ne relie la démo au site. La page se reconstruit depuis le dossier du projet
 (`scroll-mer-de-nuages/build-site.py`).
+
+## 35. Cinquième démo : « L'ordre change tout » (le dressing qui se range)
+
+Même principe que les sections 31 à 34, sous `site/demos/dressing/`, mais **sans
+vidéo source** : le compte de génération n'avait plus de crédits, et la consigne
+interdisait de coudre des photos aux meubles ou aux angles incompatibles. La
+séquence est donc une scène 3D unique (Blender/Cycles, `tools/dressing/scene.py`)
+rendue en 120 images, en deux cadrages : paysage 1440 × 810 et portrait
+720 × 1280 (choisi selon le rapport largeur/hauteur de l'écran, pas sa taille).
+
+- **La cohérence vient du modèle, pas du montage** : une armoire, une lumière,
+  une caméra. Le rangement se rejoue à l'envers sans raccord possible.
+- **La chorégraphie est écrite en progression de défilement**, dans le script de
+  rendu ; `N` et `P_END` doivent rester identiques dans `scene.py` et `page.js`.
+- **Fondu entre images voisines** dans le canevas : 120 images suffisent à un
+  mouvement continu, et le chargement du grossier au fin rend la page jouable
+  avant la fin du téléchargement.
+- **Les vêtements pliés sont une nappe de tissu, pas un volume** : la première
+  version utilisait des pavés arrondis bosselés, qui se lisaient en mouvement
+  mais pas sur image fixe (coussins, pas pulls). Chaque pull est désormais une
+  nappe repliée en accordéon, et son état « en tas » sort d'une simulation de
+  tissu Blender (`tools/dressing/cloth.py`). Les chemises ont gagné col,
+  manches et pans arrondis.
+- **Limite assumée** : c'est une image de synthèse, pas une photographie. Détail
+  et voie d'amélioration (vidéo IA ancrée sur la première et la dernière image)
+  dans `tools/dressing/README.md`.
+- Polices Fraunces et Inter copiées depuis la démo « Mer de nuages », CSS et JS
+  en fichiers, aucun style en ligne, `noindex`, rien ne relie la démo au site.
