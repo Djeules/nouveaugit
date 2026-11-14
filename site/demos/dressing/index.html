@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>L'ordre change tout · avecjulien.fr</title>
+<meta name="description" content="Une chambre, une armoire qui déborde, et un défilement qui range tout. Démo de page immersive au scroll.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ece8e1">
+<link rel="preload" as="image" href="assets/frames/d/f000.webp" media="(min-aspect-ratio: 9/10)">
+<link rel="preload" as="image" href="assets/frames/m/f000.webp" media="(max-aspect-ratio: 9/10)">
+<link rel="preload" as="font" type="font/woff2" href="fonts/fraunces-latin-full-normal.woff2" crossorigin>
+<link rel="stylesheet" href="page.css">
+<script src="page.js" defer></script>
+</head>
+<body>
+<main>
+  <section class="film" id="film" aria-label="Le dressing se range au fil du défilement">
+    <div class="stage" id="stage">
+      <canvas id="cv" role="img" aria-label="Une chambre scandinave baignée de lumière du matin. Au centre, une armoire en chêne clair déborde de vêtements ; au fil du défilement, pulls, chemises et boîtes reprennent leur place jusqu'à un rangement parfait."></canvas>
+      <div class="veil" id="veil" aria-hidden="true"></div>
+
+      <div class="chapters" aria-hidden="true">
+        <ol id="chapters">
+          <li class="on"><span>01</span> Découverte</li>
+          <li><span>02</span> Transformation</li>
+          <li><span>03</span> Révélation</li>
+        </ol>
+      </div>
+
+      <div class="reveal" id="reveal">
+        <h1 class="title" id="title">L'ordre change tout.</h1>
+        <p class="sub" id="sub">Un espace pour chaque chose. Et du temps pour l'essentiel.</p>
+      </div>
+
+      <div class="hint" id="hint" aria-hidden="true"><span>Faites défiler</span><i></i></div>
+      <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+      <div class="loader" id="loader" aria-hidden="true">Chargement <b id="pct">0</b> %</div>
+    </div>
+  </section>
+
+  <section class="after gutter">
+    <p class="kicker">Et maintenant&nbsp;?</p>
+    <h2>Remontez la page, <em>le désordre revient.</em><br>Redescendez, il disparaît.</h2>
+    <p class="lead">Chaque pull, chaque chemise, chaque boîte suit la molette, dans un sens comme dans l'autre.</p>
+    <a class="btn" href="#film" id="again">Revoir le rangement</a>
+    <p class="note">Démo de page au scroll. Scène de synthèse rendue en 3D, image par image&nbsp;: aucune photographie, aucune marque.</p>
+  </section>
+</main>
+</body>
+</html>
