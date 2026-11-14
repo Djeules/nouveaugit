@@ -1251,6 +1251,11 @@ rendue en 120 images, en deux cadrages : paysage 1440 × 810 et portrait
   nappe repliée en accordéon, et son état « en tas » sort d'une simulation de
   tissu Blender (`tools/dressing/cloth.py`). Les chemises ont gagné col,
   manches et pans arrondis.
+- **Trois jeux d'images, un seul chargé** : le flou remarqué sur écran retina
+  venait de la définition (1440 × 810 agrandi 1,75 fois), pas de la compression.
+  Un jeu 2560 × 1440 (`h`) est servi quand le canevas dépasse 1700 pixels
+  physiques ; `d` et `m` restent pour les autres écrans. Poids par visiteur :
+  ~3,4 Mo, ou ~7,3 Mo en haute définition.
 - **Limite assumée** : c'est une image de synthèse, pas une photographie. Détail
   et voie d'amélioration (vidéo IA ancrée sur la première et la dernière image)
   dans `tools/dressing/README.md`.

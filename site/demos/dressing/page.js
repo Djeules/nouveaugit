@@ -1,7 +1,9 @@
 /* « L'ordre change tout » — la séquence suit le défilement, image par image.
  *
- * 120 images rendues en 3D (tools/dressing/scene.py), en deux jeux : paysage
- * (assets/frames/d, 1440 × 810) et portrait (assets/frames/m, 720 × 1280).
+ * 120 images rendues en 3D (tools/dressing/scene.py), en trois jeux : paysage
+ * (assets/frames/d, 1440 × 810), paysage haute définition pour les écrans
+ * denses ou larges (assets/frames/h, 2560 × 1440) et portrait
+ * (assets/frames/m, 720 × 1280). Un visiteur ne charge qu'un seul jeu.
  * L'image i correspond à la progression p = i / (N − 1) × P_END ; au-delà de
  * P_END la scène est immobile et seul le titre bouge.
  *
@@ -42,7 +44,9 @@
 
   /* ---------- images ---------- */
   let set = null, frames = [], prev = [], loaded = 0, gen = 0;
-  const pickSet = () => (innerWidth / innerHeight < 0.9 ? 'm' : 'd');
+  // paysage : 1440 × 810 suffit jusqu'à ~1700 pixels physiques de large ; au-delà
+  // (écrans retina, 1920 et plus) l'image serait agrandie et floue → jeu « h », 2560 × 1440
+  const pickSet = () => (innerWidth / innerHeight < 0.9 ? 'm' : W > 1700 ? 'h' : 'd');
 
   function load(s) {
     gen++; const my = gen;

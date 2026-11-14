@@ -21,10 +21,23 @@ python3 -m venv /tmp/bvenv && /tmp/bvenv/bin/pip install /tmp/bpy/bpy-*.whl
 # 120 images paysage 1440 × 810, puis 120 images portrait 720 × 1280
 /tmp/bvenv/bin/python tools/dressing/scene.py --variant desktop --out /tmp/d --frames 120 --samples 12 --scale 0.9
 /tmp/bvenv/bin/python tools/dressing/scene.py --variant mobile  --out /tmp/m --frames 120 --samples 12
-python3 tools/dressing/build.py /tmp/d /tmp/m            # → WebP dans site/demos/dressing/assets/frames/
+# 120 images paysage haute définition 2560 × 1440 (écrans retina et larges)
+/tmp/bvenv/bin/python tools/dressing/scene.py --variant desktop --out /tmp/h --frames 120 --samples 16 --scale 1.6
+python3 tools/dressing/build.py /tmp/d /tmp/m /tmp/h     # → WebP dans site/demos/dressing/assets/frames/
 ```
 
-Sur 4 cœurs : ~50 s par image paysage, ~30 s en portrait (≈ 2 h 40 en tout).
+Sur 4 cœurs : ~35 s par image paysage, ~25 s en portrait, ~2 min 40 en haute
+définition (≈ 7 h 30 en tout). Lancer avec `setsid nohup …` : une tâche de fond
+limitée à 2 h serait coupée en route.
+
+## Trois jeux d'images, un seul chargé
+
+`page.js` choisit le jeu selon l'écran : portrait `m` si l'écran est plus haut
+que large, sinon `d` (1440 × 810) tant que le canevas fait moins de 1700 pixels
+physiques de large, et `h` (2560 × 1440) au-delà. Sur un MacBook (1440 points,
+densité 2) le canevas fait ~2500 pixels : l'image 1440 y était agrandie 1,75
+fois, d'où le flou — la compression WebP n'y était pour presque rien.
+Poids par visiteur : ~3,4 Mo en `d` ou `m`, ~7,3 Mo en `h`.
 `--only 0,60,119 --scale 0.4 --samples 8` donne un aperçu en une minute.
 `--cam x,y,z,cx,cy,cz,focale` place une caméra d'inspection (gros plan).
 
