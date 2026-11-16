@@ -1,0 +1,41 @@
+<!--
+  Dressing film : bloc à coller dans n'importe quelle page de ton site.
+
+  1. Dans le <head> :
+       <link rel="stylesheet" href="/chemin/vers/dressing-film.css">
+       <script src="/chemin/vers/dressing-film.js" defer></script>
+  2. Copie le dossier assets/frames (d, h, m) sur ton serveur et mets son chemin dans data-frames.
+  3. Polices : le film utilise Fraunces pour le titre (fonts/). Sans elle, il prend Georgia.
+  4. En-tête fixe sur ton site ? Donne sa hauteur : style="--dzf-top: 72px" sur la section.
+     Longueur du défilement : style="--dzf-length: 500vh" (défaut).
+-->
+<!-- ===== Film au scroll : copier cette section (et snippet.html) pour l'intégrer ailleurs ===== -->
+  <section class="dzf" data-dressing-film data-frames="/chemin/vers/assets/frames" aria-label="Le dressing se range au fil du défilement">
+    <div class="dzf__stage">
+      <canvas role="img" aria-label="Une chambre scandinave baignée de lumière. L'armoire en chêne déborde de vêtements ; au fil du défilement, pulls, chemises et boîtes reprennent leur place."></canvas>
+      <div class="dzf__veil" aria-hidden="true"></div>
+
+      <div class="dzf__intro">
+        <span class="dzf__eyebrow">Dressings sur mesure · Rangement</span>
+        <p>Votre armoire déborde&nbsp;?<br>Faites défiler.</p>
+      </div>
+
+      <div class="dzf__chapters" aria-hidden="true">
+        <ol>
+          <li class="on"><span>01</span> Le désordre</li>
+          <li><span>02</span> Le rangement</li>
+          <li><span>03</span> Le résultat</li>
+        </ol>
+      </div>
+
+      <div class="dzf__reveal">
+        <h1 class="dzf__title">L'ordre change tout.</h1>
+        <p class="dzf__sub">Un espace pour chaque chose. Et du temps pour l'essentiel.</p>
+      </div>
+
+      <div class="dzf__hint" aria-hidden="true"><span>Faites défiler</span><i></i></div>
+      <div class="dzf__progress" aria-hidden="true"><i class="dzf__dl"></i><i class="dzf__bar"></i></div>
+      <div class="dzf__loader" aria-hidden="true">Chargement <b class="dzf__pct">0</b>&nbsp;%</div>
+    </div>
+  </section>
+  <!-- ===== fin du film ===== -->

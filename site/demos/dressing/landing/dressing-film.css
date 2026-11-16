@@ -1,0 +1,76 @@
+/* Dressing film : séquence 3D pilotée par le défilement.
+ * Composant autonome : tout est préfixé .dzf pour ne pas toucher au reste du site.
+ * Réglages : --dzf-length (longueur du défilement), --dzf-top (hauteur d'un en-tête fixe),
+ * --dzf-bg (couleur de fond), --dzf-ink (texte), --dzf-accent (barre de progression).
+ */
+.dzf {
+  --dzf-length: 500vh;
+  --dzf-top: 0px;
+  --dzf-bg: #ece8e1;
+  --dzf-ink: #26241f;
+  --dzf-ink-2: #5d574d;
+  --dzf-accent: #d8c27c;
+  --dzf-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --dzf-ease: cubic-bezier(.2, .7, .1, 1);
+  position: relative;
+  height: var(--dzf-length);
+  color: var(--dzf-ink);
+}
+.dzf *, .dzf *::before, .dzf *::after { box-sizing: border-box; }
+.dzf__stage {
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+  background-color: var(--dzf-bg);
+  background-position: center 38%; background-size: cover; background-repeat: no-repeat;
+}
+.dzf__stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.dzf__stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(130% 95% at 50% 45%, rgba(38,36,31,0) 55%, rgba(38,36,31,.16) 100%); }
+.dzf__veil { position: absolute; inset: 0 0 auto; height: 50%; pointer-events: none; opacity: 0; background: linear-gradient(180deg, rgba(236,232,225,.86), rgba(236,232,225,.5) 55%, rgba(236,232,225,0)); }
+
+/* texte d'ouverture, visible au début puis effacé */
+.dzf__intro { position: absolute; z-index: 2; left: 0; right: 0; top: calc(var(--dzf-top) + 7%); text-align: center; padding: 0 16px; pointer-events: none; }
+.dzf__intro .dzf__eyebrow { display: inline-block; margin: 0 0 1em; padding: .45em 1em; border-radius: 999px; background: rgba(245,242,236,.78); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.dzf__intro p { margin: 0 auto; max-width: 22em; font-family: var(--dzf-display); font-weight: 360; font-size: clamp(1.6rem, 1rem + 2.4vw, 3.2rem); line-height: 1.08; letter-spacing: -.02em; text-shadow: 0 1px 24px rgba(245,242,236,.7); }
+
+/* chapitres */
+.dzf__chapters { position: absolute; z-index: 3; left: max(16px, env(safe-area-inset-left, 0px)); top: calc(var(--dzf-top) + 18px); }
+.dzf__chapters ol { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; }
+.dzf__chapters li { opacity: .38; transition: opacity .6s var(--dzf-ease); white-space: nowrap; }
+.dzf__chapters li span { font-variant-numeric: tabular-nums; margin-right: .35em; }
+.dzf__chapters li.on { opacity: .95; }
+@media (min-width: 900px) { .dzf__chapters { left: 4vw; top: calc(var(--dzf-top) + 26px); } }
+@media (max-width: 560px) { .dzf__chapters ol { gap: 0; } .dzf__chapters li { display: none; } .dzf__chapters li.on { display: block; } }
+
+/* titre final */
+.dzf__reveal { position: absolute; z-index: 2; left: 0; right: 0; top: calc(var(--dzf-top) + 6%); text-align: center; padding: 0 16px; pointer-events: none; }
+.dzf__title { margin: 0; font-family: var(--dzf-display); font-weight: 340; font-size: clamp(2.3rem, 1.2rem + 4.2vw, 5.4rem); line-height: 1.02; letter-spacing: -.025em; font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144; }
+.dzf__sub { margin: .9em auto 0; max-width: 34em; font-size: clamp(1rem, .9rem + .45vw, 1.3rem); color: var(--dzf-ink-2); font-weight: 400; }
+.dzf__title .w { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .02em .12em; margin: -.06em -.02em -.12em; }
+.dzf__title .w > span { display: inline-block; will-change: transform; }
+.dzf.is-js .dzf__reveal { opacity: 0; }
+.dzf.is-js .dzf__reveal.ready { opacity: 1; }
+.dzf.is-js .dzf__title .w > span { transform: translateY(110%); }
+.dzf.is-js .dzf__sub { opacity: 0; }
+.dzf:not(.is-js) .dzf__intro, .dzf:not(.is-js) .dzf__loader, .dzf:not(.is-js) .dzf__hint { display: none; }
+@media (max-aspect-ratio: 9/10) { .dzf__reveal { top: calc(var(--dzf-top) + 8%); } .dzf__intro { top: calc(var(--dzf-top) + 9%); } }
+
+/* indice de défilement */
+.dzf__hint { position: absolute; z-index: 3; left: 50%; bottom: max(30px, calc(env(safe-area-inset-bottom, 0px) + 20px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; transition: opacity .6s var(--dzf-ease); }
+.dzf__hint i { width: 1px; height: 38px; background: rgba(38,36,31,.25); position: relative; overflow: hidden; }
+.dzf__hint i::after { content: ""; position: absolute; left: 0; right: 0; top: -40%; height: 40%; background: var(--dzf-ink); animation: dzf-drip 2.2s var(--dzf-ease) infinite; }
+@keyframes dzf-drip { to { top: 100%; } }
+.dzf__hint.gone { opacity: 0; }
+
+/* progression du défilement + progression du téléchargement */
+.dzf__progress { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(38,36,31,.08); }
+.dzf__progress .dzf__dl { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(0); background: rgba(38,36,31,.16); transition: transform .3s linear, opacity .8s; }
+.dzf__progress .dzf__bar { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(0); background: var(--dzf-accent); }
+.dzf__loader { position: absolute; z-index: 3; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 14px; display: flex; align-items: center; gap: .6em; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; opacity: .7; transition: opacity .8s; font-variant-numeric: tabular-nums; }
+.dzf__loader::before { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; animation: dzf-spin .9s linear infinite; }
+@keyframes dzf-spin { to { transform: rotate(360deg); } }
+.dzf__loader.done, .dzf__progress .dzf__dl.done { opacity: 0; }
+@media (min-width: 900px) { .dzf__loader { right: 4vw; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .dzf__hint i::after { animation: none; top: 0; height: 100%; opacity: .4; }
+  .dzf__loader::before { animation: none; }
+}
