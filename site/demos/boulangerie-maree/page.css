@@ -1,0 +1,124 @@
+/* Généré par demos/gabarit/assembler.mjs à partir de la fiche boulangerie-maree : modifier la fiche, pas ce fichier. */
+@font-face{font-family:Urbanist;font-style:normal;font-weight:300 800;font-display:swap;src:url(fonts/urbanist-latin-ext-wght.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Urbanist;font-style:normal;font-weight:300 800;font-display:swap;src:url(fonts/urbanist-latin-wght.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* Layout: one pinned 3D stage driven by the scroll (close-up, assembly, light), then specs, offer and a three-step form on the same dark ground. Single dark look on purpose: the lamp needs the night. */
+:root{
+  --night:#15100d; --night-2:#1e1814; --cream:#f2e8da; --cream-soft:#b8aa98; --line:#3a2f27;
+  --orange:#ec7a32; --glow:#ffcf8f; --field:#211a15;
+  --type:Urbanist, "Helvetica Neue", Arial, sans-serif;
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+html{background:var(--night)}
+body{background:var(--night);color:var(--cream);font:400 16px/1.6 var(--type);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-soft)}
+.bar b{color:var(--cream);font-weight:800;letter-spacing:.18em;font-size:13px}
+.stage-wrap{position:relative;height:640vh;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden}
+#gl,#ov{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ov{pointer-events:none}
+.poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.copy{position:absolute;left:0;right:0;padding-inline:max(20px, env(safe-area-inset-left, 0px));pointer-events:none}
+.copy.top{top:calc(7svh + env(safe-area-inset-top, 0px))}
+.copy.bottom{bottom:calc(6svh + env(safe-area-inset-bottom, 0px))}
+.h{font:800 clamp(32px,8.8vw,80px)/.98 var(--type);letter-spacing:-.01em;margin:0;opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease;text-wrap:balance;max-width:14ch}
+.h.on{opacity:1;transform:none}
+.k{font:600 11px/1.4 var(--type);letter-spacing:.16em;text-transform:uppercase;color:var(--cream-soft);display:flex;gap:18px;flex-wrap:wrap;opacity:0;transition:opacity .4s}
+.k.on{opacity:1}
+.k span{display:inline-flex;gap:8px;align-items:center}
+.k i{display:inline-block;width:18px;height:1px;background:var(--orange)}
+.count{font-variant-numeric:tabular-nums;color:var(--cream)}
+.hint{position:absolute;left:50%;bottom:calc(3svh + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);font:600 10px/1 var(--type);letter-spacing:.2em;text-transform:uppercase;color:var(--cream-soft);transition:opacity .3s}
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border-block:1px solid var(--line);max-width:64rem;margin:56px auto 0}
+.specs div{background:var(--night);padding:22px 16px;display:grid;gap:6px}
+.specs dt{font:600 10px/1.3 var(--type);letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.specs dd{margin:0;font:300 34px/1 var(--type);font-variant-numeric:tabular-nums}
+.specs small{font-size:13px;color:var(--cream-soft)}
+.offer{max-width:44rem;margin-inline:auto;padding-block:96px 40px;display:grid;gap:22px}
+.offer h2{font:800 clamp(34px,9vw,72px)/.95 var(--type);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.offer p{margin:0;color:var(--cream-soft);font-size:18px;max-width:34ch}
+.cta{justify-self:start;font:800 16px/1 var(--type);letter-spacing:.01em;background:var(--glow);color:var(--night);border:0;border-radius:999px;padding:18px 30px;cursor:pointer;box-shadow:0 0 0 0 rgba(255,207,143,.0);transition:box-shadow .3s}
+.cta:hover{box-shadow:0 0 40px 4px rgba(255,207,143,.25)}
+.cta:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+form{max-width:34rem;margin-inline:auto;padding-block:8px 72px;display:grid;gap:18px}
+.step{display:grid;gap:14px}
+.step-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.step-head h3{font:800 20px/1.2 var(--type);letter-spacing:0;margin:0}
+.step-head span{font:600 11px/1 var(--type);letter-spacing:.14em;color:var(--orange);font-variant-numeric:tabular-nums}
+label{display:grid;gap:6px;font-size:14px;color:var(--cream-soft)}
+input,select,textarea{font:400 16px/1.4 var(--type);color:var(--cream);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:13px 14px;width:100%;box-sizing:border-box}
+textarea{min-height:110px;resize:vertical}
+.row{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.btn{font:800 14px/1 var(--type);letter-spacing:.01em;border-radius:999px;padding:14px 22px;cursor:pointer;border:1px solid var(--cream-soft);background:transparent;color:var(--cream)}
+.btn.primary{background:var(--cream);color:var(--night);border-color:var(--cream)}
+.err{margin:0;color:var(--orange);font-size:14px}
+.thanks{max-width:34rem;margin-inline:auto;display:grid;gap:10px;padding-block:24px 72px}
+.thanks h3{font:800 30px/1.05 var(--type);margin:0}
+.thanks p{margin:0;color:var(--cream-soft)}
+footer{max-width:64rem;margin-inline:auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--cream-soft);padding-block:24px 40px;border-top:1px solid var(--line)}
+footer b{color:var(--cream);font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---- Julien chapter: a light band that changes voice after the demo */
+.julien{background:var(--cream);color:var(--night);margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
+.julien .in{max-width:64rem;margin-inline:auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.eyebrow{font:600 11px/1.4 var(--type);letter-spacing:.18em;text-transform:uppercase;color:#a24d17;display:flex;gap:10px;align-items:center}
+.eyebrow i{display:inline-block;width:28px;height:1px;background:currentColor}
+.handoff{padding-block:88px 40px;display:grid;gap:18px;border-bottom:1px solid #d9ccb9}
+.handoff h2{font:800 clamp(30px,7vw,60px)/1 var(--type);letter-spacing:-.01em;margin:0;max-width:18ch;text-wrap:balance}
+.handoff p{margin:0;font-size:18px;color:#5b4f44;max-width:44ch}
+.slogan{padding-block:72px 56px;display:grid;gap:20px}
+.slogan h2{font:800 clamp(40px,11vw,104px)/.9 var(--type);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.slogan h2 em{font-style:normal;color:#c25a1c}
+.slogan p{margin:0;font-size:19px;line-height:1.55;max-width:46ch;color:#3d342c}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;padding-block:24px 72px}
+.trio div{display:grid;gap:8px;align-content:start;border-top:2px solid var(--night);padding-top:16px}
+.trio h3{font:800 18px/1.2 var(--type);letter-spacing:0;margin:0}
+.trio p{margin:0;color:#5b4f44}
+.values{background:var(--night-2);color:var(--cream)}
+.values .in{padding-block:80px;display:grid;gap:36px}
+.values h2{font:800 clamp(28px,6vw,48px)/1 var(--type);margin:0}
+.values ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line)}
+.values li{background:var(--night-2);padding:24px 20px;display:grid;gap:10px;align-content:start}
+.values li b{font:800 22px/1.1 var(--type);letter-spacing:0}
+.values li span{color:var(--cream-soft)}
+.values .eyebrow{color:var(--orange)}
+.offers{padding-block:88px 40px;display:grid;gap:32px}
+.offers > h2{font:800 clamp(30px,7vw,60px)/1 var(--type);margin:0;text-wrap:balance}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{border:1px solid #cdbfa9;border-radius:18px;padding:28px 24px;display:grid;gap:16px;align-content:start;background:#f7f0e5}
+.card.alt{background:var(--night);color:var(--cream);border-color:var(--night)}
+.card .tag{font:600 11px/1 var(--type);letter-spacing:.16em;text-transform:uppercase;color:#a24d17}
+.card.alt .tag{color:var(--orange)}
+.card h3{font:800 24px/1.1 var(--type);margin:0}
+.price{font:300 clamp(48px,10vw,64px)/1 var(--type);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.price small{font:600 13px/1 var(--type);letter-spacing:.08em;text-transform:uppercase;margin-left:6px;opacity:.7}
+.card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.card li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.card li::before{content:"";width:10px;height:10px;margin-top:7px;border:2px solid #c25a1c;border-radius:50%}
+.card.alt li::before{border-color:var(--orange)}
+.meet{padding-block:72px 96px;display:grid;gap:22px;border-top:1px solid #d9ccb9}
+.meet h2{font:800 clamp(34px,8vw,72px)/.95 var(--type);margin:0;text-wrap:balance}
+.meet p{margin:0;font-size:18px;color:#5b4f44;max-width:44ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cta.dark{background:var(--night);color:var(--cream)}
+.link{font:600 15px/1.2 var(--type);color:var(--night);background:none;border:0;border-bottom:1px solid currentColor;padding:4px 0;cursor:pointer}
+.julien form{padding-block:8px 0;margin:0;max-width:34rem}
+.julien label{color:#5b4f44}
+.julien input,.julien select,.julien textarea{background:#fbf6ee;border-color:#cdbfa9;color:var(--night)}
+.julien .btn{border-color:var(--night);color:var(--night)}
+.julien .btn.primary{background:var(--night);color:var(--cream)}
+.julien .err{color:#a24d17}
+.ok{display:grid;gap:8px}
+.ok h3{font:800 26px/1.1 var(--type);margin:0}
+.ok p{margin:0;color:#5b4f44}
+.who{font-weight:800}
+@media (prefers-reduced-motion: reduce){.h,.k,.hint{transition:none}}
+
+/* video scene */
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--night)}
+.stage .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 55%,rgba(0,0,0,.55));pointer-events:none}
+.copy.top{display:grid}.copy.top .k{grid-area:1/1}
+
+:root{--night:#17120e;--night-2:#201913;--orange:#d98a3a;--glow:#f4d7a6}
+#wrap{height:620vh}
