@@ -1,0 +1,107 @@
+@font-face{font-family:Onest;font-weight:100 900;font-display:swap;src:url(fonts/onest-latin-wght.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Onest;font-weight:100 900;font-display:swap;src:url(fonts/onest-latin-ext-wght.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root{--fond:#161719;--fond2:#24262a;--matiere:#2c2f33;--trait:#c9ccd1;--accent:#f0dfbd;--texte:#eeece8;--longueur:540vh;color-scheme:dark}
+/* Signature visuelle du studio : graphite, contours précis, une seule teinte claire pour le détail.
+   Les couleurs viennent de client.json (couleurs) : ne rien coder en dur ici. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:Onest,system-ui,-apple-system,sans-serif;font-weight:300;
+  -webkit-font-smoothing:antialiased;--doux:color-mix(in srgb,var(--texte) 62%,var(--fond))}
+button{font:inherit}
+:focus-visible{outline:1.5px solid var(--accent);outline-offset:3px}
+
+.bar{position:fixed;inset:0 0 auto;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(clamp(16px,4vw,48px),env(safe-area-inset-right,0px)) 18px max(clamp(16px,4vw,48px),env(safe-area-inset-left,0px));font-size:14px;letter-spacing:.01em;pointer-events:none}
+.bar>*{pointer-events:auto}
+.logo{display:flex;align-items:center;gap:12px;font-weight:400}
+.logo img{height:28px;width:auto;display:block}
+.mono{width:30px;height:30px;border:1px solid var(--trait);display:grid;place-items:center;font-size:11px;font-weight:500;letter-spacing:.08em}
+.fictif{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);padding:6px 10px;border-radius:99px;white-space:nowrap}
+
+.wrap{position:relative;height:var(--longueur,540vh)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  background:radial-gradient(110% 85% at 66% 42%,var(--fond2) 0%,var(--fond) 72%)}
+body.portrait .stage{background:radial-gradient(130% 70% at 50% 30%,var(--fond2) 0%,var(--fond) 75%)}
+#gl,#ov{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ov{pointer-events:none;z-index:2}
+
+.txt{position:absolute;z-index:3;left:clamp(16px,6.5vw,104px);top:50%;translate:0 -50%;width:min(33vw,470px);
+  opacity:0;visibility:hidden;will-change:opacity,transform;pointer-events:none}
+.txt.actif{pointer-events:auto}
+h1{font-weight:300;font-size:clamp(40px,5.4vw,88px);line-height:1;letter-spacing:-.025em;margin:0}
+.txt h2{font-weight:300;font-size:clamp(28px,3.1vw,50px);line-height:1.06;letter-spacing:-.018em;margin:0}
+.txt p{font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:var(--doux);margin:16px 0 0;max-width:34ch}
+.etiquette{display:inline-block;font-size:12px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 16px!important}
+.indice{position:absolute;z-index:3;left:50%;bottom:28px;translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--doux);transition:opacity .5s}
+.indice i{width:1px;height:38px;background:linear-gradient(var(--accent),transparent);transform-origin:top;animation:tire 2.6s ease-in-out infinite}
+@keyframes tire{0%{transform:scaleY(.15);opacity:.4}55%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+.choix{margin-top:26px;display:grid;gap:12px}
+.ligne{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ligne>span{width:86px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--doux)}
+.puce{font-size:14px;color:var(--texte);background:transparent;cursor:pointer;
+  border:1px solid color-mix(in srgb,var(--trait) 38%,transparent);border-radius:99px;padding:8px 15px;transition:background .2s,color .2s,border-color .2s}
+.puce:hover{border-color:var(--trait)}
+.puce[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--fond)}
+.cta{margin-top:26px;display:inline-flex;align-items:center;gap:14px;font-weight:500;font-size:16px;letter-spacing:.01em;
+  background:var(--texte);color:var(--fond);border:0;border-radius:99px;padding:17px 28px;cursor:pointer;transition:background .2s}
+.cta:hover{background:var(--accent)}
+.cta span{display:inline-block;transition:transform .2s}.cta:hover span{transform:translateX(3px)}
+.note{margin-top:14px!important;font-size:13px!important;color:var(--accent)!important;max-width:40ch}
+
+/* téléphone : le texte en bas, la scène au-dessus */
+body.portrait .txt{left:16px;right:16px;width:auto;top:auto;translate:none;bottom:max(26px,env(safe-area-inset-bottom))}
+body.portrait h1{font-size:clamp(40px,11.5vw,64px)}
+body.portrait .txt h2{font-size:clamp(26px,7.4vw,40px)}
+body.portrait .txt p{font-size:15px;margin-top:10px}
+body.portrait #t-fin .choix{margin-top:16px;gap:8px}
+body.portrait .ligne>span{width:74px}
+body.portrait .puce{padding:7px 12px;font-size:13.5px}
+body.portrait .cta{margin-top:16px;padding:15px 24px}
+body.portrait #t-intro{bottom:max(104px,calc(env(safe-area-inset-bottom) + 84px))}
+body.portrait .indice{bottom:max(22px,env(safe-area-inset-bottom))}
+
+/* trois vues fixes : mouvement réduit */
+#vues{display:none}
+body.fixe .wrap{display:none}
+body.fixe .bar{position:absolute}
+body.fixe #vues{display:grid;gap:clamp(48px,8vw,96px);max-width:1120px;margin:0 auto;padding:96px 16px 64px}
+#vues figure{margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+#vues img{width:100%;height:auto;display:block;border:1px solid color-mix(in srgb,var(--trait) 14%,transparent)}
+#vues figcaption h1{font-size:clamp(36px,4.6vw,68px)}
+#vues figcaption h2{font-weight:300;font-size:clamp(26px,3vw,44px);line-height:1.08;margin:0}
+#vues figcaption p{font-size:16px;line-height:1.55;color:var(--doux);margin:14px 0 0;max-width:36ch}
+#vues .indice{display:none}
+@media (max-width:720px){#vues figure{grid-template-columns:1fr;gap:20px}}
+
+.pied{padding:40px clamp(16px,4vw,48px) 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;
+  font-size:13px;color:var(--doux);border-top:1px solid color-mix(in srgb,var(--trait) 12%,transparent)}
+.pied a{color:var(--texte)}
+
+/* vidéo 1080 × 1920 */
+body.video .indice,body.video .pied,body.video .note{display:none!important}
+body.video .bar{padding:64px 64px;font-size:30px}
+body.video .mono{width:60px;height:60px;font-size:22px}
+body.video .fictif{font-size:22px;padding:12px 20px}
+body.video .txt{left:72px;right:72px;bottom:120px}
+body.video h1{font-size:118px}
+body.video .txt h2{font-size:78px}
+body.video .txt p{font-size:34px;max-width:none}
+body.video .etiquette{font-size:26px}
+body.video #t-intro{bottom:200px}
+body.video .ligne>span{font-size:22px;width:170px}
+body.video .puce{font-size:28px;padding:14px 26px}
+body.video .choix{gap:18px;margin-top:30px}
+body.video .cta{font-size:32px;padding:30px 50px;margin-top:36px}
+.signature{display:none}
+body.video .signature{display:block;position:absolute;z-index:3;left:72px;bottom:48px;font-size:24px;color:var(--doux);letter-spacing:.02em}
+
+body.sans-3d #vues img{display:none}
+@media (prefers-reduced-motion:reduce){.indice i{animation:none}*{transition:none!important}}
+
+#scene,#calque{position:absolute;inset:0;width:100%;height:100%;display:block}#calque{z-index:3;pointer-events:none}
+.voile{display:none}body.portrait .voile{display:block;position:absolute;inset:auto 0 0;height:50%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--fond) 88%,transparent) 55%)}
+#vues svg{width:100%;height:auto;display:block;aspect-ratio:4/5;border:1px solid color-mix(in srgb,var(--trait) 14%,transparent);background:radial-gradient(90% 70% at 50% 42%,var(--fond2),var(--fond))}
+#vues svg text,#scene text{font-family:Onest,system-ui,sans-serif}

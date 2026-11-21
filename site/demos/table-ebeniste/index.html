@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier du Plateau · vectoriel</title>
+<meta name="description" content="Regardez sous la table. Le tenon est taillé dans la traverse, la mortaise creusée dans le pied. Collés, ils ne font plus qu'un.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#161719">
+<!-- Construit par studio/vectoriel/construire.mjs à partir de studio/clients/atelier-plateau/client.json : modifier client.json, pas ce fichier. -->
+<link rel="stylesheet" href="page.css">
+<script src="page.js" defer></script>
+</head><body>
+<header class="bar"><span class="logo"><span class="mono" aria-hidden="true">AP</span><span>Atelier du Plateau</span></span><span class="fictif">Exemple fictif</span></header>
+
+<main>
+<section class="wrap" id="wrap" aria-label="Regardez sous la table. Tenon et mortaise Le tenon est taillé dans la traverse, la mortaise creusée dans le pied. Collés, ils ne font plus qu'un. Et la vôtre, vous la voyez comment ?">
+  <div class="stage">
+    <svg id="scene" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="voile" aria-hidden="true"></div>
+    <svg id="calque" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="txt" id="t-intro"><h1>Regardez sous la table.</h1></div>
+    <div class="txt" id="t-detail" aria-hidden="true"><p class="etiquette" id="etiquette">Tenon et mortaise</p><h2>La traverse entre dans le pied.</h2><p>Le tenon est taillé dans la traverse, la mortaise creusée dans le pied. Collés, ils ne font plus qu'un.</p></div>
+    <div class="txt" id="t-fin"><h2>Et la vôtre, vous la voyez comment&nbsp;?</h2><p>Choisissez la longueur et l'essence. Le reste, on le dessine ensemble.</p>
+      <div class="choix">
+        <div class="ligne" data-choix="Longueur" role="group" aria-label="Longueur"><span>Longueur</span><button class="puce" type="button" aria-pressed="false">140 cm</button><button class="puce" type="button" aria-pressed="true">180 cm</button><button class="puce" type="button" aria-pressed="false">220 cm</button></div>
+        <div class="ligne" data-choix="Essence" role="group" aria-label="Essence"><span>Essence</span><button class="puce" type="button" aria-pressed="true">Chêne</button><button class="puce" type="button" aria-pressed="false">Noyer</button><button class="puce" type="button" aria-pressed="false">Frêne</button></div>
+      </div>
+      <button class="cta" id="cta" type="button">Parler de ma table <span aria-hidden="true">→</span></button>
+      <p class="note" id="note" role="status" hidden></p>
+    </div>
+    <div class="indice" id="indice" aria-hidden="true">Faites défiler<i></i></div>
+    <p class="signature">Démo réalisée par Julien · exemple fictif</p>
+  </div>
+</section>
+<div id="vues"></div>
+</main>
+
+<footer class="pied"><span>Atelier du Plateau · Ébéniste, tables sur mesure · exemple fictif</span><span>Démo réalisée par Julien · <a href="#fixe">Voir en trois images</a></span></footer>
+<script type="application/json" id="client">{"slug":"atelier-plateau","nom":"Atelier du Plateau","metier":"Ébéniste, tables sur mesure","fictif":true,"objet":"table-tenon","logo":{"monogramme":"AP"},"couleurs":{"fond":"#161719","fond2":"#24262a","matiere":"#2c2f33","trait":"#c9ccd1","accent":"#f0dfbd","texte":"#eeece8"},"longueur":"540vh","textes":{"accroche":"Regardez sous la table.","invitation":"Faites défiler","detail_titre":"Tenon et mortaise","detail_phrase":"La traverse entre dans le pied.","detail_texte":"Le tenon est taillé dans la traverse, la mortaise creusée dans le pied. Collés, ils ne font plus qu'un.","cote":"3,5 cm","fin_titre":"Et la vôtre, vous la voyez comment ?","fin_texte":"Choisissez la longueur et l'essence. Le reste, on le dessine ensemble.","choix":[{"titre":"Longueur","options":["140 cm","180 cm","220 cm"],"defaut":1},{"titre":"Essence","options":["Chêne","Noyer","Frêne"]}],"bouton":"Parler de ma table"},"contact":{"type":"email","destination":"","sujet":"Ma table sur mesure","message":"Bonjour, j'aimerais parler d'une table sur mesure."}}</script>
+<script type="application/json" id="animation">{"_lisezmoi":"Réglages de l'animation vectorielle. Modifier ici, puis relancer : node studio/vectoriel/construire.mjs studio/clients/atelier-plateau","bois":"#a5845f","essences":{"Chêne":"#a5845f","Noyer":"#5f4737","Frêne":"#c9b18c"},"pause":3,"durees":{"intro":1.6,"descente":2.2,"ecart":1.4,"trait":0.9,"rejoint":1.2,"retour":1.6,"fin":1.8},"defilement_par_seconde":"55vh","ecart":{"traverse":[7,0,0],"pied":[-2.5,0,0]},"cadrages":{"debut":{"cible":[0,34,0],"azimut":-43,"hauteur":28,"taille":98},"detail":{"decalage":[0,-1,0],"azimut":33,"hauteur":-17,"taille":19,"taille_mobile":13,"derive":8},"fin":{"cible":[4,36,0],"azimut":-31,"hauteur":22,"taille":100}},"video":{"duree":12}}</script>
+
+</body></html>
