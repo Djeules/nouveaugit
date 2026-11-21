@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Tasseau · vectoriel</title>
+<meta name="description" content="Regardez le bout des tablettes. Sa forme en trapèze la tient de chaque côté. Aucun taquet visible, aucune console.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#151716">
+<!-- Construit par studio/vectoriel/construire.mjs à partir de studio/clients/atelier-tasseau/client.json : modifier client.json, pas ce fichier. -->
+<link rel="stylesheet" href="page.css">
+<script src="page.js" defer></script>
+</head><body>
+<header class="bar"><span class="logo"><span class="mono" aria-hidden="true">AT</span><span>Atelier Tasseau</span></span><span class="fictif">Exemple fictif</span></header>
+
+<main>
+<section class="wrap" id="wrap" aria-label="Regardez le bout des tablettes. Queue d'aronde glissée Sa forme en trapèze la tient de chaque côté. Aucun taquet visible, aucune console. Et chez vous, c'est quel mur ?">
+  <div class="stage">
+    <svg id="scene" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="voile" aria-hidden="true"></div>
+    <svg id="calque" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="txt" id="t-intro"><h1>Regardez le bout des tablettes.</h1></div>
+    <div class="txt" id="t-detail" aria-hidden="true"><p class="etiquette" id="etiquette">Queue d'aronde glissée</p><h2>La tablette glisse dans le montant.</h2><p>Sa forme en trapèze la tient de chaque côté. Aucun taquet visible, aucune console.</p></div>
+    <div class="txt" id="t-fin"><h2>Et chez vous, c'est quel mur&nbsp;?</h2><p>Donnez une largeur et un nombre de tablettes. On vient prendre les mesures.</p>
+      <div class="choix">
+        <div class="ligne" data-choix="Largeur" role="group" aria-label="Largeur"><span>Largeur</span><button class="puce" type="button" aria-pressed="false">60 cm</button><button class="puce" type="button" aria-pressed="true">90 cm</button><button class="puce" type="button" aria-pressed="false">120 cm</button></div>
+        <div class="ligne" data-choix="Tablettes" role="group" aria-label="Tablettes"><span>Tablettes</span><button class="puce" type="button" aria-pressed="false">3</button><button class="puce" type="button" aria-pressed="false">4</button><button class="puce" type="button" aria-pressed="true">5</button></div>
+      </div>
+      <button class="cta" id="cta" type="button">Dessiner mon étagère <span aria-hidden="true">→</span></button>
+      <p class="note" id="note" role="status" hidden></p>
+    </div>
+    <div class="indice" id="indice" aria-hidden="true">Faites défiler<i></i></div>
+    <p class="signature">Démo réalisée par Julien · exemple fictif</p>
+  </div>
+</section>
+<div id="vues"></div>
+</main>
+
+<footer class="pied"><span>Atelier Tasseau · Menuisier, étagères sur mesure · exemple fictif</span><span>Démo réalisée par Julien · <a href="#fixe">Voir en trois images</a></span></footer>
+<script type="application/json" id="client">{"slug":"atelier-tasseau","nom":"Atelier Tasseau","metier":"Menuisier, étagères sur mesure","fictif":true,"objet":"etagere-aronde","logo":{"monogramme":"AT"},"couleurs":{"fond":"#151716","fond2":"#222624","matiere":"#2b2f2d","trait":"#c6ccc8","accent":"#cfe3c0","texte":"#edefec"},"longueur":"520vh","textes":{"accroche":"Regardez le bout des tablettes.","invitation":"Faites défiler","detail_titre":"Queue d'aronde glissée","detail_phrase":"La tablette glisse dans le montant.","detail_texte":"Sa forme en trapèze la tient de chaque côté. Aucun taquet visible, aucune console.","fin_titre":"Et chez vous, c'est quel mur ?","fin_texte":"Donnez une largeur et un nombre de tablettes. On vient prendre les mesures.","choix":[{"titre":"Largeur","options":["60 cm","90 cm","120 cm"],"defaut":1},{"titre":"Tablettes","options":["3","4","5"],"defaut":2}],"bouton":"Dessiner mon étagère"},"contact":{"type":"lien","destination":"","message":"Bonjour, j'aimerais une étagère sur mesure."}}</script>
+<script type="application/json" id="animation">{"_lisezmoi":"Réglages de l'animation vectorielle. Modifier ici, puis relancer : node studio/vectoriel/construire.mjs studio/clients/atelier-tasseau","objet":"etagere","parametres":{"L":90,"n":5},"choix_parametres":{"Largeur":"L","Tablettes":"n"},"bois":"#b99a74","essences":{},"pause":3,"durees":{"intro":1.6,"descente":2.2,"ecart":1.4,"trait":0.9,"rejoint":1.2,"retour":1.6,"fin":1.8},"defilement_par_seconde":"55vh","ecart":{"tablette":[0,0,19]},"cadrages":{"debut":{"cible":[0,90,0],"azimut":-25,"hauteur":12,"taille":100},"detail":{"decalage":[0,0,-6],"azimut":30,"hauteur":36,"taille":22,"taille_mobile":16,"derive":8},"fin":{"cible":[0,90,0],"azimut":-18,"hauteur":8,"taille":100}},"video":{"duree":12}}</script>
+
+</body></html>
