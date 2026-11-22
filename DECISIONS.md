@@ -1228,3 +1228,71 @@ texte court qui apparaît mot à mot au scroll. Polices Fraunces (OFL, jointe) e
 Inter auto-hébergées, CSS et JS en fichiers, aucun style en ligne, `noindex`,
 rien ne relie la démo au site. La page se reconstruit depuis le dossier du projet
 (`scroll-mer-de-nuages/build-site.py`).
+
+## 35. Le stylo photographié : des clichés à la place des dessins
+
+Demande de Julien : remplacer tous les stylos dessinés (SVG du hero, prisme CSS
+de l'Anatomie et du Format, poche de la Pl. 01, nomenclature de la Pl. 02,
+stylo de la Divulgation) par de vraies photographies, pour se rapprocher
+d'oryzo.ai — dont tout le mouvement repose sur des images d'un objet réel.
+C'est le zoom « qu'on ne fera pas » du §22 : il manquait la matière, Julien
+l'a fournie (huit clichés, une vue éclatée en cinq vues, une vidéo).
+
+**Le §15 est levé sur ce point, à la demande de Julien.** Le portrait reste la
+seule photo d'une *personne* ; le stylo, lui, est désormais photographié. Le
+§8 (prisme CSS, terme de Fresnel) n'a plus d'usage et son code est retiré.
+
+### Une première version refusée : détourée, recolorée, en vidéo
+
+La première version recolorait le stylo en orange, le détourait pour le poser
+sur les fonds sombres et lisait la vidéo au défilement dans l'Anatomie (84
+images). Verdict de Julien sur l'aperçu : « la qualité n'est pas du tout au
+rendez-vous ». Il avait raison. Détourer un objet en cristal sur un fond gris
+clair laisse des halos et du bruit ; la vidéo, déjà compressée, perdait encore
+à chaque image. Retenu : **les photos telles qu'elles sont, en clichés cadrés,
+fond d'origine compris, bleu d'origine** (choix de Julien entre bleu et
+orange).
+
+### Ce qui est fait
+
+- Chaque photo est montrée comme un tirage : coins arrondis, ombre portée, son
+  propre fond gris clair. Rien n'est détouré ni recoloré.
+- **Anatomie** : un gros plan par étape (capuchon, bouchon et corps,
+  réservoir, bille et pointe). L'étape lue choisit le cliché, qui remplace le
+  précédent en fondu en se resserrant légèrement ; le défilement l'approche
+  lentement. C'est le changement de plan d'oryzo, en photos fixes.
+- **Accroche** : un tirage posé de biais sur le tapis, bord blanc.
+- **Format** : le cliché du stylo fermé, de profil, qui pivote de quelques
+  degrés au défilement.
+- **Pl. 01** : un tirage glissé dans la poche, qui en dépasse.
+- **Pl. 02** : chaque pièce recadrée dans les gros plans, vignettes carrées.
+- **Divulgation** : le tirage du stylo nu.
+
+### La limite : la définition des sources
+
+Les clichés fournis font **768 × 256 px**, les gros plans **382 × 367 px**.
+Aucune photo n'est affichée beaucoup plus grande que ça. Pour les écrans
+haute densité, `tools/photos/build.py` produit une version `@2x` agrandie au
+Lanczos avec un léger accent de netteté, servie par `srcset` : plus nette que
+l'agrandissement du navigateur, mais sans détail qui n'existe pas dans la
+source. **Des originaux de 2 000 px ou plus amélioreraient tout d'un coup** :
+remplacer les fichiers de `tools/photos/src/` et relancer le script.
+
+Export en WebP qualité 95 : ~500 Ko pour tous les clichés et leurs `@2x`.
+AVIF essayé à la première version, écarté : aucun gain.
+
+### Ce qui reste dessiné, et pourquoi
+
+- Le **favicon** : 16 px, une photo n'y lirait rien.
+- L'**image de partage** `og.jpg` : rendue depuis `tools/og-image.html`, elle
+  garde l'ancien stylo dessiné. À refaire avec une photo.
+- Les **démos** de `site/demos/` : hors périmètre.
+
+### Défaut constaté, antérieur à ce changement
+
+Sur téléphone (≤ 900 px), la bande du visuel de l'Anatomie ne reste **pas**
+collée en haut pendant la lecture des étapes, contrairement à ce que dit le
+§24 : en une colonne, `.anatomy__sticky` n'occupe que sa propre ligne de
+grille, le collant n'a donc aucune course. Vérifié identique sur la version
+précédente. Non corrigé ici : le corriger fait passer le texte sous la
+bande, c'est un choix de mise en page à faire avec Julien.

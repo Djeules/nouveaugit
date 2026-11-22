@@ -294,6 +294,8 @@
   const mockRot = mockPen ? Number(mockPen.dataset.rot || 0) : 0;
   const penReveal = $('.pen--reveal');
   const halo = $('.anatomy__halo');
+  const shotStack = $('.shots');
+  const shots = $$('.shots .shot');
   const draftCote = $('#draftCote');
   /* La cote visée est mémorisée à part : pendant le fondu de substitution,
      le texte affiché est encore l'ancien, et comparer au textContent
@@ -356,7 +358,7 @@
       if (penReveal) {
         const r = penReveal.closest('section').getBoundingClientRect();
         const p = clamp(1 - (r.top + r.height) / (innerHeight + r.height), 0, 1);
-        penReveal.style.transform = `translateY(${(p - .5) * 90}px) rotate(${-14 + p * 30}deg)`;
+        penReveal.style.transform = `translateY(${(p - .5) * 90}px) rotate(${-9 + p * 8}deg)`;
       }
       // Manifeste : allumage progressif
       if (words.length) {
@@ -375,6 +377,7 @@
         if (r.top < innerHeight * 0.62 && r.bottom > innerHeight * 0.18) active = s;
       });
       steps.forEach(s => s.classList.toggle('is-active', s === active));
+      if (active) shots.forEach(img => img.classList.toggle('is-on', img.dataset.for === active.dataset.step));
       if (active && draftCote) {
         const c = active.dataset.cote || '';
         if (c && c !== coteWanted) {
@@ -401,25 +404,19 @@
       el.style.opacity = (0.2 + 0.8 * q).toFixed(3);
     }
 
-    if (pens.pop) {
-      const r = $('#portable').getBoundingClientRect();
+    // Format : la photo se redresse en traversant le cadre, comme un objet
+    // qu'on fait pivoter sous la lumière pour le montrer
+    if (popPen && !reduced) {
+      const r = popPen.closest('section').getBoundingClientRect();
       const q = clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
-      // l'échelle suit la hauteur du cadre : le stylo allongé doit y tenir
-      // entier à toutes les largeurs, sans jamais dépasser son échelle d'origine
-      const s = Math.min(0.58, pens.pop.host.clientHeight / pens.pop.total);
-      drawPen(pens.pop, reduced ? 26 : -60 + q * 340, 10, s);
+      popPen.style.transform = `translateY(${(0.5 - q) * 50}px) rotate(${-3 + q * 6}deg)`;
     }
 
-    // Stylo 3D de la section Anatomie : rotation et échelle sur toute la traversée
-    if (pens.anatomy) {
-      const sec = $('#stylo');
-      const r = sec.getBoundingClientRect();
+    // Anatomie : le gros plan s'approche lentement sur toute la traversée
+    if (shotStack && !reduced) {
+      const r = shotStack.closest('section').getBoundingClientRect();
       const p = clamp((innerHeight * 0.5 - r.top) / (r.height - innerHeight * 0.5), 0, 1);
-      if (reduced) {
-        drawPen(pens.anatomy, 18, -8, 1);
-      } else {
-        drawPen(pens.anatomy, -20 + p * 400, -14 + Math.sin(p * Math.PI) * 26, 0.92 + p * 0.3);
-      }
+      shotStack.style.transform = `scale(${0.96 + p * 0.08})`;
     }
     ticking = false;
   }
@@ -461,103 +458,6 @@
     });
   });
 
-  /* ---------------------------------------------------
-     19. Stylo 3D — prisme hexagonal construit en CSS
-     --------------------------------------------------- */
-  const PEN = {
-    W: 30,        // largeur d'une face du corps
-    CAP: 168,     // hauteur du capuchon
-    BARREL: 402,  // hauteur du corps
-    TIP: 62,      // hauteur de la pointe conique
-    INK: 7,       // demi-largeur du réservoir
-    LIGHT: -36    // direction de la lumière, en degrés
-  };
-  const APO = w => w * 0.8660254;   // apothème d'un hexagone régulier
-
-  function buildPen(host) {
-    const { W, CAP, TIP, INK } = PEN;
-    // Un stylo peut porter son propre corps (`data-barrel`) : celui du
-    // Format est allongé, le capuchon et la pointe gardent leur taille.
-    const BARREL = Number(host.dataset.barrel) || PEN.BARREL;
-    const R = APO(W), total = CAP + BARREL + TIP, half = total / 2;
-    const capY    = -half + CAP / 2;
-    const barrelY = -half + CAP + BARREL / 2;
-    const tipY    = -half + CAP + BARREL + TIP / 2;
-    const ballY   = -half + total + 3;
-    const discY   = -half;
-
-    const rot = document.createElement('div');
-    rot.className = 'pen3d__rot';
-    const faces = [];
-
-    const face = (cls, w, h, angle, radius, y, extra = '') => {
-      const d = document.createElement('div');
-      d.className = 'p-face ' + cls;
-      d.style.cssText = `width:${w}px;height:${h}px;margin-left:${-w / 2}px;margin-top:${-h / 2}px;`;
-      d.dataset.a = angle;
-      d.dataset.t = `translateY(${y}px) rotateY(${angle}deg) translateZ(${radius}px)${extra}`;
-      d.style.transform = d.dataset.t;
-      rot.appendChild(d);
-      faces.push(d);
-      return d;
-    };
-
-    for (let k = 0; k < 6; k++) {
-      const a = k * 60;
-      face('p-cap',    W + 1.6, CAP,    a, APO(W + 1.6), capY);
-      face('p-barrel', W,       BARREL, a, R,            barrelY).dataset.fres = '1';
-      face('p-ink',    INK * 2, BARREL - 26, a, APO(INK * 2), barrelY);
-      // pointe : trapèze incliné vers l'axe
-      const rTop = R, rBot = R * 0.26;
-      const tilt = Math.atan2(rTop - rBot, TIP) * 180 / Math.PI;
-      const f = face('p-tip', W, TIP, a, (rTop + rBot) / 2, tipY, ` rotateX(${-tilt}deg)`);
-      f.style.clipPath = 'polygon(0% 0%, 100% 0%, 63% 100%, 37% 100%)';
-    }
-
-    // disque supérieur du capuchon
-    const disc = face('p-disc', W * 2, W * 2, 0, 0, discY, ' rotateX(90deg)');
-    disc.style.clipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
-    disc.dataset.flat = '1';
-
-    // clip du capuchon : boîte fine de quatre faces
-    const clipY = capY - 4, CH = 96, CW = 9, CD = 5;
-    face('p-clip', CW, CH,   0, APO(W + 1.6) + CD, clipY);
-    face('p-clip', CD, CH,  90, CW / 2,            clipY).style.opacity = '.85';
-    face('p-clip', CD, CH, 270, CW / 2,            clipY).style.opacity = '.85';
-
-    const ball = document.createElement('div');
-    ball.className = 'p-ball';
-    ball.style.cssText = 'width:9px;height:9px;margin-left:-4.5px;margin-top:-4.5px;';
-    ball.dataset.y = ballY;
-    rot.appendChild(ball);
-
-    const glow = document.createElement('div');
-    glow.className = 'pen3d__glow';
-
-    host.replaceChildren(glow, rot);
-    return { host, rot, faces, ball, scale: 1, total };
-  }
-
-  function drawPen(inst, rotY, tiltX, scale) {
-    inst.rot.style.transform =
-      `translateZ(-40px) rotateX(${tiltX}deg) rotateY(${rotY}deg) scale3d(${scale},${scale},${scale})`;
-    // éclairage : chaque face s'éclaire selon l'angle qu'elle présente à la lumière
-    for (const f of inst.faces) {
-      if (f.dataset.flat) { f.style.setProperty('--l', 0.42); continue; }
-      const a = +f.dataset.a;
-      const lum = (Math.cos((a + rotY - PEN.LIGHT) * Math.PI / 180) + 1) / 2;
-      f.style.setProperty('--l', (0.07 + 0.93 * Math.pow(lum, 1.45)).toFixed(3));
-      // Fresnel : une face vue de biais renvoie plus de lumière qu'une face de face.
-      // C'est ce qui fait lire un tube transparent par ses bords.
-      if (f.dataset.fres) {
-        const view = Math.abs(Math.cos((a + rotY) * Math.PI / 180));
-        f.style.setProperty('--f', Math.pow(1 - view, 0.75).toFixed(3));
-      }
-    }
-    inst.ball.style.transform =
-      `translateY(${inst.ball.dataset.y}px) rotateY(${-rotY}deg) rotateX(${-tiltX}deg)`;
-  }
-
   // graduations imprimées du tapis de découpe
   $$('[data-ruler]').forEach(r => {
     const n = r.dataset.ruler === 'y' ? 8 : 12;
@@ -565,8 +465,7 @@
   });
 
   const lits = $$('[data-lit]');
-  const pens = {};
-  $$('[data-pen3d]').forEach(host => { pens[host.dataset.pen3d] = buildPen(host); });
+  const popPen = $('.pop__pen');
 
   /* ---------------------------------------------------
      18. « Précommander » — le bouton répond au lieu de sauter
