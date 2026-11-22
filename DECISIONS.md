@@ -1228,3 +1228,82 @@ texte court qui apparaît mot à mot au scroll. Polices Fraunces (OFL, jointe) e
 Inter auto-hébergées, CSS et JS en fichiers, aucun style en ligne, `noindex`,
 rien ne relie la démo au site. La page se reconstruit depuis le dossier du projet
 (`scroll-mer-de-nuages/build-site.py`).
+
+## 35. Le stylo photographié : des photos à la place des dessins
+
+Demande de Julien : remplacer tous les stylos dessinés (SVG du hero, prisme CSS
+de l'Anatomie et du Format, poche de la Pl. 01, nomenclature de la Pl. 02,
+stylo de la Divulgation) par de vraies photographies, pour se rapprocher
+d'oryzo.ai — dont tout le mouvement repose sur des rendus d'un objet réel.
+C'est le zoom « qu'on ne fera pas » du §22 : il manquait la matière, Julien
+l'a fournie (huit clichés, une vue éclatée en cinq vues, une vidéo de
+rotation de 7 s).
+
+**Le §15 est levé sur ce point, à la demande de Julien.** Le portrait reste la
+seule photo d'une *personne* ; le stylo, lui, est désormais photographié. Le
+§8 (prisme CSS, terme de Fresnel) n'a plus d'usage sur la page et son code a
+été retiré.
+
+### Recoloration : orange, pas brun
+
+Les photos montrent un stylo bleu. Recoloré par masque (teinte du bleu,
+saturation, valeur), la luminance d'origine conservée — le modelé reste celui
+de la photo. Deux teintes proposées à Julien : l'orange de l'accent
+(`--ember`) et le brun du sous-verre d'oryzo. **Orange retenu** : c'était
+déjà la couleur du capuchon dessiné, et le brun disparaît sur les fonds
+walnut et bark. L'encre suit la teinte. Repasser au brun : `build.py brun`.
+
+### Détourage, et pourquoi le cristal reste transparent
+
+Les photos sont sur fond gris clair ; le site est sombre. Un détourage par
+seuil aurait donné un tube gris opaque. On estime le fond (flou normalisé
+hors objet pour les photos, médiane des images pour la vidéo, la caméra
+étant fixe), puis chaque pixel est vu comme un mélange objet/fond : l'écart
+donne l'opacité. Le corps cristal, presque de la couleur du fond, sort
+presque transparent — seules ses arêtes et ses reflets restent, ce qui est
+exactement ce qu'on voit d'un tube de verre sur fond sombre.
+
+Ombres portées et reflets du plateau sont retirés : ils se distinguent des
+arêtes en étant neutres *et* flous (le gradient local les sépare). Le site
+pose ses propres ombres en CSS. Capuchon et bouchon, pièces pleines, sont
+détourés par leur teinte, plus net.
+
+Tout est scripté : `tools/photos/build.py` (sources dans `tools/photos/src/`,
+non servies). Si Julien fournit des originaux plus grands, il suffit de
+remplacer les sources et de relancer.
+
+### L'Anatomie lit la vidéo au défilement
+
+84 images WebP détourées (une sur deux), tournées d'un quart pour que la vue
+éclatée soit verticale, capuchon en haut, dans le cadre coté. Un canevas les
+dessine selon la progression dans la section : le stylo tourne, se démonte,
+se remonte à mesure qu'on lit capuchon, corps, réservoir, bille. 1,5 Mo au
+total, chargés seulement à l'approche de la section (une image sur huit
+d'abord, puis le reste) ; la première sert d'affiche. En mouvement réduit,
+rien ne se charge : l'affiche reste, stylo assemblé.
+
+Une vidéo lue par `currentTime` aurait pesé moins, mais Safari la saccade au
+défilement et ne gère pas la transparence en VP9 : la séquence d'images est
+ce que font les sites de ce genre.
+
+### Ce qui reste dessiné, et pourquoi
+
+- Le **favicon** : 16 px, une photo n'y lirait rien.
+- L'**image de partage** `og.jpg` : rendue depuis `tools/og-image.html`, elle
+  garde l'ancien stylo dessiné. À refaire avec la photo dans un second temps.
+- Les **démos** de `site/demos/` : hors périmètre.
+
+### Ce que ça coûte
+
+Avant : zéro octet d'image pour les stylos. Après : ~100 Ko d'images fixes
+(stylos entiers et six pièces), plus 1,5 Mo de séquence chargée à la demande.
+Aucune ressource tierce.
+
+### Défaut constaté, antérieur à ce changement
+
+Sur téléphone (≤ 900 px), la bande du stylo de l'Anatomie ne reste **pas**
+collée en haut pendant la lecture des étapes, contrairement à ce que dit le
+§24 : en une colonne, `.anatomy__sticky` n'occupe que sa propre ligne de
+grille, le collant n'a donc aucune course. Vérifié identique sur la version
+précédente. Non corrigé ici : le corriger fait passer le texte sous la
+bande, c'est un choix de mise en page à faire avec Julien.
