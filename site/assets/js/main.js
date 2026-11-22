@@ -294,6 +294,8 @@
   const mockRot = mockPen ? Number(mockPen.dataset.rot || 0) : 0;
   const penReveal = $('.pen--reveal');
   const halo = $('.anatomy__halo');
+  const shotStack = $('.shots');
+  const shots = $$('.shots .shot');
   const draftCote = $('#draftCote');
   /* La cote visée est mémorisée à part : pendant le fondu de substitution,
      le texte affiché est encore l'ancien, et comparer au textContent
@@ -356,7 +358,7 @@
       if (penReveal) {
         const r = penReveal.closest('section').getBoundingClientRect();
         const p = clamp(1 - (r.top + r.height) / (innerHeight + r.height), 0, 1);
-        penReveal.style.transform = `translateY(${(p - .5) * 90}px) rotate(${-14 + p * 30}deg)`;
+        penReveal.style.transform = `translateY(${(p - .5) * 90}px) rotate(${-9 + p * 8}deg)`;
       }
       // Manifeste : allumage progressif
       if (words.length) {
@@ -375,6 +377,7 @@
         if (r.top < innerHeight * 0.62 && r.bottom > innerHeight * 0.18) active = s;
       });
       steps.forEach(s => s.classList.toggle('is-active', s === active));
+      if (active) shots.forEach(img => img.classList.toggle('is-on', img.dataset.for === active.dataset.step));
       if (active && draftCote) {
         const c = active.dataset.cote || '';
         if (c && c !== coteWanted) {
@@ -406,16 +409,14 @@
     if (popPen && !reduced) {
       const r = popPen.closest('section').getBoundingClientRect();
       const q = clamp((innerHeight - r.top) / (innerHeight + r.height), 0, 1);
-      popPen.style.transform = `translateY(${(0.5 - q) * 60}px) rotate(${-14 + q * 28}deg)`;
+      popPen.style.transform = `translateY(${(0.5 - q) * 50}px) rotate(${-3 + q * 6}deg)`;
     }
 
-    // Anatomie : la séquence photographiée avance avec la lecture — le
-    // stylo tourne, se démonte pièce par pièce, puis se remonte
-    if (spin) {
-      const r = spin.section.getBoundingClientRect();
+    // Anatomie : le gros plan s'approche lentement sur toute la traversée
+    if (shotStack && !reduced) {
+      const r = shotStack.closest('section').getBoundingClientRect();
       const p = clamp((innerHeight * 0.5 - r.top) / (r.height - innerHeight * 0.5), 0, 1);
-      spin.seek(p);
-      spin.host.style.transform = `scale(${0.94 + Math.sin(p * Math.PI) * 0.08})`;
+      shotStack.style.transform = `scale(${0.96 + p * 0.08})`;
     }
     ticking = false;
   }
@@ -457,56 +458,6 @@
     });
   });
 
-  /* ---------------------------------------------------
-     19. Stylo photographié — séquence lue au défilement
-     ---------------------------------------------------
-     84 images WebP détourées (tools/photos/build.py). Elles se chargent
-     quand la section approche : une sur huit d'abord, pour que tout le
-     parcours ait vite une image, puis le reste. Tant qu'une image manque,
-     on dessine la plus proche déjà arrivée. En mouvement réduit, rien ne
-     se charge : l'affiche montre le stylo assemblé, immobile. */
-  function frameSequence(host) {
-    const n = Number(host.dataset.frames);
-    const base = host.dataset.spin;
-    const canvas = $('canvas', host);
-    const ctx = canvas.getContext('2d');
-    const imgs = new Array(n);
-    let want = 0, shown = -1, started = false;
-
-    const ready = i => imgs[i] && imgs[i].complete && imgs[i].naturalWidth;
-    function draw() {
-      let k = -1;
-      for (let d = 0; d < n && k < 0; d++) {
-        if (ready(want - d)) k = want - d;
-        else if (ready(want + d)) k = want + d;
-      }
-      if (k < 0 || k === shown) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(imgs[k], 0, 0, canvas.width, canvas.height);
-      shown = k;
-      host.classList.add('is-live');
-    }
-    function load() {
-      if (started) return;
-      started = true;
-      const order = [];
-      for (const stride of [8, 4, 2, 1])
-        for (let i = 0; i < n; i += stride) if (!order.includes(i)) order.push(i);
-      order.forEach(i => {
-        const img = new Image();
-        img.decoding = 'async';
-        img.onload = draw;
-        img.src = `${base}${String(i).padStart(3, '0')}.webp`;
-        imgs[i] = img;
-      });
-    }
-    return {
-      host, load,
-      section: host.closest('section'),
-      seek(p) { want = Math.round(p * (n - 1)); draw(); }
-    };
-  }
-
   // graduations imprimées du tapis de découpe
   $$('[data-ruler]').forEach(r => {
     const n = r.dataset.ruler === 'y' ? 8 : 12;
@@ -515,13 +466,6 @@
 
   const lits = $$('[data-lit]');
   const popPen = $('.pop__pen');
-  const spinHost = $('[data-spin]');
-  const spin = spinHost && !reduced ? frameSequence(spinHost) : null;
-  if (spin) {
-    new IntersectionObserver((entries, obs) => {
-      if (entries.some(e => e.isIntersecting)) { spin.load(); obs.disconnect(); }
-    }, { rootMargin: '120% 0px' }).observe(spin.section);
-  }
 
   /* ---------------------------------------------------
      18. « Précommander » — le bouton répond au lieu de sauter

@@ -165,7 +165,7 @@
       </svg>
 
       <div class="mockup__clip"></div>
-      <img class="mockup__pen" src="assets/img/stylo/stylo-poste.webp" width="256" height="748" alt="" data-rot="-58" fetchpriority="high">
+      <img class="mockup__pen shot" src="assets/img/stylo/cliche-capuchon-au-dos.webp" srcset="assets/img/stylo/cliche-capuchon-au-dos.webp 1x, assets/img/stylo/cliche-capuchon-au-dos@2x.webp 2x" width="768" height="256" alt="" decoding="async" data-rot="-12" fetchpriority="high">
     </div>
     <div class="mockup__haze"></div>
   </div>
@@ -232,12 +232,14 @@
 <section class="anatomy" id="stylo" data-bg="walnut">
   <div class="anatomy__sticky">
     <div class="anatomy__stage">
-      <!-- Le stylo photographié, tourné puis démonté au fil de la lecture :
-           84 images détourées, lues au défilement sur un canevas (§35). La
-           première sert d'affiche tant que la séquence n'est pas chargée. -->
-      <div class="spin" data-spin="assets/img/stylo/rotation/" data-frames="84" aria-hidden="true">
-        <img class="spin__poster" src="assets/img/stylo/rotation/000.webp" width="520" height="943" alt="" decoding="async">
-        <canvas class="spin__canvas" width="520" height="943"></canvas>
+      <!-- Un gros plan photographique par étape : capuchon, corps, réservoir,
+           bille. L'étape lue choisit le cliché, qui se substitue au
+           précédent en fondu ; le défilement l'approche lentement (§35). -->
+      <div class="shots" aria-hidden="true">
+        <img class="shot is-on" src="assets/img/stylo/gros-plan-capuchon.webp" srcset="assets/img/stylo/gros-plan-capuchon.webp 1x, assets/img/stylo/gros-plan-capuchon@2x.webp 2x" width="382" height="367" alt="" decoding="async" data-for="cap">
+        <img class="shot" src="assets/img/stylo/gros-plan-bouchon.webp" srcset="assets/img/stylo/gros-plan-bouchon.webp 1x, assets/img/stylo/gros-plan-bouchon@2x.webp 2x" width="381" height="367" alt="" loading="lazy" decoding="async" data-for="barrel">
+        <img class="shot" src="assets/img/stylo/gros-plan-reservoir-corps.webp" srcset="assets/img/stylo/gros-plan-reservoir-corps.webp 1x, assets/img/stylo/gros-plan-reservoir-corps@2x.webp 2x" width="382" height="367" alt="" loading="lazy" decoding="async" data-for="ink">
+        <img class="shot" src="assets/img/stylo/gros-plan-bille-pointe.webp" srcset="assets/img/stylo/gros-plan-bille-pointe.webp 1x, assets/img/stylo/gros-plan-bille-pointe@2x.webp 2x" width="382" height="367" alt="" loading="lazy" decoding="async" data-for="tip">
       </div>
       <div class="anatomy__halo" aria-hidden="true"></div>
 
@@ -354,7 +356,7 @@
       <div class="pop__tick pop__tick--t" aria-hidden="true"></div>
       <div class="pop__tick pop__tick--b" aria-hidden="true"></div>
 
-      <img class="pop__pen" src="assets/img/stylo/stylo-capuchon.webp" width="85" height="731" alt="" loading="lazy" decoding="async">
+      <img class="pop__pen shot" src="assets/img/stylo/cliche-ferme-profil.webp" srcset="assets/img/stylo/cliche-ferme-profil.webp 1x, assets/img/stylo/cliche-ferme-profil@2x.webp 2x" width="768" height="256" alt="" loading="lazy" decoding="async">
 
       <div class="hud" aria-hidden="true">
         <div class="hud__row">
@@ -389,7 +391,10 @@
 <aside class="plate plate--quote" id="temoin" aria-label="Retour utilisateur">
   <!-- la poche de manteau, au trait : le capuchon et son agrafe dépassent -->
   <svg class="plate__pocket" viewBox="0 0 300 420" aria-hidden="true" focusable="false">
-    <image class="pk-pen" href="assets/img/stylo/stylo-capuchon.webp" x="125" y="6" width="30" height="258"/>
+    <g class="pk-print" transform="translate(150 112) rotate(84)">
+      <rect x="-110" y="-40" width="220" height="80" rx="3"/>
+      <image href="assets/img/stylo/cliche-ferme-profil.webp" x="-105" y="-35" width="210" height="70" preserveAspectRatio="xMidYMid slice"/>
+    </g>
     <path class="pk-fabric" d="M20 136H280V360Q280 400 240 400H60Q20 400 20 360Z"/>
     <path class="pk-stitch" d="M34 152V356Q34 386 64 386H236Q266 386 266 356V152"/>
     <path class="pk-stitch" d="M20 166H280"/>
@@ -480,7 +485,7 @@
 
 <!-- Deuxième planche, sur fond noir, entre 06 Évaluation et 07 Adoption :
      un tirage de plan. La nomenclature en vue éclatée : chaque pièce est
-     un gros plan photographique détouré, à la même hauteur d'une case à
+     un gros plan photographique recadré, à la même taille d'une case à
      l'autre — la bille y est donc aussi grande que le corps, ce que
      personne ne réclamera. -->
 <aside class="plate plate--parts" aria-labelledby="plate-parts-title">
@@ -492,32 +497,32 @@
 
     <ol class="parts">
       <li class="part reveal" data-reveal>
-        <img src="assets/img/stylo/piece-capuchon.webp" width="360" height="273" alt="" loading="lazy" decoding="async">
+        <img src="assets/img/stylo/piece-capuchon.webp" srcset="assets/img/stylo/piece-capuchon.webp 1x, assets/img/stylo/piece-capuchon@2x.webp 2x" width="362" height="310" alt="" loading="lazy" decoding="async">
         <p class="part__idx">01</p>
         <p class="part__name">Capuchon</p>
       </li>
       <li class="part reveal" data-reveal data-delay="70">
-        <img src="assets/img/stylo/piece-corps.webp" width="200" height="245" alt="" loading="lazy" decoding="async">
+        <img src="assets/img/stylo/piece-corps.webp" srcset="assets/img/stylo/piece-corps.webp 1x, assets/img/stylo/piece-corps@2x.webp 2x" width="214" height="260" alt="" loading="lazy" decoding="async">
         <p class="part__idx">02</p>
         <p class="part__name">Corps</p>
       </li>
       <li class="part reveal" data-reveal data-delay="140">
-        <img src="assets/img/stylo/piece-reservoir.webp" width="160" height="93" alt="" loading="lazy" decoding="async">
+        <img src="assets/img/stylo/piece-reservoir.webp" srcset="assets/img/stylo/piece-reservoir.webp 1x, assets/img/stylo/piece-reservoir@2x.webp 2x" width="170" height="160" alt="" loading="lazy" decoding="async">
         <p class="part__idx">03</p>
         <p class="part__name">Réservoir</p>
       </li>
       <li class="part reveal" data-reveal data-delay="210">
-        <img src="assets/img/stylo/piece-pointe.webp" width="125" height="120" alt="" loading="lazy" decoding="async">
+        <img src="assets/img/stylo/piece-pointe.webp" srcset="assets/img/stylo/piece-pointe.webp 1x, assets/img/stylo/piece-pointe@2x.webp 2x" width="144" height="150" alt="" loading="lazy" decoding="async">
         <p class="part__idx">04</p>
         <p class="part__name">Pointe</p>
       </li>
       <li class="part reveal" data-reveal data-delay="280">
-        <img src="assets/img/stylo/piece-bille.webp" width="53" height="54" alt="" loading="lazy" decoding="async">
+        <img src="assets/img/stylo/piece-bille.webp" srcset="assets/img/stylo/piece-bille.webp 1x, assets/img/stylo/piece-bille@2x.webp 2x" width="160" height="160" alt="" loading="lazy" decoding="async">
         <p class="part__idx">05</p>
         <p class="part__name">Bille</p>
       </li>
       <li class="part reveal" data-reveal data-delay="350">
-        <img src="assets/img/stylo/piece-bouchon.webp" width="162" height="149" alt="" loading="lazy" decoding="async">
+        <img src="assets/img/stylo/piece-bouchon.webp" srcset="assets/img/stylo/piece-bouchon.webp 1x, assets/img/stylo/piece-bouchon@2x.webp 2x" width="192" height="192" alt="" loading="lazy" decoding="async">
         <p class="part__idx">06</p>
         <p class="part__name">Bouchon</p>
       </li>
@@ -627,7 +632,7 @@
       <p class="lead reveal" data-reveal data-delay="440">Maintenant, retournez la phrase. Ce stylo ne valait rien et vous lui avez accordé neuf minutes. Votre offre, elle, vaut quelque chose — et elle tient dans une plaquette que personne ne lit jusqu'au bout. <b>L'écart entre les deux n'a jamais été un problème de produit.</b></p>
     </div>
     <div class="reveal-act__pen" aria-hidden="true">
-      <img class="pen--reveal" src="assets/img/stylo/stylo-nu.webp" width="60" height="705" alt="" loading="lazy" decoding="async">
+      <img class="pen--reveal shot" src="assets/img/stylo/cliche-ouvert-profil.webp" srcset="assets/img/stylo/cliche-ouvert-profil.webp 1x, assets/img/stylo/cliche-ouvert-profil@2x.webp 2x" width="768" height="256" alt="" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
