@@ -6,6 +6,7 @@
     "deploy": "wrangler pages deploy site --project-name avecjulien --branch main --commit-dirty=true"
   },
   "devDependencies": {
+    "hyperframes": "^0.9.96",
     "wrangler": "^4.149.0"
   }
 }
